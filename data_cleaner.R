@@ -1,47 +1,70 @@
-library(checkpoint)
-checkpoint("2019-03-25")
 require(tidyverse)
 
-
-# Loading and coding data  -----------------------------------------------
+# Loading and coding data language data  -----------------------------------------------
 
 # Construct list of languages and language data
-allLanguages <- read_csv("Data/Processed/languagesbyhand.csv") %>%
-  mutate(ID = factor(ID)) # list of languages and their information
-glottocode <- read_csv("Data/IDS/Glottocode.csv")
 
-# Get the glottocode family IDs for languages in database. This level of
-# hierarchical organization of languages is where e.g. "IndoEuropean" is.
-allLanguages$familyID <-
-  glottocode$family_id[match(allLanguages$Glottocode, glottocode$id)]
+all.languages <- read_csv("Data/IDS/languages.csv")
+# 
+# all.languages <- read_csv("Data/Processed/languagesbyhand.csv") %>%
+#   mutate(ID = factor(ID)) # list of languages and their information
+glottocode <- read_csv("Data/IDS/Glottocode.csv") %>% 
+  select(id, family_id, parent_id, latitude, longitude, iso639P3code, country_ids)
+wals <- read_csv('Data/Processed/wals_ids.csv') %>% 
+  select(-Name) %>% 
+  rename(Name = IDS_NAME)
 
-# Some languages have "na" as the narrowest "family", but have coarser
-# information in other columns. Get the "parent" family as language family
-naLanguages <- is.na(allLanguages$familyID)
-allLanguages$familyID[naLanguages] <-
-  glottocode$parent_id[match(allLanguages$Glottocode[naLanguages], glottocode$id)]
+# get list of included languages
 
-# Finally, isolates just get their individual glottocode
-naLanguages <- is.na(allLanguages$familyID)
-allLanguages$familyID[naLanguages] <-
-  glottocode$id[match(allLanguages$Glottocode[naLanguages], glottocode$id)]
+included.languages <- read_csv("Data/Processed/included_languages.txt", comment = "#", col_names = "Name", quote = "\"")
 
-# Now get the name of each family from the family data of glottocode
-glottoFamilies <- read_csv("Data/IDS/families.csv")
-allLanguages$familyName <-
-  glottoFamilies$name[match(allLanguages$familyID, glottoFamilies$id)]
+# Match WALS and IDS by using the IDS name variable (hand-coded) in wals_ids.csv
 
-# Get missing coordinates from WALS
-WALSdata <- read_csv('Data/WALS/walslanguage.csv')
-naGeo <- is.na(allLanguages$Latitude)
-allLanguages$Latitude[naGeo] <- WALSdata$latitude[match(allLanguages$ISO639P3code[naGeo],
-                                                        WALSdata$iso_code)]
-allLanguages$Longitude[naGeo] <- WALSdata$longitude[match(allLanguages$ISO639P3code[naGeo],
-                                                          WALSdata$iso_code)]
+all.languages <- all.languages %>% 
+  # get rid of information that's better on WALS
+  select(-Macroarea, -Latitude, -Longitude) %>% 
+  filter(Name %in% included.languages$Name) %>% 
+  left_join(select(wals, wals_code, iso_code, Name, glottocode, latitude, longitude, genus, family, macroarea, countrycodes)) %>% 
+  arrange(Name)
+not.on.wals <- which(is.na(all.languages$wals_code)) %>% 
+  all.languages[.,] %>% 
+  select(-longitude, -latitude)
+all.languages <- all.languages[which(!(is.na(all.languages$wals_code))),]
+not.on.wals <- not.on.wals %>% 
+  bind_cols(glottocode[match(not.on.wals$ISO639P3code, glottocode$iso639P3code),])
+
+not.on.wals <- not.on.wals %>% 
+  # genus gets very messy very fast, just hand-recode family
+  mutate(family = family_id) %>% 
+  mutate(family = recode(family, 
+                         aust1305 = "Austro-Asiatic",
+                         nakh1245 = "Nakh-Daghestanian",
+                         indo1319 = "Indo-European",
+                         pano1259 = "Panoan",
+                         taik1256 = "Tai-Kadai",
+                         otom1299 = "Otomanguean",
+                         araw1281 = "Arawakan",
+                         afro1255 = "afro1255",
+                         book1242 = "Bookkeeping",
+                         nubi1251 = "Nubian",
+                         jodi1234 = "Jodi-Saliban"),
+         iso_code = iso639P3code, countrycodes = country_ids)
+
+all.languages <- all.languages %>% 
+  bind_rows(select(not.on.wals, colnames(all.languages)))
+
+# save relevant data on new file
+
+all.languages <- all.languages %>% 
+  select(ID, Name, iso_code, latitude, longitude, family, macroarea, countrycodes)
+all.languages %>% 
+  write_csv("all_language_info.csv")
+
+# Loading and coding word data  -----------------------------------------------
 
 # Get all word forms from IDS
 
-allWords <-
+all.words <-
   read_csv(
     file = "Data/IDS/forms.csv",
     col_names = T,
@@ -54,65 +77,56 @@ allWords <-
     Language_ID = factor(Language_ID)
   )
 
-# Link word forms to conecticon data to further link with wordnet
-referenceToConcepticon <- read_csv("Data/IDS/parameters.csv") %>%
+# first get language to limit the words to the languages we're including
+
+all.words <- all.words %>% 
+  filter(Language_ID %in% all.languages$ID) %>% 
+  left_join(select(all.languages, Language_ID = ID, Name)) %>% 
+  rename(language = Name) %>% 
+  select(-Language_ID, -Segments, -Comment, -Source, -Contribution_ID)
+
+# Link word forms to concepticon to obtain semantic field
+ids.to.concepticon <- read_csv("Data/IDS/parameters.csv") %>%
   mutate(ID = factor(ID),
-         Concepticon_ID = factor(Concepticon_ID))
-wordNet <-
-  read_delim("Data/IDS/wordnet.tsv", delim = "\t") %>%
-  mutate(CONCEPTICON_ID = factor(CONCEPTICON_ID))
+         Concepticon_ID = factor(Concepticon_ID)) %>% 
+  select(-Description) %>% 
+  rename(Parameter_ID = ID, english.name = Name)
+all.words <- left_join(all.words, ids.to.concepticon)
 
-excluded.languages <- read_delim("excludedlanguages.txt", delim = "\n", col_names = c("Language"), comment = "#")
-excluded.languages$Language <- str_remove_all(excluded.languages$Language, "\t")
+# get semantic field from linkage with concepticon id
 
-# Subset word form data. Append a "Wordnet ID" field through concepticon to get PoS tags.
-allWords <- allWords %>%
-  dplyr::select(Form,
-                Language_ID,
-                Parameter_ID,
-                transcription,
-                alt_transcription,
-                alt_form) %>%
-  mutate(
-    englishName = referenceToConcepticon$Name[match(Parameter_ID, referenceToConcepticon$ID)],
-    languageFamily = factor(allLanguages$familyName[match(Language_ID, allLanguages$ID)]),
-    concepticonID = factor(referenceToConcepticon$Concepticon_ID[match(Parameter_ID, referenceToConcepticon$ID)]),
-    englishPOS = factor(wordNet$WORDNET_POS[match(concepticonID, wordNet$CONCEPTICON_ID)]),
-    wordNetID = factor(wordNet$OPEN_WORDNET_ID[match(concepticonID, wordNet$CONCEPTICON_ID)]),
-    language = factor(allLanguages$Name[match(Language_ID, allLanguages$ID)])
-  ) %>%
-  filter(!(language %in% excluded.languages$Language)) %>%  # Delete reconstructed languages and languages with no information
-  dplyr::select(
-    Form,
-    transcription,
-    englishName,
-    language,
-    englishPOS,
-    languageFamily,
-    alt_transcription,
-    alt_form,
-    concepticonID
-  )
+concepticon <- read_csv('Data/Concepticon/semanticFields.csv') %>% 
+  select(Concepticon_ID = id, ontological.category = ontological_category) %>% 
+  mutate(Concepticon_ID = factor(Concepticon_ID))
 
-# Recode every useful transcription as "Phon").
-# Note that the only "alt_transcription" == "Phonemic (vars)" is Rapa Nui, with only NA in their forms.
-levels(allWords$transcription) <- c("CyrillTrans", "Phon", "LatinTrans", "Phon", "Phon",
-                                    "Standard", "StandardOrth", "StandardOrthTone")
+all.words <- left_join(all.words, concepticon) %>% 
+  select(-Concepticon_ID, -ID, -Parameter_ID)
 
-# Subset based on transcription. Retain either "phon" main transcription, or "phonemic" alt_transcription
-allPhon <- allWords %>%
-  filter(transcription == "Phon" | alt_transcription == "Phonemic") %>%
-  # If the transcription was coded as useful, get that; else, get the alt transcription.
-  # Add "Original" as the method of obtaining the transcription.
-  droplevels() %>%
-  mutate(phon = if_else(transcription == "Phon", Form, alt_form), method = "original") %>%
-  mutate(phon = str_to_lower(phon)) %>%
-  filter(!is.na(phon))
+# determine languages and words that will need a manual phon transcription
 
-# add concepticon field
+levels(all.words$transcription) <- c("CyrillTrans", "phon", "LatinTrans", "phon", "phon", "Standard", "StandardOrth", "StandardOrthTone")
+# previously: "CyrillTrans"      "IPA"              "LatinTrans"       "Phonemic"         "phonetic"         "Standard"         "StandardOrth"     "StandardOrthTone"
+# Recoded IPA, Phonemic, and Phonetic as "phon"
 
-concepticon <- read_csv('Data/Concepticon/semanticFields.csv')
-allPhon$ontologicalCategory <- concepticon$ontological_category[match(allPhon$concepticonID, concepticon$id)]
+levels(all.words$alt_transcription) <- c("Original (M. R. Key)", "phon", "Phonemic (vars)", "Standard")
+# previously: "Original (M. R. Key)" "Phonemic"             "Phonemic (vars)"      "Standard"
+# recoded Phonemic as "phon". Phonemic (vars) is only NA (rapa nui).
+
+
+all.words <- all.words %>% 
+  mutate(has.phon = ifelse(transcription == "phon" | alt_transcription == "phon", TRUE, FALSE))
+no.phon.languages <- all.words %>% 
+  filter(is.na(has.phon) | has.phon == FALSE) %>% 
+  .$language %>% 
+  unique()
+no.phon <- all.words %>% 
+  filter(language %in% no.phon.languages)
+# save to work in IPA EXTRACTION python notebook
+
+no.phon %>% write_csv('no_phon.csv')
+
+all.words <- all.words %>% 
+  filter(!(language %in% no.phon.languages))
 
 # Load words that were "hand" mined.
 noPhonWithPhon <- read_csv('Data/Processed/noPhonWithPhonFinal.csv') %>%

@@ -1,0 +1,1802 @@
+často	ts a s t o
+vždy	v z d i
+vždycky	v z d i ts k i
+stále	s t a l e
+hotový	h o t o v i
+přestati	p r̩ e s t a c i
+dokončiti	d o k o n ts i c i
+skončiti	s k o n ts i c i
+ukončiti	u k o n ts i c i
+konec	k o n e ts
+trvati	t r̩ v a c i
+začíti	z a ts i c i
+počíti	p o ts i c i
+začátek	z a ts a t e k
+počátek	p o ts a t e k
+prodlévati	p r o d l e v a c i
+meškati	m e s k a c i
+odkládati	o t k l a d a c i
+chvátati	x v a t a c i
+spěchati	s p e x a c i
+kvapiti	k v a p i c i
+zdlouhavý	z d l oʊ h a v i
+rychlý	r i x l i
+bezprostředně	b e s p r o s t r̩ e d n e
+hned	h n e t
+nyní	n i ɲ i
+ted’	t e t
+pozdě	p o z d e
+časně	ts a s n e
+ranně	r a n e
+starý	s t a r i
+mladý	m l a d i
+věk	v e k
+nový	n o v i
+čas	ts a s
+doba	d o b a
+třikrát	t r̩ i k r a t
+třetí	t r̩ e c i
+dvakrát	d v a k r a t
+pár	p a r̩
+druhý	d r u h i
+poslední	p o s l e d ɲ i
+první	p r̩ v ɲ i
+sám	s a m
+jen	j e n
+toliko	t o l i k o
+pouze	p oʊ z e
+jediný	j e ɟ i n i
+poloviční	p o l o v i ts ɲ i
+půl	p u l̩
+díl	ɟ i  l̩
+část	ts a s t
+prázdný	p r a z d n i
+plný	p l̩ n i
+množství	m n o s s t v i
+dav	d a v
+zástup	z a s t u p
+nějaký	n e j a k i
+málo	m a l o
+dost(i)	d o s t   i
+více	v i ts e
+mnoho	m n o h o
+moc	m o ts
+každý	k a z d i
+všechen	f s e x e n
+všichni	f s i x ɲ i
+počítati	p o ts i t a c i
+tisíc	c i s i ts
+sto	s t o
+dvacet	d v a ts e t
+patnáct	p a t n a ts t
+dvanáct	d v a n a ts t
+jedenáct	j e d e n a ts t
+deset	d e s e t
+devět	d e v e t
+osm	o s m
+sedm	s e d m
+šest	s e s t
+pět	p e t
+čtyři	ts t i r i
+dva	d v a
+dvě	d v e
+tři	t r̩ i
+jeden	j e d e n
+jedna	j e d n a
+jedno	j e d n o
+nula	n u l a
+měniti	m e ɲ i c i
+podobný	p o d o b n i
+čára	ts a r a
+přimka	p r̩ i m k a
+díra	ɟ i r a
+koule	k oʊ l e
+okrouhlý	o k r oʊ h l i
+kulatý	k u l a t i
+kruh	k r u x
+čtverec	ts t v e r e ts
+čtverhran	ts t v e r h r a n
+kříž	k r̩ i z
+roh	r o x
+kout	k oʊ t
+úhel	u h e l
+hák	h a k
+křivý	k r̩ i v i
+rovný	r o v n i
+přímý	p r̩ i m i
+plochý	p l o x i
+ploský	p l o s k i
+mělký	m e l̩ k i
+hluboký	h l u b o k i
+tenký	t e ŋ k i
+tlustý	t l u s t i
+úzký	u s k i
+těsný	t e s n i
+široký	s i r o k i
+krátký	k r a t k i
+vysoký	v i s o k i
+dlouhý	d l oʊ h i
+malý	m a l i
+veliký	v e l i k i
+píd’	p i t
+sáh	s a x
+měřiti	m e r̩ i c i
+růsti	r u s c i
+jih	j i x
+sever	s e v e r
+půlnoc	p u l̩ n o ts
+západ	z a p a t
+východ	v i x o t
+blízko	b l i s k o
+daleko	d a l e k o
+levý	l e v i
+pravý	p r a v i
+střední	s t r̩ e d ɲ i
+strana	s t r a n a
+bok	b o k
+ostří	o s t r̩ i
+hrana	h r a n a
+okraj	o k r a j
+hrot	h r o t
+špička	s p i ts k a
+konec	k o n e ts
+kraj	k r a j
+dno	d n o
+nízký	ɲ i s k i
+vrch	v r̩ x
+vysoký	v i s o k i
+skrýti	s k r i c i
+schovati	s x o v a c i
+zavříti	z a v r̩ i c i
+pokrýti	p o k r i c i
+otevříti	o t e v r̩ i c i
+rozděliti	r o z d e l i c i
+odděliti	o d d e l i c i
+odloučiti	o d l oʊ ts i c i
+spojiti	s p o j i c i
+sloučiti	s l oʊ ts i c i
+nahromaditi	n a h r o m a ɟ i c i
+zdvihati	z d v i h a c i
+sbírati	z b i r a c i
+shromážditi	s h r o m a z ɟ i c i
+zůstati	z u s t a c i
+zůstati	z u s t a c i
+čekati	ts e k a c i
+státi	s t a c i
+ležeti	l e z e c i
+seděti	s e d e c i
+postaviti	p o s t a v i c i
+položiti	p o l o z i c i
+klásti	k l a s c i
+místo	m i s t o
+nahoře	n a h o r e
+pod	p o t
+mimo	m i m o
+uvnitř	u v ɲ i t r̩
+v	v e
+před	p r̩ e t
+před	p r̩ e t
+dolů	d o l u
+vedle	v e d l e
+za	z a
+po	p o
+vážiti	v a z i c i
+rozděliti	r o z d e l i c i
+děliti se	d e l i c i s e
+sdíleti	z ɟ i l e c i
+laciný	l a ts i n i
+drahý	d r a h i
+cena	ts e n a
+krám	k r a m
+trh	t r̩ x
+tržiště	t r̩ z i s t e
+kupec	k u p e ts
+obchodník	o p x o d ɲ i k
+obchodovati	o p x o d o v a c i
+obchod vesti	o p x o d v e s c i
+vésti obchod	v e s c i  o p x o t
+kupčiti	k u p ts i c i
+prodati	p r o d a c i
+koupiti	k oʊ p i c i
+vydělati	v i d e l a c i
+mzda	m z d a
+plat	p l a t
+najmouti	n a j m oʊ c i
+daň	d a n
+berně	b e r n e
+poplatek	p o p l a t e k
+účet	u ts e t
+zaplatiti	z a p l a c i c i
+dluh	d l u x
+býti dlužen	b i c i d l u z e n
+vypůjčiti si	v i p u j ts i c i s i
+zadlužiti se	z a d l u z i c i s e
+půjčiti	p u j ts i c i
+lakomý	l a k o m i
+lakotný	l a k o t n i
+skoupý	s k oʊ p i
+žebrák	z e b r a k
+chudý	x u d i
+ubohý	u b o h i
+bohatý	b o h a t i
+mince	m i n ts e
+peníze	p e ɲ i z e
+propustiti	p r o p u s c i c i
+ztratiti	s t r a c i c i
+nalézti	n a l e s c i
+najíti	n a j i c i
+nacházeti	n a x a z e c i
+hledati	h l e d a c i
+ublížiti	u b l i z i c i
+poškoditi	p o s k o ɟ i c i
+uškoditi	u s k o ɟ i c i
+zničiti	z ɲ i ts i c i
+zbořiti	z b o r i c i
+zachrániti	z a x r a ɲ i c i
+chovati	x o v a c i
+chrániti	x r a ɲ i c i
+vrátiti	v r a c i c i
+dáti	d a c i
+věc	v e ts
+držeti	d r̩ z e c i
+dostati	d o s t a c i
+dobýti	d o b i c i
+držeti	d r̩ z e c i
+uchopiti	u x o p i c i
+uchvátiti	u x v a c i c i
+chytiti	x i c i c i
+vzíti	v z i c i
+bráti	b r a c i
+držeti	d r̩ z e c i
+míti	m i c i
+míti	m i c i
+přistáti	p r̩ i s t a c i
+přístav	p r̩ i s t a v
+kotva	k o t v a
+plachta	p l a x t a
+stěžeň	s t e z e n
+stožár	s t o z a r̩
+kormidlo	k o r m i d l o
+veslovati	v e s l o v a c i
+pádlo	p a d l o
+veslo	v e s l o
+vor	v o r
+plt’	p e e l t e
+traversa	t r a v e r s a
+kanoe	k a n o e
+člun	ts l u n
+lod’ka	l o t k a
+lod’	l o t
+koráb	k o r a p
+jařmo	j a r m o
+jho	j h o
+náprava	n a p r a v a
+kolo	k o l o
+vůz	v u s
+povoz	p o v o s
+kára	k a r a
+most	m o s t
+stezka	s t e s k a
+cesta	ts e s t a
+strkati	s t r̩ k a c i
+šoupati	s oʊ p a c i
+jeti	j e c i
+hnáti	h n a c i
+honiti	h o ɲ i c i
+vézti i říditi	v e s c i  i  r̩ i ɟ i c i
+vésti	v e s c i
+poslati	p o s l a c i
+posílati	p o s i l a c i
+přinésti	p r̩ i n e s c i
+nésti v podpaží	n e s c i  v  p o t p a z i
+nésti na hlavě	n e s c i n a h l a v e
+nésti na ramenou	n e s c i n a r a m e n oʊ
+nésti v ruce	n e s c i  v  r u ts e
+nésti	n e s c i
+nositi	n o s i c i
+vstoupiti	f s t oʊ p i c i
+vejíti	v e j i c i
+přiblížiti se	p r̩ i b l i z i c i s e
+přijíti	p r̩ i j i c i
+přistati	p r̩ i s t a c i
+pronásledovati	p r o n a s l e d o v a c i
+stíhati	s c i h a c i
+následovati	n a s l e d o v a c i
+jíti za	j i c i z a
+utéci	u t e ts i
+prchnouti	p r̩ x n oʊ c i
+zmizeti	z m i z e c i
+odejeti	o d e j e c i
+vrátiti se	v r a c i c i s e
+přijíti	p r̩ i j i c i
+přicházeti	p r̩ i x a z e c i
+odejíti	o d e j i c i
+vyjíti	v i j i c i
+sestupovati	s e s t u p o v a c i
+klesati	k l e s a c i
+šplhati	s p l̩ h a c i
+jíti	j i c i
+choditi	x o ɟ i c i
+stoupati	s t oʊ p a c i
+běžeti	b e z e c i
+běhati	b e h a c i
+kulhati	k u l h a c i
+jíti	j i c i
+choditi	x o ɟ i c i
+tancovati	t a n ts o v a c i
+kopati	k o p a c i
+skočiti	s k o ts i c i
+skákati	s k a k a c i
+klouznouti	k l oʊ z n oʊ c i
+klouzati	k l oʊ z a c i
+krčiti se	k r̩ ts i c i s e
+hrbiti se	h r̩ b i c i s e
+klečeti	k l e ts e c i
+plaziti se	p l a z i c i s e
+lézti	l e s c i
+váti	v a c i
+douti	d oʊ c i
+letěti	l e t e c i
+plaviti se	p l a v i c i s e
+plouti	p l oʊ c i
+plovati	p l o v a c i
+stříkati	s t r̩ i k a c i
+cákati	ts a k a c i
+ponořiti se	p o n o r i c i s e
+plouti	p l oʊ c i
+plovati	p l o v a c i
+plouti	p l oʊ c i
+plovati	p l o v a c i
+potopiti	p o t o p i c i
+tonouti	t o n oʊ c i
+téci	t e ts i
+třásti	t r̩ a s c i
+chytiti	x i c i c i
+házeti	h a z e c i
+hoditi	h o ɟ i c i
+vrhnouti	v r̩ h n oʊ c i
+kapka	k a p k a
+padnouti	p a d n oʊ c i
+zdvihnouti	z d v i h n oʊ c i
+zvednouti	z v e d n oʊ c i
+povstati	p o f s t a c i
+zvedati se	z v e d a c i s e
+splétati	s p l e t a c i
+svíjeti	s v i j e c i
+stáčeti	s t a ts e c i
+klesati	k l e s a c i
+padati	p a d a c i
+trousiti	t r oʊ s i c i
+váleti	v a l e c i
+víti	v i c i
+ovinouti	o v i n oʊ c i
+točiti	t o ts i c i
+kroutiti	k r oʊ c i c i
+vrtěti	v r̩ t e c i
+obrátiti	o b r a c i c i
+hnouti	h n oʊ c i
+hýbati	h i b a c i
+barviti	b a r v i t i
+natírati	n a c i r a c i
+dláto	d l a t o
+barva	b a r v a
+socha	s o x a
+sochař	s o x a r
+řezbář	r̩ e z b a r̩
+vytesati	v i t e s a c i
+ovívati	o v i v a c i
+rozdmýchati	r o z d m i x a c i
+vějíř	v e j i  r̩
+dmychadlo	d m i x a d l o
+sít’	s i t
+kobereček	k o b e r e ts e k
+rohož	r o h o z
+koš	k o s
+košík	k o s i k
+plésti	p l e s c i
+sklo	s k l o
+hlína	h l i n a
+jíl	j i  l̩
+zformovati	s f o r m o v a c i
+(vy)modelovati	  v i   m o d e l o v a c i
+vytvořiti	v i t v o r i c i
+hrnčíř	h r̩ n ts i  r̩
+cín	ts i n
+plech	p l e x
+olovo	o l o v o
+železo	z e l e z o
+měd’	m e t
+bronz	b r o n s
+stříbro	s t r̩ i b r o
+zlato	z l a t o
+odlíti	o d l i c i
+kovadlina	k o v a d l i n a
+kouti	k oʊ c i
+kovati	k o v a c i
+kovář	k o v a r̩
+klih	k l i x
+hřebík	h r̩ e b i k
+hřeb	h r̩ e p
+kladivo	k l a ɟ i v o
+pila	p i l a
+vyhloubiti	v i h l oʊ b i c i
+vrtati	v r̩ t a c i
+stavěti	s t a v e c i
+budovati	b u d o v a c i
+tesař	t e s a r
+náčiní	n a ts i ɲ i
+nástroj	n a s t r o j
+nářadí	n a r̩ a ɟ i
+koště	k o s t e
+pometlo	p o m e t l o
+mýti	m i c i
+práti	p r a c i
+mésti	m e s c i
+líti	l i c i
+mačkati	m a ts k a c i
+tisknouti	c i s k n oʊ c i
+tlačiti	t l a ts i c i
+pověsiti	p o v e s i c i
+prostříti	p r o s t r̩ i c i
+stláti	s t l a c i
+sypati	s i p a c i
+trousiti	t r oʊ s i c i
+táhnouti	t a h n oʊ c i
+roztáhnouti	r o s t a h n oʊ c i
+napínati	n a p i n a c i
+tříti	t r̩ i c i
+dříti	d r̩ i c i
+trhati	t r̩ h a c i
+rváti	r̩ v a c i
+štípati	s c i p a c i
+zlomený	z l o m e n i
+lámati	l a m a c i
+lomiti	l o m i c i
+sekyra	s e k i r a
+sekera	s e k e r a
+širočina	s i r o ts i n a
+nůžky	n u s k i
+nůž	n u z
+bodnouti	b o d n oʊ c i
+sekati	s e k a c i
+tesati	t e s a c i
+káceti	k a ts e c i
+porážeti	p o r a z e c i
+řezati	r̩ e z a c i
+krájeti	k r a j e c i
+sekati	s e k a c i
+tlouci pěstí	t l oʊ ts i p e s c i
+uhoditi	u h o ɟ i c i
+udeřiti	u d e r i c i
+bíti	b i c i
+tlouci	t l oʊ ts i
+uzel	u z e l
+provaz	p r o v a s
+lano	l a n o
+řetěz	r̩ e t e s
+rozvázati	r o z v a z a c i
+vázati	v a z a c i
+skládati	s k l a d a c i
+zahýbati	z a h i b a c i
+ohnouti	o h n oʊ c i
+ohýbati	o h i b a c i
+práce	p r a ts e
+dílo	ɟ i l o
+činiti	ts i n i c i
+robiti	r o b i c i
+dělati	d e l a c i
+houba	h oʊ b a
+kopřiva	k o p r̩ i v a
+cukrová třtina	ts u k r o v a t r̩ c i n a
+bambus	b a m b u s
+dýně	d i n e
+tykev	t i k e v
+maniok	m a ɲ i  o k
+batáta	b a t a t a
+sladký brambor	s l a t k i b r a m b o r
+banán	b a n a n
+banánovník	b a n a n o v ɲ i k
+citrón	ts i t r o n
+kokosový ořech	k o k o s o v i  o r e x
+palma	p a l m a
+míza	m i z a
+kůra	k u r a
+vidlicovitá větev	v i d l i ts o v i t a v e t e v
+kmen stromu	k m e n s t r o m u
+pařez	p a r e s
+dymka	d i m k a
+fajfka	f a j f k a
+kouřiti	k oʊ r i c i
+tabák	t a b a k
+vinná réva	v i n a r e v a
+vinný keř	v i n i k e r
+žalud	z a l u t
+jedle	j e d l e
+sosna	s o s n a
+smrk	s m r̩ k
+bříza	b r̩ i z a
+buk	b u k
+dub	d u p
+strom	s t r o m
+květina	k v e c i n a
+list	l i s t
+větev	v e t e v
+haluz	h a l u s
+kořen	k o r e n
+pěstovati	p e s t o v a c i
+sázeti	s a z e c i
+seno	s e n o
+rostlina	r o s t l i n a
+bylina	b i l i n a
+tráva	t r a v a
+rýže	r i z e
+kukuřice	k u k u r i ts e
+oves	o v e s
+žito	z i t o
+rež	r e z
+pšenice	p s e ɲ i ts e
+ječmen	j e ts m e n
+obilí	o b i l i
+žeň	z e n
+úroda	u r o d a
+mlat	m l a t
+mlátiti	m l a c i c i
+srp	s r̩ p
+kosa	k o s a
+žíti	z i c i
+síci	s i ts i
+kositi	k o s i c i
+semeno	s e m e n o
+síti	s i c i
+hrábě	h r a b e
+vidle	v i d l e
+motyka	m o t i k a
+lopata	l o p a t a
+rýč	r i ts
+lopatka	l o p a t k a
+brázda	b r a z d a
+kopati	k o p a c i
+rýti	r i c i
+orati	o r a c i
+pluh	p l u x
+příkop	p r̩ i k o p
+ohrada	o h r a d a
+plot	p l o t
+vzdělávati	v z d e l a v a c i
+obdělávati	o b d e l a v a c i
+zahrada	z a h r a d a
+pole	p o l e
+role	r o l e
+rolník	r o l ɲ i k
+sedlák	s e d l a k
+farmář	f a r m a r̩
+zemědělec	z e m e d e l e ts
+vepřovice	v e p r̩ o v i ts e
+nepálená cihla	n e p a l e n a ts i h l a
+moždíř	m o z ɟ i  r̩
+cihla	ts i h l a
+oblouk	o b l oʊ k
+zedník	z e d ɲ i k
+prkno	p r̩ k n o
+deska	d e s k a
+tyč	t i ts
+trám	t r a m
+nosník	n o s ɲ i k
+krov	k r o v
+hřeben střechy	h r̩ e b e n s t r̩ e x i
+došek	d o s e k
+střecha	s t r̩ e x a
+koryto	k o r i t o
+díž	ɟ i z
+police	p o l i ts e
+svíce	s v i ts e
+svíčka	s v i ts k a
+lampa	l a m p a
+stůl	s t u l̩
+sedadlo	s e d a d l o
+židle	z i d l e
+přikrývka	p r̩ i k r i f k a
+polštář	p o l s t a r̩
+lože	l o z e
+postel	p o s t e l
+žebřík	z e b r̩ i k
+komín	k o m i n
+kamna	k a m n a
+ohniště	o h ɲ i s t e
+zed’	z e t
+stěna	s t e n a
+podlaha	p o d l a h a
+okno	o k n o
+klíč	k l i ts
+klika	k l i k a
+zámek	z a m e k
+veřeje	v e r e j e
+futra dveří	f u t r a d v e r i
+futro dveří	f u t r o d v e r i
+pokoj	p o k o j
+místnost	m i s t n o s t
+dveře	d v e r e
+vrata	v r a t a
+brána	b r a n a
+dvůr	d v u r̩
+stan	s t a n
+zahradní dům	z a h r a d ɲ i d u m
+chata	x a t a
+chatrč	x a t r̩ ts
+chalupa	x a l u p a
+dům	d u m
+bydleti	b i d l e c i
+obývati	o b i v a c i
+zrcadlo	z r̩ ts a d l o
+mýdlo	m i d l o
+mast	m a s t
+břitva	b r̩ i t v a
+cop	ts o p
+kartáč	k a r t a ts
+hřeben	h r̩ e b e n
+ručník	r u ts ɲ i k
+kapesník	k a p e s ɲ i k
+tetování	t e t o v a ɲ i
+čelenka	ts e l e ŋ k a
+náušnice	n a u s ɲ i ts e
+korálek	k o r a l e k
+náhrdelník	n a h r̩ d e l ɲ i k
+náramek	n a r a m e k
+prsten	p r̩ s t e n
+klenot	k l e n o t
+drahokam	d r a h o k a m
+okrasa	o k r a s a
+špendlík	s p e n d l i k
+knoflík	k n o f l i k
+kapsa	k a p s a
+závoj	z a v o j
+rukavice	r u k a v i ts e
+pás	p a s
+klobouk	k l o b oʊ k
+čepice	ts e p i ts e
+čapka	ts a p k a
+švec	s v e ts
+obuvník	o b u v ɲ i k
+střevíc	s t r̩ e v i ts
+obuv	o b u v
+bota	b o t a
+bota	b o t a
+punčocha	p u n ts o x a
+spodky	s p o t k i
+kalhoty	k a l h o t i
+sukně z trávy	s u k n e  s  t r a v i
+sukně	s u k n e
+límec	l i m e ts
+košile	k o s i l e
+kabát	k a b a t
+(dámské) šaty	  d a m s k e   s a t i
+pončo	p o n ts o
+barviti	b a r v i t i
+plášt’	p l a s t
+nit	ɲ i t
+jehla	j e h l a
+šídlo	s i d l o
+šíti	s i c i
+stav	s t a v
+tkáti	t k a c i
+vřeteno	v r̩ e t e n o
+přísti	p r̩ i s c i
+kůže	k u z e
+kožešina	k o z e s i n a
+plst’	p e e l e s t e
+hedvábí	h e d v a b i
+bavlna	b a v l̩ n a
+plátno	p l a t n o
+len	l e n
+vlna	v l̩ n a
+sukno	s u k n o
+látka	l a t k a
+krejčí	k r eɪ ts i
+švadlena	s v a d l e n a
+šaty	s a t i
+oděv	o d e v
+oblek	o b l e k
+odíti	o ɟ i c i
+oblékati	o b l e k a c i
+ošatiti	o s a c i c i
+žloutek	z l oʊ t e k
+vejce	v eɪ ts e
+kvas	k v a s
+kvašený nápoj	k v a s e n i n a p o j
+pivo	p i v o
+víno	v i n o
+medovina	m e d o v i n a
+nápoj	n a p o j
+pití	p i c i
+máslo	m a s l o
+sýr	s i  r̩
+tvaroh	t v a r o x
+dojiti	d o j i c i
+cukr	ts u k r̩
+mléko	m l e k o
+med	m e t
+[čili]	  ts i l i
+pepř	p e p r̩
+sůl	s u l̩
+sádlo	s a d l o
+olej	o l eɪ
+oliva	o l i v a
+hrozen	h r o z e n
+ořech	o r e x
+fík	f i k
+svazek	s v a z e k
+ovoce	o v o ts e
+brambor	b r a m b o r
+zemák	z e m a k
+bob	b o p
+fazol	f a z o l
+zelenina	z e l e ɲ i n a
+polévka	p o l e f k a
+jítrnice	j i t r̩ ɲ i ts e
+klobása	k l o b a s a
+maso	m a s o
+palička	p a l i ts k a
+moždíř	m o z ɟ i  r̩
+mlýn	m l i n
+mlíti	m l i c i
+mouka	m oʊ k a
+hnísti	h ɲ i s c i
+těsto	t e s t o
+chléb	x l e p
+míchati	m i x a c i
+škrábati	s k r a b a c i
+prosíti	p r o s i c i
+procediti	p r o ts e ɟ i c i
+loupati	l oʊ p a c i
+večeře	v e ts e r e
+oběd	o b e t
+večeře	v e ts e r e
+hostina	h o s c i n a
+oběd	o b e t
+snídaně	s ɲ i d a n e
+jídlo	j i d l o
+kleště	k l e s t e
+vidlička	v i d l i ts k a
+nůž	n u z
+lžíce	l̩ z i ts e
+miska	m i s k a
+talířek	t a l i  r̩ e k
+šálek	s a l e k
+číše	ts i s e
+mísa	m i s a
+džbán	dʑ b a n
+talíř	t a l i  r̩
+mísa	m i s a
+pánev	p a n e v
+hrnek	h r̩ n e k
+hrnec	h r̩ n e ts
+kotel	k o t e l
+péci	p e ts i
+pec	p e ts
+péci	p e ts i
+smažiti	s m a z i c i
+vařiti	v a r i c i
+vařiti	v a r i c i
+dusiti	d u s i c i
+škrtiti	s k r̩ c i c i
+hltati	h l̩ t a c i
+žvýkati	z v i k a c i
+sáti	s a c i
+žízeň	z i z e n
+hladomor	h l a d o m o r
+hlad	h l a t
+píti	p i c i
+shnilý	s h ɲ i l i
+nezralý	n e z r a l i
+zralý	z r a l i
+syrový	s i r o v i
+vařený	v a r e n i
+jídlo	j i d l o
+pokrm	p o k r̩ m
+potrava	p o t r a v a
+jísti	j i s c i
+nahý	n a h i
+holý	h o l i
+slepý	s l e p i
+opilý	o p i l i
+němý	n e m i
+hluchý	h l u x i
+lysý	l i s i
+plešatý	p l e s a t i
+chromý	x r o m i
+kulhavý	k u l h a v i
+líný	l i n i
+lenivý	l e ɲ i v i
+odpočívat	o t p o ts i v a t
+unavený	u n a v e n i
+mdlý	m d l i
+jed	j e t
+otrava	o t r a v a
+lék	l e k
+lékař	l e k a r
+hojiti	h o j i c i
+léčiti	l e ts i c i
+jizva	j i z v a
+hnis	h ɲ i s
+vřed	v r̩ e t
+vřídek	v r̩ i d e k
+puchýř	p u x i  r̩
+svrab	s v r a p
+otok	o t o k
+modřina	m o d r̩ i n a
+podlitina	p o d l i c i n a
+pohmožděnina	p o h m o z d e ɲ i n a
+rána	r a n a
+rýma	r i m a
+nastuzení	n a s t u z e ɲ i
+katar	k a t a r
+vole	v o l e
+horečka	h o r e ts k a
+teplota	t e p l o t a
+nemocný	n e m o ts n i
+nemoc	n e m o ts
+zdravý	z d r a v i
+zdraví	z d r a v i
+slabý	s l a b i
+silný	s i l n i
+mocný	m o ts n i
+hrob	h r o p
+pochovati	p o x o v a c i
+pohřbíti	p o h r̩ b i c i
+mrtvola	m r̩ t v o l a
+zabíti	z a b i c i
+usmrtiti	u s m r̩ c i c i
+utopený	u t o p e n i
+umříti	u m r̩ i c i
+mrtvý	m r̩ t v i
+smrt	s m r̩ t
+žíti	z i c i
+živý	z i v i
+živoucí	z i v oʊ ts i
+život	z i v o t
+počíti	p o ts i c i
+těhotná	t e h o t n a
+březí	b r̩ e z i
+roditi	r o ɟ i c i
+zploditi	s p l o ɟ i c i
+koupati se	k oʊ p a c i s e
+chvěti se	x v e c i s e
+teteliti se	t e t e l i c i s e
+souložiti	s oʊ l o z i c i
+jebati	j e b a c i
+lejno	l eɪ n o
+hnůj	h n u j
+močiti	m o ts i c i
+moč	m o ts
+prděti	p r̩ d e c i
+bzdíti	b z ɟ i c i
+probuditi	p r o b u ɟ i c i
+bdíti	b ɟ i c i
+sníti	s ɲ i c i
+sen	s e n
+chrápati	x r a p a c i
+spátí	s p a c i
+spaní	s p a ɲ i
+spánek	s p a n e k
+kapati	k a p a c i
+lízati	l i z a c i
+kousati	k oʊ s a c i
+hryzati	h r i z a c i
+dáviti	d a v i c i
+zvraceti	z v r a ts e c i
+blíti	b l i c i
+plivati	p l i v a c i
+pot	p o t
+potit se	p o c i t s e
+kýchati	k i x a c i
+kašlati	k a s l a c i
+škytati	s k i t a c i
+zívati	z i v a c i
+dýchati	d i x a c i
+dech	d e x
+pyj	p i j
+pohlavní úd	p o h l a v ɲ i  u t
+varle	v a r l e
+moudí	m oʊ ɟ i
+děloha	d e l o h a
+lůno	l u n o
+zadek	z a d e k
+zadnice	z a d ɲ i ts e
+bok	b o k
+kyčel	k i ts e l
+pas	p a s
+střevo	s t r̩ e v o
+střeva	s t r̩ e v a
+žaludek	z a l u d e k
+břich	b r̩ i x
+slezina	s l e z i n a
+ledvina	l e d v i n a
+játra	j a t r a
+plíce	p l i ts e
+srdce	s r̩ t ts e
+pupek	p u p e k
+vemeno	v e m e n o
+výmě	v i m e
+bradavka	b r a d a f k a
+prs	p r̩ s
+ňadro	n a d r o
+prsa	p r̩ s a
+hrud’	h r u t
+péro	p e r o
+křídlo	k r̩ i d l o
+prst (na noze)	p r̩ s t   n a n o z e
+stopa	s t o p a
+šlépěj	s l e p e j
+pata	p a t a
+kloub	k l oʊ p
+noha	n o h a
+koleno	k o l e n o
+lýtko	l i t k o
+stehno	s t e h n o
+noha	n o h a
+dráp	d r a p
+nehet	n e h e t
+palec	p a l e ts
+prst	p r̩ s t
+dlaň	d l a n
+ruka	r u k a
+zápěstí	z a p e s c i
+loket	l o k e t
+podpaží	p o t p a z i
+rámě	r a m e
+paže	p a z e
+klíční kost	k l i ts ɲ i k o s t
+lopatka (na zádech)	l o p a t k a   n a z a d e x
+rameno	r a m e n o
+plece	p l e ts e
+hrdlo	h r̩ d l o
+týl	t i  l̩
+krk	k r̩ k
+šíje	s i j e
+stolička	s t o l i ts k a
+zub	z u p
+dásně	d a s n e
+jazyk	j a z i k
+ret	r e t
+pysk	p i s k
+zobák	z o b a k
+ústa	u s t a
+hlen	h l e n
+sliz	s l i s
+nosní dírka	n o s ɲ i ɟ i  r̩ k a
+chřípí	x r̩ i p i
+nos	n o s
+ušní maz	u s ɲ i m a s
+ušní lalůček	u s ɲ i l a l u ts e k
+ucho	u x o
+mrkati	m r̩ k a c i
+oční řasa	o ts ɲ i  r̩ a s a
+víčko	v i ts k o
+obočí	o b o ts i
+obrv	o b r̩ v
+oko	o k o
+tváře	t v a r̩ e
+líce	l i ts e
+brada	b r a d a
+čelo	ts e l o
+čelist	ts e l i s t
+tvář	t v a r̩
+mozek	m o z e k
+spánek	s p a n e k
+leb	l e p
+lebka	l e p k a
+hlava	h l a v a
+páteř	p a t e r
+hřbet	h r̩ b e t
+záda	z a d a
+ocas	o ts a s
+ohon	o h o n
+chvost	x v o s t
+roh	r o x
+žebro	z e b r o
+kost	k o s t
+žíla	z i l a
+tepna	t e p n a
+krev	k r e v
+lupa	l u p a
+lupy	l u p i
+pubické ochlupení	p u b i ts k e o x l u p e ɲ i
+chlup	x l u p
+vous	v oʊ s
+brada	b r a d a
+vlas	v l a s
+maso	m a s o
+kůže	k u z e
+pokožka	p o k o s k a
+tělo	t e l o
+želva	z e l v a
+krokodýl	k r o k o d i  l̩
+kajman	k a j m a n
+aligátor	a l i ɡ a t o r
+ještěrka	j e s t e r̩ k a
+žába	z a b a
+hlemýžd’	h l e m i s t
+šnek	s n e k
+kobylka	k o b i l k a
+motýl	m o t i  l̩
+svatojánská muška	s v a t o j a n s k a m u s k a
+světluška	s v e t l u s k a
+had	h a t
+červ	ts e r v
+komár	k o m a r̩
+moskyt	m o s k i t
+písečná moucha	p i s e ts n a m oʊ x a
+komár	k o m a r̩
+moucha	m oʊ x a
+vosa	v o s a
+úl	u l̩
+(včelí) vosk	  f ts e l i   v o s k
+včela	f ts e l a
+pavučina	p a v u ts i n a
+pavouk	p a v oʊ k
+mravenec	m r a v e n e ts
+šváb	s v a p
+štír	s c i  r̩
+škorpion	s k o r p i  o n
+stonožka	s t o n o s k a
+blecha	b l e x a
+hnida	h ɲ i d a
+veš	v e s
+hmyz	h m i s
+velbloud	v e l b l oʊ t
+slon	s l o n
+opice	o p i ts e
+jelen	j e l e n
+liška	l i s k a
+medvěd	m e d v e t
+lev	l e v
+vlk	v e e l k a
+úhoř	u h o r
+rejnok	r eɪ n o k
+velryba	v e l r i b a
+delfín	d e l f i n
+žralok	z r a l o k
+mušle	m u s l e
+ulita	u l i t a
+lastura	l a s t u r a
+žábra	z a b r a
+žábry	z a b r i
+šupina	s u p i n a
+ploutev	p l oʊ t e v
+ryba	r i b a
+myš	m i s
+kočka	k o ts k a
+kocour	k o ts oʊ r
+kotě	k o t e
+králík	k r a l i k
+pes	p e s
+holub	h o l u p
+sova	s o v a
+vrána	v r a n a
+papoušek	p a p oʊ s e k
+netopýr	n e t o p i  r̩
+sup	s u p
+jestřáb	j e s t r̩ a p
+luňák	l u n a k
+sokol	s o k o l
+orel	o r e l
+racek	r a ts e k
+volavka	v o l a f k a
+pták	p t a k
+hnízdo	h ɲ i z d o
+kachna	k a x n a
+husa	h u s a
+kuře	k u r e
+slepice	s l e p i ts e
+kohout	k o h oʊ t
+mezek	m e z e k
+mul	m u l
+kur	k u r
+osel	o s e l
+hříbě	h r̩ i b e
+klisna	k l i s n a
+kobyla	k o b i l a
+hřebec	h r̩ e b e ts
+kůň	k u n
+kůzle	k u z l e
+kozel	k o z e l
+koza	k o z a
+prase	p r a s e
+sele	s e l e
+svině	s v i n e
+kanec	k a n e ts
+jehně	j e h n e
+beránek	b e r a n e k
+ovce	o f ts e
+bahnice	b a h ɲ i ts e
+beran	b e r a n
+ovce	o f ts e
+tele	t e l e
+kráva	k r a v a
+vůl	v u l̩
+býk	b i k
+skot	s k o t
+stáj	s t a j
+chlév	x l e v
+pastýř	p a s t i  r̩
+pastucha	p a s t u x a
+pásti	p a s c i
+pásti se	p a s c i s e
+dobytek	d o b i t e k
+samice	s a m i ts e
+samec	s a m e ts
+zvíře	z v i  r̩ e
+živočich	z i v o ts i x
+oni	o ɲ i
+vy	v i
+my	m i
+my	m i
+my	m i
+on	o n
+ona	o n a
+ono	o n o
+ty	t i
+já	j a
+rodina	r o ɟ i n a
+příbuzní	p r̩ i b u z ɲ i
+vdovec	v d o v e ts
+vdova	v d o v a
+sirotek	s i r o t e k
+sirota	s i r o t a
+nevlastní dcera	n e v l a s t ɲ i t ts e r a
+pastorkyně	p a s t o r k i n e
+nevlastní syn	n e v l a s t ɲ i s i n
+pastorek	p a s t o r e k
+nevlastní matka	n e v l a s t ɲ i m a t k a
+macecha	m a ts e x a
+nevlastní otec	n e v l a s t ɲ i  o t e ts
+otčím	o t ts i m
+snacha	s n a x a
+snacha	s n a x a
+zet’	z e t
+zet’	z e t
+tchyně	t x i n e
+tchyně	t x i n e
+tchán	t x a n
+tchán	t x a n
+potomci	p o t o m ts i
+předkové	p r̩ e t k o v e
+bratranec	b r a t r a n e ts
+sestřenice	s e s t r̩ e ɲ i ts e
+neteř	n e t e r
+bratrovna	b r a t r o v n a
+synovec	s i n o v e ts
+bratrovec	b r a t r o v e ts
+sestřenec	s e s t r̩ e n e ts
+teta	t e t a
+teta	t e t a
+teta	t e t a
+strýc	s t r i ts
+ujec	u j e ts
+strýc	s t r i ts
+ujec	u j e ts
+vnuk	v n u k
+vnučka	v n u ts k a
+stará žena	s t a r a z e n a
+stařena	s t a r e n a
+babička	b a b i ts k a
+stařec	s t a r e ts
+kmet	k m e t
+děd	d e t
+děda	d e d a
+dědeček	d e d e ts e k
+dvojčata	d v o j ts a t a
+dvojče	d v o j ts e
+sourozenec	s oʊ r o z e n e ts
+mladší sestra	m l a t s i s e s t r a
+starší sestra	s t a r s i s e s t r a
+sestra	s e s t r a
+mladší bratr	m l a t s i b r a t r̩
+starší bratr	s t a r s i b r a t r̩
+bratr	b r a t r̩
+potomek	p o t o m e k
+dcera	t ts e r a
+syn	s i n
+vdaná žena	v d a n a z e n a
+ženatý muž	z e n a t i m u z
+rodiče	r o d i ts e
+matka	m a t k a
+máti	m a c i
+otec	o t e ts
+rozvod	r o z v o t
+manželství	m a n z e l s t v i
+ženitba	z e ɲ i d b a
+vdavky	v d a f k i
+oženiti se	o z e ɲ i c i s e
+vdáti se	v d a c i s e
+žena	z e n a
+manželka	m a n z e l k a
+chot’	x o t
+muž	m u z
+manžel	m a n z e l
+chot’	x o t
+dět’átko	d e t a t k o
+nemluvně	n e m l u v n e
+dítě	ɟ i t e
+mladá žena	m l a d a z e n a
+dívka	ɟ i f k a
+děvče	d e f ts e
+mladík	m l a ɟ i k
+mladý muž	m l a d i m u z
+chlapec	x l a p e ts
+hoch	h o x
+ženský	z e n s k i
+mužský	m u s s k i
+žena	z e n a
+muž	m u z
+člověk	ts l o v e k
+osoba	o s o b a
+dřevěné uhlí	d r̩ e v e n e u h l i
+palivo	p a l i v o
+sirka	s i r k a
+zápalka	z a p a l k a
+uhasiti	u h a s i c i
+zničiti	z ɲ i ts i c i
+zapáliti	z a p a l i c i
+hořeti	h o r e c i
+páliti	p a l i c i
+žhnouti	s h n oʊ c i
+spáliti (se)	s p a l i c i   s e
+žhavé uhlí	s h a v e u h l i
+popel	p o p e l
+dým	d i m
+plamen	p l a m e n
+oheň	o h e n
+počasí	p o ts a s i
+led	l e t
+sníh	s ɲ i x
+déšt’	d e s t
+mlha	m l̩ h a
+vítr	v i t r̩
+oblak	o b l a k
+mrak	m r a k
+vzduch	v z d u x
+rosa	r o s a
+stín	s c i n
+temnota	t e m n o t a
+tma	t m a
+světlo	s v e t l o
+duha	d u h a
+bouře	b oʊ r e
+bouřka	b oʊ r k a
+hrom	h r o m
+blesk	b l e s k
+blesk	b l e s k
+hvězda	h v e z d a
+měsíc	m e s i ts
+slunce	s l u n ts e
+nebe	n e b e
+obloha	o b l o h a
+zemětřesení	z e m e t r̩ e s e ɲ i
+kámen	k a m e n
+skála	s k a l a
+dřevo	d r̩ e v o
+strom	s t r o m
+les	l e s
+vodopád	v o d o p a t
+bažina	b a z i n a
+močál	m o ts a l̩
+pramen	p r a m e n
+zřídlo	z r̩ i d l o
+zdroj	z d r o j
+vír	v i  r̩
+řeka	r̩ e k a
+tok	t o k
+potok	p o t o k
+příliv	p r̩ i l i v
+odliv	o d l i v
+příliv a odliv	p r̩ i l i v  a o d l i v
+vlna	v l̩ n a
+mys	m i s
+úskalí	u s k a l i
+útes	u t e s
+laguna	l a ɡ u n a
+záliv	z a l i v
+zátoka	z a t o k a
+jezero	j e z e r o
+oceán	o ts e a n
+pěna	p e n a
+bouře	b oʊ r e
+moře	m o r e
+bezvětří	b e z v e t r̩ i
+voda	v o d a
+jeskyně	j e s k i n e
+břeh	b r̩ e x
+pobřeží	p o b r̩ e z i
+pevnina	p e v ɲ i n a
+ostrov	o s t r o v
+údolí	u d o l i
+dolina	d o l i n a
+rovina	r o v i n a
+pláň	p l a n
+pole	p o l e
+útes	u t e s
+sráz	s r a s
+hora	h o r a
+vrch	v r̩ x
+pahorek	p a h o r e k
+kopec	k o p e ts
+bláto	b l a t o
+písek	p i s e k
+prach	p r a x
+půda	p u d a
+země	z e m e
+svět	s v e t
+někdy	n e k d i
+brzy	b r̩ z i
+dlouho	d l oʊ h o
+nikdy	ɲ i k d i
+opět	o p e t
+zase	z a s e
+den	d e n
+noc	n o ts
+svítání	s v i t a ɲ i
+úsvit	u s v i t
+jitro	j i t r o
+ráno	r a n o
+poledne	p o l e d n e
+odpoledne	o t p o l e d n e
+večer	v e ts e r
+dnes	d n e s
+zítra	z i t r a
+zejtra	z eɪ t r a
+pozítří	p o z i t r̩ i
+včera	f ts e r a
+předevčírem	p r̩ e d e f ts i r e m
+hodina	h o ɟ i n a
+hodiny	h o ɟ i n i
+týden	t i d e n
+neděle	n e d e l e
+neděle	n e d e l e
+pondělí	p o n d e l i
+úterý	u t e r i
+středa	s t r̩ e d a
+čtvrtek	ts t v r̩ t e k
+pátek	p a t e k
+sobota	s o b o t a
+měsíc	m e s i ts
+rok	r o k
+zima	z i m a
+jaro	j a r o
+vesna	v e s n a
+léto	l e t o
+podzim	p o dʑ i m
+jeseň	j e s e n
+období	o b d o b i
+číti	ts i c i
+čichati	ts i x a c i
+frkati	f r̩ k a c i
+páchnouti	p a x n oʊ c i
+voněti	v o n e c i
+vonný	v o n i
+smrdutý	s m r̩ d u t i
+smradlavý	s m r a d l a v i
+páchnoucí	p a x n oʊ ts i
+okusiti	o k u s i c i
+ochutnati	o x u t n a c i
+sladký	s l a t k i
+slaný	s l a n i
+hořký	h o r k i
+kyselý	k i s e l i
+brakický	b r a k i ts k i
+slyšeti	s l i s e c i
+naslouchati	n a s l oʊ x a c i
+zvuk	z v u k
+hlasitý	h l a s i t i
+klid	k l i t
+ticho	c i x o
+viděti	v i d e c i
+hleděti	h l e d e c i
+patřiti	p a t r̩ i c i
+dívati se	ɟ i v a c i s e
+ukázati	u k a z a c i
+svítiti	s v i c i c i
+blýskati	b l i s k a c i
+jasný	j a s n i
+světlý	s v e t l i
+barva	b a r v a
+světlý	s v e t l i
+jasný	j a s n i
+temný	t e m n i
+bílý	b i l i
+černý	ts e r n i
+červený	ts e r v e n i
+modrý	m o d r i
+zelený	z e l e n i
+žlutý	z l u t i
+dotknouti se	d o t k n oʊ c i s e
+štípnouti	s c i p n oʊ c i
+hmatati	h m a t a c i
+makati	m a k a c i
+cítiti	ts i c i c i
+tvrdý	t v r̩ d i
+měkký	m e k i
+drsný	d r̩ s n i
+hladký	h l a t k i
+ostrý	o s t r i
+tupý	t u p i
+těžký	t e s k i
+lehký	l e h k i
+mokrý	m o k r i
+vlhký	v l̩ h k i
+suchý	s u x i
+horký	h o r k i
+teplý	t e p l i
+studený	s t u d e n i
+čistý	ts i s t i
+špinavý	s p i n a v i
+vrásčitý	v r a s ts i t i
+svraštělý	s v r a s t e l i
+duše	d u s e
+duch	d u x
+údiv	u ɟ i v
+úžas	u z a s
+udivený	u ɟ i v e n i
+užaslý	u z a s l i
+štěstí	s t e s c i
+neštěstí	n e s t e s c i
+nehoda	n e h o d a
+radostný	r a d o s t n i
+rád	r a t
+veselý	v e s e l i
+smáti se	s m a c i s e
+usmívati se	u s m i v a c i s e
+smát se	s m a t s e
+hrát si s	h r a t s i  e s
+láska	l a s k a
+milovati	m i l o v a c i
+líbati	l i b a c i
+celovati	ts e l o v a c i
+objetí	o b j e c i
+bolest	b o l e s t
+utrpení	u t r̩ p e ɲ i
+zármutek	z a r̩ m u t e k
+smutek	s m u t e k
+žalost	z a l o s t
+úzkost	u s k o s t
+litovati	l i t o v a c i
+želeti	z e l e c i
+káti se	k a c i s e
+útrpnost	u t r̩ p n o s t
+lítost	l i t o s t
+soucit	s oʊ ts i t
+škoda	s k o d a
+plakati	p l a k a c i
+slza	s l̩ z a
+sténati	s t e n a c i
+nenávist	n e n a v i s t
+hněv	h n e v
+zlost	z l o s t
+závist	z a v i s t
+žárlivost	z a r̩ l i v o s t
+stud	s t u t
+hanba	h a n b a
+pyšný	p i s n i
+hrdý	h r̩ d i
+odvážiti se	o d v a z i c i s e
+udatný	u d a t n i
+statečný	s t a t e ts n i
+strach	s t r a x
+bázeň	b a z e n
+nebezpečí	n e b e s p e ts i
+žádati	z a d a c i
+vybrati	v i b r a c i
+naděje	n a d e j e
+věrný	v e r̩ n i
+pravda	p r a v d a
+lež	l e z
+lháti	l̩ h a c i
+klam	k l a m
+šalba	s a l b a
+podvod	p o d v o t
+odpustiti	o t p u s c i c i
+dobrý	d o b r i
+špatný	s p a t n i
+zlý	z l i
+pravý	p r a v i
+špatný	s p a t n i
+hanebný	h a n e b n i
+lživý	l̩ z i v i
+vina	v i n a
+chyba	x i b a
+omyl	o m i l
+blud	b l u t
+hana	h a n a
+chvála	x v a l a
+krásný	k r a s n i
+hezký	h e s k i
+pěkný	p e k n i
+ošklivý	o s k l i v i
+nehezký	n e h e s k i
+lačný	l a ts n i
+chamtivý	x a m c i v i
+chytrý	x i t r i
+mysl	m i s l̩
+mysliti	m i s l i c i
+mysliti	m i s l i c i
+míniti	m i ɲ i c i
+věřiti	v e r̩ i c i
+rozuměti	r o z u m e c i
+věděti	v e d e c i
+znáti	z n a c i
+tušiti	t u s i c i
+hádati	h a d a c i
+napodobovati	n a p o d o b o v a c i
+imitovati	i m i t o v a c i
+zdáti se	z d a c i s e
+myšlenka	m i s l e ŋ k a
+moudrý	m oʊ d r i
+bláznivý	b l a z ɲ i v i
+pošetilý	p o s e c i l i
+hloupý	h l oʊ p i
+šílený	s i l e n i
+učiti se	u ts i c i s e
+studovati	s t u d o v a c i
+učiti	u ts i c i
+žák	z a k
+učitel	u ts i t e l
+škola	s k o l a
+pamatovati se	p a m a t o v a c i s e
+zapomenouti	z a p o m e n oʊ c i
+jasný	j a s n i
+nejasný	n e j a s n i
+tajný	t a j n i
+jistý	j i s t i
+vysvětliti	v i s v e t l i c i
+objasniti	o b j a s ɲ i c i
+úmysl	u m i s l̩
+záměr	z a m e r̩
+účel	u ts e l
+příčina	p r̩ i ts i n a
+pochybnost	p o x i b n o s t
+podezření	p o d e z r̩ e ɲ i
+prozraditi	p r o z r a ɟ i c i
+zraditi	z r a ɟ i c i
+potřeba	p o t r̩ e b a
+nutnost	n u t n o s t
+snadný	s n a d n i
+obtížný	o p c i z n i
+zkusiti	s k u s i c i
+pokoušeti	p o k oʊ s e c i
+způsob	s p u s o p
+a	a
+protože	p r o t o z e
+když	k d i z
+jestliže	j e s t l i z e
+nebo	n e b o
+ano	a n o
+ne	n e
+jak?	j a k
+kolik?	k o l i k
+kolik?	k o l i k
+co?	ts o
+kdy?	k d i
+kde? kam?	k d e k a m
+který?	k t e r i
+kdo?	k d o
+proč?	p r o ts
+hlas	h l a s
+zpívati	s p i v a c i
+křičeti	k r̩ i ts e c i
+šeptati	s e p t a c i
+mumlati	m u m l a c i
+hvízdati	h v i z d a c i
+pískati	p i s k a c i
+výti	v i c i
+mluviti	m l u v i c i
+zajíkati se	z a j i k a c i s e
+říci	r̩ i ts i
+praviti	p r a v i c i
+pověděti	p o v e d e c i
+vyprávěti	v i p r a v e c i
+řeč	r̩ e ts
+mlčeti	m l̩ ts e c i
+jazyk	j a z i k
+slovo	s l o v o
+jméno	j m e n o
+ptáti se	p t a c i s e
+odpověděti	o t p o v e d e c i
+připustiti	p r̩ i p u s c i c i
+uznati	u z n a c i
+popříti	p o p r̩ i c i
+prositi	p r o s i c i
+žádati	z a d a c i
+slíbiti	s l i b i c i
+odmítnouti	o d m i t n oʊ c i
+zapověděti	z a p o v e d e c i
+zakázati	z a k a z a c i
+vytýkati	v i t i k a c i
+nadávati	n a d a v a c i
+hubovati	h u b o v a c i
+volati	v o l a c i
+nazvati	n a z v a c i
+nazývati	n a z i v a c i
+ohlásiti	o h l a s i c i
+zvěstovati	z v e s t o v a c i
+oznámiti	o z n a m i c i
+hroziti	h r o z i c i
+chlubiti se	x l u b i c i s e
+chvástati se	x v a s t a c i s e
+psáti	p s a c i
+čísti	ts i s c i
+papír	p a p i  r̩
+péro	p e r o
+kniha	k ɲ i h a
+básník	b a s ɲ i k
+píšt’ala	p i s t a l a
+flétna	f l e t n a
+buben	b u b e n
+roh	r o x
+trubka	t r u p k a
+trumpeta	t r u m p e t a
+řehtačka	r̩ e h t a ts k a
+chrastítko	x r a s c i t k o
+země	z e m e
+vlast	v l a s t
+otčina	o t ts i n a
+město	m e s t o
+ves	v e s
+hranice	h r a ɲ i ts e
+lid	l i t
+národ	n a r o t
+kmen	k m e n
+rod	r o t
+náčelník	n a ts e l ɲ i k
+berla	b e r l a
+hůl(ka)	h u l̩   k a
+vládnouti	v l a d n oʊ c i
+král	k r a l̩
+královna	k r a l o v n a
+šlechtic	s l e x c i ts
+občan	o p ts a n
+pán	p a n
+otrok	o t r o k
+sluha	s l u h a
+svobodný	s v o b o d n i
+naříditi	n a r i ɟ i c i
+rozkázati	r o s k a z a c i
+poslouchati	p o s l oʊ x a c i
+nechat	n e x a t
+dovolit	d o v o l i t
+přítel	p r̩ i t e l
+nepřítel	n e p r̩ i t e l
+soused	s oʊ s e t
+cizinec	ts i z i n e ts
+host	h o s t
+hostitel	h o s c i t e l
+pomoci	p o m o ts i
+zabrániti	z a b r a ɲ i c i
+překážeti	p r̩ e k a z e c i
+předejíti	p r̩ e d e j i c i
+obyčej	o b i ts eɪ
+zvyk	z v i k
+mrav	m r a v
+hádka	h a t k a
+spor	s p o r
+svár	s v a r̩
+spiknutí	s p i k n u c i
+potkati	p o t k a c i
+prostitutka	p r o s c i t u t k a
+nevěstka	n e v e s t k a
+kurva	k u r v a
+bojovati	b o j o v a c i
+bíti se	b i c i s e
+válka	v a l̩ k a
+mír	m i  r̩
+vojsko	v o j s k o
+armáda	a r m a d a
+voják	v o j a k
+vojín	v o j i n
+zbraně	z b r a n e
+palice	p a l i ts e
+obušek	o b u s e k
+bojová sekyra	b o j o v a s e k i r a
+prak	p r a k
+luk	l u k
+šíp	s i p
+střela	s t r̩ e l a
+oštěp	o s t e p
+kopí	k o p i
+meč	m e ts
+puška	p u s k a
+dělo	d e l o
+brnění	b r̩ n e ɲ i
+přílba	p r̩ i  l̩ b a
+štít	s c i t
+pevnost	p e v n o s t
+tvrz	t v r̩ s
+věž	v e z
+vítězství	v i t e s s t v i
+porážka	p o r a s k a
+útok	u t o k
+obrana	o b r a n a
+ústup	u s t u p
+vzdáti (se)	v z d a c i   s e
+zajatec	z a j a t e ts
+stráž	s t r a z
+hlídka	h l i t k a
+kořist	k o r i s t
+plen	p l e n
+záloha	z a l o h a
+rybář	r i b a r̩
+udice	u ɟ i ts e
+vlas (=šňůra k udici)	v l a s r o v n o   s n u r a  k u ɟ i ts i
+rybářská sít’	r i b a r̩ s k a s i t
+past naryby	p a s t n a r i b i
+návnada	n a v n a d a
+vnadidlo	v n a ɟ i d l o
+loviti	l o v i c i
+stříleti	s t r̩ i l e c i
+střeliti	s t r̩ e l i c i
+minouti	m i n oʊ c i
+past	p a s t
+líčiti	l i ts i c i
+klásti (pasti)	k l a s c i   p a s c i
+právo	p r a v o
+soud	s oʊ t
+souditi	s oʊ ɟ i c i
+rozsudek	r o s s u d e k
+soudce	s oʊ t ts e
+žalobce	z a l o p ts e
+obžalovaný	o b z a l o v a n i
+svědek	s v e d e k
+přísahati	p r̩ i s a h a c i
+přísaha	p r̩ i s a h a
+obžalovati	o b z a l o v a c i
+obviniti	o b v i ɲ i c i
+odsouditi	o t s oʊ ɟ i c i
+usvědčiti	u s v e t ts i c i
+osvoboditi	o s v o b o ɟ i c i
+vinný	v i n i
+nevinný	n e v i n i
+trest	t r e s t
+pokuta	p o k u t a
+pokuta	p o k u t a
+vězení	v e z e ɲ i
+žalář	z a l a r̩
+vražda	v r a z d a
+cizoložtví	ts i z o l o s t v i
+násilné smilstvo	n a s i l n e s m i l s t v o
+znásilnění	z n a s i l n e ɲ i
+žhářství	s h a r̩ s t v i
+křivá přísaha	k r̩ i v a p r̩ i s a h a
+křivopřisežnictví	k r̩ i v o p r̩ i s e z ɲ i ts t v i
+krásti	k r a s c i
+zloděj	z l o d e j
+náboženství	n a b o z e n s t v i
+víra	v i r a
+bůh	b u x
+chrám	x r a m
+oltář	o l t a r̩
+obět’	o b e t
+ctíti	ts c i c i
+klaněti se	k l a n e c i s e
+modliti se	m o d l i c i s e
+kněz	k n e s
+pop	p o p
+svatý	s v a t i
+kázati	k a z a c i
+blahoslaviti	b l a h o s l a v i c i
+žehnati	z e h n a c i
+proklíti	p r o k l i c i
+postiti se	p o s c i c i s e
+nebe	n e b e
+peklo	p e k l o
+zlý duch	z l i d u x
+démon	d e m o n
+modla	m o d l a
+bůžek	b u z e k
+kouzlo	k oʊ z l o
+čarodějnictví	ts a r o d e j ɲ i ts t v i
+čaroděj	ts a r o d e j
+čarodějnice	ts a r o d e j ɲ i ts e
+víla	v i l a
+strašidlo	s t r a s i d l o
+příšera	p r̩ i s e r a
+duch	d u x
+znamení	z n a m e ɲ i
