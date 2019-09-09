@@ -25,10 +25,8 @@ vecums	v e ts u m s
 jauns	j au n s
 laiks	l ai k s
 trīsreiz	t ʀ i s ʀ ei z
-trīs reizes	t ʀ i s ʀ ei z e s
 trešais	t ʀ e s ai s
 divreiz	d i v ʀ ei z
-divas reizes	d i v ɐ s ʀ ei z e s
 pāris	p a ʀ i s
 otrais	uo t ʀ ai s
 pēdējais	p e d e j ai s
@@ -104,7 +102,6 @@ garš	ɡ a ʀ s
 garš	ɡ a ʀ s
 mazs	m a z s
 liels	l ie l s
-attālums starp diviem balstiem	a t t a l u m s s t a ʀ p d i v ie m b a l s t ie m
 mērīt	m e ʀ i t
 augt	au ɡ t
 dienvidi	d ie n v i d i
@@ -144,7 +141,6 @@ nošk̩irt	n uo s k i ʀ t
 apvienot	a p v ie n uo t
 pievienot	p ie v ie n uo t
 savienot	s a v ie n uo t
-sakraut (citu uz cita)	s a k ʀ au t   ts i t u u z ts i t ɐ
 pacelt	p a ts e l t
 uzlasīt	u z l a s i t
 vākt	v a k t
@@ -158,7 +154,6 @@ gulēt	ɡ u l e t
 sēdēt	s e d e t
 likt	l i k t
 vieta	v ie t ɐ
-uz augšu	u z au ɡ s u
 augšup	au ɡ s u p
 virs	v i ʀ s
 zem	z e m
@@ -170,7 +165,6 @@ priekšā	p ʀ ie k s ɐ
 pirms	p i ʀ m s
 iepriekš	ie p ʀ ie k s
 lejā	l e j ɐ
-uz leju	u z l e j u
 lejup	l e j u p
 blakus	b l a k u s
 pie	p ie
@@ -197,7 +191,6 @@ maksa	m a k s ɐ
 rēk̩ins	ʀ e k i n s
 maksāt	m a k s ɐ t
 parāds	p a ʀ ɐ d s
-būt parādā	b u t p a ʀ a d ɐ
 aizn̩emties	ai z n e m t ie s
 aizdot	ai z d uo t
 skops	s k uo p s
@@ -217,7 +210,6 @@ ievainot	ie v ai n uo t
 sabojāt	s a b uo j ɐ t
 iznīcināt	i z n i ts i n ɐ t
 (iz)glābt	  i z   ɡ l a b t
-rūpēties par	ʀ u p e t ie s p a ʀ
 atdot	a t d uo t
 dot	d uo t
 lieta	l ie t ɐ
@@ -241,11 +233,8 @@ masts	m a s t s
 stūre	s t u ʀ e
 airēt	ai ʀ e t
 airis	ai ʀ i s
-īsais airis	i s ai s ai ʀ i s
 airis	ai ʀ i s
 plosts	p l uo s t s
-laiva (ar izturīgiem dul̩l̩iem)	l ai v ɐ   a ʀ i z t u ʀ i ɡ ie m d u l l ie m
-kanoe laiva	k a n uo e l ai v ɐ
 laiva	l ai v ɐ
 kuǧis	k u ɡ i s
 iejūgs	ie j u ɡ s
@@ -263,12 +252,6 @@ braukt	b ʀ au k t
 vadīt	v a d i t
 sūtīt	s u t i t
 atnest	a t n e s t
-nest (padusē)	n e s t   p a d u s e
-nest (uz galvas)	n e s t   u z ɡ a l v ɐ s
-nest uz pleca	n e s t u z p l e ts ɐ
-nest uz pleciem	n e s t u z p l e ts ie m
-nest rokā	n e s t ʀ uo k ɐ
-nest rokās	n e s t ʀ uo k ɐ s
 nest	n e s t
 ieiet	ie ie t
 ienākt	ie n ɐ k t
@@ -280,18 +263,11 @@ dzīties	d z i t ie s
 sekot	s e k uo t
 bēgt	b e ɡ t
 pazust	p a z u s t
-iet prom	ie t p ʀ uo m
-iet projām	ie t p ʀ o j ɐ m
-doties prom	d uo t ie s p ʀ uo m
 atnākt	a t n ɐ k t
-nākt atpakal̩	n a k t a t p a k ɐ l
 atgriezties	a t ɡ ʀ ie z t ie s
 nākt	n a k t
-iet ārā	ie t a ʀ ɐ
-kāpt lejā	k a p t l e j ɐ
 rāpties	ʀ a p t ie s
 iet	ie t
-kāpt augšā	k a p t au ɡ s ɐ
 skriet	s k ʀ ie t
 klibot	k l i b uo t
 staigāt	s t ai ɡ ɐ t
@@ -303,13 +279,10 @@ lēkt	l e k t
 lēkāt	l e k ɐ t
 slīdēt	s l i d e t
 (pa)slīdēt	  p a   s l i d e t
-pieplakt zemei	p ie p l ɐ k t z e m ei
-nomesties cel̩os	n uo m e s t ie s ts e l uo s
 rāpot	ʀ a p uo t
 pūst	p u s t
 lidot	l i d uo t
 kuǧot	k u ɡ uo t
-(ap)	  a p
 šl̩akstēt	s l a k s t e t
 nirt	n i ʀ t
 peldēt	p e l d e t
@@ -349,14 +322,12 @@ vēdeklis	v e d e k l i s
 ventilators	v e n t i l a t o ʀ s
 tīklin̩š	t i k l i n s
 paklājs	p a k l ɐ j s
-pīts paklājs	p i t s p a k l ɐ j s
 maša	m a s ɐ
 grozs	ɡ ʀ uo z s
 aust	au s t
 pīt	p i t
 stikls	s t i k l s
 māls	m a l s
-veidot (no māla)	v ei d uo t   n uo m a l ɐ
 podnieks	p uo d n ie k s
 alva	a l v ɐ
 skārds	s k a ʀ d s
@@ -421,7 +392,6 @@ nocirst	n uo ts i ʀ s t
 nozāǧēt	n uo z a ɡ e t
 griezt	ɡ ʀ ie z t
 cirst	ts i ʀ s t
-sist ar dūri	s i s t a ʀ d u ʀ i
 sist	s i s t
 mezgls	m e z ɡ l s
 virve	v i ʀ v e
@@ -449,22 +419,17 @@ k̩irbis	k i ʀ b i s
 [manioka]	  m a n i  o k ɐ
 [tapioks]	  t a p i  o k s
 (in)[jamss]	  i n   j a m s s
-saldais kartupelis	s a l d ai s k a ʀ t u p e l i s
 [batāte]	  b a t a t e
 [banjans]	  b a n j ɐ n s
 banāns	b a n ɐ n s
 citrusauglis	ts i t ʀ u s au ɡ l i s
 kokosrieksts	k o k o s ʀ ie k s t s
 palma	p a l m ɐ
-(auga) sula	  au ɡ ɐ   s u l ɐ
 gremzdi	ɡ ʀ e m z d i
-(koka) miza	  k uo k ɐ   m i z ɐ
 tāss	t a s s
 žuburains	z u b u ʀ ai n s
 šk̩elts	s k e l t s
 sazarots-zars	s a z a ʀ uo t s z a ʀ s
-(koka) stumbrs	  k uo k ɐ   s t u m b ʀ s
-(koka) celms	  k uo k ɐ   ts e l m s
 pīpe	p i p e
 pīpēt	p i p e t
 smēk̩ēt	s m e k e t
@@ -521,8 +486,6 @@ tīrums	t i ʀ u m s
 zemkopis	z e m k uo p i s
 lauksaimnieks	l au k s ai m n ie k s
 fermeris	f e ʀ m e ʀ i s
-nededzināts k̩ieǧelis	n e d e d z i n ɐ t s k ie ɡ e l i s
-kal̩k̩u java	k a l k u j a v ɐ
 k̩ieǧelis	k ie ɡ e l i s
 velve	v e l v e
 arka	a ʀ k ɐ
@@ -537,7 +500,6 @@ sija	s i j ɐ
 bal̩k̩is	b a l k i s
 spāre	s p a ʀ e
 šk̩ērsis	s k e ʀ s i s
-jumta klājums	j u m t ɐ k l a j u m s
 jumts	j u m t s
 abra	a b ʀ ɐ
 sile	s i l e
@@ -563,16 +525,12 @@ bulta	b u l t ɐ
 aizšaujamais	ai z s au j a m ai s
 atslēga	a t s l e ɡ ɐ
 slēdzene	s l e d z e n e
-durvju stendere	d u ʀ v j u s t e n d e ʀ e
 istaba	i s t a b ɐ
 durvis	d u ʀ v i s
 vārti	v a ʀ t i
-lūgšanu nams	l u ɡ s a n u n a m s
 virtuve	v i ʀ t u v e
-[vīriešu māja]	  v i ʀ ie s u m a j ɐ
 pagalms	p a ɡ ɐ l m s
 telts	t e l t s
-dārza māja	d a ʀ z ɐ m a j ɐ
 būda	b u d ɐ
 mājele	m a j e l e
 māja	m a j ɐ
@@ -580,7 +538,6 @@ dzīvot	d z i v uo t
 spogulis	s p uo ɡ u l i s
 ziepes	z ie p e s
 ziede	z ie d e
-bārdas nazis	b a ʀ d ɐ s n a z i s
 bize	b i z e
 suka	s u k ɐ
 birste	b i ʀ s t e
@@ -588,12 +545,9 @@ k̩emme	k e m m m e
 dvielis	d v ie l i s
 kabatlakatin̩š	k a b a t l a k a t i n s
 tetovējums	t e t o v e j u m s
-saite ap galvu	s ai t e a p ɡ a l v u
 apsējs	a p s e j s
-galvas rota	ɡ a l v ɐ s ʀ uo t ɐ
 auskars	au s k ɐ ʀ s
 krelles	k ʀ e l l l e s
-kakla rota	k a k l ɐ ʀ uo t ɐ
 aproce	a p ʀ uo ts e
 rokassprādze	ʀ uo k a s s p ʀ a d z e
 gredzens	ɡ ʀ e d z e n s
@@ -613,10 +567,7 @@ cepure	ts e p u ʀ e
 kurpnieks	k u ʀ p n ie k s
 kurpe	k u ʀ p e
 zābaks	z a b ɐ k s
-(garā) zek̩e	  ɡ a ʀ ɐ   z e k e
-(īsā) zek̩e	  i s ɐ   z e k e
 bikses	b i k s e s
-zāl̩u apsējs	z a l u a p s e j s
 svārki	s v a ʀ k i
 brunči	b ʀ u n ts i
 apkakle	a p k a k l e
@@ -641,7 +592,6 @@ kažokāda	k a z uo k a d ɐ
 filcs	f i l ts s
 zīds	z i d s
 kokvilna	k uo k v i l n ɐ
-linu audums	l i n u au d u m s
 lini	l i n i
 vilna	v i l n ɐ
 audums	au d u m s
@@ -650,9 +600,7 @@ apǧērbs	a p ɡ e ʀ b s
 drēbes	d ʀ e b e s
 uzvilkt	u z v i l k t
 uzǧērbt	u z ɡ e ʀ b t
-olas dzeltenums	uo l ɐ s d z e l t e n u m s
 ola	uo l ɐ
-raudzēts dzēriens	ʀ au d z e t s d z e ʀ ie n s
 alus	a l u s
 vīns	v i n s
 medalus	m e d a l u s
@@ -663,7 +611,6 @@ slaukt	s l au k t
 cukurs	ts u k u ʀ s
 piens	p ie n s
 medus	m e d u s
-sarkanie pipari	s a ʀ k a n ie p i p a ʀ i
 pipars	p i p ɐ ʀ s
 pipari	p i p a ʀ i
 sāls	s a l s
@@ -691,7 +638,6 @@ dzirnavas	d z i ʀ n a v ɐ s
 dzirnavin̩as	d z i ʀ n a v i n ɐ s
 saberzt	s a b e ʀ z t
 samalt	s a m ɐ l t
-rupja maluma milti	ʀ u p j ɐ m a l u m ɐ m i l t i
 mīcīt	m i ts i t
 mīkla	m i k l ɐ
 maize	m ai z e
@@ -703,7 +649,6 @@ kāst	k a s t
 mizot	m i z uo t
 vakarin̩as	v a k a ʀ i n ɐ s
 pusdienas	p u s d ie n ɐ s
-otrās brokastis	uo t ʀ ɐ s b ʀ uo k a s t i s
 brokastis	b ʀ uo k a s t i s
 maltīte	m a l t i t e
 knaibles	k n ai b l e s
@@ -727,7 +672,6 @@ cept	ts e p t
 krāsns	k ʀ a s n s
 cept	ts e p t
 vārīt	v a ʀ i t
-gatavot ēdienu	ɡ a t a v uo t e d ie n u
 vārīt	v a ʀ i t
 cept	ts e p t
 žn̩augt	z n au ɡ t
@@ -747,7 +691,6 @@ bojāts	b uo j ɐ t s
 vecs	v e ts s
 zal̩š	z a l s
 negatavs	n e ɡ a t ɐ v s
-nogatavojies gatavs	n uo ɡ a t a v uo j ie s ɡ a t ɐ v s
 jēls	j e l s
 vārīts	v a ʀ i t s
 barība	b a ʀ i b ɐ
@@ -812,14 +755,12 @@ dzīvs	d z i v s
 dzīve	d z i v e
 dzīvība	d z i v i b ɐ
 ien̩emt	ie n e m t
-(grūtniecības) stāvoklī	  ɡ ʀ u t n ie ts i b ɐ s   s t a v uo k l i
 dzimis	d z i m i s
 dzimusi	d z i m u s i
 radīt	ʀ a d i t
 peldēties	p e l d e t ie s
 drebēt	d ʀ e b e t
 trīcēt	t ʀ i ts e t
-izdarīt dzimumaktu	i z d a ʀ i t d z i m u m a k t u
 izkārnīties	i z k a ʀ n i t ie s
 urinēt	u ʀ i n e t
 pirst	p i ʀ s t
@@ -861,11 +802,9 @@ pups	p u p s
 krūtsgals	k ʀ u t s ɡ ɐ l s
 krūts	k ʀ u t s
 krūtis	k ʀ u t i s
-krūšu kurvis	k ʀ u s u k u ʀ v i s
 spalva	s p a l v ɐ
 spārns	s p a ʀ n s
 īkšk̩is	i k s k i s
-pēdas nospiedums	p e d ɐ s n uo s p ie d u m s
 papēdis	p a p e d i s
 potīte	p uo t i t e
 pēda	p e d ɐ
@@ -882,11 +821,9 @@ īkšk̩is	i k s k i s
 pirksts	p i ʀ k s t s
 plauksta	p l au k s t ɐ
 roka	ʀ uo k ɐ
-plaukstas locītava	p l au k s t ɐ s l uo ts i t a v ɐ
 elkonis	e l k uo n i s
 paduse	p a d u s e
 roka	ʀ uo k ɐ
-atslēgas kauls	a t s l e ɡ ɐ s k au l s
 lāpstin̩a	l a p s t i n ɐ
 plecs	p l e ts s
 rīkle	ʀ i k l e
@@ -904,8 +841,6 @@ gl̩otas	ɡ l uo t ɐ s
 pun̩k̩i	p u n k i
 nāss	n a s s
 deguns	d e ɡ u n s
-ausu sērs	au s u s e ʀ s
-auss l̩ipin̩a	au s s l i p i n ɐ
 auss	au s s
 mirkšk̩ināt	m i ʀ k s k i n ɐ t
 skropsta	s k ʀ uo p s t ɐ
@@ -932,7 +867,6 @@ artērija	a ʀ t e ʀ i j ɐ
 asinis	a s i n i s
 asins	a s i n s
 blaugznas	b l au ɡ z n ɐ s
-kaunuma apmatojums	k au n u m ɐ a p m a t uo j u m s
 apmatojums	a p m a t uo j u m s
 bārda	b a ʀ d ɐ
 mati	m a t i
@@ -957,9 +891,7 @@ ods	uo d s
 muša	m u s ɐ
 lapsene	l a p s e n e
 strops	s t ʀ uo p s
-(bišu) vasks	  b i s u   v a s k s
 bite	b i t e
-zirnekl̩a tīmeklis	z i ʀ n e k l ɐ t i m e k l i s
 zirneklis	z i ʀ n e k l i s
 skudra	s k u d ʀ ɐ
 tarakāns	t a ʀ a k ɐ n s
@@ -979,11 +911,9 @@ lapsa	l a p s ɐ
 lācis	l a ts i s
 lauva	l au v ɐ
 vilks	v i l k s
-saldūdens zutis	s a l d u d e n s z u t i s
 raja	ʀ a j ɐ
 valis	v a l i s
 valzivs	v a l z i v s
-jūras cūka	j u ʀ ɐ s ts u k ɐ
 delfīns	d e l f i n s
 haizivs	h ai z i v s
 gliemežnīca	ɡ l ie m e z n i ts ɐ
@@ -1057,7 +987,6 @@ jūs	j u s
 mēs	m e s
 mēs	m e s
 mēs	m e s
-vin̩š	v i n s
 tā	t a
 tu	t u
 es	e s
@@ -1102,28 +1031,20 @@ tēvocis	t e v uo ts i s
 onkulis	uo ŋ k u l i s
 mazdēls	m a z d e l s
 mazmeita	m a z m ei t ɐ
-veca sieviete	v e ts ɐ s ie v ie t e
 vecmāmin̩a	v e ts m a m i n ɐ
 vecmāmul̩a	v e ts m a m u l ɐ
-vecs vīrs	v e ts s v i ʀ s
 vectēvs	v e ts t e v s
 vectētin̩š	v e ts t e t i n s
 dvīn̩i	d v i n i
 dvīnīši	d v i n i s i
 brālis	b ʀ a l i s
 māsa	m a s ɐ
-jaunākā māsa	j au n a k ɐ m a s ɐ
-vecākā māsa	v e ts a k ɐ m a s ɐ
 māsa	m a s ɐ
-jaunākais brālis	j au n a k ai s b ʀ a l i s
-vecākais brālis	v e ts a k ai s b ʀ a l i s
 brālis	b ʀ a l i s
 pēcnācējs	p e ts n a ts e j s
 meita	m ei t ɐ
 dēls	d e l s
-precēta sieva	p ʀ e ts e t ɐ s ie v ɐ
 precējusies	p ʀ e ts e j u s ie s
-precēts vīrs	p ʀ e ts e t s v i ʀ s
 precējies	p ʀ e ts e j ie s
 vecāki	v e ts a k i
 māte	m a t e
@@ -1158,8 +1079,6 @@ malka	m a l k ɐ
 kurināmais	k u ʀ i n a m ai s
 sērkocin̩š	s e ʀ k uo ts i n s
 (iz)dzēst	  i z   d z e s t
-aiz-	ai z
-dedzināt (-degt)	d e d z i n ɐ t   d e ɡ t
 degt	d e ɡ t
 dedzināt	d e d z i n ɐ t
 ogles	uo ɡ l e s
@@ -1186,7 +1105,6 @@ varavīksne	v a ʀ a v i k s n e
 vētra	v e t ʀ ɐ
 auka	au k ɐ
 pērkons	p e ʀ k o n s
-pērkons un zibens	p e ʀ k o n s u n z i b e n s
 zibens	z i b e n s
 zvaigzne	z v ai ɡ z n e
 mēness	m e n e s s
@@ -1209,19 +1127,16 @@ upe	u p e
 straume	s t ʀ au m e
 paisums	p ai s u m s
 bēgums	b e ɡ u m s
-paisums un bēgums	p ai s u m s u n b e ɡ u m s
 vilnis	v i l n i s
 bangas	b a ŋ ɡ ɐ s
 zemesrags	z e m e s ʀ ɐ ɡ s
 rifs	ʀ i f s
 lagūna	l a ɡ u n ɐ
-jūras līcis	j u ʀ ɐ s l i ts i s
 ezers	e z e ʀ s
 okeāns	o k e ɐ n s
 putas	p u t ɐ s
 bangas	b a ŋ ɡ ɐ s
 jūra	j u ʀ ɐ
-mierīga (rāma) jūra	m ie ʀ i ɡ ɐ   ʀ a m ɐ   j u ʀ ɐ
 ūdens	u d e n s
 ala	a l ɐ
 krasts	k ʀ a s t s
@@ -1253,7 +1168,6 @@ diena	d ie n ɐ
 nakts	n a k t s
 ausma	au s m ɐ
 rīts	ʀ i t s
-dienas vidus	d ie n ɐ s v i d u s
 pēcpusdiena	p e ts p u s d ie n ɐ
 vakars	v a k ɐ ʀ s
 šodien	s uo d ie n
@@ -1451,7 +1365,6 @@ nolūks	n uo l u k s
 cēlonis	ts e l o n i s
 šaubas	s au b ɐ s
 šaubīties	s au b i t ie s
-turēt aizdomās	t u ʀ e t ai z d uo m ɐ s
 nodot	n uo d uo t
 vajadzība	v a j a d z i b ɐ
 nepieciešamība	n e p ie ts ie s a m i b ɐ
@@ -1462,14 +1375,11 @@ mēǧināt	m e ɡ i n ɐ t
 veids	v ei d s
 un	u n
 tāpēc	t a p e ts
-tāpēc ka	t a p e ts k a
 ja	j a
 vai	v ai
 jā	j a
 nē	n e
 kā?	k a
-cik daudz?	ts i k d au d z
-cik daudz?	ts i k d au d z
 kas?	k a s
 kad?	k a d
 kur?	k u ʀ
@@ -1484,7 +1394,6 @@ čukstēt	ts u k s t e t
 murmināt	m u ʀ m i n ɐ t
 svilpot	s v i l p uo t
 spiegt	s p ie ɡ t
-spalgi kliegt	s p a l ɡ i k l ie ɡ t
 gaudot	ɡ au d uo t
 runāt	ʀ u n ɐ t
 stostīties	s t uo s t i t ie s
@@ -1492,14 +1401,12 @@ teikt	t ei k t
 sacīt	s a ts i t
 stāstīt	s t a s t i t
 runa	ʀ u n ɐ
-teikt runu	t ei k t ʀ u n u
 klusēt	k l u s e t
 valoda	v a l uo d ɐ
 mēle	m e l e
 vārds	v a ʀ d s
 vārds	v a ʀ d s
 jautāt	j au t ɐ t
-uzdot jautājumu	u z d uo t j au t a j u m u
 taujāt	t au j ɐ t
 atbildēt	a t b i l d e t
 atzīt	a t z i t
@@ -1590,7 +1497,6 @@ armija	a ʀ m i j ɐ
 karavīrs	k a ʀ a v i ʀ s
 ieroči	ie ʀ uo ts i
 runga	ʀ u ŋ ɡ ɐ
-kaujas cirvis	k au j ɐ s ts i ʀ v i s
 linga	l i ŋ ɡ ɐ
 loks	l uo k s
 bulta	b u l t ɐ
@@ -1616,8 +1522,6 @@ laupījums	l au p i j u m s
 slēpnis	s l e p n i s
 slēptuve	s l e p t u v e
 zvejnieks	z v e j n ie k s
-makšk̩eres āk̩is	m a k s k e ʀ e s a k i s
-makšk̩eres aukla	m a k s k e ʀ e s au k l ɐ
 tīkls	t i k l s
 murds	m u ʀ d s
 ēsma	e s m ɐ
@@ -1625,7 +1529,6 @@ medīt	m e d i t
 šaut	s au t
 netrāpīt	n e t ʀ a p i t
 slazds	s l a z d s
-nok̩ert slazdā	n uo k e ʀ t s l a z d ɐ
 likums	l i k u m s
 tiesa	t ie s ɐ
 tiesāt	t ie s ɐ t
@@ -1639,7 +1542,6 @@ zvērēsts	z v e ʀ e s t s
 apsūdzēt	a p s u d z e t
 iesūdzēt	ie s u d z e t
 notiesāt	n uo t ie s ɐ t
-atzīt par vainīgu	a t z i t p a ʀ v ai n i ɡ u
 attaisnot	a t t ai s n uo t
 vainīgs	v ai n i ɡ s
 nevainīgs	n e v ai n i ɡ s
@@ -1648,10 +1550,7 @@ sods	s uo d s
 cietums	ts ie t u m s
 (no)slepkavot	  n uo   s l e p k a v uo t
 nogalināt	n uo ɡ a l i n ɐ t
-laulības pārkāpšana	l au l i b ɐ s p a ʀ k a p s a n ɐ
 izvarošana	i z v a ʀ uo s a n ɐ
-l̩aunprātīga dedzināšana	l au n p ʀ a t i ɡ ɐ d e d z i n a s a n ɐ
-nepatiesa liecība	n e p a t ie s ɐ l ie ts i b ɐ
 zagt	z a ɡ t
 zaglis	z a ɡ l i s
 zagle	z a ɡ l e
@@ -1686,4 +1585,3 @@ lauma	l au m ɐ
 spoks	s p uo k s
 rēgs	ʀ e ɡ s
 zīme	z i m e
-l̩auna zīme	l au n ɐ z i m e

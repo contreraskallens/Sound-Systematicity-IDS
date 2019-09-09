@@ -182,7 +182,6 @@ za	z a
 po	p o
 vážiti	v a z i c i
 rozděliti	r o z d e l i c i
-děliti se	d e l i c i s e
 sdíleti	z ɟ i l e c i
 laciný	l a ts i n i
 drahý	d r a h i
@@ -193,8 +192,6 @@ tržiště	t r̩ z i s t e
 kupec	k u p e ts
 obchodník	o p x o d ɲ i k
 obchodovati	o p x o d o v a c i
-obchod vesti	o p x o d v e s c i
-vésti obchod	v e s c i  o p x o t
 kupčiti	k u p ts i c i
 prodati	p r o d a c i
 koupiti	k oʊ p i c i
@@ -208,9 +205,6 @@ poplatek	p o p l a t e k
 účet	u ts e t
 zaplatiti	z a p l a c i c i
 dluh	d l u x
-býti dlužen	b i c i d l u z e n
-vypůjčiti si	v i p u j ts i c i s i
-zadlužiti se	z a d l u z i c i s e
 půjčiti	p u j ts i c i
 lakomý	l a k o m i
 lakotný	l a k o t n i
@@ -283,31 +277,23 @@ šoupati	s oʊ p a c i
 jeti	j e c i
 hnáti	h n a c i
 honiti	h o ɲ i c i
-vézti i říditi	v e s c i  i  r̩ i ɟ i c i
 vésti	v e s c i
 poslati	p o s l a c i
 posílati	p o s i l a c i
 přinésti	p r̩ i n e s c i
-nésti v podpaží	n e s c i  v  p o t p a z i
-nésti na hlavě	n e s c i n a h l a v e
-nésti na ramenou	n e s c i n a r a m e n oʊ
-nésti v ruce	n e s c i  v  r u ts e
 nésti	n e s c i
 nositi	n o s i c i
 vstoupiti	f s t oʊ p i c i
 vejíti	v e j i c i
-přiblížiti se	p r̩ i b l i z i c i s e
 přijíti	p r̩ i j i c i
 přistati	p r̩ i s t a c i
 pronásledovati	p r o n a s l e d o v a c i
 stíhati	s c i h a c i
 následovati	n a s l e d o v a c i
-jíti za	j i c i z a
 utéci	u t e ts i
 prchnouti	p r̩ x n oʊ c i
 zmizeti	z m i z e c i
 odejeti	o d e j e c i
-vrátiti se	v r a c i c i s e
 přijíti	p r̩ i j i c i
 přicházeti	p r̩ i x a z e c i
 odejíti	o d e j i c i
@@ -329,20 +315,15 @@ skočiti	s k o ts i c i
 skákati	s k a k a c i
 klouznouti	k l oʊ z n oʊ c i
 klouzati	k l oʊ z a c i
-krčiti se	k r̩ ts i c i s e
-hrbiti se	h r̩ b i c i s e
 klečeti	k l e ts e c i
-plaziti se	p l a z i c i s e
 lézti	l e s c i
 váti	v a c i
 douti	d oʊ c i
 letěti	l e t e c i
-plaviti se	p l a v i c i s e
 plouti	p l oʊ c i
 plovati	p l o v a c i
 stříkati	s t r̩ i k a c i
 cákati	ts a k a c i
-ponořiti se	p o n o r i c i s e
 plouti	p l oʊ c i
 plovati	p l o v a c i
 plouti	p l oʊ c i
@@ -360,7 +341,6 @@ padnouti	p a d n oʊ c i
 zdvihnouti	z d v i h n oʊ c i
 zvednouti	z v e d n oʊ c i
 povstati	p o f s t a c i
-zvedati se	z v e d a c i s e
 splétati	s p l e t a c i
 svíjeti	s v i j e c i
 stáčeti	s t a ts e c i
@@ -465,7 +445,6 @@ porážeti	p o r a z e c i
 řezati	r̩ e z a c i
 krájeti	k r a j e c i
 sekati	s e k a c i
-tlouci pěstí	t l oʊ ts i p e s c i
 uhoditi	u h o ɟ i c i
 udeřiti	u d e r i c i
 bíti	b i c i
@@ -487,29 +466,22 @@ robiti	r o b i c i
 dělati	d e l a c i
 houba	h oʊ b a
 kopřiva	k o p r̩ i v a
-cukrová třtina	ts u k r o v a t r̩ c i n a
 bambus	b a m b u s
 dýně	d i n e
 tykev	t i k e v
 maniok	m a ɲ i  o k
 batáta	b a t a t a
-sladký brambor	s l a t k i b r a m b o r
 banán	b a n a n
 banánovník	b a n a n o v ɲ i k
 citrón	ts i t r o n
-kokosový ořech	k o k o s o v i  o r e x
 palma	p a l m a
 míza	m i z a
 kůra	k u r a
-vidlicovitá větev	v i d l i ts o v i t a v e t e v
-kmen stromu	k m e n s t r o m u
 pařez	p a r e s
 dymka	d i m k a
 fajfka	f a j f k a
 kouřiti	k oʊ r i c i
 tabák	t a b a k
-vinná réva	v i n a r e v a
-vinný keř	v i n i k e r
 žalud	z a l u t
 jedle	j e d l e
 sosna	s o s n a
@@ -572,7 +544,6 @@ sedlák	s e d l a k
 farmář	f a r m a r̩
 zemědělec	z e m e d e l e ts
 vepřovice	v e p r̩ o v i ts e
-nepálená cihla	n e p a l e n a ts i h l a
 moždíř	m o z ɟ i  r̩
 cihla	ts i h l a
 oblouk	o b l oʊ k
@@ -583,7 +554,6 @@ tyč	t i ts
 trám	t r a m
 nosník	n o s ɲ i k
 krov	k r o v
-hřeben střechy	h r̩ e b e n s t r̩ e x i
 došek	d o s e k
 střecha	s t r̩ e x a
 koryto	k o r i t o
@@ -611,8 +581,6 @@ klíč	k l i ts
 klika	k l i k a
 zámek	z a m e k
 veřeje	v e r e j e
-futra dveří	f u t r a d v e r i
-futro dveří	f u t r o d v e r i
 pokoj	p o k o j
 místnost	m i s t n o s t
 dveře	d v e r e
@@ -620,7 +588,6 @@ vrata	v r a t a
 brána	b r a n a
 dvůr	d v u r̩
 stan	s t a n
-zahradní dům	z a h r a d ɲ i d u m
 chata	x a t a
 chatrč	x a t r̩ ts
 chalupa	x a l u p a
@@ -664,12 +631,10 @@ bota	b o t a
 punčocha	p u n ts o x a
 spodky	s p o t k i
 kalhoty	k a l h o t i
-sukně z trávy	s u k n e  s  t r a v i
 sukně	s u k n e
 límec	l i m e ts
 košile	k o s i l e
 kabát	k a b a t
-(dámské) šaty	  d a m s k e   s a t i
 pončo	p o n ts o
 barviti	b a r v i t i
 plášt’	p l a s t
@@ -702,7 +667,6 @@ ošatiti	o s a c i c i
 žloutek	z l oʊ t e k
 vejce	v eɪ ts e
 kvas	k v a s
-kvašený nápoj	k v a s e n i n a p o j
 pivo	p i v o
 víno	v i n o
 medovina	m e d o v i n a
@@ -775,7 +739,6 @@ péci	p e ts i
 pec	p e ts
 péci	p e ts i
 smažiti	s m a z i c i
-vařiti	v a r i c i
 vařiti	v a r i c i
 dusiti	d u s i c i
 škrtiti	s k r̩ c i c i
@@ -859,9 +822,6 @@ těhotná	t e h o t n a
 březí	b r̩ e z i
 roditi	r o ɟ i c i
 zploditi	s p l o ɟ i c i
-koupati se	k oʊ p a c i s e
-chvěti se	x v e c i s e
-teteliti se	t e t e l i c i s e
 souložiti	s oʊ l o z i c i
 jebati	j e b a c i
 lejno	l eɪ n o
@@ -887,7 +847,6 @@ zvraceti	z v r a ts e c i
 blíti	b l i c i
 plivati	p l i v a c i
 pot	p o t
-potit se	p o c i t s e
 kýchati	k i x a c i
 kašlati	k a s l a c i
 škytati	s k i t a c i
@@ -895,7 +854,6 @@ zívati	z i v a c i
 dýchati	d i x a c i
 dech	d e x
 pyj	p i j
-pohlavní úd	p o h l a v ɲ i  u t
 varle	v a r l e
 moudí	m oʊ ɟ i
 děloha	d e l o h a
@@ -908,7 +866,6 @@ pas	p a s
 střevo	s t r̩ e v o
 střeva	s t r̩ e v a
 žaludek	z a l u d e k
-břich	b r̩ i x
 slezina	s l e z i n a
 ledvina	l e d v i n a
 játra	j a t r a
@@ -924,7 +881,6 @@ prsa	p r̩ s a
 hrud’	h r u t
 péro	p e r o
 křídlo	k r̩ i d l o
-prst (na noze)	p r̩ s t   n a n o z e
 stopa	s t o p a
 šlépěj	s l e p e j
 pata	p a t a
@@ -945,8 +901,6 @@ loket	l o k e t
 podpaží	p o t p a z i
 rámě	r a m e
 paže	p a z e
-klíční kost	k l i ts ɲ i k o s t
-lopatka (na zádech)	l o p a t k a   n a z a d e x
 rameno	r a m e n o
 plece	p l e ts e
 hrdlo	h r̩ d l o
@@ -963,14 +917,10 @@ zobák	z o b a k
 ústa	u s t a
 hlen	h l e n
 sliz	s l i s
-nosní dírka	n o s ɲ i ɟ i  r̩ k a
 chřípí	x r̩ i p i
 nos	n o s
-ušní maz	u s ɲ i m a s
-ušní lalůček	u s ɲ i l a l u ts e k
 ucho	u x o
 mrkati	m r̩ k a c i
-oční řasa	o ts ɲ i  r̩ a s a
 víčko	v i ts k o
 obočí	o b o ts i
 obrv	o b r̩ v
@@ -1000,7 +950,6 @@ tepna	t e p n a
 krev	k r e v
 lupa	l u p a
 lupy	l u p i
-pubické ochlupení	p u b i ts k e o x l u p e ɲ i
 chlup	x l u p
 vous	v oʊ s
 brada	b r a d a
@@ -1019,18 +968,15 @@ hlemýžd’	h l e m i s t
 šnek	s n e k
 kobylka	k o b i l k a
 motýl	m o t i  l̩
-svatojánská muška	s v a t o j a n s k a m u s k a
 světluška	s v e t l u s k a
 had	h a t
 červ	ts e r v
 komár	k o m a r̩
 moskyt	m o s k i t
-písečná moucha	p i s e ts n a m oʊ x a
 komár	k o m a r̩
 moucha	m oʊ x a
 vosa	v o s a
 úl	u l̩
-(včelí) vosk	  f ts e l i   v o s k
 včela	f ts e l a
 pavučina	p a v u ts i n a
 pavouk	p a v oʊ k
@@ -1121,7 +1067,6 @@ chlév	x l e v
 pastýř	p a s t i  r̩
 pastucha	p a s t u x a
 pásti	p a s c i
-pásti se	p a s c i s e
 dobytek	d o b i t e k
 samice	s a m i ts e
 samec	s a m e ts
@@ -1143,13 +1088,9 @@ vdovec	v d o v e ts
 vdova	v d o v a
 sirotek	s i r o t e k
 sirota	s i r o t a
-nevlastní dcera	n e v l a s t ɲ i t ts e r a
 pastorkyně	p a s t o r k i n e
-nevlastní syn	n e v l a s t ɲ i s i n
 pastorek	p a s t o r e k
-nevlastní matka	n e v l a s t ɲ i m a t k a
 macecha	m a ts e x a
-nevlastní otec	n e v l a s t ɲ i  o t e ts
 otčím	o t ts i m
 snacha	s n a x a
 snacha	s n a x a
@@ -1177,7 +1118,6 @@ strýc	s t r i ts
 ujec	u j e ts
 vnuk	v n u k
 vnučka	v n u ts k a
-stará žena	s t a r a z e n a
 stařena	s t a r e n a
 babička	b a b i ts k a
 stařec	s t a r e ts
@@ -1188,17 +1128,11 @@ dědeček	d e d e ts e k
 dvojčata	d v o j ts a t a
 dvojče	d v o j ts e
 sourozenec	s oʊ r o z e n e ts
-mladší sestra	m l a t s i s e s t r a
-starší sestra	s t a r s i s e s t r a
 sestra	s e s t r a
-mladší bratr	m l a t s i b r a t r̩
-starší bratr	s t a r s i b r a t r̩
 bratr	b r a t r̩
 potomek	p o t o m e k
 dcera	t ts e r a
 syn	s i n
-vdaná žena	v d a n a z e n a
-ženatý muž	z e n a t i m u z
 rodiče	r o d i ts e
 matka	m a t k a
 máti	m a c i
@@ -1207,8 +1141,6 @@ rozvod	r o z v o t
 manželství	m a n z e l s t v i
 ženitba	z e ɲ i d b a
 vdavky	v d a f k i
-oženiti se	o z e ɲ i c i s e
-vdáti se	v d a c i s e
 žena	z e n a
 manželka	m a n z e l k a
 chot’	x o t
@@ -1218,11 +1150,9 @@ chot’	x o t
 dět’átko	d e t a t k o
 nemluvně	n e m l u v n e
 dítě	ɟ i t e
-mladá žena	m l a d a z e n a
 dívka	ɟ i f k a
 děvče	d e f ts e
 mladík	m l a ɟ i k
-mladý muž	m l a d i m u z
 chlapec	x l a p e ts
 hoch	h o x
 ženský	z e n s k i
@@ -1231,7 +1161,6 @@ žena	z e n a
 muž	m u z
 člověk	ts l o v e k
 osoba	o s o b a
-dřevěné uhlí	d r̩ e v e n e u h l i
 palivo	p a l i v o
 sirka	s i r k a
 zápalka	z a p a l k a
@@ -1241,8 +1170,6 @@ zapáliti	z a p a l i c i
 hořeti	h o r e c i
 páliti	p a l i c i
 žhnouti	s h n oʊ c i
-spáliti (se)	s p a l i c i   s e
-žhavé uhlí	s h a v e u h l i
 popel	p o p e l
 dým	d i m
 plamen	p l a m e n
@@ -1290,7 +1217,6 @@ tok	t o k
 potok	p o t o k
 příliv	p r̩ i l i v
 odliv	o d l i v
-příliv a odliv	p r̩ i l i v  a o d l i v
 vlna	v l̩ n a
 mys	m i s
 úskalí	u s k a l i
@@ -1393,7 +1319,6 @@ ticho	c i x o
 viděti	v i d e c i
 hleděti	h l e d e c i
 patřiti	p a t r̩ i c i
-dívati se	ɟ i v a c i s e
 ukázati	u k a z a c i
 svítiti	s v i c i c i
 blýskati	b l i s k a c i
@@ -1409,7 +1334,6 @@ červený	ts e r v e n i
 modrý	m o d r i
 zelený	z e l e n i
 žlutý	z l u t i
-dotknouti se	d o t k n oʊ c i s e
 štípnouti	s c i p n oʊ c i
 hmatati	h m a t a c i
 makati	m a k a c i
@@ -1444,10 +1368,6 @@ nehoda	n e h o d a
 radostný	r a d o s t n i
 rád	r a t
 veselý	v e s e l i
-smáti se	s m a c i s e
-usmívati se	u s m i v a c i s e
-smát se	s m a t s e
-hrát si s	h r a t s i  e s
 láska	l a s k a
 milovati	m i l o v a c i
 líbati	l i b a c i
@@ -1461,7 +1381,6 @@ žalost	z a l o s t
 úzkost	u s k o s t
 litovati	l i t o v a c i
 želeti	z e l e c i
-káti se	k a c i s e
 útrpnost	u t r̩ p n o s t
 lítost	l i t o s t
 soucit	s oʊ ts i t
@@ -1478,7 +1397,6 @@ stud	s t u t
 hanba	h a n b a
 pyšný	p i s n i
 hrdý	h r̩ d i
-odvážiti se	o d v a z i c i s e
 udatný	u d a t n i
 statečný	s t a t e ts n i
 strach	s t r a x
@@ -1528,20 +1446,17 @@ tušiti	t u s i c i
 hádati	h a d a c i
 napodobovati	n a p o d o b o v a c i
 imitovati	i m i t o v a c i
-zdáti se	z d a c i s e
 myšlenka	m i s l e ŋ k a
 moudrý	m oʊ d r i
 bláznivý	b l a z ɲ i v i
 pošetilý	p o s e c i l i
 hloupý	h l oʊ p i
 šílený	s i l e n i
-učiti se	u ts i c i s e
 studovati	s t u d o v a c i
 učiti	u ts i c i
 žák	z a k
 učitel	u ts i t e l
 škola	s k o l a
-pamatovati se	p a m a t o v a c i s e
 zapomenouti	z a p o m e n oʊ c i
 jasný	j a s n i
 nejasný	n e j a s n i
@@ -1576,7 +1491,6 @@ kolik?	k o l i k
 kolik?	k o l i k
 co?	ts o
 kdy?	k d i
-kde? kam?	k d e k a m
 který?	k t e r i
 kdo?	k d o
 proč?	p r o ts
@@ -1589,7 +1503,6 @@ hvízdati	h v i z d a c i
 pískati	p i s k a c i
 výti	v i c i
 mluviti	m l u v i c i
-zajíkati se	z a j i k a c i s e
 říci	r̩ i ts i
 praviti	p r a v i c i
 pověděti	p o v e d e c i
@@ -1599,7 +1512,6 @@ mlčeti	m l̩ ts e c i
 jazyk	j a z i k
 slovo	s l o v o
 jméno	j m e n o
-ptáti se	p t a c i s e
 odpověděti	o t p o v e d e c i
 připustiti	p r̩ i p u s c i c i
 uznati	u z n a c i
@@ -1620,8 +1532,6 @@ ohlásiti	o h l a s i c i
 zvěstovati	z v e s t o v a c i
 oznámiti	o z n a m i c i
 hroziti	h r o z i c i
-chlubiti se	x l u b i c i s e
-chvástati se	x v a s t a c i s e
 psáti	p s a c i
 čísti	ts i s c i
 papír	p a p i  r̩
@@ -1685,7 +1595,6 @@ prostitutka	p r o s c i t u t k a
 nevěstka	n e v e s t k a
 kurva	k u r v a
 bojovati	b o j o v a c i
-bíti se	b i c i s e
 válka	v a l̩ k a
 mír	m i  r̩
 vojsko	v o j s k o
@@ -1695,7 +1604,6 @@ vojín	v o j i n
 zbraně	z b r a n e
 palice	p a l i ts e
 obušek	o b u s e k
-bojová sekyra	b o j o v a s e k i r a
 prak	p r a k
 luk	l u k
 šíp	s i p
@@ -1716,7 +1624,6 @@ porážka	p o r a s k a
 útok	u t o k
 obrana	o b r a n a
 ústup	u s t u p
-vzdáti (se)	v z d a c i   s e
 zajatec	z a j a t e ts
 stráž	s t r a z
 hlídka	h l i t k a
@@ -1725,9 +1632,6 @@ plen	p l e n
 záloha	z a l o h a
 rybář	r i b a r̩
 udice	u ɟ i ts e
-vlas (=šňůra k udici)	v l a s r o v n o   s n u r a  k u ɟ i ts i
-rybářská sít’	r i b a r̩ s k a s i t
-past naryby	p a s t n a r i b i
 návnada	n a v n a d a
 vnadidlo	v n a ɟ i d l o
 loviti	l o v i c i
@@ -1736,7 +1640,6 @@ střeliti	s t r̩ e l i c i
 minouti	m i n oʊ c i
 past	p a s t
 líčiti	l i ts i c i
-klásti (pasti)	k l a s c i   p a s c i
 právo	p r a v o
 soud	s oʊ t
 souditi	s oʊ ɟ i c i
@@ -1761,10 +1664,8 @@ vězení	v e z e ɲ i
 žalář	z a l a r̩
 vražda	v r a z d a
 cizoložtví	ts i z o l o s t v i
-násilné smilstvo	n a s i l n e s m i l s t v o
 znásilnění	z n a s i l n e ɲ i
 žhářství	s h a r̩ s t v i
-křivá přísaha	k r̩ i v a p r̩ i s a h a
 křivopřisežnictví	k r̩ i v o p r̩ i s e z ɲ i ts t v i
 krásti	k r a s c i
 zloděj	z l o d e j
@@ -1775,8 +1676,6 @@ chrám	x r a m
 oltář	o l t a r̩
 obět’	o b e t
 ctíti	ts c i c i
-klaněti se	k l a n e c i s e
-modliti se	m o d l i c i s e
 kněz	k n e s
 pop	p o p
 svatý	s v a t i
@@ -1784,10 +1683,8 @@ kázati	k a z a c i
 blahoslaviti	b l a h o s l a v i c i
 žehnati	z e h n a c i
 proklíti	p r o k l i c i
-postiti se	p o s c i c i s e
 nebe	n e b e
 peklo	p e k l o
-zlý duch	z l i d u x
 démon	d e m o n
 modla	m o d l a
 bůžek	b u z e k
