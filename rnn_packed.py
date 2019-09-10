@@ -78,40 +78,34 @@ class Dataset(data.Dataset):
 
 class RNNConcept(nn.Module):
 
-    # def __init__(self, hidden_dim, vocab_size):
-    #     super(RNNConcept, self).__init__()
-    #     self.hidden_dim = hidden_dim
-    #     self.vocab_size = vocab_size
-    #     self.rnn = nn.RNN(input_size=vocab_size, hidden_size=hidden_dim,
-    #                       nonlinearity='relu', batch_first=True)
-    #     for name, param in self.rnn.named_parameters():
-    #         if 'weight_ih' in name:
-    #             torch.nn.init.normal_(param.data, mean=0, std=0.001)  # based on https://arxiv.org/pdf/1504.00941.pdf
-    #         elif 'weight_hh' in name:
-    #             torch.nn.init.eye_(param.data)  # based on https://arxiv.org/pdf/1504.00941.pdf
-    #             param.data = param.data * 0.01
-    #         elif 'bias' in name:
-    #             param.data.fill_(0)  # # based on https://arxiv.org/pdf/1504.00941.pdf
-    #     self.classifier = nn.Linear(hidden_dim, 2)  # binary output layer
-    #     self.softmax = nn.LogSoftmax(dim = 1)
     def __init__(self, hidden_dim, vocab_size):
         super(RNNConcept, self).__init__()
         self.hidden_dim = hidden_dim
         self.vocab_size = vocab_size
-        self.rnn = nn.LSTM(input_size=vocab_size, hidden_size=hidden_dim, batch_first=True)
+        self.rnn = nn.RNN(input_size=vocab_size, hidden_size=hidden_dim,
+                          nonlinearity='relu', batch_first=True)
+        for name, param in self.rnn.named_parameters():
+            if 'weight_ih' in name:
+                torch.nn.init.normal_(param.data, mean=0, std=0.001)  # based on https://arxiv.org/pdf/1504.00941.pdf
+            elif 'weight_hh' in name:
+                torch.nn.init.eye_(param.data)  # based on https://arxiv.org/pdf/1504.00941.pdf
+                param.data = param.data * 0.01
+            elif 'bias' in name:
+                param.data.fill_(0)  # # based on https://arxiv.org/pdf/1504.00941.pdf
         self.classifier = nn.Linear(hidden_dim, 2)  # binary output layer
         self.softmax = nn.LogSoftmax(dim = 1)
+    # def __init__(self, hidden_dim, vocab_size):
+    #     super(RNNConcept, self).__init__()
+    #     self.hidden_dim = hidden_dim
+    #     self.vocab_size = vocab_size
+    #     self.rnn = nn.LSTM(input_size=vocab_size, hidden_size=hidden_dim, batch_first=True)
+    #     self.classifier = nn.Linear(hidden_dim, 2)  # binary output layer
+    #     self.softmax = nn.LogSoftmax(dim = 1)
 
     def forward(self, word):
         rnn_out, rnn_hidden = self.rnn(word)
-        rnn_hidden = rnn_hidden[0]
-        # print(rnn_hidden)
         rnn_hidden = rnn_hidden.view(rnn_hidden.size()[1], rnn_hidden.size()[2])
-        # print(rnn_hidden.size())
-        # rnn_out = rnn_utils.pad_packed_sequence(rnn_out)
-        # rnn_out = rnn_out[0]
         class_space = self.classifier(rnn_hidden)
-        # class_scores = torch.sigmoid(class_space)  # binary
         class_scores = self.softmax(class_space)
         return class_scores
 
@@ -129,7 +123,7 @@ def get_network_performance(language_data):
     # encoded_words = torch.stack(encoded_words).permute(1, 0, 2) # sequence x nsamples x dimensions (vocabulary size)
     encoded_words = [encode_word(word, char_dict) for word in language_data['phon'].tolist()]
     encoded_words = [torch.stack([int_to_one_hot(char, len(char_dict)) for char in word]) for word in encoded_words]
-    classes = language_data['ontologicalCategory'].tolist()
+    classes = language_data['ontological.category'].tolist()
     # classes = language_data['englishPOS'].tolist()
     class_dict = {'Action': 1, 'Thing': 0}  # save dummy encoding
     # class_dict = {'verb': 1, 'noun': 0}  # save dummy encoding
@@ -141,8 +135,8 @@ def get_network_performance(language_data):
                            classes))  # stores a dictionary where the "id" of a word (string of index in matrix) maps to its class
 
     # training parameters and folds
-    max_epochs = 400  # maximum number of epochs if early stopping doesn't trigger
-    patience = 40  # number of epochs without improvement of test_loss that triggers early stopping
+    max_epochs = 200  # maximum number of epochs if early stopping doesn't trigger
+    # patience = 40  # number of epochs without improvement of test_loss that triggers early stopping
     # loss = nn.BCELoss()  # define loss function
     k_folds = cv.StratifiedKFold(n_splits=3, shuffle=True)  # make k-folds. choose number of splits.
     k_fold_data = k_folds.split(language_data, classes)
@@ -159,14 +153,10 @@ def get_network_performance(language_data):
     for train_indices, test_indices in k_fold_data:
         print("doing new fold")
         # - allocate data
-        # all_train = [ind for ind in train_indices]  # indexing
         all_test = [ind for ind in test_indices]
         train_id = [str(ind) for ind in train_indices]  # for accessing dict of classes
         test_id = [str(ind) for ind in test_indices]
         partition = {'train': train_id, 'test': test_id}
-        # proportion = pd.crosstab(language_data.iloc[test_indices, 2], columns="count").apply(lambda c: c / c.sum(),
-        #                                                                                      axis=0)
-        # proportion = torch.FloatTensor(proportion["count"].tolist())
         loss = nn.NLLLoss()
         # Action_proportion = proportion["count"][1]
         # - create datasets and loaders
@@ -179,7 +169,6 @@ def get_network_performance(language_data):
         # - create network and optimizer
         model = RNNConcept(hidden_dim=10, vocab_size=len(char_dict))
         model = model.to(device)
-        # optim = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=0.001, amsgrad=True)
         optim = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=0.01)
 
         # - early stopping variables
@@ -191,7 +180,6 @@ def get_network_performance(language_data):
 
             # -- loop through training mini batches
             for batch, batch_labels in training_loader:
-                # batch = batch.to(device), batch_labels.to(device)
                 batch = batch.to(device)
                 batch_labels = batch_labels.to(device)
                 prediction_scores = model(batch)  # prediction for training
@@ -201,30 +189,27 @@ def get_network_performance(language_data):
                 optim.step()  # step in optimizer
             # print(epoch_loss)
             # -- early stopping loop through test minibatches
-            val_loss = []
-            for batch, batch_labels in test_loader:
-                with torch.no_grad():  # no tracking for test loss calculation
-                    # batch = batch.permute(1, 0, 2)
-                    # batch, batch_labels = batch.to(device), batch_labels.to(device)
-                    batch = batch.to(device)
-                    batch_labels = batch_labels.to(device)
-                    val_prediction = model(batch)
-                    batch_loss = loss(val_prediction, batch_labels)  # store loss for each batch
-                    val_loss.append(batch_loss)
-
-            val_loss = torch.stack(val_loss)
-            val_loss = torch.Tensor.mean(val_loss)  # calculate mean loss for each of the test batches
+            # val_loss = []
+            # for batch, batch_labels in test_loader:
+            #     with torch.no_grad():  # no tracking for test loss calculation
+            #         batch = batch.to(device)
+            #         batch_labels = batch_labels.to(device)
+            #         val_prediction = model(batch)
+            #         batch_loss = loss(val_prediction, batch_labels)  # store loss for each batch
+            #         val_loss.append(batch_loss)
+            #
+            # val_loss = torch.stack(val_loss)
+            # val_loss = torch.Tensor.mean(val_loss)  # calculate mean loss for each of the test batches
             # print(val_loss)
-            if (
-                    val_loss < min_loss):  # if mean batch loss is the minimum yet, store it in place and reset patience counter
-                min_loss = val_loss
-                patience_counter = 0
-            else:  # if its larger or equal than the minimum yet, add one to the patience counter
-                patience_counter += 1
-            if patience_counter == patience:  # when there have been `patience` epochs without improvement, stop training and report the epochs of training
-                print("converged at epoch " + str(epoch))
-                break
-        # print(time.perf_counter() - start)
+            # if (
+            #         val_loss < min_loss):  # if mean batch loss is the minimum yet, store it in place and reset patience counter
+            #     min_loss = val_loss
+            #     patience_counter = 0
+            # else:  # if its larger or equal than the minimum yet, add one to the patience counter
+            #     patience_counter += 1
+            # if patience_counter == patience:  # when there have been `patience` epochs without improvement, stop training and report the epochs of training
+            #     print("converged at epoch " + str(epoch))
+            #     break
         # - performance for this fold
         with torch.no_grad():
             test_data = [encoded_words[index] for index in all_test]
@@ -238,19 +223,14 @@ def get_network_performance(language_data):
             test_scores = model(test_data).cpu()
             test_confidence = torch.max(test_scores, 1)[0]
             test_confidence = test_confidence.exp().tolist()
-            test_prediction = (torch.max(test_scores, 1)[1]).tolist()
             test_ground = [all_classes[id] for id in test_id]
             test_ground = [test_ground[index] for index in indices]
             test_id = [test_id[index] for index in indices]
             test_prediction = (torch.max(test_scores, 1)[1]).tolist()
-            # test_prediction = [0 if predscore < Action_proportion else 1 for predscore in
-            #                    test_scores]  # using class weight as treshold.
             test_matthews = metrics.matthews_corrcoef(test_ground, test_prediction)
-            # test_auc = metrics.roc_auc_score(test_ground, test_scores)
             test_accuracy = metrics.balanced_accuracy_score(test_ground, test_prediction)
             test_f1 = metrics.f1_score(test_ground, test_prediction)
             folds_test_matthews.append(test_matthews)
-            # folds_test_auc.append(test_auc)
             folds_test_f1.append(test_f1)
             folds_test_accuracy.append(test_accuracy)
             folds_confidence = {**folds_confidence, **dict(zip(test_id,
@@ -262,38 +242,35 @@ def get_network_performance(language_data):
     all_results = pd.DataFrame({'Matthews': folds_test_matthews,
                                 'Accuracy': folds_test_accuracy, 'F1': folds_test_f1})
     print(all_results)
-    return [all_results, folds_predictions, folds_confidence]
+    return all_results
     # return [all_results, folds_predictions]
 
 
 def get_repeated_performance_rnn(all_data, language_name, times=1):
     print(language_name)
     language_data = all_data[all_data['language'] == language_name]
-    language_data = language_data[language_data['ontologicalCategory'] != 'Other']
-    # language_data = language_data[language_data['englishPOS'] != 'other']
+    language_data = language_data[language_data['ontological.category'] != 'Other']
     print(language_data.shape)
-    all_performance = []
+    all_measures = []
     for i in range(times):
         print(i)
-        all_performance.append(get_network_performance(language_data))
-    all_measures = [result[0] for result in all_performance]
+        all_measures.append(get_network_performance(language_data))
     all_measures = pd.concat(all_measures)
-    all_predictions = []
-    all_confidence = [result[2] for result in all_performance]
-    conf_dataframes = []
-    for i in range(times):
-        conf_dataframe = pd.DataFrame.from_dict(all_confidence[i], orient='index')
-        conf_dataframe.index = conf_dataframe.index.astype(int)
-        conf_dataframe.sort_index(inplace=True)
-        pred_dataframe = pd.DataFrame.from_dict(all_predictions[i], orient='index')
-        pred_dataframe.index = pred_dataframe.index.astype(int)
-        pred_dataframe.sort_index(inplace=True)
-        conf_dataframe['Prediction'] = pred_dataframe.iloc[:,0]
-        print(conf_dataframe)
-        conf_dataframes.append(conf_dataframe)
-    conf_dataframes = pd.concat(conf_dataframes, axis=1)
-    conf_dataframes['Form'] = language_data['Form'].tolist()
-    return [all_measures, conf_dataframes]
+    # all_predictions = [result[1] for result in all_performance]
+    # all_confidence = [result[2] for result in all_performance]
+    # conf_dataframes = []
+    # for i in range(times):
+    #     conf_dataframe = pd.DataFrame.from_dict(all_confidence[i], orient='index')
+    #     conf_dataframe.index = conf_dataframe.index.astype(int)
+    #     conf_dataframe.sort_index(inplace=True)
+    #     pred_dataframe = pd.DataFrame.from_dict(all_predictions[i], orient='index')
+    #     pred_dataframe.index = pred_dataframe.index.astype(int)
+    #     pred_dataframe.sort_index(inplace=True)
+    #     conf_dataframe['Prediction'] = pred_dataframe.iloc[:,0]
+    #     conf_dataframes.append(conf_dataframe)
+    # conf_dataframes = pd.concat(conf_dataframes, axis=1)
+    # conf_dataframes['Form'] = language_data['Form'].tolist()
+    return [all_measures]
     # for prediction in [result[1] for result in all_performance]:
     #     pred_dataframe = pd.DataFrame.from_dict(prediction, orient='index')
     #     pred_dataframe.index = pred_dataframe.index.astype(int)
@@ -305,29 +282,23 @@ def get_repeated_performance_rnn(all_data, language_name, times=1):
 
 
 def save_repeated_measures(list_of_results, language_name):
-    filename_performance = "Results/Exp/" + f"{language_name}" + "_lstm_performance.csv"
-    filename_confidence = "Results/Exp/" + f"{language_name}" + "_lstm_confidence.csv"
+    filename_performance = "Results/No-Ending/" + f"{language_name}" + "_rnn_performance.csv"
+    # filename_confidence = "Results/Exp/" + f"{language_name}" + "_rnn_confidence.csv"
     list_of_results[0].to_csv(filename_performance)
-    list_of_results[1].to_csv(filename_confidence, header=False, index=False)
+    # list_of_results[1].to_csv(filename_confidence, header=False, index=False)
 
 
 random.seed(1)
-# lang_data = pd.read_csv("Data/Processed/allPhonFormsConcepticon.csv")
-lang_data = pd.read_csv("Data/Processed/allPhonFormsConcepticon2.csv", keep_default_na=False)
+lang_data = pd.read_csv("Data/Processed/all_phon_no_ending.csv", keep_default_na=False)
 # language_data = lang_data[lang_data['language'] == "English"]
 # language_data = language_data[language_data['ontologicalCategory'] != 'Other']
 
-# all_languages = ["Spanish", "French", "German", "Danish", "Hawaiian", "Persian", "Avar", "Maori", "Hindi", "Mapudungun"]
-# all_languages = sorted(set(lang_data["language"]))
+all_languages = sorted(set(lang_data["language"]))
 # print(all_languages.index("Sirionó"))
-# all_languages = ["Pacaas Novos", "Vietnamese", "Wichí", "Rotuman", "Tongan", "Ese Ejja", "Maori", "Cayuvava", "Pilagá", "Sirionó", "Guaraní", "Seri"]
-all_languages = ["Danish", "English", "Hungarian", "French", "Mapudungun"]
-all_languages = ["Hungarian"]
 for language_name in all_languages:
     language_performance = get_repeated_performance_rnn(lang_data, language_name, times=10)
     save_repeated_measures(language_performance, language_name)
 
-# best performing = amsgrad true, lr = 0.001, adam. HU = 5 gives stable performance. weight decay 0.001 stabilizes results.
 
 # TODO: CV -> DONE
 # TODO: compare embedding with no embedding (one-hot) -> DONE

@@ -75,74 +75,31 @@ class Dataset(data.Dataset):
         return x, y
 
 
-# class RNNConcept(nn.Module):
-#
-#     def __init__(self, hidden_dim, vocab_size):
-#         super(RNNConcept, self).__init__()
-#         self.hidden_dim = hidden_dim
-#         self.vocab_size = vocab_size
-#         self.rnn = nn.RNN(input_size=vocab_size, hidden_size=hidden_dim,
-#                           nonlinearity='relu', batch_first=True)
-#         for name, param in self.rnn.named_parameters():
-#             if 'weight_ih' in name:
-#                 torch.nn.init.normal_(param.data, mean=0, std=0.001)  # based on https://arxiv.org/pdf/1504.00941.pdf
-#             elif 'weight_hh' in name:
-#                 torch.nn.init.eye_(param.data)  # based on https://arxiv.org/pdf/1504.00941.pdf
-#                 param.data = param.data * 0.01
-#             elif 'bias' in name:
-#                 param.data.fill_(0)  # # based on https://arxiv.org/pdf/1504.00941.pdf
-#         self.classifier = nn.Linear(hidden_dim, 2)  # binary output layer
-#         self.softmax = nn.LogSoftmax(dim = 1)
-#
-#     def forward(self, word):
-#         rnn_out, rnn_hidden = self.rnn(word)
-#         rnn_hidden = rnn_hidden.view(rnn_hidden.size()[1], rnn_hidden.size()[2])
-#         # rnn_out = rnn_utils.pad_packed_sequence(rnn_out)
-#         # rnn_out = rnn_out[0]
-#         class_space = self.classifier(rnn_hidden)
-#         # class_scores = torch.sigmoid(class_space)  # binary
-#         class_scores = self.softmax(class_space)
-#         return class_scores
-
 class RNNConcept(nn.Module):
 
-    # def __init__(self, hidden_dim, vocab_size):
-    #     super(RNNConcept, self).__init__()
-    #     self.hidden_dim = hidden_dim
-    #     self.vocab_size = vocab_size
-    #     self.rnn = nn.RNN(input_size=vocab_size, hidden_size=hidden_dim,
-    #                       nonlinearity='relu', batch_first=True)
-    #     for name, param in self.rnn.named_parameters():
-    #         if 'weight_ih' in name:
-    #             torch.nn.init.normal_(param.data, mean=0, std=0.001)  # based on https://arxiv.org/pdf/1504.00941.pdf
-    #         elif 'weight_hh' in name:
-    #             torch.nn.init.eye_(param.data)  # based on https://arxiv.org/pdf/1504.00941.pdf
-    #             param.data = param.data * 0.01
-    #         elif 'bias' in name:
-    #             param.data.fill_(0)  # # based on https://arxiv.org/pdf/1504.00941.pdf
-    #     self.classifier = nn.Linear(hidden_dim, 2)  # binary output layer
-    #     self.softmax = nn.LogSoftmax(dim = 1)
     def __init__(self, hidden_dim, vocab_size):
         super(RNNConcept, self).__init__()
         self.hidden_dim = hidden_dim
         self.vocab_size = vocab_size
-        self.rnn = nn.LSTM(input_size=vocab_size, hidden_size=hidden_dim, batch_first=True)
+        self.rnn = nn.RNN(input_size=vocab_size, hidden_size=hidden_dim,
+                          nonlinearity='relu', batch_first=True)
+        for name, param in self.rnn.named_parameters():
+            if 'weight_ih' in name:
+                torch.nn.init.normal_(param.data, mean=0, std=0.001)  # based on https://arxiv.org/pdf/1504.00941.pdf
+            elif 'weight_hh' in name:
+                torch.nn.init.eye_(param.data)  # based on https://arxiv.org/pdf/1504.00941.pdf
+                param.data = param.data * 0.01
+            elif 'bias' in name:
+                param.data.fill_(0)  # # based on https://arxiv.org/pdf/1504.00941.pdf
         self.classifier = nn.Linear(hidden_dim, 2)  # binary output layer
         self.softmax = nn.LogSoftmax(dim = 1)
 
     def forward(self, word):
         rnn_out, rnn_hidden = self.rnn(word)
-        rnn_hidden = rnn_hidden[0]
-        # print(rnn_hidden)
         rnn_hidden = rnn_hidden.view(rnn_hidden.size()[1], rnn_hidden.size()[2])
-        # print(rnn_hidden.size())
-        # rnn_out = rnn_utils.pad_packed_sequence(rnn_out)
-        # rnn_out = rnn_out[0]
         class_space = self.classifier(rnn_hidden)
-        # class_scores = torch.sigmoid(class_space)  # binary
         class_scores = self.softmax(class_space)
         return class_scores
-
 
 def get_network_performance(language_data):
     # encode word sequences
@@ -154,7 +111,7 @@ def get_network_performance(language_data):
                       language_data['phon'].tolist()])  # obtains the longest word in the vocabulary for padding
     encoded_words = [encode_word(word, char_dict) for word in language_data['phon'].tolist()]
     encoded_words = [torch.stack([int_to_one_hot(char, len(char_dict)) for char in word]) for word in encoded_words]
-    classes = language_data['ontologicalCategory'].tolist()
+    classes = language_data['ontological.category'].tolist()
     class_dict = {'Action': 1, 'Thing': 0}  # save dummy encoding
     classes = torch.tensor([class_dict[pos] for pos in classes],
                            dtype=torch.float)  # encode classes into 0 and 1 torch float tensors
@@ -164,17 +121,14 @@ def get_network_performance(language_data):
                            classes))  # stores a dictionary where the "id" of a word (string of index in matrix) maps to its class
 
     # training parameters and folds
-    max_epochs = 400  # maximum number of epochs if early stopping doesn't trigger
-    patience = 40  # number of epochs without improvement of test_loss that triggers early stopping
+    max_epochs = 300  # maximum number of epochs if early stopping doesn't trigger
+    patience = 25
     training_sets = cv.StratifiedShuffleSplit(n_splits= 30, train_size = 50, test_size = n_words - 50)
-    # k_folds = cv.StratifiedKFold(n_splits=3, shuffle=True)  # make k-folds. choose number of splits.
     training_sets_data = training_sets.split(language_data, classes)
     # storage for performance data
     folds_test_accuracy = []
     folds_test_f1 = []
     folds_test_matthews = []
-    folds_test_auc = []
-    folds_predictions = {}
 
     # network loop through k-fold data
     for train_indices, test_indices in training_sets_data:
@@ -257,32 +211,23 @@ def get_network_performance(language_data):
             test_ground = [all_classes[id] for id in test_id]
             test_ground = [test_ground[index] for index in indices]
             test_id = [test_id[index] for index in indices]
-            # test_prediction = (torch.max(test_scores, 1)[1]).tolist()
-            # test_prediction = [0 if predscore < Action_proportion else 1 for predscore in
-                               # test_scores]  # using class weight as treshold.
             test_matthews = metrics.matthews_corrcoef(test_ground, test_prediction)
-            # test_auc = metrics.roc_auc_score(test_ground, test_scores)
             test_accuracy = metrics.balanced_accuracy_score(test_ground, test_prediction)
             test_f1 = metrics.f1_score(test_ground, test_prediction)
             folds_test_matthews.append(test_matthews)
-            # folds_test_auc.append(test_auc)
             folds_test_f1.append(test_f1)
             folds_test_accuracy.append(test_accuracy)
-            folds_predictions = {**folds_predictions, **dict(zip(test_id,
-                                                                 test_prediction))}  # create dictionary with id:prediction. id = index of word in its language dataframe
-
     # aggregate fold performance and return dataframe
     all_results = pd.DataFrame({'Matthews': folds_test_matthews,
                                 'Accuracy': folds_test_accuracy, 'F1': folds_test_f1})
     print(all_results)
-    return [all_results, folds_predictions]
+    return [all_results]
 
 
 def get_repeated_performance_rnn(all_data, language_name, times=1):
     print(language_name)
     language_data = all_data[all_data['language'] == language_name]
-    language_data = language_data[language_data['ontologicalCategory'] != 'Other']
-    # language_data = language_data[language_data['englishPOS'] != 'other']
+    language_data = language_data[language_data['ontological.category'] != 'Other']
     print(language_data.shape)
     all_performance = []
     for i in range(times):
@@ -290,33 +235,19 @@ def get_repeated_performance_rnn(all_data, language_name, times=1):
         all_performance.append(get_network_performance(language_data))
     all_measures = [result[0] for result in all_performance]
     all_measures = pd.concat(all_measures)
-    all_predictions = []
-    for prediction in [result[1] for result in all_performance]:
-        pred_dataframe = pd.DataFrame.from_dict(prediction, orient='index')
-        pred_dataframe.index = pred_dataframe.index.astype(int)
-        pred_dataframe.sort_index(inplace=True)
-        all_predictions.append(pred_dataframe)
-    all_predictions = pd.concat(all_predictions, axis=1)
-    all_predictions['Form'] = language_data['Form'].tolist()
-    return [all_measures, all_predictions]
+    return [all_measures]
 
 
 def save_repeated_measures(list_of_results, language_name):
-    filename_performance = "Results/Spurt/" + f"{language_name}" + "_lstm_spurt_performance.csv"
-    filename_predictions = "Results/Spurt/" + f"{language_name}" + "_lstm_spurt_predictions.csv"
+    filename_performance = "Results/Spurt-NE/" + f"{language_name}" + "_spurt_performance.csv"
     list_of_results[0].to_csv(filename_performance)
-    list_of_results[1].to_csv(filename_predictions, header=False, index=False)
 
 
 random.seed(1)
 
-language_data = pd.read_csv("Data/Processed/allPhonFormsConcepticon.csv", keep_default_na=False)
-language_data = language_data[language_data['ontologicalCategory'] != 'Other']
-included_languages = [line.rstrip('\n') for line in open("included_languages.txt")]
-included_languages = [language.replace('\"', "") for language in included_languages if "#" not in language]
-all_languages = included_languages
-all_languages = ["Danish", "Hungarian", "Spanish"]
-
+language_data = pd.read_csv("Data/Processed/all_phon_no_ending.csv", keep_default_na=False)
+language_data = language_data[language_data['ontological.category'] != 'Other']
+all_languages = sorted(set(language_data["language"]))
 
 for language_name in all_languages:
     language_performance = get_repeated_performance_rnn(language_data, language_name, times=1)
