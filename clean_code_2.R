@@ -557,11 +557,7 @@ action.props <- map_dfr(names(all.extremes), function(lang){
     left_join(tally) %>%
     mutate_at(vars(-ontological.category, -n), funs(. / n))
   action.prop <- props.per.cat %>%
-    select(-n) # %>%
-    # select(ontologicalCategory, apply(., 1, which.max)) %>%
-    # filter(ontologicalCategory == "Action") %>%
-    # select(ontologicalCategory, 2)
-  # colnames(action.prop) <- c("ontologicalCategory", "prop")
+    select(-n)
   action.prop <- action.prop %>%
     add_column(language = lang.name)
   return(action.prop)
@@ -1050,162 +1046,179 @@ spanish.k$clustering
 
 # extremes of the word
 
-allPhon.extremes <- allPhon %>%
+all.phon.extremes <- all.phon %>%
   mutate(ending = str_sub(phon, -1), start = str_sub(phon, 1, 1))
 
-all.extremes <- map(sort(unique(allPhon.extremes$language)), function(x){
-  lang <- allPhon.extremes %>%
+all.extremes <- map(sort(unique(all.phon.extremes$language)), function(x){
+  lang <- all.phon.extremes %>%
     filter(language == x) %>%
-    select(ontologicalCategory, ending, start) %>%
+    select(ontological.category, ending, start) %>%
     mutate_at(c("ending", "start"), as.factor)
   dummies <- caret::dummyVars(data = lang, ~ ending + start)
   lang <- lang %>%
     bind_cols(as_tibble(predict(object = dummies, newdata = lang))) %>%
-    select(ontologicalCategory, contains("ending"), contains("start"), -ending, -start) %>%
-    mutate(ontologicalCategory = factor(ontologicalCategory))
+    select(ontological.category, contains("ending"), contains("start"), -ending, -start) %>%
+    mutate(ontological.category = factor(ontological.category))
   return(lang)
 })
-names(all.extremes) <- sort(unique(allPhon.extremes$language))
+names(all.extremes) <- sort(unique(all.phon.extremes$language))
 
-action.props <- map_dfr(names(all.extremes), function(lang){
+all.props <- map_dfr(names(all.extremes), function(lang){
   lang.name <- lang
   lang <- all.extremes[[lang]]
   tally <- lang %>%
-    group_by(ontologicalCategory) %>%
+    group_by(ontological.category) %>%
     tally()
   props.per.cat <- lang %>%
-    group_by(ontologicalCategory) %>%
+    group_by(ontological.category) %>%
     summarize_all(sum) %>%
     left_join(tally) %>%
-    mutate_at(vars(-ontologicalCategory, -n), funs(. / n))
-  action.prop <- props.per.cat %>%
-    select(-n) %>%
-    select(ontologicalCategory, apply(., 1, which.max)) %>%
-    filter(ontologicalCategory == "Action") %>%
-    select(ontologicalCategory, 2)
-  colnames(action.prop) <- c("ontologicalCategory", "prop")
-  action.prop <- action.prop %>%
-    add_column(language = lang.name)
-  return(action.prop)
+    mutate_at(vars(-ontological.category, -n), funs(. / n))
+  max.per.cat <- select(props.per.cat, -n, -ontological.category) %>% 
+    apply(1, max)
+  props.per.cat %>% 
+    select(ontological.category) %>% 
+    add_column(max.proportions = max.per.cat) %>% 
+    filter(ontological.category != "Other") %>% 
+    add_column(language = lang.name) %>% 
+    return()
 })
 
-marker.group <- action.props %>%
-  filter(prop > 0.5) %>%
+max.props <- all.props %>% 
+  group_by(language) %>% 
+  summarize(max.prop = max(max.proportions))
+marker.group <- max.props %>% 
+  filter(max.prop > 0.5) %>% 
   .$language
-no.marker.group <- action.props %>%
-  filter(prop <= 0.5) %>%
+no.marker.group <- max.props %>% 
+  filter(max.prop <= 0.5) %>% 
   .$language
 
-spanish.example <- allPhon.extremes %>%
-  filter(language == "Basque")
-
-lda.f1 <- list()
-f1 <- function(data, lev = NULL, model = NULL) {
-  f1_val <- F1_Score(y_pred = data$pred, y_true = data$obs, positive = lev[1])
-  c(F1 = f1_val)
-}
-
-library(MLmetrics)
-
-for(x in unique(allPhon.extremes$language)){
-  lang.frame <- all.extremes[[x]]
-  print(x)
-  if(x %in% names(lda.f1)){next}
-  lang.frame <- allPhon.extremes %>%
-    filter(language == x)
-  lang.frame <- filter(lang.frame, ontologicalCategory != "Other")
-  # onehot.encoding <- lang.frame %>%
-  #   mutate_at(c("ending", "start"), as.factor) %>%
-  #   caret::dummyVars(data = ., ~ ending + start)
-  lang.frame <- lang.frame %>%
-    # bind_cols(as_tibble(predict(object = onehot.encoding, newdata = lang.frame)))  %>%
-    select(ontologicalCategory, contains("ending"), contains("start")) %>%
-    mutate(ontologicalCategory = factor(ontologicalCategory))
-  lda.model <- caret::train(data = lang.frame, ontologicalCategory ~ ., method = "lda", metric = "F1",
-                            trControl = trainControl(classProbs = TRUE, summaryFunction = f1, method = "repeatedcv", number = 3, repeats = 100))
-  lda.f1[[x]] <- lda.model$results["F1"] %>% as_tibble %>% mutate(language = x)
-  # lda.model.preds <- predict(lda.model, newdata = lang.frame)
-  # predictions <- recode(lda.model.preds, Action = 1, Thing = 0)
-  # ground <- recode(lang.frame$ontologicalCategory, Action = 1, Thing = 0)
-  # mcc <- mltools::mcc(predictions, ground)
-  # lda.mcc[[x]] <- tibble(language = x, Matthews = mcc)
-}
-
-lda.f1 <- bind_rows(lda.f1) %>%
-  mutate(language = unique(allPhon.extremes$language))
-
-
-spanish.example <- filter(spanish.example, ontologicalCategory != "Other")
-onehot.encoding <- spanish.example %>%
-  mutate_at(c("ending", "start"), as.factor) %>%
-  caret::dummyVars(data = ., ~ ending + start)
-spanish.example <- spanish.example %>%
-  bind_cols(as_tibble(predict(object = onehot.encoding, newdata = spanish.example)))  %>%
-  select(ontologicalCategory, contains("ending"), contains("start"), -ending, -start) %>%
-  mutate(ontologicalCategory = factor(ontologicalCategory))
-
-lda.model <- caret::train(data = spanish.example, ontologicalCategory ~ ., method = "lda", trControl = trainControl(
-  method = "repeatedcv",
-  number = 3,
-  repeats = 100
-))
-lda.model.preds <- predict(lda.model, newdata = spanish.example)
-predictions <- recode(lda.model.preds, Action = 1, Thing = 0)
-ground <- recode(spanish.example$ontologicalCategory, Action = 1, Thing = 0)
-mcc <- mltools::mcc(predictions, ground)
-
-
-spanish.example
 
 
 
-spurt.splits <- caret::createDataPartition(spanish.example$ontologicalCategory, times = 100, p = 0.66)
-
-x <- map(spurt.splits, function(trainpartition){
-  train <- spanish.example[trainpartition,]
-  onehot.encoding <- train %>%
-    mutate_at(c("ending", "start"), as.factor) %>%
-    caret::dummyVars(data = ., ~ ending + start)
-  train <- train %>%
-    bind_cols(as_tibble(predict(object = onehot.encoding, newdata = train))) %>%
-    select(ontologicalCategory, contains("ending"), contains("start"), -ending, -start) %>%
-    mutate(ontologicalCategory = factor(ontologicalCategory))
-  lda.model <- caret::train(data = train, ontologicalCategory ~ ., method = "nb")
-  print("e")
-  out.of.split <- setdiff(1:nrow(spanish.example), trainpartition)
-  test <- spanish.example[out.of.split,]
-  onehot.encoding <- test %>%
-    mutate_at(c("ending", "start"), as.factor) %>%
-    caret::dummyVars(data = ., ~ ending + start)
-  print("yo")
-  test <- test %>%
-    bind_cols(as_tibble(predict(object = onehot.encoding, newdata = test))) %>%
-    select(ontologicalCategory, contains("ending"), contains("start"), -ending, -start) %>%
-    mutate(ontologicalCategory = factor(ontologicalCategory))
-  test <- test[, colnames(train)]
-  prediction <- predict(lda.model, test)
-  mcc <- prediction %>%
-    recode(Thing = 0, Action = 1) %>% mltools::mcc(preds = ., actual = recode(spanish.example$ontologicalCategory[out.of.split], Action = 1, Thing = 0))
-  print(mcc)
-  return(mcc)
-})
 
 
-rnn.f1 %>% filter(language %in% names(all.extremes)) %>% left_join(lda.f1) %>% left_join(rename(phonLanguages, language = Name)) %>% mutate(F1 = ifelse(is.na(F1), 0, F1)) %>% mutate(diff = rnn.F1 - F1) %>% plotly::plot_ly(
-  type = "bar",
-  data = .,
-  x = ~ language,
-  y = ~ diff,
-  hoverinfo = "text",
-  text = ~ paste(
-    "Language =",
-    language,
-    ";\nLDA F1 = ",
-    round(F1, 2),
-    ";\nRNN F1 = ",
-    round(rnn.F1, 2)
-  )
-) %>%  plotly::layout(title = "Difference between RNN performance and LDA with edge phonemes performance") %>% htmlwidgets::saveWidget("rnn_lda_difference_plot.html", selfcontained = TRUE)
 
 
-# THIS BREAKS -> they share variables and it cant do it.
+# 
+# marker.group <- action.props %>%
+#   filter(prop > 0.5) %>%
+#   .$language
+# no.marker.group <- action.props %>%
+#   filter(prop <= 0.5) %>%
+#   .$language
+# 
+# spanish.example <- allPhon.extremes %>%
+#   filter(language == "Basque")
+# 
+# lda.f1 <- list()
+# f1 <- function(data, lev = NULL, model = NULL) {
+#   f1_val <- F1_Score(y_pred = data$pred, y_true = data$obs, positive = lev[1])
+#   c(F1 = f1_val)
+# }
+# 
+# library(MLmetrics)
+# 
+# for(x in unique(allPhon.extremes$language)){
+#   lang.frame <- all.extremes[[x]]
+#   print(x)
+#   if(x %in% names(lda.f1)){next}
+#   lang.frame <- allPhon.extremes %>%
+#     filter(language == x)
+#   lang.frame <- filter(lang.frame, ontologicalCategory != "Other")
+#   # onehot.encoding <- lang.frame %>%
+#   #   mutate_at(c("ending", "start"), as.factor) %>%
+#   #   caret::dummyVars(data = ., ~ ending + start)
+#   lang.frame <- lang.frame %>%
+#     # bind_cols(as_tibble(predict(object = onehot.encoding, newdata = lang.frame)))  %>%
+#     select(ontologicalCategory, contains("ending"), contains("start")) %>%
+#     mutate(ontologicalCategory = factor(ontologicalCategory))
+#   lda.model <- caret::train(data = lang.frame, ontologicalCategory ~ ., method = "lda", metric = "F1",
+#                             trControl = trainControl(classProbs = TRUE, summaryFunction = f1, method = "repeatedcv", number = 3, repeats = 100))
+#   lda.f1[[x]] <- lda.model$results["F1"] %>% as_tibble %>% mutate(language = x)
+#   # lda.model.preds <- predict(lda.model, newdata = lang.frame)
+#   # predictions <- recode(lda.model.preds, Action = 1, Thing = 0)
+#   # ground <- recode(lang.frame$ontologicalCategory, Action = 1, Thing = 0)
+#   # mcc <- mltools::mcc(predictions, ground)
+#   # lda.mcc[[x]] <- tibble(language = x, Matthews = mcc)
+# }
+# 
+# lda.f1 <- bind_rows(lda.f1) %>%
+#   mutate(language = unique(allPhon.extremes$language))
+# 
+# 
+# spanish.example <- filter(spanish.example, ontologicalCategory != "Other")
+# onehot.encoding <- spanish.example %>%
+#   mutate_at(c("ending", "start"), as.factor) %>%
+#   caret::dummyVars(data = ., ~ ending + start)
+# spanish.example <- spanish.example %>%
+#   bind_cols(as_tibble(predict(object = onehot.encoding, newdata = spanish.example)))  %>%
+#   select(ontologicalCategory, contains("ending"), contains("start"), -ending, -start) %>%
+#   mutate(ontologicalCategory = factor(ontologicalCategory))
+# 
+# lda.model <- caret::train(data = spanish.example, ontologicalCategory ~ ., method = "lda", trControl = trainControl(
+#   method = "repeatedcv",
+#   number = 3,
+#   repeats = 100
+# ))
+# lda.model.preds <- predict(lda.model, newdata = spanish.example)
+# predictions <- recode(lda.model.preds, Action = 1, Thing = 0)
+# ground <- recode(spanish.example$ontologicalCategory, Action = 1, Thing = 0)
+# mcc <- mltools::mcc(predictions, ground)
+# 
+# 
+# spanish.example
+# 
+# 
+# 
+# spurt.splits <- caret::createDataPartition(spanish.example$ontologicalCategory, times = 100, p = 0.66)
+# 
+# x <- map(spurt.splits, function(trainpartition){
+#   train <- spanish.example[trainpartition,]
+#   onehot.encoding <- train %>%
+#     mutate_at(c("ending", "start"), as.factor) %>%
+#     caret::dummyVars(data = ., ~ ending + start)
+#   train <- train %>%
+#     bind_cols(as_tibble(predict(object = onehot.encoding, newdata = train))) %>%
+#     select(ontologicalCategory, contains("ending"), contains("start"), -ending, -start) %>%
+#     mutate(ontologicalCategory = factor(ontologicalCategory))
+#   lda.model <- caret::train(data = train, ontologicalCategory ~ ., method = "nb")
+#   print("e")
+#   out.of.split <- setdiff(1:nrow(spanish.example), trainpartition)
+#   test <- spanish.example[out.of.split,]
+#   onehot.encoding <- test %>%
+#     mutate_at(c("ending", "start"), as.factor) %>%
+#     caret::dummyVars(data = ., ~ ending + start)
+#   print("yo")
+#   test <- test %>%
+#     bind_cols(as_tibble(predict(object = onehot.encoding, newdata = test))) %>%
+#     select(ontologicalCategory, contains("ending"), contains("start"), -ending, -start) %>%
+#     mutate(ontologicalCategory = factor(ontologicalCategory))
+#   test <- test[, colnames(train)]
+#   prediction <- predict(lda.model, test)
+#   mcc <- prediction %>%
+#     recode(Thing = 0, Action = 1) %>% mltools::mcc(preds = ., actual = recode(spanish.example$ontologicalCategory[out.of.split], Action = 1, Thing = 0))
+#   print(mcc)
+#   return(mcc)
+# })
+# 
+# 
+# rnn.f1 %>% filter(language %in% names(all.extremes)) %>% left_join(lda.f1) %>% left_join(rename(phonLanguages, language = Name)) %>% mutate(F1 = ifelse(is.na(F1), 0, F1)) %>% mutate(diff = rnn.F1 - F1) %>% plotly::plot_ly(
+#   type = "bar",
+#   data = .,
+#   x = ~ language,
+#   y = ~ diff,
+#   hoverinfo = "text",
+#   text = ~ paste(
+#     "Language =",
+#     language,
+#     ";\nLDA F1 = ",
+#     round(F1, 2),
+#     ";\nRNN F1 = ",
+#     round(rnn.F1, 2)
+#   )
+# ) %>%  plotly::layout(title = "Difference between RNN performance and LDA with edge phonemes performance") %>% htmlwidgets::saveWidget("rnn_lda_difference_plot.html", selfcontained = TRUE)
+# 
+# 
+# # THIS BREAKS -> they share variables and it cant do it.

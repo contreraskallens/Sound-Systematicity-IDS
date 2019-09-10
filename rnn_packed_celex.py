@@ -97,9 +97,7 @@ class RNNConcept(nn.Module):
 
     def forward(self, word):
         rnn_out, rnn_hidden = self.rnn(word)
-        print(rnn_hidden.size())
         rnn_hidden = rnn_hidden.view(rnn_hidden.size()[1], rnn_hidden.size()[2])
-        print(rnn_hidden.size())
         class_space = self.classifier(rnn_hidden)
         # class_scores = torch.sigmoid(class_space)  # binary
         class_scores = self.softmax(class_space)
@@ -129,7 +127,7 @@ def get_network_performance(language_data):
                            classes))  # stores a dictionary where the "id" of a word (string of index in matrix) maps to its class
 
     # training parameters and folds
-    max_epochs = 400  # maximum number of epochs if early stopping doesn't trigger
+    max_epochs = 200  # maximum number of epochs if early stopping doesn't trigger
     patience = 40  # number of epochs without improvement of test_loss that triggers early stopping
     # loss = nn.BCELoss()  # define loss function
     k_folds = cv.StratifiedKFold(n_splits=3, shuffle=True)  # make k-folds. choose number of splits.
@@ -139,7 +137,6 @@ def get_network_performance(language_data):
     folds_test_accuracy = []
     folds_test_f1 = []
     folds_test_matthews = []
-    folds_test_auc = []
     folds_predictions = {}
 
     # network loop through k-fold data
@@ -166,7 +163,8 @@ def get_network_performance(language_data):
         # - create network and optimizer
         model = RNNConcept(hidden_dim=5, vocab_size=len(char_dict))
         model = model.to(device)
-        optim = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=0.001, amsgrad=True)
+        # optim = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=0.001, amsgrad=True)
+        optim = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=0.01)
 
         # - early stopping variables
         min_loss = np.Inf  # keep track of the minimum loss to this point
@@ -236,48 +234,37 @@ def get_network_performance(language_data):
             # folds_test_auc.append(test_auc)
             folds_test_f1.append(test_f1)
             folds_test_accuracy.append(test_accuracy)
-            folds_predictions = {**folds_predictions, **dict(zip(test_id,
-                                                                 test_prediction))}  # create dictionary with id:prediction. id = index of word in its language dataframe
+            # folds_predictions = {**folds_predictions, **dict(zip(test_id,
+            #                                                      test_prediction))}  # create dictionary with id:prediction. id = index of word in its language dataframe
 
     # aggregate fold performance and return dataframe
     all_results = pd.DataFrame({'Matthews': folds_test_matthews,
                                 'Accuracy': folds_test_accuracy, 'F1': folds_test_f1})
     print(all_results)
-    return [all_results, folds_predictions]
+    return [all_results]
 
 
 def get_repeated_performance_rnn(all_data, language_name, times=1):
     print(language_name)
     language_data = all_data[all_data['language'] == language_name]
     language_data = language_data[language_data['englishPOS'] != 'Other']
-    print(language_data.shape)
     all_performance = []
     for i in range(times):
         print(i)
         all_performance.append(get_network_performance(language_data))
     all_measures = [result[0] for result in all_performance]
     all_measures = pd.concat(all_measures)
-    all_predictions = []
-    for prediction in [result[1] for result in all_performance]:
-        pred_dataframe = pd.DataFrame.from_dict(prediction, orient='index')
-        pred_dataframe.index = pred_dataframe.index.astype(int)
-        pred_dataframe.sort_index(inplace=True)
-        all_predictions.append(pred_dataframe)
-    all_predictions = pd.concat(all_predictions, axis=1)
-    all_predictions['phon'] = language_data['phon'].tolist()
-    return [all_measures, all_predictions]
+    return [all_measures]
 
 
 def save_repeated_measures(list_of_results, language_name):
-    filename_performance = "Results/RNN/celex_rnn_performance.csv"
-    filename_predictions = "Results/RNN/celex_rnn_predictions.csv"
+    filename_performance = "Results/CELEX/celex_mono_no_ending_rnn_performance.csv"
     list_of_results[0].to_csv(filename_performance)
-    list_of_results[1].to_csv(filename_predictions, header=False, index=False)
 
 
 random.seed(1)
 
-language_data = pd.read_csv("Data/Processed/celex_mono.csv", keep_default_na=False)
+language_data = pd.read_csv("Data/Processed/celex_mono_words_no_ending.csv", keep_default_na=False)
 all_languages = ["English"]
 
 
