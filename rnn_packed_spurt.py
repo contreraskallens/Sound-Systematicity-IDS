@@ -239,13 +239,13 @@ def get_repeated_performance_rnn(all_data, language_name, times=1):
 
 
 def save_repeated_measures(list_of_results, language_name):
-    filename_performance = "Results/Spurt-NE/" + f"{language_name}" + "_spurt_performance.csv"
+    filename_performance = "Results/Spurt-Adjusted/" + f"{language_name}" + "_spurt_performance.csv"
     list_of_results[0].to_csv(filename_performance)
 
 
 random.seed(1)
 
-language_data = pd.read_csv("Data/Processed/all_phon_no_ending.csv", keep_default_na=False)
+language_data = pd.read_csv("Data/Processed/all_phon_adjusted.csv", keep_default_na=False)
 language_data = language_data[language_data['ontological.category'] != 'Other']
 all_languages = sorted(set(language_data["language"]))
 
