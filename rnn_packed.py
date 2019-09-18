@@ -282,20 +282,20 @@ def get_repeated_performance_rnn(all_data, language_name, times=1):
 
 
 def save_repeated_measures(list_of_results, language_name):
-    filename_performance = "Results/Adjusted-Precise/" + f"{language_name}" + "_rnn_performance.csv"
+    filename_performance = "Results/Adjusted-Homophones/" + f"{language_name}" + "_rnn_performance.csv"
     # filename_confidence = "Results/Exp/" + f"{language_name}" + "_rnn_confidence.csv"
     list_of_results[0].to_csv(filename_performance)
     # list_of_results[1].to_csv(filename_confidence, header=False, index=False)
 
 
 random.seed(1)
-lang_data = pd.read_csv("Data/Processed/all_phon_adjusted.csv", keep_default_na=False)
+lang_data = pd.read_csv("Data/Processed/all_phon_adjusted_homophones.csv", keep_default_na=False)
 # language_data = lang_data[lang_data['language'] == "English"]
 # language_data = language_data[language_data['ontologicalCategory'] != 'Other']
 
 all_languages = sorted(set(lang_data["language"]))
 # print(all_languages.index("Sirionó"))
-for language_name in all_languages:
+for language_name in all_languages[180:]:
     language_performance = get_repeated_performance_rnn(lang_data, language_name, times=10)
     save_repeated_measures(language_performance, language_name)
 
