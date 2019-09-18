@@ -14,8 +14,6 @@ color.palette.cont <- wes_palette(name = 'Zissou1', type = 'continuous', n = 5)
 all.phon <- read_csv('Data/Processed/all_phon.csv')
 phon.languages <- read_csv('Data/Processed/all_language_info.csv')
 
-# allPhon <- allPhonControl
-
 # Functions ---------------------------------------------------------------
 
 get.language <- function(a.language, data = all.phon){
@@ -119,7 +117,7 @@ get.nearest.neighbors <- function(a.language, randomize = FALSE, distance.matrix
 # extremes of the word --------
 
 all.phon.adjusted <- all.phon
-marker.group <- c()
+marker.group <- list()
 
 
 for(i in 1:6){
@@ -148,8 +146,9 @@ for(i in 1:6){
   })
   langs.with.markers <- markers %>% 
     filter(marker == TRUE) %>% 
-    .$language
-  marker.group <- c(marker.group, langs.with.markers)
+    .$language %>% 
+    unique()
+  marker.group[[i]] <- c(langs.with.markers)
   all.phon.adjusted <- map_dfr(1:nrow(markers), function(index){
     lang <- markers$language[index]
     category <- markers$ontological.category[index]
@@ -169,8 +168,13 @@ for(i in 1:6){
     filter(nchar(phon) > 1)
 }
 
-marker.group <- unique(marker.group)
+marker.group <- unique(unlist(marker.group))
 no.marker.group <- setdiff(unique(all.phon.adjusted$language), marker.group)
+
+
+all.phon.adjusted <- all.phon.adjusted %>% 
+  distinct(language, ontological.category, phon, .keep_all = TRUE)
+
 
 all.distances.adjusted <- map_dfr(.x = unique(all.phon.adjusted$language),
                          .f = function(language.name) {
@@ -193,7 +197,8 @@ all.distances.adjusted %>%
   labs(x = expression(hat(ND[A])), y = expression(hat(ND[T]))) +
   cowplot::theme_cowplot() +
   facet_wrap(vars(class), ncol = 1) +
-  cowplot::panel_border()
+  cowplot::panel_border() +
+  labs(title = "Adjusted phon density, no within-class homophones")
 
 
 
@@ -381,8 +386,15 @@ label.text <- map_chr(sorted.langs$language, function(x){
   } else{return("")}
 })
 
-data.for.scatter <- data.for.scatter %>% 
-  mutate(Marker.Group = ifelse(language %in% no.marker.group, "No marker", "Marker"))
+
+# data.for.scatter$marker <- "no marker"
+# for(i in 1:length(marker.group)){
+#   language.group <- marker.group[[i]]
+#   language.ind <- which(data.for.scatter$language %in% language.group)
+#   group <- paste("group", i)
+#   data.for.scatter[language.ind, "marker"] <- group
+# }
+
 ggplot(data = data.for.scatter, aes(y = Mean, x = language, color = class, shape = class,
                                       ymin = Lower, ymax = Upper, group = class)) +
   labs(x = 'Language',
@@ -402,8 +414,7 @@ ggplot(data = data.for.scatter, aes(y = Mean, x = language, color = class, shape
         legend.text = element_text(size = 20),
         legend.title = element_text(size = 20),
         strip.text.x = element_text(size = 16)) +
-  cowplot::background_grid() + 
-  facet_wrap(vars(Marker.Group), scales = "free_x")
+  cowplot::background_grid() 
 
 
 
@@ -448,79 +459,74 @@ all.phon.list <- all.phon.list[sort(names(all.phon.list))]
 
 all.distance.matrices <- purrr::map(all.phon.list, function(x){get.distance.matrix(x)})
 
-# names(all.distance.matrices) <- unique(all.phon$language)
+repeated.neighbor <- map2_dfr(.x = all.phon.list, .y = all.distance.matrices, .f = function(x, y){
+  print(unique(x$language))
+      purrr::map_dfr(1:100, function(z){
+        all.neighbors <- get.nearest.neighbors(a.language = x,
+                                          distance.matrix = y,
+                                          randomize = FALSE) %>%
+          mutate(same.neighbor = (ontological.category == neighbor.category)) %>%
+          group_by(language, ontological.category) %>%
+          summarise(proportion.of.hits = sum(same.neighbor) / n()) %>%
+          mutate(permutation = z)
+        return(all.neighbors)
+      }) %>%
+      return()
+  })
+repeated.neighbor %>% write_rds("Data/Processed/adjusted_repeated_neighbor.Rds")
 
-# all.distance.matrices <- all.distance.matrices[sort(names(all.distance.matrices))]
+#- Evolang significance testing -----
+# wilcox.tests <- map(sort(unique(all.phon$language)), function(x){
+#   lang.distances <- all.distances %>% 
+#     filter(class != "Other", language == x) %>%
+#     mutate(class = factor(class))
+#   return(coin::wilcox_test(data = lang.distances, typicality ~ class))
+# })
+# 
+# names(wilcox.tests) <- sort(unique(all.phon$language))
+# significances.marker <- map_dbl(wilcox.tests[marker.group], function(x){
+#   return(coin::pvalue(x))
+# })
+# 
+# adjusted <- significances.marker %>% p.adjust(method = "bonferroni", n = 227)
+# 
+# sum(adjusted < 0.001)
+# 
+# 
+# cohen.marker <- map_dbl(sort(marker.group), function(x){
+#   lang.distances <- all.distances %>% 
+#     filter(class != "Other", language == x) %>%
+#     mutate(class = factor(class))
+#   effsize::cohen.d(data = lang.distances, typicality ~ class) %>% 
+#            .$estimate %>% 
+#     return()
+# })
+# 
+# cohen.marker %>% median()
+# 
+# 
+# significances.no.marker <- map_dbl(wilcox.tests[no.marker.group], function(x){
+#   return(coin::pvalue(x))
+# })
+# 
+# adjusted.no.marker <- significances.no.marker %>% p.adjust(method = "bonferroni", n = 227)
+# 
+# sum(adjusted.no.marker < 0.001)
+# 
+# cohen.no.marker <- map_dbl(sort(no.marker.group), function(x){
+#   lang.distances <- all.distances %>% 
+#     filter(class != "Other", language == x) %>%
+#     mutate(class = factor(class))
+#   effsize::cohen.d(data = lang.distances, typicality ~ class) %>% 
+#     .$estimate %>% 
+#     return()
+# })
+# 
+# cohen.no.marker %>% median
+# 
+# significances.marker / length(significances.marker)
 
-# repeated.neighbor <- map2_dfr(.x = all.phon.list, .y = all.distance.matrices, .f = function(x, y){
-#   print(unique(x$language))
-#       purrr::map_dfr(1:100, function(z){
-#         all.neighbors <- get.nearest.neighbors(a.language = x,
-#                                           distance.matrix = y,
-#                                           randomize = FALSE) %>%
-#           mutate(same.neighbor = (ontological.category == neighbor.category)) %>%
-#           group_by(language, ontological.category) %>%
-#           summarise(proportion.of.hits = sum(same.neighbor) / n()) %>%
-#           mutate(permutation = z)
-#         return(all.neighbors)
-#       }) %>%
-#       return()
-#   })
-# repeated.neighbor %>% write_rds("Data/Processed/repeated_neighbor.Rds")
-
-
-
-wilcox.tests <- map(sort(unique(all.phon$language)), function(x){
-  lang.distances <- all.distances %>% 
-    filter(class != "Other", language == x) %>%
-    mutate(class = factor(class))
-  return(coin::wilcox_test(data = lang.distances, typicality ~ class))
-})
-
-names(wilcox.tests) <- sort(unique(all.phon$language))
-significances.marker <- map_dbl(wilcox.tests[marker.group], function(x){
-  return(coin::pvalue(x))
-})
-
-adjusted <- significances.marker %>% p.adjust(method = "bonferroni", n = 227)
-
-sum(adjusted < 0.001)
-
-
-cohen.marker <- map_dbl(sort(marker.group), function(x){
-  lang.distances <- all.distances %>% 
-    filter(class != "Other", language == x) %>%
-    mutate(class = factor(class))
-  effsize::cohen.d(data = lang.distances, typicality ~ class) %>% 
-           .$estimate %>% 
-    return()
-})
-
-cohen.marker %>% median()
-
-
-significances.no.marker <- map_dbl(wilcox.tests[no.marker.group], function(x){
-  return(coin::pvalue(x))
-})
-
-adjusted.no.marker <- significances.no.marker %>% p.adjust(method = "bonferroni", n = 227)
-
-sum(adjusted.no.marker < 0.001)
-
-cohen.no.marker <- map_dbl(sort(no.marker.group), function(x){
-  lang.distances <- all.distances %>% 
-    filter(class != "Other", language == x) %>%
-    mutate(class = factor(class))
-  effsize::cohen.d(data = lang.distances, typicality ~ class) %>% 
-    .$estimate %>% 
-    return()
-})
-
-cohen.no.marker %>% median
-
-significances.marker / length(significances.marker)
-
-repeated.neighbor <- read_rds("Data/Processed/repeated_neighbor.Rds")
+# repeated.neighbor <- read_rds("Data/Processed/repeated_neighbor.Rds")
 
 neighbor.stats <- repeated.neighbor %>%
   group_by(language, ontological.category) %>%
@@ -529,36 +535,37 @@ neighbor.stats <- repeated.neighbor %>%
 
 # load multicore mc
 
-# require(future)
-# require(furrr)
+require(future)
+require(furrr)
 
-# future::plan(multicore)
-# cores <- 4
-# options(future.globals.maxSize = +Inf, mc.cores = cores)
+future::plan(multisession)
+cores <- 4
+options(future.globals.maxSize = +Inf, mc.cores = cores)
 
-# neighbor.mc <- map2_dfr(.x = all.phon.list, .y = all.distance.matrices, 
-                                      # .f = function(language, distance.matrix){
-                                        # print(language)
-                                        # gc()
-                                        # 
-                                        # purrr::map_dfr(1:1000, function(x){
-                                          # all.neighbors <- get.nearest.neighbors(a.language = language,
-                                                                                 # distance.matrix = distance.matrix,
-                                                                                 # randomize = TRUE) %>%
-                                            # mutate(same.neighbor = (ontological.category == neighbor.category)) %>%
-                                            # group_by(language, ontological.category) %>%
-                                            # summarise(proportion.of.hits = sum(same.neighbor) / n()) %>%
-                                            # mutate(permutation = x)
-                                          # print(x)
-                                          # return(all.neighbors)
-    # }) %>%
-    # group_by(language, ontologicalCategory, permutation) %>%
-    # summarize(Mean = mean(proportionOfHits), Upper = Mean + sd(proportionOfHits), Lower = Mean - sd(proportionOfHits)) %>%
-    # return()
-# })
+neighbor.mc <- furrr::future_map2_dfr(.progress = TRUE, .x = all.phon.list, .y = all.distance.matrices,
+                        .f = function(language, distance.matrix){
+                          # print(language)
+                          gc()
+                          purrr::map_dfr(1:1000, function(x){
+                            all.neighbors <- get.nearest.neighbors(a.language = language,
+                                                                   distance.matrix = distance.matrix,
+                                                                   randomize = TRUE) %>%
+                              mutate(same.neighbor = (ontological.category == neighbor.category)) %>%
+                              group_by(language, ontological.category) %>%
+                              summarise(proportion.of.hits = sum(same.neighbor) / n()) %>%
+                              mutate(permutation = x)
+                            return(all.neighbors)
+                            }) %>%
+                            # group_by(language, ontological.category, permutation) %>%
+                            # summarize(Mean = mean(proportion.of.hits), 
+                            #           Standard.Dev = sd(proportion.of.hits)
+                            #           Upper = (Mean + sd(proportion.of.hits)), 
+                            #           Lower = (Mean - sd(proportion.of.hits))) %>%
+                            return()
+})
 
 # neighbor.mc %>%
-  # write_rds("Data/Processed/neighbor_mc.Rds")
+  # write_rds("Data/Processed/adjusted_neighbor_mc.Rds")
 
 neighbor.mc <- read_rds("Data/Processed/neighbor_mc.Rds")
 
@@ -577,7 +584,7 @@ neighbor.test %>%
   mutate(p = cut(p, breaks = c(0, 0.05, 1), include.lowest = TRUE, right = FALSE)) %>%
   group_by(p, ontological.category) %>%
   tally() %>%
-  mutate(n = n/ 222)
+  mutate(n = n/ 227)
 
 neighbor.test %>%
   filter(language %in% c("Mansi", "English", "Romani", "Thai (Korat variety)"))
@@ -884,43 +891,43 @@ rnn.stats %>%
 
 # RNN without endings ----
 
-rnn.no.ending <- list()
+rnn.adjusted <- list()
 
-for(file in list.files('Results/No-Ending//', recursive = T, full.names = T)){
-  language <- str_extract(file, "(?<=Results/No-Ending//).+(?=_rnn_)")
+for(file in list.files('Results/Adjusted-Precise//', recursive = T, full.names = T)){
+  language <- str_extract(file, "(?<=Results/Adjusted-Precise//).+(?=_rnn_)")
   print(language)
-  rnn.no.ending[[language]] <- read_csv(file)
-  rnn.no.ending[[language]]$language <- language
+  rnn.adjusted[[language]] <- read_csv(file)
+  rnn.adjusted[[language]]$language <- language
 }
 
-sigs.no.ending <- lapply(rnn.no.ending, function(stats){
+sigs.adjusted <- lapply(rnn.adjusted, function(stats){
   return(wilcox.test(x = stats$Matthews, mu = 0, alternative = "greater"))
 })
 
-sigs.no.ending <- lapply(sigs.no.ending, function(stats){
+sigs.adjusted <- lapply(sigs.adjusted, function(stats){
   if(is.nan(stats[["p.value"]]))
   {return(FALSE)}
   if(stats[["p.value"]] >= 0.01){return(FALSE)} else{return(TRUE)}
 })
 
-sigs.no.ending <- bind_rows(sigs.no.ending) %>%
+sigs.adjusted <- bind_rows(sigs.adjusted) %>%
   gather() %>%
   rename(language = key, significant = value) %>%
   filter(language %in% phon.languages$Name)
 
-sigs.no.ending
+sigs.adjusted
 
-rnn.stats.no.ending <- rnn.no.ending %>%
+rnn.stats.adjusted <- rnn.adjusted %>%
   bind_rows() %>%
   filter(language %in% phon.languages$Name) %>%
   # mutate(language = factor(language, levels = sorted.langs$language)) %>%
   select(-X1) %>%
   group_by(language) %>%
   summarise(Median = median(Matthews), sd = sd(Matthews)) %>% 
-  rename(No.Ending = Median)
+  rename(adjusted = Median)
 
 morph.comparison <- select(rnn.stats, language, Ending = Median, Ending.SD = sd)  %>% 
-  left_join(select(rnn.stats.no.ending, language, No.Ending, No.Ending.SD = sd)) %>% 
+  left_join(select(rnn.stats.adjusted, language, adjusted, adjusted.SD = sd)) %>% 
   arrange(desc(Ending)) %>% 
   mutate(language = factor(language, levels = .$language))
 
@@ -928,54 +935,72 @@ morph.comparison %>%
   ggplot(aes(x = language, y = Ending, ymin = Ending - Ending.SD, ymax = Ending + Ending.SD)) +
   geom_col()
 morph.comparison %>% 
-  ggplot(aes(x = language, y = No.Ending, ymin = No.Ending - No.Ending.SD, ymax = No.Ending + Ending.SD)) +
+  ggplot(aes(x = language, y = adjusted, ymin = adjusted - adjusted.SD, ymax = adjusted + Ending.SD)) +
   geom_col()
 
 comparison.plot <- morph.comparison %>% 
-  select(-Ending.SD, -No.Ending.SD) %>% 
-  gather("Mode", "MCC", Ending:No.Ending) %>% 
-  mutate(marker.group = ifelse(language %in% marker.group.3, 
-                               "3-or-more-long-marker",
-                               ifelse(language %in% marker.group.2, "2-long marker",
-                                      ifelse(language %in% marker.group, "1-long marker",
-                                             "No marker"))))
+  select(-Ending.SD, -adjusted.SD) %>% 
+  gather("Mode", "MCC", Ending:adjusted)
+
+comparison.plot$marker <- "no marker"
+for(i in 1:length(marker.group)){
+  language.group <- marker.group[[i]]
+  language.ind <- which(comparison.plot$language %in% language.group)
+  group <- paste("group", i)
+  comparison.plot[language.ind, "marker"] <- group
+}
 ggplot(mapping = aes(x = language, y = MCC)) +
   geom_bar(data = filter(comparison.plot, Mode == "Ending"), stat = "identity",
            mapping = aes(fill = wes_palettes$Darjeeling1[1]), color = "black") +
-  geom_bar(data = filter(comparison.plot, Mode == "No.Ending"), stat = "identity",
+  geom_bar(data = filter(comparison.plot, Mode == "adjusted"), stat = "identity",
            mapping = aes(fill = wes_palettes$Darjeeling1[2]), color = "black") + 
   cowplot::theme_cowplot() + 
-  scale_fill_manual(name = "Ending?", values = c(wes_palettes$Darjeeling1[2], 
+  scale_fill_manual(name = "Adjusted?", values = c(wes_palettes$Darjeeling1[2], 
                                                  wes_palettes$Darjeeling1[1]),
-                    labels = c("No Ending", "Ending")) +
+                    labels = c("Adjusted", "Not Adjusted")) +
   theme(axis.text.x = element_blank()) + 
-  facet_wrap(vars(marker.group), drop = TRUE, scales = "free_x") + 
-  labs(title = "Comparison of RNN before and after removing the last phoneme")
+  labs(title = "Comparison of RNN before and after per-class, per-group adjustment") + 
+  facet_wrap(vars(marker), scales = "free_x")
+
+
+
 
 morph.comparison %>% 
-  select(-Ending.SD, -No.Ending.SD) %>% 
-  gather("Mode", "MCC", Ending:No.Ending) %>% 
+  select(-Ending.SD, -adjusted.SD) %>% 
+  gather("Mode", "MCC", Ending:adjusted) %>% 
   ggplot(aes(x = language, y = MCC)) + 
   geom_col(fill = wes_palettes$Darjeeling1[1]) + 
   facet_wrap(vars(Mode), ncol = 1) + 
   cowplot::theme_cowplot() + 
   theme(axis.text.x = element_blank())
 morph.comparison %>% 
-  select(-Ending.SD, -No.Ending.SD) %>% 
-  mutate(difference.in.median = Ending - No.Ending,
-         Now.Random = ifelse(No.Ending <= 0.1, TRUE, FALSE)) %>% 
+  select(-Ending.SD, -adjusted.SD) %>% 
+  mutate(difference.in.median = Ending - adjusted,
+         Now.Random = ifelse(adjusted <= 0.1, TRUE, FALSE)) %>% 
   ggplot(aes(x = language, y = difference.in.median)) + 
   geom_col(aes(fill = Now.Random)) + 
   cowplot::theme_cowplot() + 
   theme(axis.text.x = element_blank()) 
+
+
+morph.comparison$marker <- "no marker"
+for(i in 1:length(marker.group)){
+  language.group <- marker.group[[i]]
+  language.ind <- which(morph.comparison$language %in% language.group)
+  group <- paste("group", i)
+  morph.comparison[language.ind, "marker"] <- group
+}
 
 complete.comparison <- morph.comparison %>% 
   left_join(rename(phon.languages, language = Name)) %>% 
   mutate(marker = ifelse(language %in% marker.group, "Marker", "No Marker"),
          family = factor(family),
          marker = factor(marker),
-         difference = Ending - No.Ending,
-         Now.Random = ifelse(No.Ending <= 0.1, TRUE, FALSE))
+         difference = Ending - adjusted,
+         Now.Random = ifelse(adjusted <= 0.1, TRUE, FALSE))
+
+
+
 
 
 diff.interactive <- plotly::plot_ly(complete.comparison, x = ~language, y = ~difference,
