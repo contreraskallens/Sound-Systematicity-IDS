@@ -24,7 +24,8 @@ get.language <- function(a.language, data = all.phon){
   # Returns: Tibble with only rows corresponding to specified
   # language and columns for Phon form, Meaning and Class.
   data %>%
-    dplyr::select(phon, english.name, language, ontological.category) %>%
+    dplyr::select(Form, phon, english.name, 
+                  language, ontological.category) %>%
     filter(language == a.language) %>%
     dplyr::select(-language) %>%
     return()
@@ -71,7 +72,6 @@ get.mean.distances <- function(language.df, distance.matrix){
   #     mean.distance.action - mean.distance.thing.
   #     class: contains the class of the word in the row.
   #     english.name is the english meaning of the word as per IDS.
-
   action.mask <- language.df$ontological.category == "Action"
   thing.mask <- language.df$ontological.category == "Thing"
   diag(distance.matrix) <- NA
@@ -80,7 +80,8 @@ get.mean.distances <- function(language.df, distance.matrix){
            mean.thing = rowMeans(distance.matrix[, thing.mask], na.rm = TRUE),
            typicality = mean.action - mean.thing,
            class = language.df$ontological.category,
-           englishName = language.df$english.name)
+           englishName = language.df$english.name,
+           Form = language.df$Form)
   return(mean.distance.matrix)
 }
 
@@ -171,15 +172,29 @@ for(i in 1:6){
 marker.group <- unique(unlist(marker.group))
 no.marker.group <- setdiff(unique(all.phon.adjusted$language), marker.group)
 
+all.distances.adjusted <- map_dfr(.x = unique(all.phon.adjusted$language),
+                                  .f = function(language.name) {
+                                    language <- get.language(a.language = language.name, 
+                                                            data = all.phon.adjusted)
+                                    distances <- get.distance.matrix(language)
+                                    mean.distances <-
+                                      get.mean.distances(language.df = language, 
+                                                         distance.matrix = distances) %>%
+                                      mutate(language = language.name)
+                                    return(mean.distances)
+                                  }
+)
 
-all.phon.adjusted <- all.phon.adjusted %>% 
+
+all.phon.adjusted.homophones <- all.phon.adjusted %>% 
   distinct(language, ontological.category, phon, .keep_all = TRUE)
 
 
-all.distances.adjusted <- map_dfr(.x = unique(all.phon.adjusted$language),
+all.distances.adjusted.homophones <- map_dfr(.x = unique(all.phon.adjusted.homophones$language),
                          .f = function(language.name) {
                            print(language.name)
-                           language <- get.language(a.language = language.name, all.phon.adjusted)
+                           language <- get.language(a.language = language.name, 
+                                                    all.phon.adjusted.homophones)
                            distances <- get.distance.matrix(language)
                            mean.distances <-
                              get.mean.distances(language.df = language, distance.matrix = distances) %>%
@@ -324,6 +339,39 @@ all.distances %>%
   scale_fill_manual(values = c(color.palette.dis[7], color.palette.dis[3], color.palette.dis[5]))
 
 # Violin of typicality per class with boxplot
+all.distances.modes <- rename(select(all.distances, -word), action.original = mean.action,
+                              thing.original = mean.thing,
+                              typicality.original = typicality) %>% 
+  left_join(rename(select(all.distances.adjusted, -word), action.adjusted = mean.action, thing.adjusted = mean.thing, typicality.adjusted = typicality)) %>% 
+  left_join(rename(select(all.distances.adjusted.homophones, -word), action.homophones = mean.action, thing.homophones = mean.thing, typicality.homophones = typicality))
+
+
+
+violin.animation <- all.distances.modes %>% 
+  select(class, contains("typicality")) %>% 
+  gather("Mode", "Typicality", -class) %>% 
+  mutate(class = factor(class, levels = c("Other", "Thing", "Action")),
+         Mode = factor(Mode, levels = c("typicality.original",
+                                        "typicality.adjusted",
+                                        "typicality.homophones"),
+                       labels = c("Original", "Adjusted", "No Homophones"))) %>% 
+  ggplot(aes(x = class, y = Typicality, fill = class, group = class)) +
+    geom_violin(trim = TRUE) +
+    geom_boxplot(width = 0.1, outlier.alpha = 0, fill = "white", alpha = 0.5) +
+    theme(legend.position = "none") +
+    coord_flip() +
+    scale_fill_manual(name = "Category", values = c(wes_palettes$Darjeeling1[1], wes_palettes$Darjeeling1[5], wes_palettes$Darjeeling1[2])) +
+    ylab("Typicality") +
+    xlab("") +
+    cowplot::theme_cowplot() +
+    geom_hline(yintercept = 0, linetype = "dashed") +
+    theme(legend.position = "none") + 
+  gganimate::transition_states(Mode, transition_length = 1, state_length = 3) + 
+  gganimate::ease_aes('sine-in-out') +
+  labs(title = '{closest_state}')
+
+gganimate::animate(violin.animation, width = 1000, height = 800)
+
 
 all.distances %>%
   mutate(class = factor(class, levels =  c("Other", "Thing", "Action"))) %>%
@@ -339,21 +387,55 @@ all.distances %>%
   geom_hline(yintercept = 0, linetype = "dashed") +
   theme(legend.position = "none")
 
+
+
+
 # Sorted scatter of typicality per class
 
 data.for.scatter <- all.distances %>%
   filter(class != "Other") %>%
   group_by(language, class) %>%
-  summarize(Mean = mean(typicality), Standard.Deviation = sd(typicality)) %>%
-  mutate(Lower = Mean - Standard.Deviation, Upper = Mean + Standard.Deviation)
-
-# sort it for cleaner viz
+  summarize(Mean = mean(typicality))
+data.for.scatter.adjusted <- all.distances.adjusted %>%
+  filter(class != "Other") %>%
+  group_by(language, class) %>%
+  summarize(Mean = mean(typicality))
+data.for.scatter.adjusted.homophones <- all.distances.adjusted.homophones %>%
+  filter(class != "Other") %>%
+  group_by(language, class) %>%
+  summarize(Mean = mean(typicality))
+all.scatters <- rename(data.for.scatter, original = Mean) %>% 
+  left_join(rename(data.for.scatter.adjusted, adjusted = Mean)) %>% 
+  left_join(rename(data.for.scatter.adjusted.homophones, adjusted.homophones = Mean))
 
 sorted.langs <- data.for.scatter %>% # this one includes the difference in means
-  select(-Lower, -Upper, -Standard.Deviation) %>%
   spread(class, Mean) %>%
   mutate(difference = abs(Action - Thing)) %>%
   arrange(desc(abs(difference)))
+
+scatter.anim <- all.scatters %>% 
+  gather("Mode", 
+         "Mean.Typicality", 
+         original:adjusted.homophones) %>% 
+  group_by() %>% 
+  mutate(language = factor(language, levels = sorted.langs$language),
+         Mode = factor(Mode, levels = c("original", "adjusted", "adjusted.homophones"))) %>% 
+  ggplot(aes(x = language, y = Mean.Typicality, group = language,
+             color = class, shape = class)) + 
+    geom_point(aes(fill = class), color = 'black', size = 3) +
+    geom_hline(linetype = 'solid', size = 1, yintercept = 0) +
+    scale_color_manual(name = "Category", values = c(wes_palettes$Darjeeling1[2], wes_palettes$Darjeeling1[1])) +
+    scale_fill_manual(name = "Category", values = c(wes_palettes$Darjeeling1[2], wes_palettes$Darjeeling1[1])) +
+    scale_shape_manual(name = "Category", values = c(23, 24)) + 
+  theme(axis.text.x = element_blank()) + 
+  gganimate::transition_states(Mode, transition_length = 2, state_length = 2) + 
+  gganimate::ease_aes('sine-in-out') + 
+  labs(title = '{closest_state}')
+  
+
+gganimate::animate(scatter.anim, width = 1500, height = 800)
+
+
 
 median(sorted.langs$difference)
 sd(sorted.langs$difference)
@@ -415,10 +497,6 @@ ggplot(data = data.for.scatter, aes(y = Mean, x = language, color = class, shape
         legend.title = element_text(size = 20),
         strip.text.x = element_text(size = 16)) +
   cowplot::background_grid() 
-
-
-
-ggsave("Figures/Evolang/scatter_all.pdf", scale = 2)
 
 
 ggplot(data = data.for.scatter, mapping = aes(x = language, y = Mean)) +
@@ -1015,6 +1093,68 @@ diff.interactive <- plotly::plot_ly(complete.comparison, x = ~language, y = ~dif
          yaxis = list(title = ""),
          margin = list(b = 80))
 htmlwidgets::saveWidget(diff.interactive, "interactive_difference.html", selfcontained = TRUE)
+
+
+
+# RNN without endings and within-class homophones ----
+
+rnn.adjusted.homophones <- list()
+
+for(file in list.files('Results/Adjusted-Homophones//', recursive = T, full.names = T)){
+  language <- str_extract(file, "(?<=Results/Adjusted-Homophones//).+(?=_rnn_)")
+  print(language)
+  rnn.adjusted.homophones[[language]] <- read_csv(file)
+  rnn.adjusted.homophones[[language]]$language <- language
+}
+
+sigs.adjusted.homophones <- lapply(rnn.adjusted.homophones, function(stats){
+  return(wilcox.test(x = stats$Matthews, mu = 0, alternative = "greater"))
+})
+
+sigs.adjusted.homophones <- lapply(sigs.adjusted.homophones, function(stats){
+  if(is.nan(stats[["p.value"]]))
+  {return(FALSE)}
+  if(stats[["p.value"]] >= 0.01){return(FALSE)} else{return(TRUE)}
+})
+
+sigs.adjusted.homophones <- bind_rows(sigs.adjusted.homophones) %>%
+  gather() %>%
+  rename(language = key, significant = value) %>%
+  filter(language %in% phon.languages$Name)
+
+sigs.adjusted.homophones
+
+rnn.stats.adjusted.homophones <- rnn.adjusted.homophones %>%
+  bind_rows() %>%
+  filter(language %in% phon.languages$Name) %>%
+  # mutate(language = factor(language, levels = sorted.langs$language)) %>%
+  select(-X1) %>%
+  group_by(language) %>%
+  summarise(Median = median(Matthews), sd = sd(Matthews)) %>% 
+  rename(adjusted.homophones = Median)
+
+
+all.results <- select(rnn.stats, -sd) %>% 
+  left_join(select(rnn.stats.adjusted, -sd)) %>% 
+  left_join(select(rnn.stats.adjusted.homophones, -sd)) %>% 
+  rename(original = Median)
+
+
+anim <- all.results %>% 
+  arrange(desc(original)) %>% 
+  mutate(language = factor(language, levels = .$language)) %>% 
+  gather("Mode", "MCC", original:adjusted.homophones) %>% 
+  mutate(Mode = factor(Mode, levels = c("original", "adjusted", "adjusted.homophones"))) %>% 
+  ggplot(aes(x = language, y = MCC, group = language)) +
+  geom_col(aes(fill = Mode)) + 
+  scale_fill_manual(values = wes_palettes$Darjeeling1[1:3]) + 
+  theme(axis.text.x = element_blank()) +
+  gganimate::transition_states(Mode, 
+                               transition_length = 3, 
+                               state_length = 2) + 
+  gganimate::ease_aes('sine-in-out')
+
+gganimate::animate(anim, width = 1500, height = 800)
 
 # rnn.stats %>%
 #   filter(language %in% marker.group) %>%
