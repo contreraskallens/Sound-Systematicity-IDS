@@ -128,7 +128,6 @@ def get_network_performance(language_data):
 
     # network loop through k-fold data
     for train_indices, test_indices in k_fold_data:
-        print(train_indices)
         print("doing new fold")
         # - allocate data
         all_test = [ind for ind in test_indices]
@@ -300,7 +299,6 @@ lang_data = pd.read_csv("Data/Processed/all_phon_adjusted_homophones.csv", keep_
 # language_data = language_data[language_data['ontologicalCategory'] != 'Other']
 
 all_languages = sorted(set(lang_data["language"]))
-all_languages = ["Aghul"]
 for language_name in all_languages:
     language_performance = get_repeated_performance_rnn(lang_data, language_name, times=1)
     save_repeated_measures(language_performance, language_name)
