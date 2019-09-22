@@ -294,11 +294,12 @@ random.seed(1)
 np.random.seed(1)
 torch.manual_seed(1)
 
-
-lang_data = pd.read_csv("Data/Processed/all_phon_adjusted_homophones.csv", keep_default_na=False)
+lang_data = pd.read_csv("Data/Processed/all_phon_adjusted.csv", keep_default_na=False)
 # language_data = language_data[language_data['ontologicalCategory'] != 'Other']
 
 all_languages = sorted(set(lang_data["language"]))
+all_languages = ["Ayoreo", "Bezhta", "Chamalal", "Chatino (Zacatepec variety)", "Chong", "De'kwana", "Ese Ejja", "Goajiro", "Karok", "Mashco Piro", "Mocoví", "Muisca", "Mundurukú", "Nahuatl (Sierra de Zacapoaxtla variety)", "Northern Haida", "Phong", "Pilagá", "Sanapaná (Angaité dialect)", "Sanapaná (Enlhet dialect)", "Seri", "Sirionó", "Tindi", "Toba", "Tuamotuan", "Zuni"]
+
 for language_name in all_languages:
     language_performance = get_repeated_performance_rnn(lang_data, language_name, times=1)
     save_repeated_measures(language_performance, language_name)
