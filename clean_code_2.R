@@ -251,19 +251,6 @@ all.distances.adjusted <- map_dfr(.x = unique(all.phon.adjusted$language),
                                   }
 )
 
-all.distances.adjusted %>%
-  mutate(class = factor(class, levels = c("Action", "Thing", "Other"))) %>%
-  ggplot(aes(x = mean.action, y = mean.thing, fill = stat(nlevel))) +
-  stat_density2d(geom = 'polygon') +
-  scale_fill_gradientn(colors = color.palette.cont, name = "Density") +
-  geom_abline(intercept = c(0,0), linetype = 'dashed', color = wes_palettes$Moonrise1[4], size = 1) +
-  labs(x = expression(hat(ND[A])), y = expression(hat(ND[T]))) +
-  cowplot::theme_cowplot() +
-  facet_wrap(vars(class), ncol = 1) +
-  cowplot::panel_border() +
-  labs(title = "Adjusted phon density, no within-class homophones")
-
-
 
 # Wrangling Data ------------------------------------------------------------------
 
@@ -618,8 +605,6 @@ repeated.neighbor.adjusted <- map2_dfr(.x = all.phon.list.adjusted, .y = all.dis
 
 repeated.neighbor.adjusted %>% write_rds("Data/Processed/adjusted_repeated_neighbor.Rds")
 
-
-
 repeated.neighbor <- read_rds("Data/Processed/repeated_neighbor.Rds")
 repeated.neighbor.adjusted <- read_rds("Data/Processed/adjusted_repeated_neighbor.Rds")
 
@@ -637,8 +622,8 @@ neighbor.stats.adjusted <- repeated.neighbor.adjusted %>%
 require(future)
 require(furrr)
 
-future::plan(multisession)
-cores <- 4
+future::plan(multiprocess)
+cores <- 6
 options(future.globals.maxSize = +Inf, mc.cores = cores)
 
 neighbor.mc <- furrr::future_map2_dfr(.progress = TRUE, .x = all.phon.list, .y = all.distance.matrices,
@@ -918,7 +903,7 @@ rnn.means <- function(data, indices){
 bootstrapped.cis <- function(rnn.language){
   language <- unique(rnn.language$language)
   print(language)
-  mean.boots <- boot::boot(data = rnn.language, statistic = rnn.means, R = 1000)
+  mean.boots <- boot::boot(data = rnn.language, statistic = rnn.means, R = 10000)
   original.means <- mean.boots$t0[c("Matthews", "F1", "ActionAccuracy","ThingAccuracy")] %>% 
     t() %>% 
     as_tibble()
@@ -961,30 +946,32 @@ bootstrapped.cis <- function(rnn.language){
 
 rnn.performance <- list()
 
-for(file in list.files('Results/ten-fold-original/', recursive = T, full.names = T)){
-  language <- str_extract(file, "(?<=Results/ten-fold-original/).+(?=_rnn_)")
+for(file in list.files('Results/ten-fold-original//', recursive = T, full.names = T)){
+  language <- str_extract(file, "(?<=Results/ten-fold-original///).+(?=_rnn_)")
   print(language)
   rnn.performance[[language]] <- read_csv(file)
   rnn.performance[[language]]$language <- language
 }
 
-rnn.stats <- purrr::map_dfr(rnn.performance, bootstrapped.cis)
-
-rnn.stats %>%
-  write_rds("Data/Processed/boot_ci_original.rds")
+# rnn.stats <- purrr::map_dfr(rnn.performance, bootstrapped.cis)
+# 
+# rnn.stats %>%
+#   write_rds("Data/Processed/boot_ci_original.rds")
 
 rnn.stats <- read_rds("Data/Processed/boot_ci_original.rds")
 
 rnn.performance.adjusted <- list()
 
 for(file in list.files('Results/ten-fold/', recursive = T, full.names = T)){
-  language <- str_extract(file, "(?<=Results/ten-fold/).+(?=_rnn_)")
+  language <- str_extract(file, "(?<=Results/ten-fold//).+(?=_rnn_)")
   print(language)
   rnn.performance.adjusted[[language]] <- read_csv(file)
   rnn.performance.adjusted[[language]]$language <- language
 }
 
 rnn.stats.adjusted <- purrr::map_dfr(rnn.performance.adjusted, bootstrapped.cis) 
+
+
 # Mashco Piro and Waorani bug out because they have 100% thing accuracy all the time.
 
 rnn.stats.adjusted %>%
