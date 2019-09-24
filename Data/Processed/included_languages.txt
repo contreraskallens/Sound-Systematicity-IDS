@@ -56,7 +56,7 @@
 # "Chamalal (Gigatli dialect)"
 "Chatino (Zacatepec variety)"
 "Chechen"
-"Chechen (Akkin dialect)"
+# "Chechen (Akkin dialect)"
 "Chipaya"
 "Chiriguano"
 "Chong"

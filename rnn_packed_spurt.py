@@ -14,16 +14,6 @@ import torch.nn.utils.rnn as rnn_utils
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-
-# print(torch.cuda.get_device_name(torch.cuda.current_device()))
-# if device.type != 'cpu':
-# device = "cpu"
-# cores = 7
-# else:
-#     cores = 0
-
-# print(cores)
-
 # - functions
 
 def encode_word(word, char_dict):
@@ -43,7 +33,6 @@ def int_to_one_hot(integer, n_features):
     onehot[integer] = torch.ones(1)
     return onehot
 
-
 def test_function(listofsamples):
     data = [sample[0] for sample in listofsamples]
     labels = [sample[1] for sample in listofsamples]
@@ -55,9 +44,7 @@ def test_function(listofsamples):
     data = rnn_utils.pack_padded_sequence(data, sorted_lengths, batch_first=False)
     return [data, labels]
 
-
 # - classes
-
 
 class Dataset(data.Dataset):
     def __init__(self, ids, labels, all_data):
@@ -73,7 +60,6 @@ class Dataset(data.Dataset):
         x = self.all_data[int(id)]
         y = self.labels[id]
         return x, y
-
 
 class RNNConcept(nn.Module):
 
@@ -107,8 +93,6 @@ def get_network_performance(language_data):
     char_dict = "".join(language_data['phon'].tolist())  # make a giant string
     char_dict = list(set(char_dict))  # list of the unique characters
     char_dict = dict(zip(char_dict, [i for i in range(0, (len(char_dict)))]))  # Dictionary where every character key has an integer as value
-    max_length = max([len(word) for word in
-                      language_data['phon'].tolist()])  # obtains the longest word in the vocabulary for padding
     encoded_words = [encode_word(word, char_dict) for word in language_data['phon'].tolist()]
     encoded_words = [torch.stack([int_to_one_hot(char, len(char_dict)) for char in word]) for word in encoded_words]
     classes = language_data['ontological.category'].tolist()
@@ -121,50 +105,44 @@ def get_network_performance(language_data):
                            classes))  # stores a dictionary where the "id" of a word (string of index in matrix) maps to its class
 
     # training parameters and folds
-    max_epochs = 300  # maximum number of epochs if early stopping doesn't trigger
-    patience = 25
-    training_sets = cv.StratifiedShuffleSplit(n_splits= 30, train_size = 50, test_size = n_words - 50)
+    max_epochs = 300 # maximum number of epochs if early stopping doesn't trigger
+    training_sets = cv.StratifiedShuffleSplit(n_splits=100, train_size=50, test_size=n_words - 50)
     training_sets_data = training_sets.split(language_data, classes)
+
     # storage for performance data
     folds_test_accuracy = []
+    folds_action_accuracy = []
+    folds_things_accuracy = []
     folds_test_f1 = []
     folds_test_matthews = []
+    folds_predictions = {}
+    folds_confidence = {}
 
     # network loop through k-fold data
     for train_indices, test_indices in training_sets_data:
         print("doing new fold")
         # - allocate data
-        all_train = [ind for ind in train_indices]  # indexing
         all_test = [ind for ind in test_indices]
         train_id = [str(ind) for ind in train_indices]  # for accessing dict of classes
         test_id = [str(ind) for ind in test_indices]
         partition = {'train': train_id, 'test': test_id}
-        proportion = pd.crosstab(language_data.iloc[test_indices, 2], columns="count").apply(lambda c: c / c.sum(),
-                                                                                             axis=0)
-        proportion = torch.FloatTensor(proportion["count"].tolist())
         loss = nn.NLLLoss()
-        # Action_proportion = proportion["count"][1]
+
         # - create datasets and loaders
         training_set = Dataset(ids=partition['train'], labels=all_classes, all_data=encoded_words)
-        training_loader = data.DataLoader(training_set, batch_size= 16,
+        training_loader = data.DataLoader(training_set, batch_size= 32,
                                           shuffle=True, collate_fn=test_function)
-        test_set = Dataset(labels=all_classes, ids=partition['test'], all_data=encoded_words)
-        test_loader = data.DataLoader(test_set, batch_size=128,
-                                      shuffle=True, collate_fn=test_function)
         # - create network and optimizer
-        model = RNNConcept(hidden_dim=5, vocab_size=len(char_dict))
+        model = RNNConcept(hidden_dim=10, vocab_size=len(char_dict))
         model = model.to(device)
-        optim = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=0.001, amsgrad=True)
+        optim = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=0.01)
 
         # - early stopping variables
-        min_loss = np.Inf  # keep track of the minimum loss to this point
-        patience_counter = 0  # keep track of epochs without improvement
 
         # - training loop
         for epoch in range(max_epochs):
             # -- loop through training mini batches
             for batch, batch_labels in training_loader:
-                # batch = batch.to(device), batch_labels.to(device)
                 batch = batch.to(device)
                 batch_labels = batch_labels.to(device)
                 prediction_scores = model(batch)  # prediction for training
@@ -172,34 +150,11 @@ def get_network_performance(language_data):
                 model.zero_grad()  # reset gradient after each batch
                 epoch_loss.backward()  # back propagate gradient
                 optim.step()  # step in optimizer
-            # # -- early stopping loop through test minibatches
-            # val_loss = []
-            # for batch, batch_labels in test_loader:
-            #     with torch.no_grad():  # no tracking for test loss calculation
-            #         # batch = batch.permute(1, 0, 2)
-            #         # batch, batch_labels = batch.to(device), batch_labels.to(device)
-            #         batch = batch.to(device)
-            #         batch_labels = batch_labels.to(device)
-            #         val_prediction = model(batch)
-            #         batch_loss = loss(val_prediction, batch_labels)  # store loss for each batch
-            #         val_loss.append(batch_loss)
-            #
-            # val_loss = torch.stack(val_loss)
-            # val_loss = torch.Tensor.mean(val_loss)  # calculate mean loss for each of the test batches
-            # # print(val_loss)
-            # if (
-            #         val_loss < min_loss):  # if mean batch loss is the minimum yet, store it in place and reset patience counter
-            #     min_loss = val_loss
-            #     patience_counter = 0
-            # else:  # if its larger or equal than the minimum yet, add one to the patience counter
-            #     patience_counter += 1
-            # if patience_counter == patience:  # when there have been `patience` epochs without improvement, stop training and report the epochs of training
-            #     print("converged at epoch " + str(epoch))
-            #     break
-        # print(time.perf_counter() - start)
+
         # - performance for this fold
         with torch.no_grad():
             test_data = [encoded_words[index] for index in all_test]
+
             sorted_lengths = torch.LongTensor([len(word) for word in test_data])
             sorted_lengths, indices = torch.sort(sorted_lengths, descending=True)
             test_data = [test_data[index] for index in indices]
@@ -207,19 +162,27 @@ def get_network_performance(language_data):
             test_data = rnn_utils.pack_padded_sequence(test_data, sorted_lengths, batch_first=False)
             test_data = test_data.to(device)
             test_scores = model(test_data).cpu()
-            test_prediction = (torch.max(test_scores, 1)[1]).tolist()
+            test_confidence = torch.max(test_scores, 1)[0]
+            test_confidence = test_confidence.exp().tolist()
             test_ground = [all_classes[id] for id in test_id]
             test_ground = [test_ground[index] for index in indices]
             test_id = [test_id[index] for index in indices]
+            test_prediction = (torch.max(test_scores, 1)[1]).tolist()
             test_matthews = metrics.matthews_corrcoef(test_ground, test_prediction)
             test_accuracy = metrics.balanced_accuracy_score(test_ground, test_prediction)
             test_f1 = metrics.f1_score(test_ground, test_prediction)
+            tn, fp, fn, tp = metrics.confusion_matrix(test_ground, test_prediction).ravel()
+            acc_action = tp / (tp + fn)
+            folds_action_accuracy.append(acc_action)
+            acc_thing = tn / (tn + fp)
+            folds_things_accuracy.append(acc_thing)
             folds_test_matthews.append(test_matthews)
             folds_test_f1.append(test_f1)
             folds_test_accuracy.append(test_accuracy)
     # aggregate fold performance and return dataframe
     all_results = pd.DataFrame({'Matthews': folds_test_matthews,
-                                'Accuracy': folds_test_accuracy, 'F1': folds_test_f1})
+                                'Accuracy': folds_test_accuracy, 'F1': folds_test_f1,
+                                'ActionAccuracy': folds_action_accuracy, 'ThingAccuracy': folds_things_accuracy})
     print(all_results)
     return [all_results]
 
@@ -239,13 +202,13 @@ def get_repeated_performance_rnn(all_data, language_name, times=1):
 
 
 def save_repeated_measures(list_of_results, language_name):
-    filename_performance = "Results/Spurt-Adjusted/" + f"{language_name}" + "_spurt_performance.csv"
+    filename_performance = "Results/Spurt/" + f"{language_name}" + "_spurt_performance.csv"
     list_of_results[0].to_csv(filename_performance)
 
 
 random.seed(1)
 
-language_data = pd.read_csv("Data/Processed/all_phon_adjusted.csv", keep_default_na=False)
+language_data = pd.read_csv("Data/Processed/all_phon.csv", keep_default_na=False)
 language_data = language_data[language_data['ontological.category'] != 'Other']
 all_languages = sorted(set(language_data["language"]))
 

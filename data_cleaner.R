@@ -29,27 +29,29 @@ not.on.wals <- which(is.na(all.languages$wals_code)) %>%
   select(-longitude, -latitude)
 all.languages <- all.languages[which(!(is.na(all.languages$wals_code))),]
 not.on.wals <- not.on.wals %>% 
-  bind_cols(glottocode[match(not.on.wals$ISO639P3code, glottocode$iso639P3code),])
+  bind_cols(glottocode[match(not.on.wals$Glottocode, glottocode$id),])
 
 not.on.wals <- not.on.wals %>% 
   # genus gets very messy very fast, just hand-recode family
-  mutate(family = family_id) %>% 
-  mutate(family = recode(family, 
-                         aust1305 = "Austro-Asiatic",
-                         nakh1245 = "Nakh-Daghestanian",
-                         indo1319 = "Indo-European",
-                         pano1259 = "Panoan",
-                         taik1256 = "Tai-Kadai",
-                         otom1299 = "Otomanguean",
-                         araw1281 = "Arawakan",
-                         afro1255 = "afro1255",
-                         book1242 = "Bookkeeping",
-                         nubi1251 = "Nubian",
-                         jodi1234 = "Jodi-Saliban"),
-         iso_code = iso639P3code, countrycodes = country_ids)
+  mutate(family = family_id, iso_code = iso639P3code, countrycodes = country_ids)
 
 all.languages <- all.languages %>% 
-  bind_rows(select(not.on.wals, colnames(all.languages)))
+  bind_rows(select(not.on.wals, colnames(all.languages))) %>% 
+  mutate(family = recode(family, 
+                  aust1305 = "Austro-Asiatic",
+                  aust1307 = "Austronesian",
+                  nakh1245 = "Nakh-Daghestanian",
+                  indo1319 = "Indo-European",
+                  pano1259 = "Panoan",
+                  taik1256 = "Tai-Kadai",
+                  otom1299 = "Otomanguean",
+                  araw1281 = "Arawakan",
+                  afro1255 = "Afro-Asiatic",
+                  book1242 = "Bookkeeping",
+                  nubi1251 = "Nubian",
+                  jodi1234 = "Jodi-Saliban",
+                  other = "Creoles and Pidgins")) # other recodes Jamaican Creole
+all.languages$family[which(is.na(all.languages$family))] <- "Bookkeeping" # Assign the missing Sanapana to bookkeeping too
 
 # save relevant data on new file
 

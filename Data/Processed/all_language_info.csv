@@ -66,7 +66,7 @@ ID,Name,iso_code,latitude,longitude,family,macroarea,countrycodes
 516,Ingush,inh,43.16666667,45.08333333,Nakh-Daghestanian,Eurasia,RU
 170,Italian,ita,43,12,Indo-European,Eurasia,CH IT
 284,Itonama,ito,-12.83333333,-64.33333333,Itonama,South America,BO
-218,Jamaican Creole (Limonese Creole dialect),jam,18.16666667,-77.25,other,North America,JM
+218,Jamaican Creole (Limonese Creole dialect),jam,18.16666667,-77.25,Creoles and Pidgins,North America,JM
 294,Kaingáng,kgp,-26,-52,Macro-Ge,South America,BR
 295,Karajá,kpj,-10,-50.33333333,Macro-Ge,South America,BR
 39,Karata,kpt,42.58333333,46.33333333,Nakh-Daghestanian,Eurasia,RU
@@ -184,22 +184,21 @@ ID,Name,iso_code,latitude,longitude,family,macroarea,countrycodes
 278,Catuquina,knt,-7.97456,-71.56151,Panoan,NA,BR
 401,Central Thai,tha,14.192,100.671,Tai-Kadai,NA,KH MM TH
 223,Chatino (Zacatepec variety),ctz,16.08,-97.3069,Otomanguean,NA,MX
-317,Chechen (Akkin dialect),che,43.5,45.5,Nakh-Daghestanian,NA,GE KZ RU
 834,Chong,cog,12.5218,102.514,Austro-Asiatic,NA,KH TH
-815,Cuoi,NA,NA,NA,aust1307,NA,NA
+815,Cuoi,NA,NA,NA,Austro-Asiatic,NA,NA
 405,Dehong,tdd,21.7837,99.722,Tai-Kadai,NA,CN LA MM TH VN
 423,Ecun Buyang,yln,23.0105,104.449,Tai-Kadai,NA,CN
 838,Iduh,tyh,19.3497,104.106,Austro-Asiatic,NA,LA VN
 74,Judeo-Tat,jdt,42.068306,48.264749,Indo-European,NA,AZ
 832,Kasong,syo,11.936,104.136,Austro-Asiatic,NA,KH
 804,Keme (Kemie variety),mml,22.0743,100.842,Austro-Asiatic,NA,CN
-825,Kha Poong,NA,NA,NA,aust1307,NA,NA
+825,Kha Poong,NA,NA,NA,Austro-Asiatic,NA,NA
 404,Khamuang (Chiang Mai variety),nod,18.857495,100.20739,Tai-Kadai,NA,LA MM TH
-54,Khwarshi (Inkhokvari dialect),NA,NA,NA,aust1307,NA,NA
+54,Khwarshi (Inkhokvari dialect),NA,NA,NA,Nakh-Daghestanian,NA,NA
 422,Langja Buyang,yzg,23.0105,104.449,Tai-Kadai,NA,CN
-819,LiHa,NA,NA,NA,aust1307,NA,NA
+819,LiHa,NA,NA,NA,Austro-Asiatic,NA,NA
 704,Mahasu Pahari (Kotghari dialect),bfz,31.0088,77.5317,Indo-European,NA,IN
-826,Malieng,NA,NA,NA,aust1307,NA,NA
+826,Malieng,NA,NA,NA,Austro-Asiatic,NA,NA
 839,Mang Ch,zng,21.4305,102.133,Austro-Asiatic,NA,CN TH VN
 264,Mashco Piro,cuj,-11.4745,-70.7953,Arawakan,NA,PE
 411,Nung-Fengshan,zgn,23.6818,107.184,Tai-Kadai,NA,CN
@@ -207,19 +206,19 @@ ID,Name,iso_code,latitude,longitude,family,macroarea,countrycodes
 811,Paliu,ply,24.7013,104.955,Austro-Asiatic,NA,CN
 830,Pear,pcb,13.593,105.028,Austro-Asiatic,NA,KH
 820,Phong,pnx,19.9622,104.088,Austro-Asiatic,NA,LA VN
-221,Polci,plj,10.0258,9.53362,afro1255,NA,NG
+221,Polci,plj,10.0258,9.53362,Afro-Asiatic,NA,NG
 810,Pusing,bgk,21.3474,101.916,Austro-Asiatic,NA,CN LA
 833,Samre,sxm,13.479,103.978,Bookkeeping,NA,KH
-298,Sanapaná (Angaité dialect),NA,NA,NA,aust1307,NA,NA
+298,Sanapaná (Angaité dialect),NA,NA,NA,Bookkeeping,NA,NA
 299,Sanapaná (Enlhet dialect),sap,-22.11454,-58.90698,Bookkeeping,NA,PY
 424,Sanchong Kelao,giq,22.5632,104.698,Tai-Kadai,NA,VN
 402,Southern Tai (Songkhla variety),sou,6.85668,99.7031,Tai-Kadai,NA,MM MY TH
-836,Surin Khmer,NA,NA,NA,aust1307,NA,NA
+836,Surin Khmer,NA,NA,NA,Austro-Asiatic,NA,NA
 67,Tabasaran (Northern dialect Khanag subdialect),tab,42.0198,47.8379,Nakh-Daghestanian,NA,AZ KZ RU
 403,Thai (Korat variety),sou,6.85668,99.7031,Tai-Kadai,NA,MM MY TH
 265,Trinitario,trn,-15.3331,-65.4096,Arawakan,NA,BO
-55,Tsez (Sagada dialect),NA,NA,NA,aust1307,NA,NA
-822,Tum,NA,NA,NA,aust1307,NA,NA
+55,Tsez (Sagada dialect),NA,NA,NA,Nakh-Daghestanian,NA,NA
+822,Tum,NA,NA,NA,Austro-Asiatic,NA,NA
 318,Uncunwee,ghl,11.6432,29.8122,Nubian,NA,SD
 807,Wa,wbm,23.1024,99.108,Austro-Asiatic,NA,CN MM
 805,Xu,huo,22.0163,100.881,Austro-Asiatic,NA,CN

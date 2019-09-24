@@ -18,6 +18,35 @@ set.seed(1)
 all.phon <- read_csv('Data/Processed/all_phon.csv')
 phon.languages <- read_csv('Data/Processed/all_language_info.csv')
 
+# Basic stats of wordlists
+
+## Mean and sd of number of items in each wordlist
+
+all.phon %>% 
+  group_by(language) %>% 
+  tally() %>% 
+  summarize(mean(n), sd(n))
+
+## All numbers of items
+all.phon %>% 
+  group_by(language) %>% 
+  tally() %>% 
+  arrange(desc(n))
+
+## Number of families
+
+phon.languages %>% 
+  group_by(family) %>% 
+  tally()
+
+## Category tally
+
+all.phon %>% 
+  group_by(ontological.category) %>% 
+  tally() %>% 
+  mutate(proportion = n / sum(.$n))
+
+
 # Functions ---------------------------------------------------------------
 
 get.language <- function(a.language, data = all.phon){
@@ -184,7 +213,6 @@ ending.census <- ending.census %>%
 start.langs <- list()
 start.census <- list()
 
-
 for(i in 1:4){
   # 3 passes gets rid of all of them
   print(i)
@@ -245,7 +273,19 @@ start.census <- start.census %>%
   summarize(start.markers = max(start.markers))
 
 
-marker.census <- full_join(start.census, ending.census)
+marker.census <- full_join(start.census, ending.census) %>% 
+  filter(ontological.category != "Other")
+action.census <- marker.census %>% 
+  filter(ontological.category == "Action") %>% 
+  select(-ontological.category) %>% 
+  rename(Affixes.Removed.Action = start.markers, Suffixes.Removed.Action = ending.markers)
+thing.census <- marker.census %>% 
+  filter(ontological.category == "Thing") %>% 
+  select(-ontological.category) %>% 
+  rename(Affixes.Removed.Thing = start.markers, Suffixes.Removed.Thing = ending.markers)
+full_join(action.census, thing.census) %>% 
+  arrange(language) %>% 
+  write_csv("Data/Processed/marker_census.csv")
 
 all.marker.group <- c(unique(unlist(marker.group)), unique(unlist(start.langs))) %>% 
   unique()
@@ -263,6 +303,21 @@ homophone.census <- all.phon.adjusted %>%
 
 all.phon.adjusted <- all.phon.adjusted %>% 
   distinct(language, ontological.category, phon, .keep_all = TRUE)
+
+## Mean and sd of number of items in each wordlist
+
+all.phon.adjusted %>% 
+  group_by(language) %>% 
+  tally() %>% 
+  summarize(mean(n), sd(n))
+
+## Category tally
+
+all.phon.adjusted %>% 
+  group_by(ontological.category) %>% 
+  tally() %>% 
+  mutate(proportion = n / sum(.$n))
+
 
 cross.homophone.census <- all.phon.adjusted %>% 
   filter(ontological.category != "Other") %>%  # "Other" homophones don't interfere with rnn results
@@ -323,6 +378,8 @@ three.way.test <- all.distances %>%
 # get effect size of k-w according to http://tss.awf.poznan.pl/files/3_Trends_Vol21_2014__no1_20.pdf
 chi.square.original <- three.way.test@statistic@teststatistic
 eta.squared.original <- (chi.square.original - 4) / (nrow(all.distances) - 3)
+
+
 three.way.test.adjusted <- all.distances.adjusted %>%
   mutate(class = factor(class)) %>%
   coin::kruskal_test(data = ., typicality ~ class)
@@ -368,26 +425,45 @@ d.action.thing.adjusted <-effsize::cohen.d(data = filter(all.distances.adjusted,
 
 # World map with languages
 
+palette <- viridis::viridis(10)
+
+languages.x <- phon.languages$longitude
+languages.y <- phon.languages$latitude
+
 ggplot() +
-  borders("world", colour=wes_palettes$Moonrise1[4], fill=wes_palettes$Darjeeling1[2]) + # create a layer of borders
-  geom_jitter(aes(x = languagesX, y = languagesY), fill = wes_palettes$Darjeeling1[1],
-              color = wes_palettes$Darjeeling2[5], size = 3, shape = 25) +
+  borders("world", colour = "black", fill = palette[7], size = .2) + # create a layer of borders
+  geom_jitter(aes(x = languages.x, y = languages.y), 
+              fill = palette[10], size = 1.5, shape = 22) +
 
   cowplot::theme_map()
+
+ggsave("Figures/Publication/world_map.eps", width = 11.4, height = 7, units = "cm")
+ggsave("Figures/Publication/world_map.png", width = 11.4, height = 7, units = "cm", dpi = 300)
 
 # 2D Density of all words
 
 all.distances %>%
-  # filter(class != "Other") %>%
+  filter(class != "Other") %>%
   mutate(class = factor(class, levels = c("Action", "Thing", "Other"))) %>%
   ggplot(aes(x = mean.action, y = mean.thing, fill = stat(nlevel))) +
   stat_density2d(geom = 'polygon') +
-  scale_fill_gradientn(colors = color.palette.cont, name = "Density") +
+  viridis::scale_fill_viridis(name = "Density") + 
+  # scale_fill_gradientn(colors = color.palette.cont, name = "Density") +
   geom_abline(intercept = c(0,0), linetype = 'dashed', color = wes_palettes$Moonrise1[4], size = 1) +
   labs(x = expression(hat(ND[A])), y = expression(hat(ND[T]))) +
   cowplot::theme_cowplot() +
   facet_wrap(vars(class), ncol = 2) +
-  cowplot::panel_border()
+  cowplot::panel_border() +
+  theme(axis.title.x = element_text(size = 8),
+        axis.title.y = element_text(size = 8),
+        axis.text.x = element_text(size = 6),
+        axis.text.y = element_text(size = 6),
+        legend.title = element_text(size = 8),
+        legend.text = element_text(size = 6),
+        strip.text = element_text(size = 8))
+ggsave("Figures/Publication/density_original.pdf", width = 17, height = 9, units = "cm", dpi = 900)
+ggsave("Figures/Publication/density_original.png", width = 17, height = 9, units = "cm", dpi = 900)
+
 
 all.distances.adjusted %>%
   # filter(class != "Other") %>%

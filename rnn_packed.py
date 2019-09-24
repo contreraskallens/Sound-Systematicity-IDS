@@ -148,10 +148,6 @@ def get_network_performance(language_data):
         model = model.to(device)
         optim = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=0.01)
 
-        # - early stopping variables
-        # min_loss = np.Inf  # keep track of the minimum loss to this point
-        # patience_counter = 0  # keep track of epochs without improvement
-
         # - training loop
         for epoch in range(max_epochs):
 
@@ -166,37 +162,6 @@ def get_network_performance(language_data):
                 model.zero_grad()  # reset gradient after each batch
                 epoch_loss.backward()  # back propagate gradient
                 optim.step()  # step in optimizer
-            val_loss = []
-            for batch, batch_labels in test_loader:
-                with torch.no_grad():  # no tracking for test loss calculation
-                    batch = batch.to(device)
-                    batch_labels = batch_labels.to(device)
-                    val_prediction = model(batch)
-                    batch_loss = loss(val_prediction, batch_labels)  # store loss for each batch
-                    val_loss.append(batch_loss)
-
-            val_loss = torch.stack(val_loss)
-            val_loss = torch.Tensor.mean(val_loss)  # calculate mean loss for each of the test batches
-            # early_stopping(val_loss, model)
-            # if early_stopping.early_stop:
-            #     print("Early stopping")
-            #     break
-            # load the last checkpoint with the best model
-            # model.load_state_dict(torch.load('checkpoint.pt'))
-
-            # print("test: ")
-            # print(val_loss)
-            # print("-----------------")
-            # if (
-            #         val_loss < min_loss):  # if mean batch loss is the minimum yet, store it in place and reset patience counter
-            #     min_loss = val_loss
-            #     patience_counter = 0
-            # else:  # if its larger or equal than the minimum yet, add one to the patience counter
-            #     patience_counter += 1
-            # if patience_counter == patience:  # when there have been `patience` epochs without improvement, stop training and report the epochs of training
-            #     print("converged at epoch " + str(epoch))
-            #     break
-
 
         # - performance for this fold
         with torch.no_grad():
