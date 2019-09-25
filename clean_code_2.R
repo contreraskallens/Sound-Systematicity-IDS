@@ -421,6 +421,8 @@ eta.squared.action.thing.adjusted <- (Z.action.thing.adusted ^ 2) / (nrow(filter
 d.action.thing.original <- effsize::cohen.d(data = filter(all.distances, class != "Other"), typicality ~ class)
 d.action.thing.adjusted <-effsize::cohen.d(data = filter(all.distances.adjusted, class != "Other"), typicality ~ class)
 
+
+
 # Plotting ----------------------------------------------------------------
 
 # World map with languages
@@ -578,11 +580,80 @@ sorted.langs.adjusted <- data.for.scatter.adjusted %>% # this one includes the d
   mutate(difference = abs(Action - Thing)) %>%
   arrange(desc(abs(difference)))
 
+# max difference
+max.difference <- sorted.langs$language[which.max(sorted.langs$difference)]
+
+all.distances %>%
+  filter(class != "Other", language == max.difference) %>%
+  mutate(class = factor(class)) %>%
+  coin::wilcox_test(data = ., typicality ~ class)
+Z.action.thing.max <- all.distances %>% 
+  filter(class != "Other", language == max.difference) %>%
+  mutate(class = factor(class)) %>%
+  coin::wilcox_test(data = ., typicality ~ class) %>%
+  coin::statistic(type = "standardized")
+eta.squared.action.thing.max <- (Z.action.thing.max ^ 2) / (nrow(filter(all.distances, class != "Other",
+                                                                        language == max.difference)))
+d.action.thing.max <- effsize::cohen.d(data = filter(all.distances, class != "Other", language == max.difference), typicality ~ class)
+
+# mean difference
+min.difference <- sorted.langs$language[which.min(sorted.langs$difference)]
+
+all.distances %>%
+  filter(class != "Other", language == min.difference) %>%
+  mutate(class = factor(class)) %>%
+  coin::wilcox_test(data = ., typicality ~ class)
+Z.action.thing.min <- all.distances %>% 
+  filter(class != "Other", language == min.difference) %>%
+  mutate(class = factor(class)) %>%
+  coin::wilcox_test(data = ., typicality ~ class) %>%
+  coin::statistic(type = "standardized")
+eta.squared.action.thing.min <- (Z.action.thing.min ^ 2) / (nrow(filter(all.distances, class != "Other",
+                                                                        language == min.difference)))
+d.action.thing.min <- effsize::cohen.d(data = filter(all.distances, class != "Other", language == min.difference), typicality ~ class)
+
+# mid difference
+
+mid.difference <- sorted.langs$language[sorted.langs$difference == quantile(sorted.langs$difference, .5, type = 1)]
+
+all.distances %>%
+  filter(class != "Other", language == mid.difference) %>%
+  mutate(class = factor(class)) %>%
+  coin::wilcox_test(data = ., typicality ~ class)
+Z.action.thing.mid <- all.distances %>% 
+  filter(class != "Other", language == mid.difference) %>%
+  mutate(class = factor(class)) %>%
+  coin::wilcox_test(data = ., typicality ~ class) %>%
+  coin::statistic(type = "standardized")
+eta.squared.action.thing.mid <- (Z.action.thing.mid ^ 2) / (nrow(filter(all.distances, class != "Other",
+                                                                        language == mid.difference)))
+d.action.thing.mid <- effsize::cohen.d(data = filter(all.distances, class != "Other", language == mid.difference), typicality ~ class)
+
+
+# English
+
+all.distances %>%
+  filter(class != "Other", language == "English") %>%
+  mutate(class = factor(class)) %>%
+  coin::wilcox_test(data = ., typicality ~ class)
+Z.action.thing.eng <- all.distances %>% 
+  filter(class != "Other", language == "English") %>%
+  mutate(class = factor(class)) %>%
+  coin::wilcox_test(data = ., typicality ~ class) %>%
+  coin::statistic(type = "standardized")
+eta.squared.action.thing.eng <- (Z.action.thing.eng ^ 2) / (nrow(filter(all.distances, class != "Other",
+                                                                        language == "English")))
+d.action.thing.eng <- effsize::cohen.d(data = filter(all.distances, class != "Other", language == "English"), typicality ~ class)
+
+
+test.languages <- c(max.difference, min.difference, mid.difference, "English")
+
+
 data.for.scatter <- data.for.scatter %>%
   filter(class != "Other") %>%
   group_by() %>%
   mutate(language = factor(language, levels = sorted.langs$language), class = factor(class),
-         include = ifelse(language %in% c("Waorani", "Danish","Mansi", "English", "Thai (Korat variety)", "Romani"), language, NA))
+         include = ifelse(language %in% test.languages, language, NA))
 data.for.scatter.adjusted <- data.for.scatter.adjusted %>%
   filter(class != "Other") %>%
   group_by() %>%
@@ -592,7 +663,7 @@ data.for.scatter.adjusted <- data.for.scatter.adjusted %>%
 # keep labels for max, min and median and English
 
 label.text <- map_chr(sorted.langs$language, function(x){
-  if(x %in% c("Waorani", "English", "Thai (Korat variety)", "Danish", "Mansi", "Romani")){
+  if(x %in% test.languages){
     return(x)
   } else{return("")}
 })
@@ -609,21 +680,28 @@ ggplot(data = data.for.scatter, aes(y = Mean, x = language, color = class, shape
                                     group = class)) +
   labs(x = 'Language',
        y = 'Mean Typicality') +
-  geom_point(aes(fill = class), color = 'black', size = 3) +
-  geom_vline(aes(xintercept = include)) + 
-  geom_hline(linetype = 'solid', size = 1, yintercept = 0) +
-  scale_color_manual(name = "Category", values = c(wes_palettes$Darjeeling1[2], wes_palettes$Darjeeling1[1])) +
-  scale_fill_manual(name = "Category", values = c(wes_palettes$Darjeeling1[2], wes_palettes$Darjeeling1[1])) +
+  geom_point(aes(fill = class), color = 'black', size = 1) +
+  geom_vline(aes(xintercept = include), size = .5, linetype = "dotted") + 
+  geom_hline(linetype = 'solid', yintercept = 0) +
+  scale_fill_manual(name = "Category", values = c(palette[7], palette[4])) + 
+  # scale_color_manual(name = "Category", values = c(wes_palettes$Darjeeling1[2], wes_palettes$Darjeeling1[1])) +
+  # scale_fill_manual(name = "Category", values = c(wes_palettes$Darjeeling1[2], wes_palettes$Darjeeling1[1])) +
   scale_shape_manual(name = "Category", values = c(23, 24)) +
   scale_x_discrete(name = "", labels = label.text) +
   cowplot::theme_cowplot() + 
-  theme(axis.text.x = element_text(size = 10),
-        axis.text.y = element_text(size = 14),
-        axis.title.y = element_text(size = 16),
-        legend.text = element_text(size = 14),
-        legend.title = element_text(size = 16),
-        strip.text.x = element_text(size = 14)) +
-  cowplot::background_grid() 
+  expand_limits(x = -1) +
+  expand_limits(x = 228) + 
+  theme(axis.title.x = element_text(size = 8),
+        axis.title.y = element_text(size = 8),
+        axis.text.x = element_text(size = 6),
+        axis.text.y = element_text(size = 6),
+        legend.title = element_text(size = 8),
+        legend.text = element_text(size = 6),
+        strip.text = element_text(size = 8),
+        axis.ticks.x = element_blank())
+
+ggsave("Figures/Publication/scatter_original.pdf", width = 17, height = 7, units = "cm", dpi = 900)
+ggsave("Figures/Publication/scatter_original.png", width = 17, height = 7, units = "cm", dpi = 900)
 
 ggplot(data = data.for.scatter.adjusted, aes(y = Mean, x = language, color = class, shape = class,
                                     group = class)) +
@@ -814,13 +892,23 @@ neighbor.test.adjusted <- neighbor.test.adjusted %>%
   group_by(language, ontological.category) %>%
   summarize(p = sum(is.higher) / 1000)
 
+neighbor.test %>% 
+  filter(language %in% test.languages)
+neighbor.stats %>% 
+  filter(language %in% test.languages)
+neighbor.mc %>% 
+  filter(language %in% test.languages) %>%
+  group_by(language, ontological.category) %>%
+  summarize(random = mean(random) + sd(random))
+
+
 neighbor.test %>%
-  mutate(p = cut(p, breaks = c(0, 0.05, 1), include.lowest = TRUE, right = FALSE)) %>%
+  mutate(p = cut(p, breaks = c(0, 0.01, 1), include.lowest = TRUE, right = FALSE)) %>%
   group_by(p, ontological.category) %>%
   tally() %>%
   mutate(n = n / nrow(phon.languages))
 neighbor.test.adjusted %>%
-  mutate(p = cut(p, breaks = c(0, 0.05, 1), include.lowest = TRUE, right = FALSE)) %>%
+  mutate(p = cut(p, breaks = c(0, 0.01, 1), include.lowest = TRUE, right = FALSE)) %>%
   group_by(p, ontological.category) %>%
   tally() %>%
   mutate(n = n / nrow(phon.languages))
@@ -838,24 +926,45 @@ neighbor.plot <- neighbor.stats %>%
   left_join(neighbor.mc.plot) %>%
   mutate(language = factor(language, levels = sorted.langs$language, labels = sorted.langs$language))
 
-labels.for.plot <- map_chr(levels(neighbor.plot$language), function(language){
-  if(language %in% c("Mansi", "English", "Thai (Korat variety)", "Romani")){return(language)} else{return("")}
-})
+neighbor.plot %>% 
+  filter(language %in% test.languages)
+
+# 
+# labels.for.plot <- map_chr(levels(neighbor.plot$language), function(language){
+#   if(language %in% test.languages){return(language)} else{return("")}
+# }) %>% 
+#   str_wrap(width = 10)
+
 
 neighbor.plot %>%
   ggplot(aes(x = language, y = Mean, ymin = Lower, ymax = Upper, fill = ontological.category)) +
   geom_bar(stat = "identity", width = 1,
            size = .25, color = "black") +
-  geom_bar(mapping = aes(y = random), fill = "yellow", stat = "identity", width = 1,
-           alpha = .8, color = "black") +
+  geom_bar(mapping = aes(y = random), fill = palette[10], stat = "identity", width = 1,
+           alpha = .8, color = "black", size = .2) +
   # geom_point(shape = 18, size = 2) +
-  scale_x_discrete(name = "", labels = labels.for.plot) +
+  scale_x_discrete(name = "", labels = function(x){ifelse(x %in% test.languages, str_wrap(as.character(x), 10), "")}) +
   facet_wrap(vars(ontological.category), ncol = 1) +
   scale_y_continuous(expand = c(0, 0), name = "Proportion of same neighbor") +
-  scale_fill_manual(values = c(wes_palettes$Darjeeling1[2], wes_palettes$Darjeeling1[1])) +
+  scale_fill_manual(values = c(palette[7], palette[4])) +
   cowplot::theme_cowplot() +
   cowplot::panel_border() +
-  theme(legend.position = "none")
+  theme(legend.position = "none") + 
+  expand_limits(x = -1) +
+  expand_limits(x = 229) + 
+  theme(axis.title.x = element_text(size = 8),
+        axis.title.y = element_text(size = 8),
+        axis.text.x = element_text(size = 6),
+        axis.text.y = element_text(size = 6),
+        legend.title = element_text(size = 8),
+        legend.text = element_text(size = 6),
+        strip.text = element_text(size = 8),
+        axis.ticks.x = element_blank())
+
+ggsave("Figures/Publication/neighbor_original.pdf", width = 17, height = 7, units = "cm", dpi = 900)
+ggsave("Figures/Publication/neighbor_original.png", width = 17, height = 7, units = "cm", dpi = 900)
+
+
 
 neighbor.mc.plot.adjusted <- neighbor.mc.adjusted %>%
   filter(ontological.category != "Other") %>%
@@ -915,88 +1024,6 @@ neighbor.plot.adjusted %>%
   cowplot::theme_cowplot() +
   cowplot::panel_border() +
   theme(legend.position = "none")
-
-# Hand-picked languages
-
-smaller.mc <- neighbor.mc %>%
-  filter(language %in% c("Mansi", 
-                         "Romani", 
-                         "English", 
-                         "Thai (Korat variety)",
-                         "Danish",
-                         "Waorani")) %>%
-  group_by(language, ontological.category) %>%
-  summarize(random = mean(random) + sd(random))
-
-smaller.neighbor <- neighbor.stats %>%
-  filter(language %in% c("Mansi",
-                         "Romani", 
-                         "English", 
-                         "Thai (Korat variety)",
-                         "Danish",
-                         "Waorani"))
-
-smaller.neighbor %>%
-  left_join(smaller.mc) %>%
-  group_by() %>% 
-  mutate(language = factor(language, levels = c("Mansi", 
-                                                "Romani", 
-                                                "English", 
-                                                "Thai (Korat variety)",
-                                                "Danish",
-                                                "Waorani"))) %>%
-  ggplot(aes(fill = ontological.category, x = language, y = Mean)) +
-  geom_bar(position = "dodge", stat = "identity", color = "black") +
-  geom_errorbar(mapping = aes(ymin = Lower, ymax = Upper),
-                position = position_dodge(width = .9), width = 0.3,
-                size = 1) +
-  geom_bar(aes(y = random, group = ontological.category),
-           fill = "yellow", stat = "identity", position = "dodge", alpha = 0.85, color = "black") +
-  scale_y_continuous(name = "Proportion of same neighbor", expand = c(0, 0)) +
-  scale_fill_manual(name = "Category", values = c(wes_palettes$Darjeeling1[2], wes_palettes$Darjeeling1[5], wes_palettes$Darjeeling1[1])) +
-  cowplot::theme_cowplot() +
-  theme(axis.title.x = element_blank())
-
-
-smaller.mc.adjusted <- neighbor.mc.adjusted %>%
-  filter(language %in% c("Mansi", 
-                         "Romani", 
-                         "English", 
-                         "Thai (Korat variety)",
-                         "Danish",
-                         "Waorani")) %>%
-  group_by(language, ontological.category) %>%
-  summarize(random = mean(random) + sd(random))
-
-smaller.neighbor.adjusted <- neighbor.stats.adjusted %>%
-  filter(language %in% c("Mansi",
-                         "Romani", 
-                         "English", 
-                         "Thai (Korat variety)",
-                         "Danish",
-                         "Waorani"))
-
-smaller.neighbor.adjusted %>%
-  left_join(smaller.mc.adjusted) %>%
-  group_by() %>% 
-  mutate(language = factor(language, levels = c("Mansi", 
-                                                "Romani", 
-                                                "English", 
-                                                "Thai (Korat variety)",
-                                                "Danish",
-                                                "Waorani"))) %>%
-  ggplot(aes(fill = ontological.category, x = language, y = Mean)) +
-  geom_bar(position = "dodge", stat = "identity", color = "black") +
-  geom_errorbar(mapping = aes(ymin = Lower, ymax = Upper),
-                position = position_dodge(width = .9), width = 0.3,
-                size = 1) +
-  geom_bar(aes(y = random, group = ontological.category),
-           fill = "yellow", stat = "identity", position = "dodge", alpha = 0.85, color = "black") +
-  scale_y_continuous(name = "Proportion of same neighbor", expand = c(0, 0)) +
-  scale_fill_manual(name = "Category", values = c(wes_palettes$Darjeeling1[2], wes_palettes$Darjeeling1[5], wes_palettes$Darjeeling1[1])) +
-  cowplot::theme_cowplot() +
-  theme(axis.title.x = element_blank())
-
 
 # RNN -------
 
@@ -1088,21 +1115,34 @@ rnn.stats.adjusted <- read_rds("Data/Processed/adjusted_boot_ci_original.rds")
 matthews.plot <- rnn.stats %>% 
   arrange(desc(Matthews)) %>% 
   mutate(Language = factor(Language, levels = .$Language),
-         includes.baseline = ifelse(Matthews.Lower < 0.1, "Includes 0.1", "Doesn't Include 0.1"),
-         lang.label = ifelse(Language %in% c("Mansi", "English", "Romani", "Thai (Korat variety)", "Danish", "Waorani"), 
-                        as.character(Language), ""),
-         include = ifelse(lang.label == "", NA, Language))
+         include = ifelse(Language %in% test.languages, Language, NA),
+         includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE))
 
 
 ggplot(data = matthews.plot, aes(x = Language, ymin = Matthews.Lower, ymax = Matthews.Upper,
-             y = Matthews, fill = includes.baseline, label = lang.label)) + 
-  geom_vline(aes(xintercept = include)) + 
+             y = Matthews, fill = includes.baseline)) + 
+  geom_vline(aes(xintercept = include), linetype = "dotted", size = .5) +
   geom_crossbar() +
-  geom_hline(yintercept = 0, size = 2) + 
-  geom_hline(yintercept = 0.1, linetype = "dashed", size = 1.5) + 
+  geom_hline(yintercept = 0, size = 1) + 
+  geom_hline(yintercept = 0.1, linetype = "dashed", size = .5) + 
   # geom_pointrange(size = .9) +
-  scale_x_discrete(name = "Language", labels = matthews.plot$lang.label) + 
-  cowplot::theme_cowplot()
+  scale_x_discrete(name = "Language", labels = function(x){ifelse(x %in% test.languages,
+                                                                  str_wrap(as.character(x), 10), "")}) +
+  expand_limits(x = -1) +
+  expand_limits(x = 229) + 
+  cowplot::theme_cowplot() + 
+  theme(axis.title.x = element_text(size = 8),
+        axis.title.y = element_text(size = 8),
+        axis.text.x = element_text(size = 6),
+        axis.text.y = element_text(size = 6),
+        legend.title = element_text(size = 8),
+        legend.text = element_text(size = 6),
+        strip.text = element_text(size = 8),
+        axis.ticks.x = element_blank()) + 
+    scale_fill_manual(name = "Includes baseline", values = c(palette[7], palette[4]))
+
+ggsave("Figures/Publication/rnn_original.pdf", width = 17, height = 7, units = "cm", dpi = 900)
+ggsave("Figures/Publication/rnn_original.png", width = 17, height = 7, units = "cm", dpi = 900)
 
 matthews.plot.adjusted <- rnn.stats.adjusted %>% 
   arrange(desc(Matthews)) %>% 
@@ -1143,46 +1183,55 @@ rnn.stats %>%
   mutate(includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE)) %>% 
   group_by(includes.baseline) %>% 
   tally()
+rnn.stats %>% 
+  select(Language, contains("Matthews")) %>% 
+  mutate(includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE)) %>% 
+  filter(Language %in% test.languages)
+# mean MCC
+rnn.stats %>% 
+  .$Matthews %>% 
+  mean
+
 rnn.stats.adjusted %>% 
   select(Language, contains("Matthews")) %>% 
   mutate(includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE)) %>% 
   group_by(includes.baseline) %>% 
   tally()
-
-# Alternative analysis: one-sided wilcox test
 # 
-
-wilcox.tests <- lapply(rnn.performance, function(stats){
-  return(wilcox.test(x = stats$Matthews, mu = 0.1, alternative = "greater"))
-})
-wilcox.tests <- lapply(wilcox.tests, function(stats){
-  if(is.nan(stats[["p.value"]]))
-  {return(FALSE)}
-  pvalue <- stats[["p.value"]]
-  # pvalue <- p.adjust(p = pvalue, method = "bonferroni", n = 227) # bonferroni for the repeated 3-fold in evolang
-  if(pvalue >= 0.01){return(FALSE)} else{return(TRUE)}
-})
-wilcox.tests <- bind_rows(wilcox.tests) %>%
-  gather() %>%
-  rename(language = key, significant = value)
-wilcox.tests %>%
-  summarize(number.significant = sum(significant))
-
-wilcox.tests.adjusted <- lapply(rnn.performance.adjusted, function(stats){
-  return(wilcox.test(x = stats$Matthews, mu = 0.1, alternative = "greater"))
-})
-wilcox.tests.adjusted <- lapply(wilcox.tests.adjusted, function(stats){
-  if(is.nan(stats[["p.value"]]))
-  {return(FALSE)}
-  pvalue <- stats[["p.value"]]
-  # pvalue <- p.adjust(p = pvalue, method = "bonferroni", n = 227) # bonferroni for the repeated 3-fold in evolang
-  if(pvalue >= 0.01){return(FALSE)} else{return(TRUE)}
-})
-wilcox.tests.adjusted <- bind_rows(wilcox.tests.adjusted) %>%
-  gather() %>%
-  rename(language = key, significant = value)
-wilcox.tests.adjusted %>%
-  summarize(number.significant = sum(significant))
+# # Alternative analysis: one-sided wilcox test
+# # 
+# 
+# wilcox.tests <- lapply(rnn.performance, function(stats){
+#   return(wilcox.test(x = stats$Matthews, mu = 0.1, alternative = "greater"))
+# })
+# wilcox.tests <- lapply(wilcox.tests, function(stats){
+#   if(is.nan(stats[["p.value"]]))
+#   {return(FALSE)}
+#   pvalue <- stats[["p.value"]]
+#   # pvalue <- p.adjust(p = pvalue, method = "bonferroni", n = 227) # bonferroni for the repeated 3-fold in evolang
+#   if(pvalue >= 0.01){return(FALSE)} else{return(TRUE)}
+# })
+# wilcox.tests <- bind_rows(wilcox.tests) %>%
+#   gather() %>%
+#   rename(language = key, significant = value)
+# wilcox.tests %>%
+#   summarize(number.significant = sum(significant))
+# 
+# wilcox.tests.adjusted <- lapply(rnn.performance.adjusted, function(stats){
+#   return(wilcox.test(x = stats$Matthews, mu = 0.1, alternative = "greater"))
+# })
+# wilcox.tests.adjusted <- lapply(wilcox.tests.adjusted, function(stats){
+#   if(is.nan(stats[["p.value"]]))
+#   {return(FALSE)}
+#   pvalue <- stats[["p.value"]]
+#   # pvalue <- p.adjust(p = pvalue, method = "bonferroni", n = 227) # bonferroni for the repeated 3-fold in evolang
+#   if(pvalue >= 0.01){return(FALSE)} else{return(TRUE)}
+# })
+# wilcox.tests.adjusted <- bind_rows(wilcox.tests.adjusted) %>%
+#   gather() %>%
+#   rename(language = key, significant = value)
+# wilcox.tests.adjusted %>%
+#   summarize(number.significant = sum(significant))
 
 
 # bar plot
@@ -1263,199 +1312,130 @@ gganimate::animate(animation, width = 1500, height = 800)
 # Load Spurt results --------------------------------------------------------
 
 spurt.performance <- list()
-spurt.predictions <- list()
 
-for(file in list.files('Results/Spurt/', recursive = T, full.names = T, pattern = "performance")){
-  language <- str_extract(file, "(?<=Results/Spurt//).+(?=_spurt_)")
-  if(str_detect(file, "predictions")){
-    spurt.predictions[[language]] <- read_csv(file, col_names = c(1:10, "word"))
-    spurt.predictions[[language]]$language <- language
-  } else{
-    spurt.performance[[language]] <- read_csv(file)
-    spurt.performance[[language]]$language <- language
-  }
+
+for(file in list.files('Results/Spurt//', recursive = T, full.names = T)){
+  language <- str_extract(file, "(?<=Results/Spurt//).+(?=_rnn_)")
+  print(language)
+  spurt.performance[[language]] <- read_csv(file)
+  spurt.performance[[language]]$language <- language
 }
 
-sigs.spurt <- lapply(spurt.performance, function(stats){
-  print(stats)
-  return(wilcox.test(x = stats$Matthews, mu = 0.1, alternative = "greater"))
-})
-
-sigs.spurt$Mansi
-sigs.spurt$Romani
-sigs.spurt$English
-sigs.spurt$`Thai (Korat variety)`
-
-sigs.spurt <- lapply(sigs.spurt, function(stats){
-  if(is.nan(stats[["p.value"]]))
-  {return(FALSE)}
-  if(stats[["p.value"]] >= 0.01){return(FALSE)} else{return(TRUE)}
-})
-
-sigs.spurt <- sigs.spurt %>%
-  bind_rows %>%
-  gather("language", "significant")
-
-spurt.stats <- spurt.performance %>%
-  bind_rows() %>%
-  select(-X1) %>%
-  group_by(language) %>%
-  summarise(Median = median(Matthews), sd = sd(Matthews)) %>%
-  left_join(sigs.spurt) %>%
-  mutate(language = factor(language, levels = sorted.langs$language))
-
+spurt.stats <- purrr::map_dfr(spurt.performance, bootstrapped.cis)
+# 
 spurt.stats %>%
-  filter(language %in% marker.group) %>%
-  left_join(sigs) %>%
-  group_by(significant) %>%
-  tally() %>%
-  mutate(n / length(marker.group))
-spurt.stats %>%
-  filter(language %in% no.marker.group) %>%
-  left_join(sigs) %>%
-  group_by(significant) %>%
-  tally() %>%
-  mutate(n / length(no.marker.group))
+  write_rds("Data/Processed/boot_ci_spurt_original.rds")
 
-labels.for.plot <- purrr::map(sorted.langs$language, function(language){
-  if(language %in% c("Mansi", "English", "Thai (Korat variety)", "Romani")){
-    return(language)
-  } else{
-      return("")
-    }
-})
+spurt.stats <- read_rds("Data/Processed/boot_ci_spurt_original.rds")
 
-k.fold.plot <- rnn.stats %>%
-  filter(language %in% marker.group) %>%
-  left_join(sigs) %>%
-  mutate(language = factor(language, levels = sorted.langs$language)) %>%
-  mutate(lower = Median - sd, upper = Median + sd, upper = ifelse(upper > 1, 1, upper)) %>%
-  mutate(significant = ifelse(significant, "*", " ")) %>%
-  ggplot(aes(x = language, y = Median, label = significant)) +
-  geom_col(fill = wes_palettes$Darjeeling1[2], color = "black") +
-  scale_y_continuous(limits = c(-0.15, 1), name = "Matthews Correlation Coefficient") +
-  # scale_x_discrete(name = "Language", labels = labels.for.plot) +
-  geom_text(size = 7) +
-  cowplot::theme_cowplot() +
-  theme(axis.text.x = element_blank()) +
-  labs(title = "MARKER GROUP - K-Fold")
-
-spurt.plot <- spurt.stats %>%
-  filter(language %in% marker.group) %>%
-  filter(language %in% included.languages$language) %>%
-  mutate(lower = Median - sd, upper = Median + sd, upper = ifelse(upper > 1, 1, upper)) %>%
-  mutate(significant = ifelse(significant, "*", " ")) %>%
-  ggplot(aes(x = language, y = Median, label= significant)) +
-  geom_col(fill = wes_palettes$Darjeeling1[1], color = "black") +
-  scale_y_continuous(limits = c(-0.15, 1), name = "Matthews Correlation Coefficient") +
-  # scale_x_discrete(name = "Language", labels = labels.for.plot) +
-  geom_text(size = 7) +
-  cowplot::theme_cowplot() +
-  theme(axis.text.x = element_blank()) +
-  labs(title = "MARKER GROUP - Spurt")
-
-cowplot::plot_grid(k.fold.plot, spurt.plot, nrow = 2, labels = "AUTO")
+spurt.performance.adjusted <- list()
 
 
-spurt.stats %>%
-  mutate(significant = ifelse(significant, "*", "")) %>%
-  ggplot(aes(x = language, y = Median, label = significant)) +
-  geom_col(fill = wes_palettes$Darjeeling1[2], color = "black") +
-  scale_y_continuous(limits = c(-0.15, 1), name = "Matthews Correlation Coefficient") +
-  scale_x_discrete(name = "Language", labels = labels.for.plot) +
-  geom_text(size = 7) +
-  cowplot::theme_cowplot()
-
-
-spurt.performance %>%
-  bind_rows() %>%
-  filter(language %in% c("Mansi", "Romani", "English", "Thai (Korat variety)")) %>%
-  group_by(language) %>%
-  summarize(median(Matthews))
-
-median(spurt.stats$Median)
-sd(spurt.stats$Median)
-
-# RNN Performance
-
-spurt.performance %>%
-  bind_rows %>%
-  ggplot(aes(x = language, y = Matthews)) +
-  geom_violin(aes(fill = language)) +
-  geom_jitter(width = 0.2)+
-  geom_hline(yintercept = 0) +
-  labs(title = "Simulation of vocabulary spurt for chosen languages",
-       subtitle = "100 iterations of training with 50 words and prediction of the rest") +
-  cowplot::theme_cowplot() +
-  theme(legend.position = "none") +
-  geom_col(fill = wes_palettes$Darjeeling1[2], color = "black") +
-  scale_y_continuous(limits = c(-0.15, 1), name = "Matthews Correlation Coefficient") +
-  scale_x_discrete(name = "Language", labels = label.text) +
-  geom_text(size = 7) +
-  cowplot::theme_cowplot()
-
-
-
-
-
-plot.1 <- rnn.stats %>%
-  mutate(lower = mean - sd, upper = mean + sd, upper = ifelse(upper > 1, 1, upper)) %>%
-  left_join(sigs) %>%
-  mutate(language = factor(language, levels = order.for.rnn)) %>%
-  plotly::plot_ly(type = "bar", data = ., x = ~language, y = ~mean, color = ~family.label, colors = "Accent", hoverinfo = "text",
-                  text = ~paste("Language: ", language, ";\nFamily: ", familyName,
-                                ";\nMCC: ",  round(mean, 2), ";\nSignificant?: ", significant,
-                                ";\nNumber Of Words: ", n.words, ";\nN. Actions: ", Action, ";\nN. Things: ", Thing,
-                                ";\nMedian Length: ", lang.median.length, sep = "")) %>%
-  plotly::layout(title = "Performance of RNN as measured by Matthew's Correlation Coefficient")
-
-htmlwidgets::saveWidget(plot.1, "rnn_plot.html", selfcontained = TRUE)
-
-
-
-spurt.performance <- list()
-
-for(file in list.files('Results/AoA/', recursive = T, full.names = T)){
-  language <- str_extract(file, "(?<=Results/AoA//).+(?=_spurt_)")
-  if(str_detect(file, "predictions")){
-    spurt.predictions[[language]] <- read_csv(file, col_names = c(1:10, "word"))
-    spurt.predictions[[language]]$language <- language
-  } else{
-    spurt.performance[[language]] <- read_csv(file)
-    spurt.performance[[language]]$language <- language
-  }
+for(file in list.files('Results/Spurt-Adjusted//', recursive = T, full.names = T)){
+  language <- str_extract(file, "(?<=Results/Spurt-Adjusted//).+(?=_rnn_)")
+  print(language)
+  spurt.performance.adjusted[[language]] <- read_csv(file)
+  spurt.performance.adjusted[[language]]$language <- language
 }
 
-sigs.spurt <- lapply(spurt.performance, function(stats){
-  return(wilcox.test(x = stats$Matthews, mu = 0, alternative = "greater"))
-})
+spurt.stats.adjusted <- purrr::map_dfr(spurt.performance.adjusted, bootstrapped.cis)
+# 
+spurt.stats.adjusted %>%
+  write_rds("Data/Processed/boot_ci_spurt_adjusted.rds")
 
-sigs.spurt <- lapply(sigs.spurt, function(stats){
-  if(is.nan(stats[["p.value"]]))
-  {return(FALSE)}
-  if(stats[["p.value"]] >= 0.01){return(FALSE)} else{return(TRUE)}
-})
+spurt.stats.adjusted <- read_rds("Data/Processed/boot_ci_spurt_adjusted.rds")
 
-sigs.spurt <- sigs.spurt %>%
-  bind_rows %>%
-  gather("language", "significant")
+spurt.plot <- spurt.stats %>% 
+  arrange(desc(Matthews)) %>% 
+  mutate(Language = factor(Language, levels = .$Language),
+         includes.baseline = ifelse(Matthews.Lower < 0.1, "Includes 0.1", "Doesn't Include 0.1"),
+         lang.label = ifelse(Language %in% c("Mansi", "English", "Romani", "Thai (Korat variety)", "Danish", "Waorani"), 
+                             as.character(Language), ""),
+         include = ifelse(lang.label == "", NA, Language))
 
-spurt.stats <- spurt.performance %>%
-  bind_rows() %>%
-  select(-X1) %>%
-  group_by(language) %>%
-  summarise(Median = median(Matthews), sd = sd(Matthews)) %>%
-  left_join(sigs.spurt)
-
-spurt.plot <- spurt.stats %>%
-  mutate(lower = Median - sd, upper = Median + sd, upper = ifelse(upper > 1, 1, upper)) %>%
-  mutate(significant = ifelse(significant, "*", " ")) %>%
-  ggplot(aes(x = language, y = Median, label= significant)) +
-  geom_col(fill = wes_palettes$Darjeeling1[1], color = "black") +
-  scale_y_continuous(limits = c(-0.15, 1), name = "Matthews Correlation Coefficient") +
-  geom_text(size = 7) +
+ggplot(data = spurt.plot, aes(x = Language, ymin = Matthews.Lower, ymax = Matthews.Upper,
+                                          y = Matthews, fill = includes.baseline, label = lang.label)) + 
+  geom_vline(aes(xintercept = include)) + 
+  geom_crossbar() +
+  geom_hline(yintercept = 0, size = 2) + 
+  geom_hline(yintercept = 0.1, linetype = "dashed", size = 1.5) + 
+  scale_x_discrete(name = "Language", labels = matthews.plot.adjusted$lang.label) + 
   cowplot::theme_cowplot()
 
+left_join(select(spurt.stats, Language, Original = Matthews),
+          select(spurt.stats.adjusted, Language, Adjusted = Matthews)) %>% 
+  mutate(difference = abs(Original - Adjusted)) %>% 
+  arrange(desc(difference)) %>% 
+  mutate(Language = factor(Language, levels = .$Language)) %>% 
+  ggplot() + 
+  geom_segment(aes(x = Language, xend = Language, y = Original, yend = Adjusted)) +
+  geom_point(aes(x = Language, y = Original), color = "red", shape = 16) + 
+  geom_point(aes(x = Language, y = Adjusted), color = "blue", shape = 17) +
+  geom_hline(yintercept = 0.1, linetype = "dashed") + 
+  geom_hline(yintercept = 0)
+
+# count the number of languages whose bootstrapped 99% ci include 0.1
+
+spurt.stats %>% 
+  select(Language, contains("Matthews")) %>% 
+  mutate(includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE)) %>% 
+  group_by(includes.baseline) %>% 
+  tally()
+spurt.stats %>% 
+  select(Language, contains("Matthews")) %>% 
+  mutate(includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE)) %>% 
+  filter(Language %in% test.languages)
+# mean MCC
+spurt.stats %>% 
+  .$Matthews %>% 
+  mean
+
+spurt.stats.adjusted %>% 
+  select(Language, contains("Matthews")) %>% 
+  mutate(includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE)) %>% 
+  group_by(includes.baseline) %>% 
+  tally()
+
+
+
+# sigs.spurt <- lapply(spurt.performance, function(stats){
+#   print(stats)
+#   return(wilcox.test(x = stats$Matthews, mu = 0.1, alternative = "greater"))
+# })
+
+# sigs.spurt <- lapply(sigs.spurt, function(stats){
+#   if(is.nan(stats[["p.value"]]))
+#   {return(FALSE)}
+#   if(stats[["p.value"]] >= 0.01){return(FALSE)} else{return(TRUE)}
+# })
+
+# sigs.spurt <- sigs.spurt %>%
+#   bind_rows %>%
+#   gather("language", "significant")
+# 
+# spurt.stats <- spurt.performance %>%
+#   bind_rows() %>%
+#   select(-X1) %>%
+#   group_by(language) %>%
+#   summarise(Median = median(Matthews), sd = sd(Matthews)) %>%
+#   left_join(sigs.spurt) %>%
+#   mutate(language = factor(language, levels = sorted.langs$language))
+
+# spurt.stats %>%
+#   filter(language %in% marker.group) %>%
+#   left_join(sigs) %>%
+#   group_by(significant) %>%
+#   tally() %>%
+#   mutate(n / length(marker.group))
+# spurt.stats %>%
+#   filter(language %in% no.marker.group) %>%
+#   left_join(sigs) %>%
+#   group_by(significant) %>%
+#   tally() %>%
+#   mutate(n / length(no.marker.group))
+
+
+# cowplot::plot_grid(k.fold.plot, spurt.plot, nrow = 2, labels = "AUTO")
 
 
 
