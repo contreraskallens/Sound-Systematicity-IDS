@@ -1315,7 +1315,7 @@ spurt.performance <- list()
 
 
 for(file in list.files('Results/Spurt//', recursive = T, full.names = T)){
-  language <- str_extract(file, "(?<=Results/Spurt//).+(?=_rnn_)")
+  language <- str_extract(file, "(?<=Results/Spurt///).+(?=_spurt_)")
   print(language)
   spurt.performance[[language]] <- read_csv(file)
   spurt.performance[[language]]$language <- language
@@ -1332,7 +1332,7 @@ spurt.performance.adjusted <- list()
 
 
 for(file in list.files('Results/Spurt-Adjusted//', recursive = T, full.names = T)){
-  language <- str_extract(file, "(?<=Results/Spurt-Adjusted//).+(?=_rnn_)")
+  language <- str_extract(file, "(?<=Results/Spurt-Adjusted///).+(?=_spurt_)")
   print(language)
   spurt.performance.adjusted[[language]] <- read_csv(file)
   spurt.performance.adjusted[[language]]$language <- language
