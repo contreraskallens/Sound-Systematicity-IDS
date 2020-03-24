@@ -1,168 +1,227 @@
-language,Affixes.Removed.Action,Suffixes.Removed.Action,Affixes.Removed.Thing,Suffixes.Removed.Thing
-Aché,NA,NA,NA,1
-Aghul,NA,2,NA,NA
-Aguaruna,NA,2,NA,NA
-Ahlao Th,NA,1,NA,1
-Akhvakh (Northern dialect),NA,5,NA,1
-Akhvakh (Southern dialect),NA,5,NA,1
-Albanian (Tosk variety),NA,2,NA,NA
-Andi,NA,2,NA,NA
-Araona,NA,1,NA,1
-Archi (variety 1),NA,2,NA,NA
-Archi (variety 2),NA,3,NA,NA
-Armenian (Eastern variety),NA,2,NA,NA
-Armenian (Western variety),NA,2,NA,NA
-Avar,NA,3,NA,NA
-Avestan,NA,NA,NA,1
-Aymara,NA,3,NA,1
-Ayoreo,1,2,NA,1
-Azerbaijani,NA,3,NA,NA
-Bagvalal,NA,3,NA,NA
-Barí,NA,NA,NA,1
-Basque,NA,1,NA,NA
-Bella Coola,NA,2,NA,NA
-Bengali,NA,3,NA,1
-Bezhta,1,2,NA,NA
-Botlikh,NA,1,NA,NA
-Breton,NA,2,NA,NA
-Budukh,NA,1,NA,NA
-Bulgarian,NA,3,NA,1
-Cashibo,NA,2,NA,NA
-Catalan,NA,2,NA,1
-Catuquina,NA,1,NA,NA
-Cavineña,NA,3,NA,1
-Cayapa,NA,3,NA,1
-Chácobo,NA,1,NA,1
-Chamalal,2,3,NA,NA
-Chatino (Zacatepec variety),1,1,NA,NA
-Chechen,NA,1,NA,NA
-Chipaya,NA,1,NA,1
-Chiriguano,NA,NA,NA,1
-Chong,NA,1,2,1
-Cofán,NA,3,NA,NA
-Colorado,NA,3,NA,1
-Czech,NA,3,NA,NA
-Danish,NA,1,NA,NA
-Dargwa,NA,2,NA,NA
-De'kwana,1,2,NA,NA
-Dutch,NA,2,NA,NA
-Embera,NA,1,NA,1
-Epena,NA,1,NA,1
-Erzya Mordvin,NA,3,NA,NA
-Ese Ejja,NA,1,1,1
-Estonian,NA,3,NA,NA
-Finnish,NA,1,NA,NA
-French,NA,1,NA,NA
-German,NA,2,NA,1
-Goajiro,1,2,NA,1
-Godoberi,NA,1,NA,NA
-Guaraní,NA,NA,NA,1
-Gününa Küne,NA,1,NA,NA
-Hausa,NA,1,NA,1
-Hawaiian,NA,NA,NA,1
-Hindi,NA,3,NA,NA
-Hinuq,NA,1,NA,NA
-Hunzib,NA,1,NA,NA
-Ignaciano,NA,3,NA,1
-Ingush,NA,1,NA,NA
-Italian,NA,3,NA,1
-Itonama,NA,3,NA,1
-Judeo-Tat,NA,2,NA,NA
-Kaingáng,NA,1,NA,NA
-Karajá,NA,2,NA,NA
-Karata,NA,3,NA,NA
-Karok,2,NA,2,NA
-Kasong,NA,1,NA,1
-Khanty,NA,2,NA,NA
-Khinalug,NA,4,NA,NA
-Khwarshi (Inkhokvari dialect),NA,1,NA,NA
-Khwarshi (Khwarshi dialect),NA,1,NA,NA
-Komi,NA,2,NA,NA
-Kryz,NA,2,NA,NA
-Kumyk,NA,3,NA,NA
-Kunza,NA,4,NA,NA
-Lak,NA,3,NA,NA
-Latvian,NA,1,NA,1
-Lengua,NA,3,NA,1
-Lezgian,NA,2,NA,NA
-Macushi,NA,1,NA,NA
-Mahasu Pahari (Kotghari dialect),NA,2,NA,NA
-Mansi,NA,6,NA,NA
-Maori,NA,1,NA,1
-Mapudungun,NA,1,NA,NA
-Marathi,NA,3,NA,1
-Mari,NA,2,NA,NA
-Marquesan,NA,NA,NA,1
-Mashco Piro,2,3,NA,NA
-Mocoví,NA,NA,2,NA
-Modern Greek,NA,2,NA,NA
-Mosetén,NA,1,NA,NA
-Movima,NA,2,NA,1
-Muisca,2,4,NA,1
-Nahuatl (Sierra de Zacapoaxtla variety),2,1,NA,NA
-Nenets,NA,2,NA,1
-Nepali,NA,2,NA,1
-Ninam (Shirishana variety),NA,1,NA,NA
-Nogai,NA,2,NA,NA
-Northern Haida,2,2,3,NA
-Northern Saami,NA,2,NA,NA
-Ossetic,NA,2,NA,NA
-Pacaas Novos,NA,1,NA,4
-Panare,NA,1,NA,NA
-Persian,NA,6,NA,NA
-Phong,NA,NA,1,NA
-Pilagá,2,NA,2,NA
-Polish,NA,3,NA,NA
-Portuguese,NA,2,NA,1
-Puinave,NA,1,NA,NA
-Punjabi,NA,3,NA,1
-Rapa Nui,NA,NA,NA,1
-Romani,NA,4,NA,NA
-Romanian,NA,1,NA,NA
-Rotuman,NA,1,NA,1
-Russian,NA,2,NA,1
-Rutul,NA,2,NA,NA
-Samre,NA,1,NA,1
-Sanapaná (Angaité dialect),2,2,1,1
-Sanapaná (Enlhet dialect),3,3,NA,NA
-Selknam,NA,1,NA,1
-Selkup,NA,3,NA,NA
-Serbo-Croatian,NA,3,NA,1
-Seri,1,NA,NA,NA
-Shipibo-Conibo,NA,3,NA,1
-Siona,NA,2,NA,NA
-Sirionó,NA,1,1,1
-Spanish,NA,2,NA,1
-Swedish,NA,1,NA,NA
-Tabasaran (Northern dialect Khanag subdialect),NA,2,NA,NA
-Tabasaran (Southern dialect),NA,2,NA,NA
-Tacana,NA,1,NA,1
-Tamil,NA,4,NA,2
-Tehuelche,NA,NA,NA,1
-Telugu,NA,2,NA,NA
-Tindi,2,3,NA,NA
-Toba,NA,NA,2,NA
-Tongan,NA,1,NA,1
-Trinitario,NA,2,NA,NA
-Tsakhur,NA,2,NA,NA
-Tsez (Mokok dialect),NA,1,NA,NA
-Tsez (Sagada dialect),NA,1,NA,NA
-Tsova-Tush,NA,1,NA,NA
-Tuamotuan,2,NA,NA,1
-Tuyuca,NA,1,NA,NA
-Udi,NA,3,NA,NA
-Udmurt,NA,3,NA,NA
-Uncunwee,NA,1,NA,NA
-Wa,NA,1,NA,1
-Waorani,NA,1,NA,NA
-Wapishana,NA,2,NA,NA
-Waurá,NA,2,NA,1
-Wayampi,NA,NA,NA,1
-Yagán,NA,1,NA,1
-Yaminahua,NA,3,NA,1
-Yanomámi,NA,2,NA,NA
-Yaruro,NA,1,NA,NA
-Yavitero,NA,3,NA,1
-Yiddish,NA,1,NA,NA
-Yuwana,NA,1,NA,NA
-Zuni,2,1,NA,1
+language,Family,Affixes.Removed.Action,Suffixes.Removed.Action,Affixes.Removed.Thing,Suffixes.Removed.Thing,original.number.words,adjusted.number.words,Number.Homophones
+Aché,Tupian,0,0,0,1,543,509,0
+Aghul,Nakh-Daghestanian,0,2,0,0,916,906,0
+Aguaruna,Jivaroan,0,2,0,0,850,846,0
+Ahlao Th,Austro-Asiatic,0,1,0,1,402,389,0
+Akhvakh (Northern dialect),Nakh-Daghestanian,0,5,0,1,1126,1060,0
+Akhvakh (Southern dialect),Nakh-Daghestanian,0,5,0,1,1066,1021,0
+Albanian (Tosk variety),Indo-European,0,2,0,0,1605,1580,0
+Andi,Nakh-Daghestanian,0,2,0,0,1206,1204,0
+Araona,Tacanan,0,1,0,1,917,837,0
+Archi (variety 1),Nakh-Daghestanian,0,2,0,0,925,909,0
+Archi (variety 2),Nakh-Daghestanian,0,3,0,0,933,916,0
+Armenian (Eastern variety),Indo-European,0,2,0,0,1587,1587,0
+Armenian (Western variety),Indo-European,0,2,0,0,1563,1563,0
+Avar,Nakh-Daghestanian,0,3,0,0,1084,1072,0
+Avestan,Indo-European,0,0,0,1,714,690,0
+Aymara,Aymaran,0,3,0,1,840,818,0
+Ayoreo,Zamucoan,1,2,0,1,1003,963,0
+Azerbaijani,Altaic,0,3,0,0,1283,1283,0
+Bagvalal,Nakh-Daghestanian,0,3,0,0,1075,1063,0
+Barí,Chibchan,0,0,0,1,376,362,0
+Basque,Basque,0,1,0,0,1220,1216,0
+Baure,Arawakan,0,0,0,0,261,261,0
+Bella Coola,Salishan,0,2,0,0,517,490,0
+Bengali,Indo-European,0,3,0,1,1077,1049,0
+Bezhta,Nakh-Daghestanian,1,2,0,0,1176,1176,0
+Botlikh,Nakh-Daghestanian,0,1,0,0,924,922,0
+Breton,Indo-European,0,2,0,0,1450,1448,0
+Budukh,Nakh-Daghestanian,0,1,0,0,1186,1186,0
+Bulang,Austro-Asiatic,0,0,0,0,352,352,0
+Bulgarian,Indo-European,0,3,0,1,1683,1642,0
+Canela,Macro-Ge,0,0,0,0,178,178,0
+Cashibo,Panoan,0,2,0,0,629,613,0
+Catalan,Indo-European,0,2,0,1,1288,1215,0
+Catuquina,Panoan,0,1,0,0,692,664,0
+Cavineña,Tacanan,0,3,0,1,832,812,0
+Cayapa,Barbacoan,0,3,0,1,1104,1063,0
+Cayuvava,Cayuvava,0,0,0,0,949,949,0
+Central Thai,Tai-Kadai,0,0,0,0,859,859,0
+Chácobo,Panoan,0,1,0,1,822,741,0
+Chamalal,Nakh-Daghestanian,2,3,0,0,1186,1164,0
+Chatino (Zacatepec variety),Otomanguean,1,1,0,0,493,436,0
+Chechen,Nakh-Daghestanian,0,1,0,0,1157,1132,0
+Chipaya,Uru-Chipaya,0,1,0,1,789,728,0
+Chiriguano,Tupian,0,0,0,1,1057,994,0
+Chong,Austro-Asiatic,0,1,2,1,542,530,0
+Chorote,Matacoan,0,0,0,0,940,940,0
+Cofán,Cofán,0,3,0,0,1053,1053,0
+Colorado,Barbacoan,0,3,0,1,758,672,0
+Cuoi,Austro-Asiatic,0,0,0,0,674,674,0
+Czech,Indo-European,0,3,0,0,1548,1533,0
+Danish,Indo-European,0,1,0,0,1181,1171,0
+Dargwa,Nakh-Daghestanian,0,2,0,0,1319,1305,0
+De'kwana,Cariban,1,2,0,0,376,374,0
+Dehong,Tai-Kadai,0,0,0,0,441,441,0
+Dutch,Indo-European,0,2,0,0,1528,1528,0
+Ecun Buyang,Tai-Kadai,0,0,0,0,330,330,0
+Embera,Choco,0,1,0,1,638,574,0
+English,Indo-European,0,0,0,0,1310,1310,0
+Epena,Choco,0,1,0,1,719,649,0
+Erzya Mordvin,Uralic,0,3,0,0,1034,1023,0
+Ese Ejja,Tacanan,0,1,1,1,788,754,0
+Estonian,Uralic,0,3,0,0,1446,1446,0
+Finnish,Uralic,0,1,0,0,1509,1507,0
+French,Indo-European,0,1,0,0,1352,1350,0
+German,Indo-European,0,2,0,1,1682,1611,0
+Goajiro,Arawakan,1,2,0,1,746,718,0
+Godoberi,Nakh-Daghestanian,0,1,0,0,1059,1058,0
+Guaraní,Tupian,0,0,0,1,1553,1501,0
+Gününa Küne,Chon,0,1,0,0,624,621,0
+Hausa,Afro-Asiatic,0,1,0,1,1164,1099,0
+Hawaiian,Austronesian,0,0,0,1,1663,1557,0
+Hindi,Indo-European,0,3,0,0,1227,1227,0
+Hinuq,Nakh-Daghestanian,0,1,0,0,1159,1158,0
+Hlai (Baoting variety),Tai-Kadai,0,0,0,0,550,550,0
+Hungarian,Uralic,0,0,0,0,1427,1427,0
+Hunzib,Nakh-Daghestanian,0,1,0,0,1080,1074,0
+Iduh,Austro-Asiatic,0,0,0,0,608,608,0
+Ignaciano,Arawakan,0,3,0,1,955,942,0
+Ingush,Nakh-Daghestanian,0,1,0,0,1060,1032,0
+Italian,Indo-European,0,3,0,1,1321,1277,0
+Itonama,Itonama,0,3,0,1,801,797,0
+Jamaican Creole (Limonese Creole dialect),Creoles and Pidgins,0,0,0,0,1329,1329,0
+Judeo-Tat,Indo-European,0,2,0,0,1458,1458,0
+Kaingáng,Macro-Ge,0,1,0,0,1019,963,0
+Karajá,Macro-Ge,0,2,0,0,487,466,0
+Karata,Nakh-Daghestanian,0,3,0,0,991,985,0
+Karok,Karok,2,0,2,0,723,723,0
+Kasong,Austro-Asiatic,0,1,0,1,569,554,0
+Keme (Kemie variety),Austro-Asiatic,0,0,0,0,480,480,0
+Kha Poong,Austro-Asiatic,0,0,0,0,707,707,0
+Khamuang (Chiang Mai variety),Tai-Kadai,0,0,0,0,517,517,0
+Khanty,Uralic,0,2,0,0,823,818,0
+Khinalug,Nakh-Daghestanian,0,4,0,0,1241,1239,0
+Khwarshi (Inkhokvari dialect),Nakh-Daghestanian,0,1,0,0,973,960,0
+Khwarshi (Khwarshi dialect),Nakh-Daghestanian,0,1,0,0,1041,1041,0
+Komi,Uralic,0,2,0,0,1298,1295,0
+Kryz,Nakh-Daghestanian,0,2,0,0,1122,1092,0
+Kumyk,Altaic,0,3,0,0,1273,1273,0
+Kunza,Kunza,0,4,0,0,780,780,0
+Lak,Nakh-Daghestanian,0,3,0,0,972,959,0
+Lakkia,Tai-Kadai,0,0,0,0,506,506,0
+Langja Buyang,Tai-Kadai,0,0,0,0,341,341,0
+Latvian,Indo-European,0,1,0,1,1447,1425,0
+Lengua,Mascoian,0,3,0,1,722,718,0
+Lezgian,Nakh-Daghestanian,0,2,0,0,1108,1108,0
+LiHa,Austro-Asiatic,0,0,0,0,641,641,0
+Maca,Matacoan,0,0,0,0,844,844,0
+Macushi,Cariban,0,1,0,0,659,656,0
+Mahasu Pahari (Kotghari dialect),Indo-European,0,2,0,0,999,977,0
+Malieng,Austro-Asiatic,0,0,0,0,718,718,0
+Mang Ch,Austro-Asiatic,0,0,0,0,361,361,0
+Mansi,Uralic,0,6,0,0,881,881,0
+Maori,Austronesian,0,1,0,1,1673,1577,0
+Mapudungun,Araucanian,0,1,0,0,1075,1066,0
+Marathi,Indo-European,0,3,0,1,1113,1046,0
+Mari,Uralic,0,2,0,0,1101,1100,0
+Marquesan,Austronesian,0,0,0,1,566,511,0
+Mashco Piro,Arawakan,2,3,0,0,506,505,0
+Mlabri,Austro-Asiatic,0,0,0,0,342,342,0
+Mocoví,Guaicuruan,0,0,2,0,913,908,0
+Modern Greek,Indo-European,0,2,0,0,1447,1438,0
+Mosetén,Mosetenan,0,1,0,0,939,936,0
+Movima,Movima,0,2,0,1,923,918,0
+Muisca,Chibchan,2,4,0,1,501,474,0
+Mundurukú,Tupian,0,0,0,0,448,448,0
+Nahuatl (Sierra de Zacapoaxtla variety),Uto-Aztecan,2,1,0,0,1186,1181,0
+Nenets,Uralic,0,2,0,1,901,834,0
+Nepali,Indo-European,0,2,0,1,946,925,0
+Ninam (Shirishana variety),Yanomam,0,1,0,0,582,545,0
+Nivaclé,Matacoan,0,0,0,0,1265,1265,0
+Nogai,Altaic,0,2,0,0,1386,1385,0
+Northern Haida,Haida,2,2,2,0,757,730,0
+Northern Saami,Uralic,0,2,0,0,1219,1218,0
+Nung-Fengshan,Tai-Kadai,0,0,0,0,611,611,0
+Nung-Lazhai,Tai-Kadai,0,0,0,0,594,594,0
+Nung-Ninbei,Tai-Kadai,0,0,0,0,537,537,0
+Nuu-chah-nulth,Wakashan,0,0,0,0,758,758,0
+Nyakur,Austro-Asiatic,0,0,0,0,673,673,0
+Ossetic,Indo-European,0,2,0,0,1525,1524,0
+Pacaas Novos,Chapacura-Wanham,0,1,0,4,181,167,0
+Páez,Páezan,0,0,0,0,831,831,0
+Paliu,Austro-Asiatic,0,0,0,0,451,451,0
+Panare,Cariban,0,1,0,0,693,681,0
+Pear,Austro-Asiatic,0,0,0,0,545,545,0
+Persian,Indo-European,0,6,0,0,1324,1324,0
+Phong,Austro-Asiatic,0,0,1,0,542,542,0
+Pilagá,Guaicuruan,2,0,2,0,923,923,0
+Polci,Afro-Asiatic,0,0,0,0,784,778,0
+Polish,Indo-European,0,3,0,0,1697,1684,0
+Portuguese,Indo-European,0,2,0,1,1434,1379,0
+Puinave,Puinave,0,1,0,0,742,694,0
+Punjabi,Indo-European,0,3,0,1,1367,1298,0
+Pusing,Austro-Asiatic,0,0,0,0,439,439,0
+Qau Kelao,Tai-Kadai,0,0,0,0,224,224,0
+Qawasqar,Alacalufan,0,0,0,0,555,555,0
+Rapa Nui,Austronesian,0,0,0,1,842,806,0
+Romani,Indo-European,0,4,0,0,1240,1197,0
+Romanian,Indo-European,0,1,0,0,1060,1057,0
+Rotuman,Austronesian,0,1,0,1,974,901,0
+Rumai,Austro-Asiatic,0,0,0,0,423,423,0
+Russian,Indo-European,0,2,0,1,1237,1176,0
+Rutul,Nakh-Daghestanian,0,2,0,0,916,905,0
+Samre,Bookkeeping,0,1,0,1,657,639,0
+Sanapaná (Angaité dialect),Bookkeeping,2,2,1,1,733,729,0
+Sanapaná (Enlhet dialect),Bookkeeping,2,3,0,0,1169,1169,0
+Sanchong Kelao,Tai-Kadai,0,0,0,0,270,270,0
+Selknam,Chon,0,1,0,1,656,583,0
+Selkup,Uralic,0,3,0,0,866,852,0
+Serbo-Croatian,Indo-European,0,3,0,1,1677,1616,0
+Seri,Hokan,1,0,0,0,712,712,0
+Shan,Tai-Kadai,0,0,0,0,520,520,0
+Shipibo-Conibo,Panoan,0,3,0,1,1029,927,0
+Siona,Tucanoan,0,2,0,0,791,771,0
+Sirionó,Tupian,0,1,1,1,740,659,0
+Southern Tai (Songkhla variety),Tai-Kadai,0,0,0,0,546,546,0
+Spanish,Indo-European,0,2,0,1,1537,1499,0
+Sui,Tai-Kadai,0,0,0,0,676,676,0
+Surin Khmer,Austro-Asiatic,0,0,0,0,668,668,0
+Swedish,Indo-European,0,1,0,0,1789,1772,0
+Tabasaran (Northern dialect Khanag subdialect),Nakh-Daghestanian,0,2,0,0,1047,1030,0
+Tabasaran (Southern dialect),Nakh-Daghestanian,0,2,0,0,1075,1065,0
+Tacana,Tacanan,0,1,0,1,909,851,0
+Tai Khün,Tai-Kadai,0,0,0,0,611,611,0
+Tai Lü,Tai-Kadai,0,0,0,0,468,468,0
+Tamil,Dravidian,0,4,0,2,1104,1075,0
+Tehuelche,Chon,0,0,0,1,627,560,0
+Telugu,Dravidian,0,2,0,0,3433,3425,0
+Thai (Korat variety),Tai-Kadai,0,0,0,0,538,538,0
+Tibetan,Sino-Tibetan,0,0,0,0,535,535,0
+Tindi,Nakh-Daghestanian,2,3,0,0,1072,1062,0
+Tlingit,Na-Dene,0,0,0,0,991,991,0
+Toba,Guaicuruan,0,0,2,0,1071,1067,0
+Tongan,Austronesian,0,1,0,1,1187,1111,0
+Trinitario,Arawakan,0,2,0,0,793,793,0
+Trumai,Trumai,0,0,0,0,499,499,0
+Tsakhur,Nakh-Daghestanian,0,2,0,0,1118,1118,0
+Tsez (Mokok dialect),Nakh-Daghestanian,0,1,0,0,1016,1015,0
+Tsez (Sagada dialect),Nakh-Daghestanian,0,1,0,0,978,978,0
+Tsimshian,Penutian,0,0,0,0,729,729,0
+Tsova-Tush,Nakh-Daghestanian,0,1,0,0,1243,1241,0
+Tuamotuan,Austronesian,2,0,0,1,1155,1093,0
+Tum,Austro-Asiatic,0,0,0,0,538,538,0
+Tuyuca,Tucanoan,0,1,0,0,832,807,0
+Udi,Nakh-Daghestanian,0,3,0,0,1080,1080,0
+Udmurt,Uralic,0,3,0,0,1062,1062,0
+Uncunwee,Nubian,0,1,0,0,814,803,0
+Upper Chehalis,Salishan,0,0,0,0,288,288,0
+Vietnamese,Austro-Asiatic,0,0,0,0,365,365,0
+Wa,Austro-Asiatic,0,1,0,1,703,688,0
+Wai Wai,Cariban,0,0,0,0,734,734,0
+Waorani,Waorani,0,1,0,0,583,560,0
+Wapishana,Arawakan,0,2,0,0,870,869,0
+Waurá,Arawakan,0,2,0,1,992,955,0
+Wayampi,Tupian,0,0,0,1,1028,970,0
+Wichí,Matacoan,0,0,0,0,940,940,0
+Xu,Austro-Asiatic,0,0,0,0,302,302,0
+Yagán,Yámana,0,1,0,1,579,558,0
+Yagua,Peba-Yaguan,0,0,0,0,1296,1296,0
+Yaminahua,Panoan,0,3,0,1,858,797,0
+Yanomámi,Yanomam,0,2,0,0,506,505,0
+Yaruro,Yaruro,0,1,0,0,595,574,0
+Yavitero,Arawakan,0,3,0,1,630,609,0
+Yiddish,Indo-European,0,1,0,0,1506,1506,0
+Yuwana,Jodi-Saliban,0,1,0,0,413,393,0
+Zhuang-Longzhou,Tai-Kadai,0,0,0,0,698,698,0
+Zuni,Zuni,2,1,0,1,783,727,0
