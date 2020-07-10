@@ -120,12 +120,16 @@ get.nearest.neighbors <- function(a.language, randomize = FALSE, distance.matrix
 
 # Load data -----------------------------------------------------
 
-# All_phon contains info on individual words.
+# all_phon contains info on individual words.
+# all_phon_adjusted has the morphology-adjusted wordlists.
 # Phon_languages contains info on each language.
+# no_marker_group has a list of the languages that weren't adjusted.
 
 all.phon <- read_csv('../Data/Processed/all_phon.csv')
 all.phon.adjusted <- read_csv("../Data/Processed/all_phon_adjusted.csv")
 phon.languages <- read_csv('../Data/Processed/all_language_info.csv')
+no.marker.group <- read_rds("../Data/Processed/no_marker_group.rds")
+
 
 # Basic descriptive statistics of the features of wordlists ------
 
@@ -280,10 +284,12 @@ all.distances.adjusted <- map_dfr(.x = unique(all.phon.adjusted$language),
 # Get tipicality stats for each class in each language
 all.distances %>%
   group_by(class) %>%
-  summarize(median.typicality = median(typicality))
+  summarize(median.typicality = median(typicality),
+            Inter.Quantile.Range = IQR(typicality))
 all.distances.adjusted %>%
   group_by(class) %>%
-  summarize(median.typicality = median(typicality))
+  summarize(median.typicality = median(typicality),
+            Inter.Quantile.Range = IQR(typicality))
 
 # Kruskal-wallis of all languages of typicality differences between Action,
 # Thing and Other
@@ -345,36 +351,15 @@ ggsave("../Figures/world_map.eps", width = 8.7, height = 7, units = "cm")
 ggsave("../Figures/world_map.png", width = 8.7, height = 7, units = "cm", dpi = 300)
 
 # 2D Density of all words
+
 density.original <- all.distances %>%
   filter(class != "Other") %>%
   mutate(class = factor(class, levels = c("Action", "Thing", "Other"))) %>%
-  ggplot(aes(x = mean.action, y = mean.thing, fill = stat(nlevel))) +
-  stat_density2d(geom = 'polygon') +
-  viridis::scale_fill_viridis(name = "Density", option = "plasma") + 
+  ggplot(aes(x = mean.action, y = mean.thing)) +
+  # stat_density2d(geom = 'polygon') +
+  ggpointdensity::stat_pointdensity(aes(col = stat(ndensity)), size = 0.5) + 
+  viridis::scale_color_viridis(name = "Density", option = "plasma") + 
   geom_abline(intercept = c(0,0), linetype = 'dashed', color = "black") +
-  labs(x = "Mean Distance to Actions", y = "Mean Distance to Things") +
-  cowplot::theme_cowplot() +
-  facet_wrap(vars(class), ncol = 2) +
-  cowplot::panel_border() +
-  theme(axis.title.x = element_text(size = 8),
-  axis.title.y = element_text(size = 8),
-  axis.text.x = element_text(size = 6),
-  axis.text.y = element_text(size = 6),
-  legend.title = element_text(size = 8),
-  legend.text = element_text(size = 6),
-  strip.text = element_text(size = 8),
-  legend.position = "none")
-density.original
-ggsave("../Figures/density_original.pdf", width = 17, height = 9, units = "cm", dpi = 900)
-ggsave("../Figures/density_original.png", width = 17, height = 9, units = "cm", dpi = 900)
-
-density.adjusted <- all.distances.adjusted %>%
-  filter(class != "Other") %>%
-  mutate(class = factor(class, levels = c("Action", "Thing"))) %>%
-  ggplot(aes(x = mean.action, y = mean.thing, fill = stat(nlevel))) +
-  stat_density2d(geom = 'polygon') +
-  viridis::scale_fill_viridis(name = "Density", option = "plasma") + 
-  geom_abline(intercept = c(0,0), linetype = 'dashed', color = "black", size = .5) +
   labs(x = "Mean Distance to Actions", y = "Mean Distance to Things") +
   cowplot::theme_cowplot() +
   facet_wrap(vars(class), ncol = 2) +
@@ -385,7 +370,31 @@ density.adjusted <- all.distances.adjusted %>%
         axis.text.y = element_text(size = 6),
         legend.title = element_text(size = 8),
         legend.text = element_text(size = 6),
-        strip.text = element_text(size = 8))
+        strip.text = element_text(size = 8),
+        legend.position = "none")
+density.original
+ggsave("../Figures/density_original.pdf", width = 17, height = 9, units = "cm", dpi = 900)
+ggsave("../Figures/density_original.png", width = 17, height = 9, units = "cm", dpi = 900)
+
+density.adjusted <- all.distances.adjusted %>%
+  filter(class != "Other") %>%
+  mutate(class = factor(class, levels = c("Action", "Thing", "Other"))) %>%
+  ggplot(aes(x = mean.action, y = mean.thing)) +
+  ggpointdensity::stat_pointdensity(aes(col = stat(ndensity)), size = 0.5) + 
+  viridis::scale_color_viridis(name = "Density", option = "plasma") + 
+  geom_abline(intercept = c(0,0), linetype = 'dashed', color = "black") +
+  labs(x = "Mean Distance to Actions", y = "Mean Distance to Things") +
+  cowplot::theme_cowplot() +
+  facet_wrap(vars(class), ncol = 2) +
+  cowplot::panel_border() +
+  theme(axis.title.x = element_text(size = 8),
+        axis.title.y = element_text(size = 8),
+        axis.text.x = element_text(size = 6),
+        axis.text.y = element_text(size = 6),
+        legend.title = element_text(size = 8),
+        legend.text = element_text(size = 6),
+        strip.text = element_text(size = 8),
+        legend.position = "none")
 density.adjusted
 ggsave("../Figures/density_adjusted.pdf", width = 17, height = 9, units = "cm", dpi = 900)
 ggsave("../Figures/density_adjusted.png", width = 17, height = 9, units = "cm", dpi = 900)
@@ -464,54 +473,58 @@ label.text.adjusted <- map_chr(sorted.langs.adjusted$language, function(x){
 # Manual fix for labels in plot
 label.text[which(label.text == "Shipibo-Conibo")] <- "Shipibo\nConibo"
 label.text[which(label.text == "Waorani")] <- "      Waorani"
+label.text[which(label.text == "Thai (Korat variety)")] <- "Thai\n(Korat)"
+label.text.adjusted[which(label.text.adjusted == "Thai (Korat variety)")] <- "Thai\n(Korat)"
 
 # Plot languages as scatter in y axis of typicality.
 scatter.original <- ggplot(data = plot.data, aes(y = Mean, x = language, color = class, shape = class,
                                     group = class)) +
   labs(x = 'Language',
        y = 'Mean Typicality') +
-  geom_point(aes(fill = class), color = palette_line, size = .75) +
+  geom_point(aes(fill = class), size = .75) +
   geom_vline(aes(xintercept = include), size = 0.2, color = palette_line) + 
-  geom_hline(linetype = 'solid', yintercept = 0, color = palette_line) +
-  scale_fill_manual(name = "Category", values = c(palette_a_t[1], palette_a_t[2])) + 
-  scale_shape_manual(name = "Category", values = c(23, 24)) +
+  geom_hline(linetype = 'solid', yintercept = 0, color = palette_line, size = .2) +
+  scale_color_manual(name = "Category", values = c(palette_a_t[1], palette_a_t[2])) + 
+  scale_shape_manual(name = "Category", values = c(18, 17)) +
   scale_x_discrete(name = "", labels = label.text) +
   cowplot::theme_cowplot() + 
   expand_limits(x = -1) +
   expand_limits(x = 228) + 
-  theme(axis.title.x = element_text(size = 8),
-        axis.title.y = element_text(size = 6),
-        axis.text.x = element_text(size = 6),
-        axis.text.y = element_text(size = 6),
-        legend.title = element_text(size = 8),
-        legend.text = element_text(size = 6),
-        strip.text = element_text(size = 8),
-        axis.ticks.x = element_blank())
+  theme(
+    legend.position = "none",
+    axis.title.x = element_text(size = 8),
+    axis.title.y = element_text(size = 6),
+    axis.text.x = element_text(size = 6),
+    axis.text.y = element_text(size = 6),
+    strip.text = element_text(size = 8),
+    axis.ticks.x = element_blank()
+    )
 scatter.original
 ggsave("../Figures/scatter_original.pdf", width = 17, height = 7, units = "cm", dpi = 900)
 ggsave("../Figures/scatter_original.png", width = 17, height = 7, units = "cm", dpi = 900)
 
 scatter.adjusted <- ggplot(data = plot.data.adjusted, aes(y = Mean, x = language, color = class, shape = class,
-                                    group = class)) +
+                                                 group = class)) +
   labs(x = 'Language',
        y = 'Mean Typicality') +
-  geom_point(aes(fill = class), color = palette_line, size = .75) +
-  geom_vline(aes(xintercept = include), size = .2, color = palette_line) + 
-  geom_hline(linetype = 'solid', yintercept = 0, color = palette_line) +
-  scale_fill_manual(name = "Category", values = c(palette_a_t[1], palette_a_t[2])) + 
-  scale_shape_manual(name = "Category", values = c(23, 24)) +
+  geom_point(aes(fill = class), size = .75) +
+  geom_vline(aes(xintercept = include), size = 0.2, color = palette_line) + 
+  geom_hline(linetype = 'solid', yintercept = 0, color = palette_line, size = .2) +
+  scale_color_manual(name = "Category", values = c(palette_a_t[1], palette_a_t[2])) + 
+  scale_shape_manual(name = "Category", values = c(18, 17)) +
   scale_x_discrete(name = "", labels = label.text.adjusted) +
   cowplot::theme_cowplot() + 
   expand_limits(x = -1) +
   expand_limits(x = 228) + 
-  theme(axis.title.x = element_text(size = 8),
-        axis.title.y = element_text(size = 6),
-        axis.text.x = element_text(size = 6),
-        axis.text.y = element_text(size = 6),
-        legend.title = element_text(size = 8),
-        legend.text = element_text(size = 6),
-        strip.text = element_text(size = 8),
-  axis.ticks.x = element_blank())
+  theme(
+    legend.position = "none",
+    axis.title.x = element_text(size = 8),
+    axis.title.y = element_text(size = 6),
+    axis.text.x = element_text(size = 6),
+    axis.text.y = element_text(size = 6),
+    strip.text = element_text(size = 8),
+    axis.ticks.x = element_blank()
+    )
 scatter.adjusted
 ggsave("../Figures/scatter_adjusted.pdf", width = 17, height = 7, units = "cm", dpi = 900)
 ggsave("../Figures/scatter_adjusted.png", width = 17, height = 7, units = "cm", dpi = 900)
@@ -538,6 +551,7 @@ get.typicality.stats <- function(this.language, distances.df){
     summarize(mean.typicality = mean(typicality)) %>% 
     spread(class, mean.typicality) %>% 
     mutate(language = this.language,
+           difference = abs(Action - Thing),
            p.value = p.value[1], 
            Z = Z.value[[1]], 
            eta.squared = eta.squared[[1]], 
@@ -604,8 +618,10 @@ purrr::map2_dfr(test.languages, list(all.distances.adjusted), get.typicality.sta
 # repeated.neighbor.adjusted %>% write_rds("../Data/Processed/neighbor_adjusted.Rds")
 
 # Load data generated from previous lines
-repeated.neighbor <- read_rds("../Data/Processed/neighbor_original.Rds")
-repeated.neighbor.adjusted <- read_rds("../Data/Processed/neighbor_adjusted.Rds")
+repeated.neighbor <- read_rds("../Data/Processed/neighbor_original.Rds") %>% 
+  filter(language != "Chechen (Akkin dialect)")
+repeated.neighbor.adjusted <- read_rds("../Data/Processed/neighbor_adjusted.Rds") %>% 
+  filter(language != "Chechen (Akkin dialect)")
 
 # For hypothesis testing, generate a permutation-based null distribution. This
 # involves running, for each language in both original and adjusted datasets,
@@ -669,8 +685,10 @@ repeated.neighbor.adjusted <- read_rds("../Data/Processed/neighbor_adjusted.Rds"
 # neighbor.mc.adjusted %>%
 # write_rds("../Data/Processed/neighbor_mc_adjusted.Rds")
 
-neighbor.mc <- read_rds("../Data/Processed/neighbor_mc_original.Rds")
-neighbor.mc.adjusted <- read_rds("../Data/Processed/neighbor_mc_adjusted.Rds")
+neighbor.mc <- read_rds("../Data/Processed/neighbor_mc_original.Rds") %>% 
+  filter(language != "Chechen (Akkin dialect)")
+neighbor.mc.adjusted <- read_rds("../Data/Processed/neighbor_mc_adjusted.Rds") %>% 
+  filter(language != "Chechen (Akkin dialect)")
 
 # Generate 99% normal confidence intervals for the proportion of words with same category nearest neighbor
 neighbor.stats <- repeated.neighbor %>%
@@ -709,10 +727,6 @@ neighbor.test.adjusted <- neighbor.test.adjusted %>%
 
 # Check statistics for reference languages. For "baseline" performance for each
 # language, take 1 SD above the mean of the shuffles.
-neighbor.test %>% 
-  filter(language %in% test.languages)
-neighbor.test.adjusted %>% 
-  filter(language %in% test.languages)
 neighbor.stats %>% 
   filter(language %in% test.languages)
 neighbor.stats.adjusted %>% 
@@ -725,6 +739,11 @@ neighbor.mc.adjusted %>%
   filter(language %in% test.languages) %>%
   group_by(language, ontological.category) %>%
   summarize(random = mean(random) + sd(random))
+neighbor.test %>% 
+  filter(language %in% test.languages)
+neighbor.test.adjusted %>% 
+  filter(language %in% test.languages)
+
 
 # Check proportion of languages that have p < 0.01
 neighbor.test %>%
@@ -766,10 +785,10 @@ neighbor.original <- neighbor.plot %>%
   mutate(height = Lower - random) %>% 
   ggplot(aes(x = language, y = height, ymin = Lower, ymax = Upper, fill = ontological.category)) +
   geom_bar(stat = "identity", width = 1,
-           size = .25, color = palette_line) +
-  scale_x_discrete(name = "", labels = function(x){ifelse(x %in% test.languages, str_wrap(as.character(x), 10), "")}) +
-  facet_wrap(vars(ontological.category), ncol = 1) +
-  scale_y_continuous(expand = c(0, 0), name = "Proportion of same neighbor - MC") +
+           size = .25) +
+  scale_x_discrete(name = "", labels = rep("", 226)) +
+  facet_wrap(vars(ontological.category), ncol = 2) +
+  scale_y_continuous(expand = c(0, 0), name = "Same Neighbor") +
   scale_fill_manual(values = c(palette_a_t[1], palette_a_t[2])) +
   cowplot::theme_cowplot() +
   cowplot::panel_border() +
@@ -793,10 +812,10 @@ neighbor.adjusted <- neighbor.plot.adjusted %>%
   mutate(height = Lower - random) %>% 
   ggplot(aes(x = language, y = height, ymin = Lower, ymax = Upper, fill = ontological.category)) +
   geom_bar(stat = "identity", width = 1,
-           size = .25, color = palette_line) +
-  scale_x_discrete(name = "", labels = function(x){ifelse(x %in% test.languages, str_wrap(as.character(x), 10), "")}) +
-  facet_wrap(vars(ontological.category), ncol = 1) +
-  scale_y_continuous(expand = c(0, 0), name = "Proportion of same neighbor - MC") +
+           size = .25) +
+  scale_x_discrete(name = "", labels = rep("", 226)) +
+  facet_wrap(vars(ontological.category), ncol = 2) +
+  scale_y_continuous(expand = c(0, 0), name = "Same Neighbor") +
   scale_fill_manual(values = c(palette_a_t[1], palette_a_t[2])) +
   cowplot::theme_cowplot() +
   cowplot::panel_border() +
@@ -816,7 +835,7 @@ neighbor.adjusted
 ggsave("../Figures/neighbor_adjusted_diff.pdf", width = 17, height = 7, units = "cm", dpi = 900)
 ggsave("../Figures/neighbor_adjusted_diff.png", width = 17, height = 7, units = "cm", dpi = 900)
 
-cowplot::plot_grid(neighbor.original, neighbor.adjusted, nrow = 1, labels = c("A", "B"))
+cowplot::plot_grid(neighbor.original, neighbor.adjusted, nrow = 2, labels = c("A", "B"))
 
 ggsave("../Figures/neighbor_panel_diff.pdf", width = 17, height = 7, units = "cm", dpi = 900)
 ggsave("../Figures/neighbor_panel_diff.png", width = 17, height = 7, units = "cm", dpi = 900)
@@ -903,8 +922,17 @@ bootstrapped.cis <- function(rnn.language){
 # rnn.stats.adjusted %>%
 #   write_rds("../Data/Processed/boot_ci_fold_adjusted.rds")
 
-rnn.stats <- read_rds("../Data/Processed/boot_ci_fold_original.rds")
-rnn.stats.adjusted <- read_rds("../Data/Processed/boot_ci_fold_adjusted.rds")
+rnn.stats <- read_rds("../Data/Processed/boot_ci_fold_original.rds") %>% 
+  #  This language is in the bootstrap, but it's not part of the languages considered.
+  filter(Language != "Chechen (Akkin dialect)") 
+non.adjusted.stats <- rnn.stats %>% 
+  filter(Language %in% no.marker.group)
+
+rnn.stats.adjusted <- read_rds("../Data/Processed/boot_ci_fold_adjusted.rds") %>% 
+  #  This language is in the bootstrap, but it's not part of the languages considered.
+    filter(Language != "Chechen (Akkin dialect)")  %>% 
+    filter(!(Language %in% no.marker.group)) %>%   # Remove languages that weren't adjusted
+    bind_rows(non.adjusted.stats)  # Add the non-adjusted languages CIs.
 
 # Mark each result as whether the bootstrapped CI for the Matthews Correlation
 # Coefficient include a baseline of 0.1 or not. 
@@ -953,14 +981,13 @@ rnn.original <- ggplot(data = matthews.plot, aes(x = Language, ymin = Matthews.L
   geom_vline(aes(xintercept = include), linetype = "dotted", size = .5, color = palette_line) +
   geom_linerange(size = 0.5, color = palette_line) +
   geom_point(shape = 22, size = .75, color = palette_line) + 
-  geom_hline(yintercept = 0, size = 1) + 
-  geom_hline(yintercept = 0.1, linetype = "dashed", size = 1, color = palette_line) +
+  geom_hline(yintercept = 0.1, size = .75, color = palette_line) +
   scale_x_discrete(name = "Language", labels = function(x){ifelse(x %in% test.languages,
                                                                   str_wrap(as.character(x), 10), "")}) +
   expand_limits(x = -1) +
   expand_limits(x = 229) + 
   cowplot::theme_cowplot()  + 
-  scale_fill_manual(name = "Includes baseline", values = c(palette_other[3], palette_other[2])) +
+  scale_fill_manual(name = "Includes baseline", values = c(palette_world, palette_other[1])) +
   theme(axis.title.x = element_blank(),
         axis.title.y = element_text(size = 8),
         axis.text.x = element_text(size = 6),
@@ -969,7 +996,8 @@ rnn.original <- ggplot(data = matthews.plot, aes(x = Language, ymin = Matthews.L
         legend.text = element_text(size = 6),
         strip.text = element_text(size = 8),
         axis.ticks.x = element_blank(),
-        legend.position = "none")
+        legend.position = "none") +
+  labs(y = "Learning Performance (MCC)")
 rnn.original
 ggsave("../Figures/rnn_original.pdf", width = 17, height = 7, units = "cm", dpi = 900)
 ggsave("../Figures/rnn_original.png", width = 17, height = 7, units = "cm", dpi = 900)
@@ -983,20 +1011,23 @@ matthews.plot.adjusted <- rnn.stats.adjusted %>%
                              as.character(Language), ""),
          include = ifelse(lang.label == "", NA, Language))
 
-
 rnn.adjusted <- ggplot(data = matthews.plot.adjusted, aes(x = Language, ymin = Matthews.Lower, ymax = Matthews.Upper,
                                                  y = Matthews, fill = includes.baseline)) + 
   geom_vline(aes(xintercept = include), linetype = "dotted", size = .5, color = palette_line) +
   geom_linerange(size = 0.5, color = palette_line) +
   geom_point(shape = 22, size = .75, color = palette_line) + 
-  geom_hline(yintercept = 0, size = 1) + 
-  geom_hline(yintercept = 0.1, linetype = "dashed", size = 1, color = palette_line) +
-  scale_x_discrete(name = "Language", labels = function(x){ifelse(x %in% test.languages,
-                                                                  str_wrap(as.character(x), 10), "")}) +
+  geom_hline(yintercept = 0.1, size = .75, color = palette_line) +
+  scale_x_discrete(name = "Language", labels = function(x){
+    ifelse(x %in% test.languages,
+           ifelse(x == "Shipibo-Conibo",  "            Shipibo\n            Conibo",
+           str_wrap(as.character(x), 10))
+           , "")
+    
+    }) +
   expand_limits(x = -1) +
   expand_limits(x = 229) + 
   cowplot::theme_cowplot()  + 
-  scale_fill_manual(name = "Includes baseline", values = c(palette_other[3], palette_other[2])) +
+  scale_fill_manual(name = "Includes baseline", values = c(palette_world, palette_other[1])) +
   theme(axis.title.x = element_blank(),
         axis.title.y = element_text(size = 8),
         axis.text.x = element_text(size = 6),
@@ -1005,7 +1036,8 @@ rnn.adjusted <- ggplot(data = matthews.plot.adjusted, aes(x = Language, ymin = M
         legend.text = element_text(size = 6),
         strip.text = element_text(size = 8),
         axis.ticks.x = element_blank(),
-        legend.position = "none")
+        legend.position = "none") +
+  labs(y = "Learning Performance (MCC)")
 rnn.adjusted
 
 ggsave("../Figures/rnn_adjusted.pdf", width = 17, height = 7, units = "cm", dpi = 900)
@@ -1044,6 +1076,19 @@ for(file in list.files('../Results/Spurt-Adjusted//', recursive = T, full.names 
 #   write_rds("../Data/Processed/boot_ci_spurt_original.rds")
 # spurt.stats.adjusted %>%
 #   write_rds("../Data/Processed/boot_ci_spurt_adjusted.rds")
+
+spurt.stats <- read_rds("../Data/Processed/boot_ci_spurt_original.rds")
+non.adjusted.spurt <- spurt.stats %>% 
+  filter(Language %in% no.marker.group) %>% 
+  #  This language is in the bootstrap, but it's not part of the languages considered.
+  filter(Language != "Chechen (Akkin dialect)") 
+
+spurt.stats.adjusted <- read_rds("../Data/Processed/boot_ci_spurt_adjusted.rds") %>% 
+  filter(!(Language %in% no.marker.group)) %>%   # Remove languages that weren't adjusted
+  filter(Language != "Chechen (Akkin dialect)") %>% 
+  bind_rows(non.adjusted.spurt)  # Add the non-adjusted languages CIs.
+
+
 
 spurt.stats <- read_rds("../Data/Processed/boot_ci_spurt_original.rds")
 spurt.stats.adjusted <- read_rds("../Data/Processed/boot_ci_spurt_adjusted.rds")
@@ -1093,8 +1138,13 @@ spurt.original <- ggplot(data = spurt.plot, aes(x = Language, ymin = Matthews.Lo
   geom_point(shape = 22, size = .75, color = palette_line) + 
   geom_hline(yintercept = 0, size = 1) + 
   geom_hline(yintercept = 0.1, linetype = "dashed", size = .5, color = palette_line) +
-  scale_x_discrete(name = "Language", labels = function(x){ifelse(x %in% test.languages,
-                                                                  str_wrap(as.character(x), 10), "")}) +
+  scale_x_discrete(name = "Language", labels = function(x){
+    ifelse(x %in% test.languages,
+           ifelse(x == "Sirionó",  "            Sirionó",
+                  str_wrap(as.character(x), 10))
+           , "")
+    
+  }) +
   expand_limits(x = -1) +
   expand_limits(x = 229) + 
   cowplot::theme_cowplot()  + 

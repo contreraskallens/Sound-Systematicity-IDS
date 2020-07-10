@@ -439,6 +439,11 @@ marker.census <-full_join(action.census, thing.census)
 all.marker.group <- unique(marker.census$language)
 # Make an "empty" census for languages with no markers removed.
 no.marker.group <- setdiff(unique(all.phon$language), all.marker.group)
+
+# Save unmodified languages for reference
+no.marker.group %>% 
+ write_rds("../Data/Processed/no_marker_group.rds")
+
 no.marker.group.table <- tibble(language = no.marker.group, Affixes.Removed.Action = 0,
                                 Suffixes.Removed.Action = 0, Affixes.Removed.Thing = 0, 
                                 Suffixes.Removed.Thing = 0)
@@ -475,7 +480,7 @@ adjusted.number.words <- all.phon.adjusted %>% group_by(language) %>% summarize(
 
 marker.census.complete <- left_join(marker.census.complete, original.number.words) %>% 
   left_join(adjusted.number.words) %>% 
-  left_join(select(phon.languages, language = Name, Family = family)) %>% 
+  left_join(select(all.languages, language = Name, Family = family)) %>% 
   left_join(homophone.census) %>% 
   select(language, Family, everything())
 
