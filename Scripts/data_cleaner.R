@@ -1,57 +1,110 @@
-require(tidyverse)
+library(tidyverse)
 
 # Loading and coding data language data  -----------------------------------------------
 
 # Construct list of languages and language data
 
+
+# All languages reference to Glottolog was hand fixed for the following languages after it was found they didn't coincide with the codes in glottocode.
+# Both Armenians, 
 all.languages <- read_csv("../Data/IDS/languages.csv") %>% 
   mutate(ID = factor(ID))
+
 glottocode <- read_csv("../Data/IDS/Glottocode.csv") %>% 
-  select(id, family_id, parent_id, latitude, longitude, iso639P3code, country_ids)
-wals <- read_csv('../Data/Processed/wals_ids.csv') %>% 
-  select(-Name) %>% 
-  rename(Name = IDS_NAME)
+  select(Glottocode = id, family_id, parent_id, latitude, longitude, iso639P3code, country_ids)
+wals <- read_csv('../Data/Processed/WALS_Codes.csv') %>% 
+  select(Name, wals_code = `WALS code`, ID) %>% 
+  mutate(ID = as.factor(ID))
+wals_info <- read_csv("../Data/WALS/walslanguage.csv")
 
 # get list of included languages
 
 included.languages <- read_csv("../Data/Processed/included_languages.txt", comment = "#", col_names = "Name", quote = "\"")
 
-# Match WALS and IDS by using the IDS name variable (hand-coded) in wals_ids.csv
+# Match WALS and IDS by using the WALS CODE (hand-coded) in wals_codes.csv
+
 
 all.languages <- all.languages %>% 
-  # get rid of information that's better on WALS
-  select(-Macroarea, -Latitude, -Longitude) %>% 
   filter(Name %in% included.languages$Name) %>% 
-  left_join(select(wals, wals_code, iso_code, Name, glottocode, latitude, longitude, genus, family, macroarea, countrycodes)) %>% 
-  arrange(Name)
-not.on.wals <- which(is.na(all.languages$wals_code)) %>% 
-  all.languages[.,] %>% 
-  select(-longitude, -latitude)
-all.languages <- all.languages[which(!(is.na(all.languages$wals_code))),]
-not.on.wals <- not.on.wals %>% 
-  bind_cols(glottocode[match(not.on.wals$Glottocode, glottocode$id),])
-
-not.on.wals <- not.on.wals %>% 
-  # genus gets very messy very fast, just hand-recode family
-  mutate(family = family_id, iso_code = iso639P3code, countrycodes = country_ids)
+  left_join(wals) %>% 
+  select(-Macroarea)
+not.on.wals <- all.languages %>% 
+  filter(is.na(wals_code))
 
 all.languages <- all.languages %>% 
-  bind_rows(select(not.on.wals, colnames(all.languages))) %>% 
+  filter(!(is.na(wals_code))) %>% 
+  # get rid of information that's better on WALS
+  select(-Latitude, -Longitude) %>% 
+  left_join(select(wals_info, wals_code, latitude, longitude, genus, family))
+
+# Look at families as a proportion of total families in wals
+
+total.families.wals <- na.omit(wals_info$family) %>% 
+  unique() %>% 
+  length()
+
+families.in.data <- na.omit(all.languages$family) %>% 
+  unique() %>% 
+  length()
+
+families.in.data / total.families.wals
+
+# Get info of languages not in WALS from Glottolog using Glottocode
+
+not.on.wals <- left_join(not.on.wals, glottocode) %>% 
+  select(-Latitude, -Longitude, -iso639P3code, family = family_id, genus = parent_id, - country_ids)
+not.on.wals$family[which(is.na(not.on.wals$family))] <- "book1242" # Assign the missing Sanapana to bookkeeping too
+not.on.wals$genus[which(is.na(not.on.wals$genus))] <- "book1242" # Assign the missing Sanapana to bookkeeping too
+
+
+not.on.wals <- not.on.wals %>% 
   mutate(family = recode(family, 
-                  aust1305 = "Austro-Asiatic",
-                  aust1307 = "Austronesian",
-                  nakh1245 = "Nakh-Daghestanian",
-                  indo1319 = "Indo-European",
-                  pano1259 = "Panoan",
-                  taik1256 = "Tai-Kadai",
-                  otom1299 = "Otomanguean",
-                  araw1281 = "Arawakan",
-                  afro1255 = "Afro-Asiatic",
-                  book1242 = "Bookkeeping",
-                  nubi1251 = "Nubian",
-                  jodi1234 = "Jodi-Saliban",
-                  other = "Creoles and Pidgins")) # other recodes Jamaican Creole
-all.languages$family[which(is.na(all.languages$family))] <- "Bookkeeping" # Assign the missing Sanapana to bookkeeping too
+                         afro1255 = "Afro-Asiatic",
+                         araw1281 = "Arawakan",
+                         aust1305 = "Austro-Asiatic",
+                         book1242 = "Bookkeeping",
+                         indo1319 = "Indo-European",
+                         jodi1234 = "Jodi-Saliban",
+                         nakh1245 = "Nakh-Daghestanian",
+                         pano1259 = "Panoan",
+                         taik1256 = "Tai-Kadai"),
+
+         genus = recode(genus,
+                        "boly1240" = "Pakanic",
+                        "book1242" = "Bookkeeping",
+                        "botl1243" = "Avar-Andic-Tsezic",
+                        "bula1260" = "Palaung-Khmuic",
+                        "cauc1242" = "Iranian",
+                        "chut1252" = "Chutic",
+                        "iran1269" = "Iranian",
+                        "jodi1234" = "Jodi-Saliban",
+                        "khao1243" = "Palaung-Khmuic",
+                        "laot1235" = "Kam-Tai",
+                        "male1282" = "Chutic",
+                        "mang1377" = "Mangic",
+                        "maru1251" = "Panoan",
+                        "moxo1234" = "Bolivia-Parana",
+                        "nort2739" = "Kam-Tai",
+                        "nort2744" = "Kadai",
+                        "nucl1728" = "Indic",
+                        "nyam1284" = "West Chadic",
+                        "pare1275" = "Alto Orinoco",
+                        "pear1246" = "Pearic", 
+                        "pram1235" = "Palaung-Khmuic",
+                        "sout2744" = "Kam-Tai",
+                        "sout3232" = "Palaung-Khmuic",
+                        "viet1250" = "Cuoi",
+                        "west2394" = "Pearic")
+  )
+         
+
+all.languages <- all.languages %>% 
+  bind_rows(not.on.wals)
+
+all.languages$family %>% 
+  unique() %>% 
+  length()
+
 
 # save relevant data on new file
 
@@ -59,6 +112,9 @@ all.languages <- all.languages %>%
   select(ID, Name, iso_code, latitude, longitude, family, macroarea, countrycodes)
 all.languages %>% 
   write_csv("../Data/Processed/all_language_info.csv")
+
+wals$family %>% unique
+
 
 # Loading and coding word data  -----------------------------------------------
 
@@ -489,3 +545,125 @@ marker.census.complete <- mutate_if(.tbl = marker.census.complete, .predicate = 
 
 write_csv(marker.census.complete, "../Data/Processed/marker_census.csv")
 write_csv(all.phon.adjusted, "../Data/Processed/all_phon_adjusted.csv")
+
+
+
+
+# ---------------
+
+library(ggdendro)
+
+library(cluster)
+library(geosphere)
+
+reduced <- select(all.languages, Name,longitude, latitude) %>% 
+  filter(complete.cases(.))
+geo.matrix <- as.matrix(select(reduced, longitude, latitude))
+row.names(geo.matrix) <- reduced$Name
+
+
+geo.distance <- function(x){
+  print('be')
+  distance <- distm(x)
+  distance <-  as.dist(distance)
+  return(distance)
+}
+
+geo.hclust <- function(x){
+  return(hclust(x, method = "ward.D2"))
+}
+
+geo.matrix <- distm(geo.matrix)
+row.names(geo.matrix) <- reduced$Name
+geo.matrix <- as.dist(geo.matrix)
+
+cluster.regions <- hclust(geo.matrix, method = "ward.D2")
+
+silhouettes <- map_dbl(2:100, function(i){
+  silhouette(cutree(cluster.regions, k = i), dist = geo.matrix) %>% as.matrix %>% .[,"sil_width"] %>% mean %>% return
+  })
+silhouettes <- silhouettes %>% enframe %>% mutate(name = 2:100)
+ggplot(silhouettes, aes(x = name, y = value)) + geom_point() + geom_label(aes(label = name))
+
+
+col_vector<-c('#e6194b', 
+              '#3cb44b', 
+              '#ffe119', 
+              '#4363d8', 
+              '#f58231', 
+              '#911eb4', 
+              '#46f0f0', 
+              '#f032e6', 
+              '#bcf60c', 
+              '#fabebe', 
+              '#008080', 
+              '#e6beff', 
+              '#9a6324', 
+              '#fffac8', 
+              '#800000', 
+              '#aaffc3', 
+              '#808000', 
+              '#ffd8b1', 
+              '#000075', 
+              '#808080')
+
+
+
+language.groups <- reduced %>% 
+  add_column(geo.cluster = cutree(cluster.regions, k = 20)) %>% 
+  select(Name, geo.cluster) %>% 
+  mutate(geo.cluster = factor(geo.cluster)) %>% 
+  right_join(all.languages)
+
+hull <- language.groups %>% 
+  filter(!(is.na(geo.cluster))) %>% 
+  group_by(geo.cluster) %>% 
+  slice(chull(longitude, latitude))
+
+# manually modify to avoid weird cluster 12
+
+cluster.12 <- hull %>% 
+  filter(geo.cluster == "12")
+
+hull <- hull %>% 
+  filter(geo.cluster != "12")
+
+cluster.12.right <- cluster.12 %>% 
+  filter(Name != "Tongan") %>% 
+  group_by() %>% 
+  add_row(latitude = -19, longitude = 179) %>% 
+  add_row(latitude = -30, longitude = 179)
+
+cluster.12.left <- cluster.12 %>% 
+  filter(Name == "Tongan") %>% 
+  group_by() %>% 
+  add_row(latitude = -19, longitude = -179) %>% 
+  add_row(latitude = -30, longitude = -179)
+
+library(rnaturalearth)
+world <- ne_coastline(scale = "medium", returnclass = "sf")
+
+ggplot(data = world) +
+  geom_sf(size = 0.1, alpha = 0.9) +
+  coord_sf(ylim = c(-50, 90)) +
+  geom_jitter(data = language.groups, aes(x = longitude, y = latitude), color = c("#62c08f"),
+              size = 1, shape = 16) +
+  cowplot::theme_map()
+ggsave("../Figures/world_map.png", width = 8.7, height = 7, units = "cm", dpi = 300)
+
+ggplot(data = world) +
+  geom_sf(size = 0.1, alpha = 0.9) +
+  coord_sf(ylim = c(-50, 90)) +
+  geom_jitter(data = language.groups, aes(x = longitude, y = latitude, color = geo.cluster), 
+              size = 1, shape = 16) + 
+  geom_polygon(data = hull, aes(x = longitude, y = latitude, fill = geo.cluster), alpha = 0.5) +
+  geom_polygon(data = cluster.12.right, fill = col_vector[12], aes(x = longitude, y = latitude), alpha = 0.5) +
+  scale_color_manual(values = col_vector) +
+  scale_fill_manual(values = col_vector[-12]) +
+  geom_polygon(data = cluster.12.left, fill = col_vector[12], aes(x = longitude, y = latitude), alpha = 0.5) +
+  cowplot::theme_map() +
+  theme(legend.position = "none")
+
+ggsave("../Figures/geo_cluster_map.png", width = 17, height = 9, units = "cm", dpi = 900)
+
+language.groups %>% write_csv("language_groups.csv")

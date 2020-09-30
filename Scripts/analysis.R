@@ -7,6 +7,7 @@ library(wesanderson)
 library(effsize)
 library(cowplot)
 library(coin)
+library(Hmisc)
 set.seed(1)
 
 
@@ -129,6 +130,9 @@ all.phon <- read_csv('../Data/Processed/all_phon.csv')
 all.phon.adjusted <- read_csv("../Data/Processed/all_phon_adjusted.csv")
 phon.languages <- read_csv('../Data/Processed/all_language_info.csv')
 no.marker.group <- read_rds("../Data/Processed/no_marker_group.rds")
+language.groups <- read_csv("language_groups.csv") %>% 
+  select(language = Name, geo.cluster, family, genus) %>% 
+  mutate(geo.cluster = factor(geo.cluster))
 
 
 # Basic descriptive statistics of the features of wordlists ------
@@ -284,11 +288,11 @@ all.distances.adjusted <- map_dfr(.x = unique(all.phon.adjusted$language),
 # Get tipicality stats for each class in each language
 all.distances %>%
   group_by(class) %>%
-  summarize(median.typicality = median(typicality),
+  dplyr::summarize(median.typicality = median(typicality),
             Inter.Quantile.Range = IQR(typicality))
 all.distances.adjusted %>%
   group_by(class) %>%
-  summarize(median.typicality = median(typicality),
+  dplyr::summarize(median.typicality = median(typicality),
             Inter.Quantile.Range = IQR(typicality))
 
 # Kruskal-wallis of all languages of typicality differences between Action,
@@ -299,6 +303,7 @@ three.way.test <- all.distances %>%
 three.way.test.adjusted <- all.distances.adjusted %>%
  mutate(class = factor(class)) %>%
  coin::kruskal_test(data = ., typicality ~ class)
+
 
 # Get the effect size of k-w test according to
 # http://tss.awf.poznan.pl/files/3_Trends_Vol21_2014__no1_20.pdf
@@ -331,20 +336,127 @@ eta.squared.action.thing.adjusted <- (Z.action.thing.adjusted ^ 2) / (nrow(filte
 
 # Also get Cohen's d of the two distributions
 d.action.thing.original <- effsize::cohen.d(data = filter(all.distances, class != "Other"), typicality ~ class)
+print(abs(d.action.thing.original$estimate))
 d.action.thing.adjusted <-effsize::cohen.d(data = filter(all.distances.adjusted, class != "Other"), typicality ~ class)
+print(abs(d.action.thing.adjusted$estimate))
+
+all.distances.adjusted <- all.distances.adjusted %>% 
+  left_join(language.groups)
+
+family.stats <- map_dfr(1:1000, function(i){
+  if(i %% 50 == 0){print(i)}
+  this.sample <- language.groups %>% 
+    group_by(family) %>% 
+    sample_n(1) %>% 
+    .$Name
+  this.sample.distances <- all.distances.adjusted %>% 
+    filter(language %in% this.sample, class != "Other")
+  
+  this.wilcox <- this.sample.distances %>%
+    mutate(class = factor(class)) %>%
+    coin::wilcox_test(data = ., typicality ~ class)
+  this.z <- coin::statistic(this.wilcox, type = "standardized")
+  eta.squared <- (this.z ^ 2) / (nrow(this.sample.distances)) 
+  this.sample.d <-  effsize::cohen.d(data = this.sample.distances, typicality ~ class)
+  stats <- tibble(eta = eta.squared, d = abs(this.sample.d$estimate))
+  return(stats)
+})
+
+print("Median of family permutation")
+median(family.stats$eta)
+print("IQR of family permutation")
+IQR(family.stats$eta)
+print("Actual measure")
+eta.squared.action.thing.adjusted
+
+print("Median of family permutation")
+median(family.stats$d)
+print("IQR of family permutation")
+IQR(family.stats$d)
+print("Actual measure")
+abs(d.action.thing.adjusted$estimate)
+
+
+family.stats %>% 
+  ggplot(aes(x = eta)) + 
+  geom_histogram(bins = 50, color = palette_line, fill = palette_other[2]) +
+  cowplot::theme_cowplot() + 
+  geom_vline(xintercept = eta.squared.action.thing.adjusted, size = 3, color = "red") +
+  geom_vline(xintercept = median(family.stats$eta), color = "blue", linetype = "dashed", size = 3)
+ggsave("../Figures/family_eta.png")
+
+family.stats %>% 
+  ggplot(aes(x = d)) + 
+  geom_histogram(bins = 50, color = palette_line, fill = palette_other[2]) +
+  cowplot::theme_cowplot() + 
+  geom_vline(xintercept = abs(d.action.thing.adjusted$estimate), size = 3, color = "red") +
+  geom_vline(xintercept = median(family.stats$d), color = "blue", linetype = "dashed", size = 3)
+ggsave("../Figures/family_d.png")
+
+
+region.stats <- map_dfr(1:1000, function(i){
+  if(i %% 50 == 0){print(i)}
+  this.sample <- language.groups %>% 
+    filter(!is.na(geo.cluster)) %>% 
+    group_by(geo.cluster) %>% 
+    sample_n(1) %>% 
+    .$Name
+  this.sample.distances <- all.distances.adjusted %>% 
+    filter(language %in% this.sample, class != "Other")
+  
+  this.wilcox <- this.sample.distances %>%
+    mutate(class = factor(class)) %>%
+    coin::wilcox_test(data = ., typicality ~ class)
+  this.z <- coin::statistic(this.wilcox, type = "standardized")
+  eta.squared <- (this.z ^ 2) / (nrow(this.sample.distances)) 
+  this.sample.d <-  effsize::cohen.d(data = this.sample.distances, typicality ~ class)
+  stats <- tibble(eta = eta.squared, d = abs(this.sample.d$estimate))
+  return(stats)
+})
+
+
+print("Median of region permutation")
+median(region.stats$eta)
+print("IQR of region permutation")
+IQR(region.stats$eta)
+print("Actual measure")
+eta.squared.action.thing.adjusted
+
+print("Median of region permutation")
+median(region.stats$d)
+print("IQR of region permutation")
+IQR(region.stats$d)
+print("Actual measure")
+abs(d.action.thing.adjusted$estimate)
+
+
+
+region.stats %>% 
+  ggplot(aes(x = eta)) + 
+  geom_histogram(bins = 50, color = palette_line, fill = palette_other[2]) +
+  cowplot::theme_cowplot() + 
+  geom_vline(xintercept = eta.squared.action.thing.adjusted, size = 3, color = "red") +
+  geom_vline(xintercept = median(region.stats$eta), color = "blue", linetype = "dashed", size = 3)
+ggsave("../Figures/region_eta.png")
+
+region.stats %>% 
+  ggplot(aes(x = d)) + 
+  geom_histogram(bins = 50, color = palette_line, fill = palette_other[2]) +
+  cowplot::theme_cowplot() + 
+  geom_vline(xintercept = abs(d.action.thing.adjusted$estimate), size = 3, color = "red") +
+  geom_vline(xintercept = median(region.stats$d), color = "blue", linetype = "dashed", size = 3)
+ggsave("../Figures/region_d.png")
+
 
 # Plotting languages and typicality ----------------------------------------------------------------
 
 # World map with languages
 
 ## Get coordinates from phon.languages. They were obtained through WALS.
-languages.x <- phon.languages$longitude
-languages.y <- phon.languages$latitude
 
-ggplot() +
-  borders("world", colour =  palette_world[1], fill = palette_world[1], size = .2) + # create a layer of borders
-  geom_jitter(aes(x = languages.x, y = languages.y), 
-              fill = palette_other[2], size = .5, shape = 16, color = palette_line) +
+ggplot(phon.languages, aes(x = longitude, y = latitude)) +
+  borders("world", colour =  palette_line[1], size = .2, alpha = 0.9) + # create a layer of borders
+  geom_jitter(fill = palette_other[1], size = 1, shape = 16, color = palette_world) +
   cowplot::theme_map()
 
 ggsave("../Figures/world_map.eps", width = 8.7, height = 7, units = "cm")
@@ -370,8 +482,7 @@ density.original <- all.distances %>%
         axis.text.y = element_text(size = 6),
         legend.title = element_text(size = 8),
         legend.text = element_text(size = 6),
-        strip.text = element_text(size = 8),
-        legend.position = "none")
+        strip.text = element_text(size = 8))
 density.original
 ggsave("../Figures/density_original.pdf", width = 17, height = 9, units = "cm", dpi = 900)
 ggsave("../Figures/density_original.png", width = 17, height = 9, units = "cm", dpi = 900)
@@ -393,8 +504,7 @@ density.adjusted <- all.distances.adjusted %>%
         axis.text.y = element_text(size = 6),
         legend.title = element_text(size = 8),
         legend.text = element_text(size = 6),
-        strip.text = element_text(size = 8),
-        legend.position = "none")
+        strip.text = element_text(size = 8))
 density.adjusted
 ggsave("../Figures/density_adjusted.pdf", width = 17, height = 9, units = "cm", dpi = 900)
 ggsave("../Figures/density_adjusted.png", width = 17, height = 9, units = "cm", dpi = 900)
@@ -403,15 +513,16 @@ cowplot::plot_grid(density.original, density.adjusted, labels = c("A", "B"), nro
 ggsave("../Figures/density_panel.pdf", width = 17, height = 9, units = "cm", dpi = 900)
 ggsave("../Figures/density_panel.png", width = 17, height = 9, units = "cm", dpi = 900)
 
+
 # Sorted scatter of typicality per class
 data.for.scatter <- all.distances %>%
   filter(class != "Other") %>%
   group_by(language, class) %>%
-  summarize(Mean = mean(typicality))
+  dplyr::summarize(Mean = mean(typicality))
 data.for.scatter.adjusted <- all.distances.adjusted %>%
   filter(class != "Other") %>%
   group_by(language, class) %>%
-  summarize(Mean = mean(typicality))
+  dplyr::summarize(Mean = mean(typicality))
 all.scatters <- rename(data.for.scatter, original = Mean) %>% 
   left_join(rename(data.for.scatter.adjusted, adjusted = Mean))
 
@@ -451,12 +562,14 @@ plot.data <- data.for.scatter %>%
   filter(class != "Other") %>%
   group_by() %>%
   mutate(language = factor(language, levels = sorted.langs$language), class = factor(class),
-         include = ifelse(language %in% test.languages, language, NA))
+         include = ifelse(language %in% test.languages, language, NA)) %>% 
+  rename(Category = class)
 plot.data.adjusted <- data.for.scatter.adjusted %>%
   filter(class != "Other") %>%
   group_by() %>%
   mutate(language = factor(language, levels = sorted.langs.adjusted$language), class = factor(class),
-         include = ifelse(language %in% test.languages, language, NA))
+         include = ifelse(language %in% test.languages, language, NA)) %>% 
+  rename(Category = class)
 
 # Keep labels only for reference languages
 label.text <- map_chr(sorted.langs$language, function(x){
@@ -477,11 +590,11 @@ label.text[which(label.text == "Thai (Korat variety)")] <- "Thai\n(Korat)"
 label.text.adjusted[which(label.text.adjusted == "Thai (Korat variety)")] <- "Thai\n(Korat)"
 
 # Plot languages as scatter in y axis of typicality.
-scatter.original <- ggplot(data = plot.data, aes(y = Mean, x = language, color = class, shape = class,
-                                    group = class)) +
+scatter.original <- ggplot(data = plot.data, aes(y = Mean, x = language, color = Category, shape = Category,
+                                    group = Category)) +
   labs(x = 'Language',
        y = 'Mean Typicality') +
-  geom_point(aes(fill = class), size = .75) +
+  geom_point(aes(fill = Category), size = 1) +
   geom_vline(aes(xintercept = include), size = 0.2, color = palette_line) + 
   geom_hline(linetype = 'solid', yintercept = 0, color = palette_line, size = .2) +
   scale_color_manual(name = "Category", values = c(palette_a_t[1], palette_a_t[2])) + 
@@ -490,24 +603,23 @@ scatter.original <- ggplot(data = plot.data, aes(y = Mean, x = language, color =
   cowplot::theme_cowplot() + 
   expand_limits(x = -1) +
   expand_limits(x = 228) + 
-  theme(
-    legend.position = "none",
-    axis.title.x = element_text(size = 8),
+  theme(axis.title.x = element_text(size = 8),
     axis.title.y = element_text(size = 6),
     axis.text.x = element_text(size = 6),
     axis.text.y = element_text(size = 6),
     strip.text = element_text(size = 8),
     axis.ticks.x = element_blank()
-    )
+    ) +
+  guides(color = guide_legend(override.aes = list(size=4)))
 scatter.original
 ggsave("../Figures/scatter_original.pdf", width = 17, height = 7, units = "cm", dpi = 900)
 ggsave("../Figures/scatter_original.png", width = 17, height = 7, units = "cm", dpi = 900)
 
-scatter.adjusted <- ggplot(data = plot.data.adjusted, aes(y = Mean, x = language, color = class, shape = class,
-                                                 group = class)) +
+scatter.adjusted <- ggplot(data = plot.data.adjusted, aes(y = Mean, x = language, color = Category, shape = Category,
+                                                 group = Category)) +
   labs(x = 'Language',
        y = 'Mean Typicality') +
-  geom_point(aes(fill = class), size = .75) +
+  geom_point(aes(fill = Category), size = 1) +
   geom_vline(aes(xintercept = include), size = 0.2, color = palette_line) + 
   geom_hline(linetype = 'solid', yintercept = 0, color = palette_line, size = .2) +
   scale_color_manual(name = "Category", values = c(palette_a_t[1], palette_a_t[2])) + 
@@ -517,14 +629,15 @@ scatter.adjusted <- ggplot(data = plot.data.adjusted, aes(y = Mean, x = language
   expand_limits(x = -1) +
   expand_limits(x = 228) + 
   theme(
-    legend.position = "none",
     axis.title.x = element_text(size = 8),
     axis.title.y = element_text(size = 6),
     axis.text.x = element_text(size = 6),
     axis.text.y = element_text(size = 6),
     strip.text = element_text(size = 8),
     axis.ticks.x = element_blank()
-    )
+    ) +
+  guides(color = guide_legend(override.aes = list(size=4)))
+
 scatter.adjusted
 ggsave("../Figures/scatter_adjusted.pdf", width = 17, height = 7, units = "cm", dpi = 900)
 ggsave("../Figures/scatter_adjusted.png", width = 17, height = 7, units = "cm", dpi = 900)
@@ -548,7 +661,7 @@ get.typicality.stats <- function(this.language, distances.df){
   d.value <- effsize::cohen.d(data = lang.df, typicality ~ class)
   results <- lang.df %>% 
     group_by(class) %>% 
-    summarize(mean.typicality = mean(typicality)) %>% 
+    dplyr::summarize(mean.typicality = mean(typicality)) %>% 
     spread(class, mean.typicality) %>% 
     mutate(language = this.language,
            difference = abs(Action - Thing),
@@ -563,6 +676,10 @@ get.typicality.stats <- function(this.language, distances.df){
 # Get typicality stats for reference languages in both original and adjusted wordlists
 purrr::map2_dfr(test.languages, list(all.distances), get.typicality.stats)
 purrr::map2_dfr(test.languages, list(all.distances.adjusted), get.typicality.stats)
+
+all.p <- purrr::map2_dfr(unique(all.phon$language), list(all.distances.adjusted), get.typicality.stats) %>% 
+  mutate(p.value.adj = p.adjust(p.value, method = "bonferroni")) %>% 
+  mutate(sig = p.value.adj < 0.01)
 
 # Closest phonological neighbors ---------------
 
@@ -700,6 +817,14 @@ neighbor.stats.adjusted <- repeated.neighbor.adjusted %>%
   do(enframe(Hmisc::smean.cl.normal(.$proportion.of.hits, conf.int = 0.99))) %>%
   spread(name, value)
 
+# Get stats per word type
+neighbor.stats %>% 
+  group_by(ontological.category) %>% 
+  dplyr::summarize(all.mean = mean(Mean * 100), sd = sd(Mean * 100))
+neighbor.stats.adjusted %>% 
+  group_by(ontological.category) %>% 
+  dplyr::summarize(all.mean = mean(Mean * 100), sd = sd(Mean * 100))
+
 
 # Use the number of words with same-class neighbors in the shuffle test as "random" baseline.
 neighbor.mc <- neighbor.mc %>%
@@ -720,10 +845,10 @@ neighbor.test.adjusted <- neighbor.stats.adjusted %>%
   mutate(is.higher = random >= Lower)
 neighbor.test <- neighbor.test %>%
   group_by(language, ontological.category) %>%
-  summarize(p = sum(is.higher) / 1000)
+  dplyr::summarize(p = sum(is.higher) / 1000)
 neighbor.test.adjusted <- neighbor.test.adjusted %>%
   group_by(language, ontological.category) %>%
-  summarize(p = sum(is.higher) / 1000)
+  dplyr::summarize(p = sum(is.higher) / 1000)
 
 # Check statistics for reference languages. For "baseline" performance for each
 # language, take 1 SD above the mean of the shuffles.
@@ -734,24 +859,23 @@ neighbor.stats.adjusted %>%
 neighbor.mc %>% 
   filter(language %in% test.languages) %>%
   group_by(language, ontological.category) %>%
-  summarize(random = mean(random) + sd(random))
+  dplyr::summarize(random = mean(random) + sd(random))
 neighbor.mc.adjusted %>% 
   filter(language %in% test.languages) %>%
   group_by(language, ontological.category) %>%
-  summarize(random = mean(random) + sd(random))
+  dplyr::summarize(random = mean(random) + sd(random))
 neighbor.test %>% 
   filter(language %in% test.languages)
 neighbor.test.adjusted %>% 
   filter(language %in% test.languages)
 
-
 # Check proportion of languages that have p < 0.01
-neighbor.test %>%
+neighbor.proportions <- neighbor.test %>%
   mutate(p = cut(p, breaks = c(0, 0.01, 1), include.lowest = TRUE, right = FALSE)) %>%
   group_by(p, ontological.category) %>%
   tally() %>%
   mutate(n = n / nrow(phon.languages))
-neighbor.test.adjusted %>%
+neighbor.proportions.adjusted <- neighbor.test.adjusted %>%
   mutate(p = cut(p, breaks = c(0, 0.01, 1), include.lowest = TRUE, right = FALSE)) %>%
   group_by(p, ontological.category) %>%
   tally() %>%
@@ -764,11 +888,11 @@ neighbor.test.adjusted %>%
 neighbor.mc.plot <- neighbor.mc %>%
   filter(ontological.category != "Other") %>%
   group_by(language, ontological.category) %>%
-  summarize(random = mean(random) + sd(random))
+  dplyr::summarize(random = mean(random) + sd(random))
 neighbor.mc.plot.adjusted <- neighbor.mc.adjusted %>%
   filter(ontological.category != "Other") %>%
   group_by(language, ontological.category) %>%
-  summarize(random = mean(random) + sd(random))
+  dplyr::summarize(random = mean(random) + sd(random))
 
 neighbor.plot <- neighbor.stats %>%
   group_by() %>%
@@ -839,6 +963,159 @@ cowplot::plot_grid(neighbor.original, neighbor.adjusted, nrow = 2, labels = c("A
 
 ggsave("../Figures/neighbor_panel_diff.pdf", width = 17, height = 7, units = "cm", dpi = 900)
 ggsave("../Figures/neighbor_panel_diff.png", width = 17, height = 7, units = "cm", dpi = 900)
+
+
+# Family and Geo permutations
+
+neighbor.samples.family <-  map_dfr(1:1000, function(i){
+  if(i %% 50 == 0){print(i)}
+  this.sample <- language.groups %>% 
+    group_by(family) %>% 
+    sample_n(1) %>% 
+    .$language
+  this.rep.neighbor <- repeated.neighbor.adjusted %>% 
+    filter(language %in% this.sample) %>% 
+    group_by(language, ontological.category) %>%
+    do(enframe(Hmisc::smean.cl.normal(.$proportion.of.hits, conf.int = 0.99))) %>%
+    spread(name, value)
+  this.rep.neighbor %>% 
+    group_by(ontological.category) %>% 
+    dplyr::summarize(all.mean = mean(Mean * 100), sd = sd(Mean * 100))
+  this.mc <- neighbor.mc.adjusted %>%
+    filter(language %in% this.sample)
+  this.test <- this.rep.neighbor %>% 
+    left_join(this.mc) %>%
+    mutate(is.higher = random >= Lower)
+  this.test <- this.test %>%
+    group_by(language, ontological.category) %>%
+    dplyr::summarize(p = sum(is.higher) / 1000)
+  this.proportion <- this.test %>%
+    mutate(p = cut(p, breaks = c(0, 0.01, 1), include.lowest = TRUE, right = FALSE)) %>%
+    group_by(p, ontological.category) %>%
+    tally() %>%
+    mutate(n = n / length(unique(this.sample)))
+  return(this.proportion)
+})
+
+median(filter(neighbor.samples.family,
+              ontological.category == "Action", 
+              p == "[0,0.01)")$n)
+IQR(filter(neighbor.samples.family,
+              ontological.category == "Action", 
+              p == "[0,0.01)")$n)
+neighbor.proportions.adjusted$n[1]
+
+neighbor.samples.family %>% 
+  filter(ontological.category == "Action", p == "[0,0.01)") %>% 
+  ggplot(aes(x = n)) +
+  geom_histogram(bins = 8, color = palette_line, fill = palette_other[2]) +
+  geom_vline(xintercept = neighbor.proportions.adjusted$n[1], color = "red", size = 3) +
+  geom_vline(xintercept = median(filter(neighbor.samples.family,
+                                        ontological.category == "Action", 
+                                        p == "[0,0.01)")$n),
+             color = "blue", size = 3, linetype = "dashed") +
+  labs(title = "Proportion of languages with p < 0.01 in neighbor MC test, sampling for family for ACTIONS") +
+  cowplot::theme_cowplot()
+ggsave("../Figures/neighbor_family_actions.png")
+
+median(filter(neighbor.samples.family,
+              ontological.category == "Thing", 
+              p == "[0,0.01)")$n)
+IQR(filter(neighbor.samples.family,
+           ontological.category == "Thing", 
+           p == "[0,0.01)")$n)
+neighbor.proportions.adjusted$n[3]
+
+
+neighbor.samples.family %>% 
+  filter(ontological.category == "Thing", p == "[0,0.01)") %>% 
+  ggplot(aes(x = n)) +
+  geom_histogram(bins = 8, color = palette_line, fill = palette_other[2]) +
+  geom_vline(xintercept = neighbor.proportions.adjusted$n[3], color = "red", size = 3) +
+  geom_vline(xintercept = median(filter(neighbor.samples.family,
+                                        ontological.category == "Thing", 
+                                        p == "[0,0.01)")$n),
+             color = "blue", size = 3, linetype = "dashed") +
+  labs(title = "Proportion of languages with p < 0.01 in neighbor MC test, sampling for family for THINGS") +
+  cowplot::theme_cowplot()
+ggsave("../Figures/neighbor_family_things.png")
+
+
+neighbor.samples.geo <-  map_dfr(1:1000, function(i){
+  if(i %% 50 == 0){print(i)}
+  this.sample <- language.groups %>% 
+    group_by(geo.cluster) %>% 
+    sample_n(1) %>% 
+    .$Name
+  this.rep.neighbor <- repeated.neighbor.adjusted %>% 
+    filter(language %in% this.sample) %>% 
+    group_by(language, ontological.category) %>%
+    do(enframe(Hmisc::smean.cl.normal(.$proportion.of.hits, conf.int = 0.99))) %>%
+    spread(name, value)
+  this.rep.neighbor %>% 
+    group_by(ontological.category) %>% 
+    dplyr::summarize(all.mean = mean(Mean * 100), sd = sd(Mean * 100))
+  this.mc <- neighbor.mc.adjusted %>%
+    filter(language %in% this.sample)
+  this.test <- this.rep.neighbor %>% 
+    left_join(this.mc) %>%
+    mutate(is.higher = random >= Lower)
+  this.test <- this.test %>%
+    group_by(language, ontological.category) %>%
+    dplyr::summarize(p = sum(is.higher) / 1000)
+  this.proportion <- this.test %>%
+    mutate(p = cut(p, breaks = c(0, 0.01, 1), include.lowest = TRUE, right = FALSE)) %>%
+    group_by(p, ontological.category) %>%
+    tally() %>%
+    mutate(n = n / length(unique(this.sample)))
+  return(this.proportion)
+})
+
+
+median(filter(neighbor.samples.geo,
+              ontological.category == "Action", 
+              p == "[0,0.01)")$n)
+IQR(filter(neighbor.samples.geo,
+           ontological.category == "Action", 
+           p == "[0,0.01)")$n)
+neighbor.proportions.adjusted$n[1]
+
+
+
+median(filter(neighbor.samples.geo,
+              ontological.category == "Thing", 
+              p == "[0,0.01)")$n)
+IQR(filter(neighbor.samples.geo,
+           ontological.category == "Thing", 
+           p == "[0,0.01)")$n)
+neighbor.proportions.adjusted$n[3]
+
+
+
+neighbor.samples.geo %>% 
+  filter(ontological.category == "Action", p == "[0,0.01)") %>% 
+  ggplot(aes(x = n)) +
+  geom_histogram(bins = 8, color = palette_line, fill = palette_other[2]) +
+  geom_vline(xintercept = neighbor.proportions.adjusted$n[1], color = "red", size = 3) +
+  geom_vline(xintercept = median(filter(neighbor.samples.geo,
+                                        ontological.category == "Action", 
+                                        p == "[0,0.01)")$n),
+             color = "blue", size = 3, linetype = "dashed") +
+  labs(title = "Proportion of languages with p < 0.01 in neighbor MC test, sampling for geo cluster for ACTIONS") +
+  cowplot::theme_cowplot()
+ggsave("../Figures/neighbor_geo_action.png")
+neighbor.samples.geo %>% 
+  filter(ontological.category == "Thing", p == "[0,0.01)") %>% 
+  ggplot(aes(x = n)) +
+  geom_histogram(bins = 8, color = palette_line, fill = palette_other[2]) +
+  geom_vline(xintercept = neighbor.proportions.adjusted$n[3], color = "red", size = 3) +
+  geom_vline(xintercept = median(filter(neighbor.samples.geo,
+                                        ontological.category == "Thing", 
+                                        p == "[0,0.01)")$n),
+             color = "blue", size = 3, linetype = "dashed") +
+  labs(title = "Proportion of languages with p < 0.01 in neighbor MC test, sampling for geo cluster for THINGS") +
+  cowplot::theme_cowplot()
+ggsave("../Figures/neighbor_geo_thing.png")
 
 
 # RNN K-Fold -------
@@ -940,24 +1217,113 @@ rnn.stats.adjusted <- read_rds("../Data/Processed/boot_ci_fold_adjusted.rds") %>
 ## Descriptive stats
 rnn.stats %>%
   select(Language, Matthews) %>% 
-  summarize(Mean.Matthews = mean(Matthews), SD.Matthews = sd(Matthews))
+  dplyr::summarize(Mean.Matthews = mean(Matthews), SD.Matthews = sd(Matthews))
 rnn.stats.adjusted %>%
   select(Language, Matthews) %>% 
-  summarize(Mean.Matthews = mean(Matthews), SD.Matthews = sd(Matthews))
+  dplyr::summarize(Mean.Matthews = mean(Matthews), SD.Matthews = sd(Matthews))
+
+
+# Sample
+
+matthews.sample.family <- map_dfr(1:1000, function(i){
+  if(i %% 50 == 0){print(i)}
+  this.sample <- language.groups %>% 
+  group_by(family) %>% 
+  sample_n(1) %>% 
+  .$language
+  this.matthews <- rnn.stats %>% 
+    filter(Language %in% this.sample) 
+  this.tally <- this.matthews %>% 
+    mutate(includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE)) %>% 
+    group_by(includes.baseline) %>% 
+    tally() %>% 
+    mutate(percentage = (n / sum(n)) * 100)
+  results <- tibble(Mean.Matthews = mean(this.matthews$Matthews),
+                    tally = this.tally$percentage[1])
+  return(results)
+})
+
+
+matthews.sample.geo <- map_dfr(1:1000, function(i){
+  if(i %% 50 == 0){print(i)}
+  this.sample <- language.groups %>% 
+    group_by(geo.cluster) %>% 
+    sample_n(1) %>% 
+    .$Name
+  this.matthews <- rnn.stats %>% 
+    filter(Language %in% this.sample) 
+  this.tally <- this.matthews %>% 
+    mutate(includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE)) %>% 
+    group_by(includes.baseline) %>% 
+    tally() %>% 
+    mutate(percentage = (n / sum(n)) * 100)
+  results <- tibble(Mean.Matthews = mean(this.matthews$Matthews),
+                    tally = this.tally$percentage[1])
+  return(results)
+})
+
+median(matthews.sample.family$Mean.Matthews)
+IQR(matthews.sample.family$Mean.Matthews)
+mean(rnn.stats.adjusted$Matthews)
+
+matthews.sample.family %>% 
+  ggplot(aes(x = Mean.Matthews)) +
+  geom_histogram(bins = 50, color = palette_line, fill = palette_other[2]) +
+  geom_vline(xintercept = mean(rnn.stats.adjusted$Matthews), color = "red", size = 3) +
+  geom_vline(xintercept = median(matthews.sample.family$Mean.Matthews), color = "blue", size = 3, linetype = "dashed") +
+  labs(title = "Mean MCC sampling for family")
+ggsave("../Figures/mean_matthews_family.png")
+matthews.sample.geo %>% 
+  ggplot(aes(x = Mean.Matthews)) +
+  geom_histogram(bins = 50, color = palette_line, fill = palette_other[2]) +
+  geom_vline(xintercept = mean(rnn.stats.adjusted$Matthews), color = "red", size = 3) +
+  geom_vline(xintercept = median(matthews.sample.geo$Mean.Matthews), color = "blue", size = 3, linetype = "dashed") +
+  labs(title = "Mean MCC sampling for geo cluster")
+ggsave("../Figures/mean_matthews_geo.png")
+
+median(matthews.sample.geo$Mean.Matthews)
+IQR(matthews.sample.geo$Mean.Matthews)
+mean(rnn.stats.adjusted$Matthews)
 
 ## Count the number of languages whose bootstrapped 99% ci include 0.1
-rnn.stats %>% 
+rnn.tally <- rnn.stats %>% 
   select(Language, contains("Matthews")) %>% 
   mutate(includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE)) %>% 
   group_by(includes.baseline) %>% 
   tally() %>% 
   mutate(percentage = (n / sum(n)) * 100)
-rnn.stats.adjusted %>% 
+rnn.tally.adjusted <- rnn.stats.adjusted %>% 
   select(Language, contains("Matthews")) %>% 
   mutate(includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE)) %>% 
   group_by(includes.baseline) %>% 
   tally() %>% 
   mutate(percentage = (n / sum(n)) * 100)
+
+rnn.tally.adjusted
+median(matthews.sample.family$tally)
+IQR(matthews.sample.family$tally)
+
+
+matthews.sample.family %>% 
+  ggplot(aes(x = tally)) +
+  geom_histogram(bins = 10, color = palette_line, fill = palette_other[2]) +
+  geom_vline(xintercept = rnn.tally.adjusted$percentage[1], color = "red", size = 3) +
+  geom_vline(xintercept = median(matthews.sample.family$tally), color = "blue", size = 3, linetype = "dashed") + 
+  labs(title = "Percentage of languages with MCC above the baseline sampling for family")
+ggsave("rnn_tally_family.png")
+
+rnn.tally.adjusted
+median(matthews.sample.geo$tally)
+IQR(matthews.sample.geo$tally)
+
+matthews.sample.geo %>% 
+  ggplot(aes(x = tally)) +
+  geom_histogram(bins = 10, color = palette_line, fill = palette_other[2]) +
+  geom_vline(xintercept = rnn.tally.adjusted$percentage[1], color = "red", size = 3) +
+  geom_vline(xintercept = median(matthews.sample.geo$tally), color = "blue", size = 3, linetype = "dashed") + 
+  labs(title = "Percentage of languages with MCC above the baseline sampling for geo cluster")
+ggsave("rnn_tally_geo.png")
+
 
 ## Check reference languages
 rnn.stats %>% 
@@ -1096,10 +1462,10 @@ spurt.stats.adjusted <- read_rds("../Data/Processed/boot_ci_spurt_adjusted.rds")
 ## Descriptive stats
 spurt.stats %>%
   select(Language, Matthews) %>% 
-  summarize(Mean.Matthews = mean(Matthews), SD.Matthews = sd(Matthews))
+  dplyr::summarize(Mean.Matthews = mean(Matthews), SD.Matthews = sd(Matthews))
 spurt.stats.adjusted %>%
   select(Language, Matthews) %>% 
-  summarize(Mean.Matthews = mean(Matthews), SD.Matthews = sd(Matthews))
+  dplyr::summarize(Mean.Matthews = mean(Matthews), SD.Matthews = sd(Matthews))
 
 ## Count the number of languages whose bootstrapped 99% ci include 0.1
 spurt.stats %>% 
@@ -1115,15 +1481,98 @@ spurt.stats.adjusted %>%
   tally() %>% 
   mutate(percentage = (n / sum(n)) * 100)
 
+# Sample
+
+spurt.sample.family <- map_dfr(1:1000, function(i){
+  if(i %% 50 == 0){print(i)}
+  this.sample <- language.groups %>% 
+    group_by(family) %>% 
+    sample_n(1) %>% 
+    .$language
+  this.matthews <- spurt.stats %>% 
+    filter(Language %in% this.sample) 
+  this.tally <- this.matthews %>% 
+    mutate(includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE)) %>% 
+    group_by(includes.baseline) %>% 
+    tally() %>% 
+    mutate(percentage = (n / sum(n)) * 100)
+  results <- tibble(Mean.Matthews = mean(this.matthews$Matthews),
+                    tally = this.tally$percentage[1])
+  return(results)
+})
+spurt.sample.geo <- map_dfr(1:1000, function(i){
+  if(i %% 50 == 0){print(i)}
+  this.sample <- language.groups %>% 
+    group_by(geo.cluster) %>% 
+    sample_n(1) %>% 
+    .$Name
+  this.matthews <- spurt.stats %>% 
+    filter(Language %in% this.sample) 
+  this.tally <- this.matthews %>% 
+    mutate(includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE)) %>% 
+    group_by(includes.baseline) %>% 
+    tally() %>% 
+    mutate(percentage = (n / sum(n)) * 100)
+  results <- tibble(Mean.Matthews = mean(this.matthews$Matthews),
+                    tally = this.tally$percentage[1])
+  return(results)
+})
+
+spurt.stats.adjusted$Matthews %>% mean
+median(spurt.sample.family$Mean.Matthews)
+IQR(spurt.sample.family$Mean.Matthews)
+
+spurt.sample.family %>% 
+  ggplot(aes(x = Mean.Matthews)) +
+  geom_histogram(bins = 50, color = palette_line, fill = palette_other[2]) +
+  geom_vline(xintercept = mean(spurt.stats.adjusted$Matthews), size = 2, color = "red") +
+  geom_vline(xintercept = median(spurt.sample.family$Mean.Matthews), color = "blue", linetype = "dashed", size = 2) +
+  labs(title = "Spurt mean MCC sampling for family")
+ggsave("../Figures/spurt_family_matthews.png")
+
+spurt.sample.geo %>% 
+  ggplot(aes(x = Mean.Matthews)) +
+  geom_histogram(bins = 50, color = palette_line, fill = palette_other[2]) +
+  geom_vline(xintercept = mean(spurt.stats.adjusted$Matthews), size = 2, color = "red") +
+  geom_vline(xintercept = median(spurt.sample.geo$Mean.Matthews), color = "blue", linetype = "dashed", size = 2) +
+  labs(title = "Spurt mean MCC sampling for geo cluster")
+ggsave("../Figures/spurt_geo_matthews.png")
+
 ## Check reference languages
-spurt.stats %>% 
+spurt.tally <- spurt.stats %>% 
   select(Language, contains("Matthews")) %>% 
   mutate(includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE)) %>% 
-  filter(Language %in% test.languages)
-spurt.stats.adjusted %>% 
+  group_by(includes.baseline) %>% 
+  tally() %>% 
+  mutate(percentage = (n / sum(n)) * 100)
+
+spurt.tally.adjusted <- spurt.stats.adjusted %>% 
   select(Language, contains("Matthews")) %>% 
   mutate(includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE)) %>% 
-  filter(Language %in% test.languages)
+  group_by(includes.baseline) %>% 
+  tally() %>% 
+  mutate(percentage = (n / sum(n)) * 100)
+
+spurt.tally.adjusted
+median(spurt.sample.family$tally)
+IQR(spurt.sample.family$tally)
+
+spurt.sample.family %>% 
+  ggplot(aes(x = tally)) +
+  geom_histogram(bins = 10, color = palette_line, fill = palette_other[2]) +
+  geom_vline(xintercept = spurt.tally.adjusted$percentage[1], color = "red", size = 2) +
+  geom_vline(xintercept = median(spurt.sample.family$tally), color = "blue", size = 2, linetype = "dashed") +
+  cowplot::theme_cowplot() +
+  labs(title = "Spurt percentage of languages with MCC above baseline sampling for family")
+ggsave("../Figures/spurt_tally_family.png")
+spurt.sample.geo %>% 
+  ggplot(aes(x = tally)) +
+  geom_histogram(bins = 8, color = palette_line, fill = palette_other[2]) +
+  geom_vline(xintercept = spurt.tally.adjusted$percentage[1], color = "red", size = 2) +
+  geom_vline(xintercept = median(spurt.sample.geo$tally), color = "blue", size = 2, linetype = "dashed") +
+  cowplot::theme_cowplot() +
+  labs(title = "Spurt percentage of languages with MCC above baseline sampling for geo cluster")
+ggsave("../Figures/spurt_tally_geo.png")
 
 # Plot all languages, their CI and the baseline
 spurt.plot <- spurt.stats %>% 
@@ -1136,8 +1585,7 @@ spurt.original <- ggplot(data = spurt.plot, aes(x = Language, ymin = Matthews.Lo
   geom_vline(aes(xintercept = include), linetype = "dotted", size = .5, color = palette_line) +
   geom_linerange(size = 0.5, color = palette_line) +
   geom_point(shape = 22, size = .75, color = palette_line) + 
-  geom_hline(yintercept = 0, size = 1) + 
-  geom_hline(yintercept = 0.1, linetype = "dashed", size = .5, color = palette_line) +
+  geom_hline(yintercept = 0.1, size = .75, color = palette_line) +
   scale_x_discrete(name = "Language", labels = function(x){
     ifelse(x %in% test.languages,
            ifelse(x == "Sirionó",  "            Sirionó",
@@ -1157,7 +1605,9 @@ spurt.original <- ggplot(data = spurt.plot, aes(x = Language, ymin = Matthews.Lo
         legend.text = element_text(size = 6),
         strip.text = element_text(size = 8),
         axis.ticks.x = element_blank(),
-        legend.position = "none")
+        legend.position = "none") +
+  labs(y = "Learning Performance (MCC)")
+
 spurt.original
 ggsave("../Figures/spurt_original.pdf", width = 17, height = 7, units = "cm", dpi = 900)
 ggsave("../Figures/spurt_original.png", width = 17, height = 7, units = "cm", dpi = 900)
@@ -1177,8 +1627,7 @@ spurt.adjusted <- ggplot(data = spurt.plot.adjusted, aes(x = Language, ymin = Ma
   geom_vline(aes(xintercept = include), linetype = "dotted", size = .5, color = palette_line) +
   geom_linerange(size = 0.5, color = palette_line) +
   geom_point(shape = 22, size = .75, color = palette_line) + 
-  geom_hline(yintercept = 0, size = 1) + 
-  geom_hline(yintercept = 0.1, linetype = "dashed", size = .5, color = palette_line) +
+  geom_hline(yintercept = 0.1, size = .75, color = palette_line) +
   scale_x_discrete(name = "Language", labels = function(x){ifelse(x %in% test.languages,
                                                                   str_wrap(as.character(x), 10), "")}) +
   expand_limits(x = -1) +
@@ -1193,7 +1642,9 @@ spurt.adjusted <- ggplot(data = spurt.plot.adjusted, aes(x = Language, ymin = Ma
         legend.text = element_text(size = 6),
         strip.text = element_text(size = 8),
         axis.ticks.x = element_blank(),
-        legend.position = "none")
+        legend.position = "none") +
+  labs(y = "Learning Performance (MCC)")
+
 spurt.adjusted
 ggsave("../Figures/spurt_adjusted.pdf", width = 17, height = 7, units = "cm", dpi = 900)
 ggsave("../Figures/spurt_adjusted.png", width = 17, height = 7, units = "cm", dpi = 900)
@@ -1202,4 +1653,3 @@ ggsave("../Figures/spurt_adjusted.png", width = 17, height = 7, units = "cm", dp
 cowplot::plot_grid(spurt.original, spurt.adjusted, labels = c("A", "B"), nrow = 2)
 ggsave("../Figures/spurt_panel.pdf", width = 17, height = 8, units = "cm", dpi = 900)
 ggsave("../Figures/spurt_panel.png", width = 17, height = 8, units = "cm", dpi = 900)
-
