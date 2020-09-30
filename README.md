@@ -1,2 +1,2 @@
 # Sound-Symbolism-IDS
-Sound symbolism in the Intercontinental Dictionary Series
+Sound systematicity in the Intercontinental Dictionary Series
