@@ -282,6 +282,66 @@ all.distances.adjusted <- map_dfr(.x = unique(all.phon.adjusted$language),
                                     return(mean.distances)
                                   }
 )
+wals <- read_csv('../Data/Processed/WALS_Codes.csv') %>% 
+  select(Name, wals_code = `WALS code`, ID) %>% 
+  mutate(ID = as.factor(ID))
+wals_info <- read_csv("../Data/WALS/walslanguage.csv")
+
+redup_languages <- language.groups %>% 
+  rename(Name = language) %>% 
+  left_join(wals) %>% 
+  left_join(select(wals_info, -Name, -family, -genus)) %>% 
+  select(Name, family, reduplication = `27A Reduplication`) %>% 
+  filter(!is.na(reduplication))
+
+all.distances.adjusted %>% 
+  group_by(language, class) %>% 
+  filter(class != "Other") %>% 
+  rename(Name = language) %>% 
+  dplyr::summarize(mean.typ = abs(mean(typicality))) %>% 
+  right_join(redup_languages) %>% 
+  ggplot(aes(x = reduplication, y = mean.typ)) +
+  geom_boxplot() +
+  facet_wrap(vars(class))
+
+redup_density = all.distances.adjusted %>% 
+  group_by(language, class) %>% 
+  filter(class != "Other") %>% 
+  rename(Name = language) %>% 
+  dplyr::summarize(mean.typ = mean(typicality)) %>% 
+  left_join(redup_languages) %>% 
+  mutate(reduplication = ifelse(reduplication %in% c("1 Productive full and partial reduplication", "2 Full reduplication only"), TRUE, FALSE),
+         reduplication = ifelse(is.na(reduplication), FALSE, reduplication))
+
+filter(redup_density, reduplication == TRUE & class == "Action")$mean.typ
+redup_density %>% 
+  filter(class == "Action") %>% 
+  ggplot(aes(x = mean.typ, y = ..density..)) +
+  geom_density(fill = palette_a_t[2]) +
+  geom_vline(xintercept = filter(redup_density, reduplication == TRUE & class == "Action")$mean.typ,
+             linetype = "dashed") +
+  labs(title = "Mean typicality for Actions",
+       subtitle = "Dashed lines represent languages with known productive reduplication") +
+  cowplot::theme_cowplot()
+ggsave("redup_typicality_actions.png")
+
+redup_density %>% 
+  filter(class == "Thing") %>% 
+  ggplot(aes(x = mean.typ, y = ..density..)) +
+  geom_density(fill = palette_a_t[1]) +
+  geom_vline(xintercept = filter(redup_density, reduplication == TRUE & class == "Thing")$mean.typ,
+             linetype = "dashed") +
+  labs(title = "Mean typicality for Things",
+       subtitle = "Dashed lines represent languages with known productive reduplication") +
+  cowplot::theme_cowplot()
+ggsave("redup_typicality_things.png")
+
+redup.no.na <- lm(data = filter(redup_density, Name %in% redup_languages$Name), mean.typ ~ reduplication + class)
+redup.all <- lm(data = redup_density, mean.typ ~ reduplication + class)
+
+rsq::rsq.partial(redup.no.na)
+rsq::rsq.partial(redup.all)
+
 
 # Typicality tests and visualization ------
 
@@ -348,7 +408,7 @@ family.stats <- map_dfr(1:1000, function(i){
   this.sample <- language.groups %>% 
     group_by(family) %>% 
     sample_n(1) %>% 
-    .$Name
+    .$language
   this.sample.distances <- all.distances.adjusted %>% 
     filter(language %in% this.sample, class != "Other")
   
@@ -400,7 +460,7 @@ region.stats <- map_dfr(1:1000, function(i){
     filter(!is.na(geo.cluster)) %>% 
     group_by(geo.cluster) %>% 
     sample_n(1) %>% 
-    .$Name
+    .$language
   this.sample.distances <- all.distances.adjusted %>% 
     filter(language %in% this.sample, class != "Other")
   
@@ -1044,9 +1104,10 @@ ggsave("../Figures/neighbor_family_things.png")
 neighbor.samples.geo <-  map_dfr(1:1000, function(i){
   if(i %% 50 == 0){print(i)}
   this.sample <- language.groups %>% 
+    filter(!is.na(geo.cluster)) %>% 
     group_by(geo.cluster) %>% 
     sample_n(1) %>% 
-    .$Name
+    .$language
   this.rep.neighbor <- repeated.neighbor.adjusted %>% 
     filter(language %in% this.sample) %>% 
     group_by(language, ontological.category) %>%
@@ -1211,6 +1272,31 @@ rnn.stats.adjusted <- read_rds("../Data/Processed/boot_ci_fold_adjusted.rds") %>
     filter(!(Language %in% no.marker.group)) %>%   # Remove languages that weren't adjusted
     bind_rows(non.adjusted.stats)  # Add the non-adjusted languages CIs.
 
+rnn.redup <- rnn.stats.adjusted %>% 
+  rename(Name = Language) %>% 
+  left_join(wals, by = "Name") %>% 
+  left_join(select(wals_info, -Name), by = "wals_code") %>% 
+  select(Name, Matthews, reduplication = `27A Reduplication`) %>% 
+  mutate(redup = ifelse(reduplication %in% c("1 Productive full and partial reduplication", "2 Full reduplication only"),
+                        TRUE, FALSE),
+         redup = ifelse(is.na(redup), FALSE, redup))
+
+rnn.redup %>% 
+  ggplot(aes(x = Matthews, y = ..density..)) +
+  geom_density(fill = "seagreen") +
+  geom_vline(xintercept = filter(rnn.redup, redup == TRUE)$Matthews,
+             linetype = "dashed")
+
+rnn.redup %>% 
+  filter(Name %in% redup_languages$Name) %>% 
+  lm(data = ., Matthews ~ redup) %>% summary
+rnn.redup %>% 
+  lm(data = ., Matthews ~ redup) %>% 
+  summary
+
+
+
+
 # Mark each result as whether the bootstrapped CI for the Matthews Correlation
 # Coefficient include a baseline of 0.1 or not. 
 
@@ -1247,9 +1333,10 @@ matthews.sample.family <- map_dfr(1:1000, function(i){
 matthews.sample.geo <- map_dfr(1:1000, function(i){
   if(i %% 50 == 0){print(i)}
   this.sample <- language.groups %>% 
+    filter(!is.na(geo.cluster)) %>% 
     group_by(geo.cluster) %>% 
     sample_n(1) %>% 
-    .$Name
+    .$language
   this.matthews <- rnn.stats %>% 
     filter(Language %in% this.sample) 
   this.tally <- this.matthews %>% 
@@ -1455,6 +1542,32 @@ spurt.stats.adjusted <- read_rds("../Data/Processed/boot_ci_spurt_adjusted.rds")
   bind_rows(non.adjusted.spurt)  # Add the non-adjusted languages CIs.
 
 
+spurt.redup <-spurt.stats.adjusted %>% 
+  rename(Name = Language) %>% 
+  left_join(wals, by = "Name") %>% 
+  left_join(select(wals_info, -Name), by = "wals_code") %>% 
+  select(Name, Matthews, reduplication = `27A Reduplication`) %>% 
+  mutate(redup = ifelse(reduplication %in% c("1 Productive full and partial reduplication", "2 Full reduplication only"),
+                        TRUE, FALSE),
+         redup = ifelse(is.na(redup), FALSE, redup))
+
+spurt.redup %>% 
+  ggplot(aes(x = Matthews, y = ..density..)) +
+  geom_density(fill = "seagreen") +
+  geom_vline(xintercept = filter(rnn.redup, redup == TRUE)$Matthews,
+             linetype = "dashed")
+
+spurt.redup %>% 
+  filter(Name %in% redup_languages$Name) %>%
+  lm(data = ., Matthews ~ redup) %>% 
+  summary
+
+
+spurt.redup %>% 
+  lm(data = ., Matthews ~ redup) %>% 
+  summary
+
+
 
 spurt.stats <- read_rds("../Data/Processed/boot_ci_spurt_original.rds")
 spurt.stats.adjusted <- read_rds("../Data/Processed/boot_ci_spurt_adjusted.rds")
@@ -1503,9 +1616,10 @@ spurt.sample.family <- map_dfr(1:1000, function(i){
 spurt.sample.geo <- map_dfr(1:1000, function(i){
   if(i %% 50 == 0){print(i)}
   this.sample <- language.groups %>% 
+    filter(!(is.na(geo.cluster))) %>% 
     group_by(geo.cluster) %>% 
     sample_n(1) %>% 
-    .$Name
+    .$language
   this.matthews <- spurt.stats %>% 
     filter(Language %in% this.sample) 
   this.tally <- this.matthews %>% 
@@ -1529,6 +1643,11 @@ spurt.sample.family %>%
   geom_vline(xintercept = median(spurt.sample.family$Mean.Matthews), color = "blue", linetype = "dashed", size = 2) +
   labs(title = "Spurt mean MCC sampling for family")
 ggsave("../Figures/spurt_family_matthews.png")
+
+
+spurt.stats.adjusted$Matthews %>% mean
+median(spurt.sample.geo$Mean.Matthews)
+IQR(spurt.sample.geo$Mean.Matthews)
 
 spurt.sample.geo %>% 
   ggplot(aes(x = Mean.Matthews)) +
@@ -1565,6 +1684,13 @@ spurt.sample.family %>%
   cowplot::theme_cowplot() +
   labs(title = "Spurt percentage of languages with MCC above baseline sampling for family")
 ggsave("../Figures/spurt_tally_family.png")
+
+
+spurt.tally.adjusted
+median(spurt.sample.geo$tally)
+IQR(spurt.sample.geo$tally)
+
+
 spurt.sample.geo %>% 
   ggplot(aes(x = tally)) +
   geom_histogram(bins = 8, color = palette_line, fill = palette_other[2]) +
@@ -1573,6 +1699,9 @@ spurt.sample.geo %>%
   cowplot::theme_cowplot() +
   labs(title = "Spurt percentage of languages with MCC above baseline sampling for geo cluster")
 ggsave("../Figures/spurt_tally_geo.png")
+
+
+
 
 # Plot all languages, their CI and the baseline
 spurt.plot <- spurt.stats %>% 
