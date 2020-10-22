@@ -18,7 +18,7 @@ language.groups <- read_csv("../Data/Processed/language_groups.csv") %>%
 wals <- read_csv('../Data/Processed/WALS_Codes.csv') %>% 
   select(Name, wals_code = `WALS code`, ID) %>% 
   mutate(ID = as.factor(ID))
-wals_info <- read_csv("../Data/WALS/walslanguage.csv")
+wals_info <- read_csv("../Data/Raw/WALS/walslanguage.csv")
 
 
 # Wrangling Data ------------------------------------------------------------------

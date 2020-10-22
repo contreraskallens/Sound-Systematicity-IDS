@@ -79,6 +79,7 @@ all.distances %>%
 three.way.test <- all.distances %>%
   mutate(class = factor(class)) %>%
   coin::kruskal_test(data = ., typicality ~ class)
+three.way.test
 
 # Get the effect size of k-w test according to
 # http://tss.awf.poznan.pl/files/3_Trends_Vol21_2014__no1_20.pdf
@@ -90,6 +91,7 @@ wilcox.all <- all.distances %>%
   filter(class != "Other") %>%
   mutate(class = factor(class)) %>%
   coin::wilcox_test(data = ., typicality ~ class)
+wilcox.all
 
 # Effect size of action/thing comparisons
 # Equivalent of R ^ 2, see
@@ -156,7 +158,8 @@ ggsave("../Figures/Supplemental/scatter_original.png", width = 17, height = 7, u
 
 # Get test statistics for test languages.
 
-map2_dfr(test.languages, list(all.distances), get.typicality.stats)
+map2_dfr(test.languages, list(all.distances), get.typicality.stats) %>% 
+  arrange(desc(difference))
 
 # Closest phonological neighbors ----
 
@@ -191,17 +194,15 @@ neighbor.test <- neighbor.test %>%
 
 # Check statistics for reference languages. For "baseline" performance for each
 # language, take 1 SD above the mean of the shuffles.
-## This is the mean reported
-neighbor.stats %>% 
-  filter(language %in% test.languages)
-## This is the baseline
+
 neighbor.mc %>% 
-  filter(language %in% test.languages) %>%
   group_by(language, ontological.category) %>%
-  dplyr::summarize(random = mean(random) + sd(random))
-## This is the p value
-neighbor.test %>% 
-  filter(language %in% test.languages)
+  dplyr::summarize(random = mean(random) + sd(random)) %>% 
+  right_join(select(neighbor.stats, Mean)) %>% 
+  left_join(neighbor.test) %>% 
+  filter(language %in% test.languages) %>% 
+  select(language, ontological.category, Mean, random, p) %>% 
+  mutate(Mean = Mean * 100, random = random * 100)
 
 # Check proportion of languages that have p < 0.01
 neighbor.proportions <- neighbor.test %>%
@@ -209,6 +210,8 @@ neighbor.proportions <- neighbor.test %>%
   group_by(p, ontological.category) %>%
   tally() %>%
   mutate(n = n / nrow(phon.languages))
+neighbor.proportions %>% 
+  mutate(n = n * 100)
 
 # Plot with bars for each category and each language.
 # The height of each bar is the lower boundary of the 99% CI of the actual data
@@ -268,6 +271,8 @@ rnn.tally <- rnn.stats %>%
   group_by(includes.baseline) %>% 
   tally() %>% 
   mutate(percentage = (n / sum(n)) * 100)
+
+rnn.tally
 
 ## Check reference languages
 rnn.stats %>% 

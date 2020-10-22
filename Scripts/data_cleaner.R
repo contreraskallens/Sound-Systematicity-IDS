@@ -11,15 +11,15 @@ library(geosphere)
 
 # All languages reference to Glottolog was hand fixed for the following languages after it was found they didn't coincide with the codes in glottocode.
 # Both Armenians, 
-all.languages <- read_csv("../Data/IDS/languages.csv") %>% 
+all.languages <- read_csv("../Data/Raw/IDS/languages.csv") %>% 
   mutate(ID = factor(ID))
 
-glottocode <- read_csv("../Data/IDS/Glottocode.csv") %>% 
+glottocode <- read_csv("../Data/Raw/IDS/Glottocode.csv") %>% 
   select(Glottocode = id, family_id, parent_id, latitude, longitude, iso639P3code, country_ids)
 wals <- read_csv('../Data/Processed/WALS_Codes.csv') %>% 
   select(Name, wals_code = `WALS code`, ID) %>% 
   mutate(ID = as.factor(ID))
-wals_info <- read_csv("../Data/WALS/walslanguage.csv")
+wals_info <- read_csv("../Data/WALS/Raw/walslanguage.csv")
 
 # get list of included languages
 
@@ -38,17 +38,6 @@ all.languages <- all.languages %>%
   # get rid of information that's better on WALS
   select(-Latitude, -Longitude) %>% 
   left_join(select(wals_info, wals_code, latitude, longitude, genus, family))
-
-# Look at families as a proportion of total families in wals
-total.families.wals <- na.omit(wals_info$family) %>% 
-  unique() %>% 
-  length()
-
-families.in.data <- na.omit(all.languages$family) %>% 
-  unique() %>% 
-  length()
-
-families.in.data / total.families.wals
 
 # Get info of languages not in WALS from Glottolog using Glottocode
 
@@ -116,7 +105,7 @@ all.languages %>%
 # Loading and coding word data  -----------------------------------------------
 
 # Get all word forms from IDS
-all.words <- read_csv(file = "../Data/IDS/forms.csv", col_names = T, locale = locale(encoding = "UTF-8")) %>%
+all.words <- read_csv(file = "../Data/Raw/IDS/forms.csv", col_names = T, locale = locale(encoding = "UTF-8")) %>%
   mutate(Parameter_ID = factor(Parameter_ID),
     transcription = factor(transcription),
     alt_transcription = factor(alt_transcription),
@@ -131,7 +120,7 @@ all.words <- all.words %>%
   select(-Language_ID, -Segments, -Comment, -Source, -Contribution_ID)
 
 # Link word forms to concepticon to obtain semantic field
-ids.to.concepticon <- read_csv("../Data/IDS/parameters.csv") %>%
+ids.to.concepticon <- read_csv("../Data/Raw/IDS/parameters.csv") %>%
   mutate(ID = factor(ID),
          Concepticon_ID = factor(Concepticon_ID)) %>% 
   select(-Description) %>% 
@@ -140,7 +129,7 @@ all.words <- left_join(all.words, ids.to.concepticon)
 
 # Get semantic field from linkage with concepticon id
 
-concepticon <- read_csv('../Data/Concepticon/semanticFields.csv') %>% 
+concepticon <- read_csv('../Data/Raw/Concepticon/semanticFields.csv') %>% 
   select(Concepticon_ID = id, ontological.category = ontological_category) %>% 
   mutate(Concepticon_ID = factor(Concepticon_ID))
 
@@ -185,7 +174,7 @@ no.phon.with.phon <- read_csv('../Data/Processed/no_phon_with_phon.csv') %>%
 
 # Add Danish
 
-danish.phon <- read_csv('../Data/PhonMining/DataForG2P/danishOrthPhon.csv') %>% 
+danish.phon <- read_csv('../Data/Raw/PhonMining/DataForG2P/danishOrthPhon.csv') %>% 
   select(Form = Orth, phon = Phon) %>% 
   add_column(language = "Danish")
 danish.frame <- no.phon.with.phon %>% 

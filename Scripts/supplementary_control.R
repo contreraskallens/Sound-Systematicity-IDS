@@ -174,19 +174,19 @@ family.stats <- map_dfr(1:1000, function(i){
   return(stats)
 })
 
+print("Actual measure, cohen's eta^2")
+eta.squared.action.thing.adjusted
 print("Median of family permutation, eta^2")
 median(family.stats$eta)
 print("IQR of family permutation, eta ^2")
 IQR(family.stats$eta)
-print("Actual measure, cohen's eta^2")
-eta.squared.action.thing.adjusted
 
+print("Actual measure, cohen's d")
+abs(d.action.thing.adjusted$estimate)
 print("Median of family permutation, cohen's d")
 median(family.stats$d)
 print("IQR of family permutation, cohen's d")
 IQR(family.stats$d)
-print("Actual measure, cohen's d")
-abs(d.action.thing.adjusted$estimate)
 
 # Plot permutations as histograms, mark permutation median (blue) and data measure (red)
 family.stats %>% 
@@ -239,12 +239,13 @@ neighbor.samples.family <-  map_dfr(1:1000, function(i){
   return(this.proportion)
 })
 
+print("Proportion of languages with p < 0.01 in neighbor test, Actions, actual data")
+neighbor.proportions.adjusted$n[1]
 print("Proportion of languages with p < 0.01 in neighbor test, Actions, permutation median")
 median(filter(neighbor.samples.family, ontological.category == "Action",p == "[0,0.01)")$n)
 print("Proportion of languages with p < 0.01 in neighbor test, Actions, permutation IQR")
 IQR(filter(neighbor.samples.family, ontological.category == "Action",  p == "[0,0.01)")$n)
-print("Proportion of languages with p < 0.01 in neighbor test, Actions, actual data")
-neighbor.proportions.adjusted$n[1]
+
 
 neighbor.samples.family %>% 
   filter(ontological.category == "Action", p == "[0,0.01)") %>% 
@@ -260,12 +261,12 @@ neighbor.samples.family %>%
   cowplot::theme_cowplot()
 ggsave("../Figures/Other/neighbor_family_actions.png")
 
+print("Proportion of languages with p < 0.01 in neighbor test, Things, actual")
+neighbor.proportions.adjusted$n[3]
 print("Proportion of languages with p < 0.01 in neighbor test, Things, permutation median")
 median(filter(neighbor.samples.family, ontological.category == "Thing",  p == "[0,0.01)")$n)
 print("Proportion of languages with p < 0.01 in neighbor test, Things, permutation IQR")
 IQR(filter(neighbor.samples.family, ontological.category == "Thing",  p == "[0,0.01)")$n)
-print("Proportion of languages with p < 0.01 in neighbor test, Things, actual")
-neighbor.proportions.adjusted$n[3]
 
 neighbor.samples.family %>% 
   filter(ontological.category == "Thing", p == "[0,0.01)") %>% 
@@ -303,12 +304,13 @@ matthews.sample.family <- map_dfr(1:1000, function(i){
   return(results)
 })
 
+print("Mean MCC across languages, actual")
+mean(rnn.stats.adjusted$Matthews)
 print("Mean MCC across languages, sample median")
 median(matthews.sample.family$Mean.Matthews)
 print("Mean MCC across languages, sample IQR")
 IQR(matthews.sample.family$Mean.Matthews)
-print("Mean MCC across languages, actual")
-mean(rnn.stats.adjusted$Matthews)
+
 
 matthews.sample.family %>% 
   ggplot(aes(x = Mean.Matthews)) +
@@ -321,12 +323,12 @@ matthews.sample.family %>%
 ggsave("../Figures/Other/mean_matthews_family.png")
 
 # Tally
+print("Proportion of languages above chance, actual")
+rnn.tally.adjusted$percentage[1]
 print("Proportion of languages above chance, sample median")
 median(matthews.sample.family$tally)
 print("Proportion of languages above chance, sample IQR")
 IQR(matthews.sample.family$tally)
-print("Proportion of languages above chance, actual")
-rnn.tally.adjusted$percentage[1]
 
 matthews.sample.family %>% 
   ggplot(aes(x = tally)) +
@@ -359,12 +361,13 @@ spurt.sample.family <- map_dfr(1:1000, function(i){
   return(results)
 })
 
+print("Spurt model mean MCC across languages, actual")
+spurt.stats.adjusted$Matthews %>% mean
 print("Spurt model mean MCC across languages, sample median")
 median(spurt.sample.family$Mean.Matthews)
 print("Spurt model mean MCC across languages, sample IQR")
 IQR(spurt.sample.family$Mean.Matthews)
-print("Spurt model mean MCC across languages, actual")
-spurt.stats.adjusted$Matthews %>% mean
+
 
 spurt.sample.family %>% 
   ggplot(aes(x = Mean.Matthews)) +
@@ -376,12 +379,13 @@ spurt.sample.family %>%
        subtitle = "Red: actual data, blue: sample median")
 ggsave("../Figures/Other/spurt_family_matthews.png")
 
+print("Proportion of languages above chance in spurt model, actual data")
+spurt.tally.adjusted
 print("Proportion of languages above chance in spurt model, sample median")
 median(spurt.sample.family$tally)
 print("Proportion of languages above chance in spurt model, sample IQR")
 IQR(spurt.sample.family$tally)
-print("Proportion of languages above chance in spurt model, actual data")
-spurt.tally.adjusted
+
 
 spurt.sample.family %>% 
   ggplot(aes(x = tally)) +
@@ -417,19 +421,20 @@ geo.stats <- map_dfr(1:1000, function(i){
   return(stats)
 })
 
+print("Actual measure, cohen's eta^2")
+eta.squared.action.thing.adjusted
 print("Median of geo permutation, eta^2")
 median(geo.stats$eta)
 print("IQR of geo permutation, eta ^2")
 IQR(geo.stats$eta)
-print("Actual measure, cohen's eta^2")
-eta.squared.action.thing.adjusted
 
+print("Actual measure, cohen's d")
+abs(d.action.thing.adjusted$estimate)
 print("Median of geo permutation, cohen's d")
 median(geo.stats$d)
 print("IQR of geo permutation, cohen's d")
 IQR(geo.stats$d)
-print("Actual measure, cohen's d")
-abs(d.action.thing.adjusted$estimate)
+
 
 
 # Plot permutations as histograms, mark permutation median (blue) and data measure (red)
@@ -485,19 +490,19 @@ neighbor.samples.geo <-  map_dfr(1:1000, function(i){
   return(this.proportion)
 })
 
-
+print("Proportion of languages with p < 0.01 in neighbor test, Actions, actual data")
+neighbor.proportions.adjusted$n[1]
 print("Proportion of languages with p < 0.01 in neighbor test, Actions, permutation median")
 median(filter(neighbor.samples.geo, ontological.category == "Action",p == "[0,0.01)")$n)
 print("Proportion of languages with p < 0.01 in neighbor test, Actions, permutation IQR")
 IQR(filter(neighbor.samples.geo, ontological.category == "Action",  p == "[0,0.01)")$n)
-print("Proportion of languages with p < 0.01 in neighbor test, Actions, actual data")
-neighbor.proportions.adjusted$n[1]
+
 
 neighbor.samples.geo %>% 
   filter(ontological.category == "Action", p == "[0,0.01)") %>% 
   ggplot(aes(x = n)) +
   geom_histogram(bins = 8, color = palette_line, fill = palette_other[2]) +
-  geom_vline(xintercept = neighbor.proportions.adjusted$n[1], color = "red", size = 3) +
+  geom_vline(xintercept = neighbor.proportions.adjusted$n[1] / 100, color = "red", size = 3) +
   geom_vline(xintercept = median(filter(neighbor.samples.geo,
                                         ontological.category == "Action", 
                                         p == "[0,0.01)")$n),
@@ -507,18 +512,18 @@ neighbor.samples.geo %>%
   cowplot::theme_cowplot()
 ggsave("../Figures/Other/neighbor_geo_actions.png")
 
+print("Proportion of languages with p < 0.01 in neighbor test, Things, actual")
+neighbor.proportions.adjusted$n[3]
 print("Proportion of languages with p < 0.01 in neighbor test, Things, permutation median")
 median(filter(neighbor.samples.geo, ontological.category == "Thing",  p == "[0,0.01)")$n)
 print("Proportion of languages with p < 0.01 in neighbor test, Things, permutation IQR")
 IQR(filter(neighbor.samples.geo, ontological.category == "Thing",  p == "[0,0.01)")$n)
-print("Proportion of languages with p < 0.01 in neighbor test, Things, actual")
-neighbor.proportions.adjusted$n[3]
 
 neighbor.samples.geo %>% 
   filter(ontological.category == "Thing", p == "[0,0.01)") %>% 
   ggplot(aes(x = n)) +
   geom_histogram(bins = 8, color = palette_line, fill = palette_other[2]) +
-  geom_vline(xintercept = neighbor.proportions.adjusted$n[3], color = "red", size = 3) +
+  geom_vline(xintercept = neighbor.proportions.adjusted$n[3] / 100, color = "red", size = 3) +
   geom_vline(xintercept = median(filter(neighbor.samples.geo,
                                         ontological.category == "Thing", 
                                         p == "[0,0.01)")$n),
@@ -552,12 +557,12 @@ matthews.sample.geo <- map_dfr(1:1000, function(i){
 })
 
 
+print("Mean MCC across languages, actual")
+mean(rnn.stats.adjusted$Matthews)
 print("Mean MCC across languages, sample median")
 median(matthews.sample.geo$Mean.Matthews)
 print("Mean MCC across languages, sample IQR")
 IQR(matthews.sample.geo$Mean.Matthews)
-print("Mean MCC across languages, actual")
-mean(rnn.stats.adjusted$Matthews)
 
 matthews.sample.geo %>% 
   ggplot(aes(x = Mean.Matthews)) +
@@ -570,12 +575,13 @@ matthews.sample.geo %>%
 ggsave("../Figures/Other/mean_matthews_geo.png")
 
 # Tally
+print("Proportion of languages above chance, actual")
+rnn.tally.adjusted$percentage[1]
 print("Proportion of languages above chance, sample median")
 median(matthews.sample.geo$tally)
 print("Proportion of languages above chance, sample IQR")
 IQR(matthews.sample.geo$tally)
-print("Proportion of languages above chance, actual")
-rnn.tally.adjusted$percentage[1]
+
 
 matthews.sample.geo %>% 
   ggplot(aes(x = tally)) +
@@ -608,13 +614,13 @@ spurt.sample.geo <- map_dfr(1:1000, function(i){
   return(results)
 })
 
-
+print("Spurt model mean MCC across languages, actual")
+spurt.stats.adjusted$Matthews %>% mean
 print("Spurt model mean MCC across languages, sample median")
 median(spurt.sample.geo$Mean.Matthews)
 print("Spurt model mean MCC across languages, sample IQR")
 IQR(spurt.sample.geo$Mean.Matthews)
-print("Spurt model mean MCC across languages, actual")
-spurt.stats.adjusted$Matthews %>% mean
+
 
 spurt.sample.geo %>% 
   ggplot(aes(x = Mean.Matthews)) +
@@ -626,12 +632,13 @@ spurt.sample.geo %>%
        subtitle = "Red: actual data, blue: sample median")
 ggsave("../Figures/Other/spurt_geo_matthews.png")
 
+print("Proportion of languages above chance in spurt model, actual data")
+spurt.tally.adjusted
 print("Proportion of languages above chance in spurt model, sample median")
 median(spurt.sample.geo$tally)
 print("Proportion of languages above chance in spurt model, sample IQR")
 IQR(spurt.sample.geo$tally)
-print("Proportion of languages above chance in spurt model, actual data")
-spurt.tally.adjusted
+
 
 spurt.sample.geo %>% 
   ggplot(aes(x = tally)) +

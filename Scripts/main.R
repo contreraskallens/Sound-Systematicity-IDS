@@ -3,6 +3,20 @@ source("data_wrangling.R")  # Distances and typicality data
 
 # Basic descriptive statistics of the features of wordlists ------
 
+
+# Look at families as a proportion of total families in wals
+total.families.wals <- na.omit(wals_info$family) %>% 
+  unique() %>% 
+  length()
+
+families.in.data <- wals %>% 
+  filter(!(is.na(wals_code))) %>% 
+  left_join(select(wals_info, wals_code, family))
+
+# Percentage of families in wals that our overlapping datasets have
+(length(unique(families.in.data$family)) / total.families.wals) * 100
+
+
 ## Mean and SD number of words
 all.phon.adjusted %>%
   group_by(language) %>%
@@ -58,6 +72,8 @@ all.distances.adjusted %>%
 three.way.test.adjusted <- all.distances.adjusted %>%
   mutate(class = factor(class)) %>%
   coin::kruskal_test(data = ., typicality ~ class)
+
+print(three.way.test.adjusted)
 
 # Get the effect size of k-w test according to
 # http://tss.awf.poznan.pl/files/3_Trends_Vol21_2014__no1_20.pdf
@@ -132,12 +148,16 @@ ggsave("../Figures/Main/scatter_adjusted.png", width = 17, height = 7, units = "
 
 
 # Get test statistics for test languages.
-map2_dfr(test.languages, list(all.distances.adjusted), get.typicality.stats)
+map2_dfr(test.languages, list(all.distances.adjusted), get.typicality.stats) %>% 
+  arrange(desc(difference))
 
 # Get all with significant stats
 all.p <- map2_dfr(unique(all.phon.adjusted$language), list(all.distances.adjusted), get.typicality.stats) %>% 
   mutate(p.value.adj = p.adjust(p.value, method = "bonferroni")) %>% # Bonferroni adjusted
   mutate(sig = p.value.adj < 0.01)
+table(all.p$sig)
+mean(all.p$d)
+sd(all.p$d)
 
 # Closest phonological neighbors ----
 
@@ -172,23 +192,23 @@ neighbor.test.adjusted <- neighbor.test.adjusted %>%
 # Check statistics for reference languages. For "baseline" performance for each
 # language, take 1 SD above the mean of the shuffles.
 ## This is the mean reported
-neighbor.stats.adjusted %>% 
-  filter(language %in% test.languages)
-## This is the baseline
+
 neighbor.mc.adjusted %>% 
-  filter(language %in% test.languages) %>%
   group_by(language, ontological.category) %>%
-  dplyr::summarize(random = mean(random) + sd(random))
-## This is the p value
-neighbor.test.adjusted %>% 
-  filter(language %in% test.languages)
+  dplyr::summarize(random = mean(random) + sd(random)) %>% 
+  right_join(select(neighbor.stats.adjusted, Mean)) %>% 
+  left_join(neighbor.test.adjusted) %>% 
+  filter(language %in% test.languages) %>% 
+  select(language, ontological.category, Mean, random, p) %>% 
+  mutate(Mean = Mean * 100, random = random * 100)
 
 # Check proportion of languages that have p < 0.01
 neighbor.proportions.adjusted <- neighbor.test.adjusted %>%
   mutate(p = cut(p, breaks = c(0, 0.01, 1), include.lowest = TRUE, right = FALSE)) %>%
   group_by(p, ontological.category) %>%
   tally() %>%
-  mutate(n = n / nrow(phon.languages))
+  mutate(n = n / nrow(phon.languages), n = n * 100)
+neighbor.proportions.adjusted
 
 # Plot with bars for each category and each language.
 # The height of each bar is the lower boundary of the 99% CI of the actual data
@@ -248,6 +268,7 @@ rnn.tally.adjusted <- rnn.stats.adjusted %>%
   group_by(includes.baseline) %>% 
   tally() %>% 
   mutate(percentage = (n / sum(n)) * 100)
+rnn.tally.adjusted
 
 ## Check reference languages
 rnn.stats.adjusted %>% 
