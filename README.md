@@ -1,2 +1,2 @@
-# Sound-Systematicity-IDS
+# Sound in the IDS
 Sound systematicity in the Intercontinental Dictionary Series
