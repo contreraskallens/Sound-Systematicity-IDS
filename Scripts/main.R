@@ -1,7 +1,12 @@
 source("functions.r")  # Functions and packages
 source("data_wrangling.R")  # Distances and typicality data
 
+
+morph.complexity <- read_csv("../Data/Processed/morph_complexity.csv")
+
 # Basic descriptive statistics of the features of wordlists ------
+
+
 
 
 # Look at families as a proportion of total families in wals
@@ -118,7 +123,7 @@ density.adjusted <- all.distances.adjusted %>%
         legend.text = element_text(size = 6),
         strip.text = element_text(size = 8))
 density.adjusted
-ggsave("../Figures/Main/density_adjusted.png", width = 17, height = 9, units = "cm", dpi = 900)
+ggsave("../Figures/Main/density_adjusted_test.png", width = 17, height = 9, units = "cm", dpi = 900)
 
 
 # Look at languages on an individual level ----
@@ -144,7 +149,19 @@ scatter.adjusted <- ggplot(data = plot.data.adjusted, aes(y = Median, x = langua
   guides(color = guide_legend(override.aes = list(size=4)))
 
 scatter.adjusted
-ggsave("../Figures/Main/scatter_adjusted.png", width = 17, height = 7, units = "cm", dpi = 900)
+ggsave("../Figures/Main/scatter_adjusted_test.png", width = 17, height = 7, units = "cm", dpi = 900)
+
+
+# include complexity covariate
+
+morph.complexity %>% 
+  rename(language = Language) %>% 
+  filter(number.not.na > 3) %>% 
+  left_join(plot.data.adjusted) %>% 
+  lm(data = ., Median ~ Category * complexity) %>% 
+  summary()
+  
+
 
 
 # Get test statistics for test languages.
@@ -158,6 +175,13 @@ all.p <- map2_dfr(unique(all.phon.adjusted$language), list(all.distances.adjuste
 table(all.p$sig)
 mean(all.p$d)
 sd(all.p$d)
+
+morph.complexity %>% 
+  rename(language = Language) %>% 
+  filter(number.not.na > 3) %>% 
+  left_join(all.p) %>% 
+  ggplot(aes(x = complexity, y = eta.squared)) + geom_point() + geom_smooth(method = 'lm')
+
 
 # Closest phonological neighbors ----
 
@@ -175,7 +199,7 @@ neighbor.stats.adjusted %>%
 
 # Use the number of words with same-class neighbors in the shuffle test as "random" baseline.
 neighbor.mc.adjusted <- neighbor.mc.adjusted %>%
-  rename(random = proportion.of.hits)
+  rename(random = Mean)
 
 # Join the actual and the permuted neighbors per language, per category. Then,
 # count what proportion of the 1000 permutations the actual neighbors have a
@@ -183,11 +207,11 @@ neighbor.mc.adjusted <- neighbor.mc.adjusted %>%
 # Use the LOWER boundary of the .99 confidence interval as the "actual" number
 # to be compared with the permuted numbers.
 neighbor.test.adjusted <- neighbor.stats.adjusted %>% 
-  left_join(neighbor.mc.adjusted) %>%
+  left_join(dplyr::select(neighbor.mc.adjusted, language, ontological.category, random)) %>%
   mutate(is.higher = random >= Lower)
 neighbor.test.adjusted <- neighbor.test.adjusted %>%
   group_by(language, ontological.category) %>%
-  dplyr::summarize(p = sum(is.higher) / 1000)
+  summarise(p = sum(is.higher) / 1000)
 
 # Check statistics for reference languages. For "baseline" performance for each
 # language, take 1 SD above the mean of the shuffles.
@@ -218,11 +242,19 @@ neighbor.mc.plot.adjusted <- neighbor.mc.adjusted %>%
   filter(ontological.category != "Other") %>%
   group_by(language, ontological.category) %>%
   dplyr::summarize(random = mean(random) + sd(random))
+
 neighbor.plot.adjusted <- neighbor.stats.adjusted %>%
   group_by() %>%
   filter(ontological.category != "Other") %>%
   left_join(neighbor.mc.plot.adjusted) %>%
   mutate(language = factor(language, levels = sorted.langs.adjusted$language, labels = sorted.langs.adjusted$language))
+
+morph.complexity %>% 
+  rename(language = Language) %>% 
+  filter(number.not.na > 3) %>% 
+  left_join(neighbor.plot.adjusted) %>% 
+  mutate(perf = Lower - random) %>% 
+  ggplot(aes(x = complexity, y = perf)) + geom_point() + geom_smooth(method = "lm") + facet_wrap(vars(ontological.category))
 
 neighbor.adjusted <- neighbor.plot.adjusted %>%
   mutate(height = Lower - random) %>% 
@@ -289,7 +321,7 @@ rnn.adjusted <- ggplot(data = matthews.plot.adjusted, aes(x = Language, ymin = M
   geom_vline(aes(xintercept = include), linetype = "dotted", size = .5, color = palette_line) +
   geom_linerange(size = 0.5, color = palette_line) +
   geom_point(shape = 22, size = .75, color = palette_line) + 
-  geom_hline(yintercept = 0.1, size = .75, color = palette_line) +
+  geom_hline(yintercept = 0.2, size = .75, color = palette_line) +
   scale_x_discrete(name = "Language", labels = function(x){
     ifelse(x %in% test.languages, str_wrap(as.character(x), 10), "")
     }) +
@@ -308,6 +340,14 @@ rnn.adjusted <- ggplot(data = matthews.plot.adjusted, aes(x = Language, ymin = M
         legend.position = "none") +
   labs(y = "Learning Performance (MCC)")
 rnn.adjusted
+
+
+x <- morph.complexity %>% 
+  filter(number.not.na > 3) %>% 
+  left_join(rnn.stats.adjusted) %>% 
+  lm(data = ., Matthews ~ complexity)
+
+
 
 ggsave("../Figures/Main/rnn_adjusted.png", width = 17, height = 7, units = "cm", dpi = 900)
 

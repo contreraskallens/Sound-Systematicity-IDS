@@ -19,7 +19,7 @@ glottocode <- read_csv("../Data/Raw/IDS/Glottocode.csv") %>%
 wals <- read_csv('../Data/Processed/WALS_Codes.csv') %>% 
   select(Name, wals_code = `WALS code`, ID) %>% 
   mutate(ID = as.factor(ID))
-wals_info <- read_csv("../Data/WALS/Raw/walslanguage.csv")
+wals_info <- read_csv("../Data/Raw/WALS/walslanguage.csv")
 
 # get list of included languages
 
@@ -301,13 +301,362 @@ all.phon %>% write_csv('../Data/Processed/all_phon.csv')
 # Create a copy of the original dataset to modify "in place"
 all.phon.adjusted <- all.phon
 
+
+
+# ----- ALTERNATIVE PROCEDURE
+# 
+# 
+# all.langs.info.suffix <- map_dfr(unique(all.phon$language), function(this.language){
+#   print(this.language)
+#   lang.df <- all.phon %>% 
+#     filter(language == this.language) %>% 
+#     mutate(ending = str_sub(phon, "-1"), ending = factor(ending)) %>% 
+#     filter(ontological.category != "Other") %>% 
+#     droplevels()
+#   all.combs <- expand.grid(-1:-7, -1:-7)
+#   
+#   all.mut.info <- map_dfr(1:nrow(all.combs), function(combination){
+#     remove.actions <- all.combs[combination, 1]
+#     remove.things <- all.combs[combination, 2]
+#     this.attempt <- lang.df %>% 
+#       mutate(phon = ifelse(ontological.category == "Action", 
+#                            str_sub(phon, "1", as.character(remove.actions)), 
+#                            str_sub(phon, "1", as.character(remove.things))
+#                            ), 
+#              ending = str_sub(phon, "-1"), ending = as.factor(ending)) %>% 
+#       filter(nchar(phon) > 2) %>% 
+#       droplevels()
+#     if(nrow(this.attempt) == 0){return(tibble(actions.removed = NA, things.removed = NA, mut.info = NA, words.remaining = NA))}
+#     cat <- this.attempt$ontological.category
+#     affix <- this.attempt$ending
+#     mutual.information <- mutinformation(affix, cat) / sqrt(entropy(cat) * entropy(affix))
+#     tibble(actions.removed = remove.actions, 
+#            things.removed = remove.things, 
+#            mut.info = mutual.information, 
+#            words.remaining = nrow(this.attempt) / nrow(lang.df)) %>% 
+#       return()
+#   }) %>% 
+#     filter(!(is.na(mut.info)))
+#   
+#   all.mut.info <- all.mut.info %>% 
+#     arrange(desc(words.remaining)) %>% 
+#     add_column(language = this.language)
+# })
+# 
+# quantiles <- quantile(all.langs.info.suffix$mut.info, probs = seq(0, 1, 0.25))
+# all.langs.info.suffix %>% ggplot(aes(x = mut.info)) + geom_density(fill = "blue", alpha = 0.3) + geom_vline(xintercept = quantiles)
+# 
+# 
+# suffix.removal <- all.langs.info.suffix %>% 
+#   group_by(language) %>% 
+#   filter(mut.info <= quantiles[2]) %>% 
+#   top_n(1, words.remaining)
+# missing.langs <- setdiff(unique(all.phon$language), suffix.removal$language)
+# missing.langs <- all.langs.info.suffix %>% 
+#   filter(language %in% missing.langs) %>% 
+#   filter(mut.info <= 0.1) %>% 
+#   group_by(language) %>% 
+#   top_n(1, words.remaining)
+# suffix.removal <- bind_rows(suffix.removal, missing.langs)
+# 
+# all.phon.adjusted <- map_dfr(1:nrow(suffix.removal), function(this.row){
+#   this.language <- suffix.removal$language[this.row]
+#   action.position <- suffix.removal$actions.removed[this.row]
+#   thing.position <- suffix.removal$things.removed[this.row]
+#   all.phon %>% 
+#     filter(language == this.language) %>%
+#     mutate(phon = ifelse(ontological.category == "Action",
+#                          str_sub(phon, "1", as.character(action.position)),
+#                          str_sub(phon, "1", as.character(thing.position))))
+#     
+# })
+# 
+# write_csv(suffix.removal, "suffix_info.csv")
+# 
+# all.langs.info.preffix <- map_dfr(unique(all.phon$language), function(this.language){
+#   print(this.language)
+#   lang.df <- all.phon %>% 
+#     filter(language == this.language) %>% 
+#     mutate(beginning = str_sub(phon, "1", "1"), beginning = factor(beginning)) %>% 
+#     filter(ontological.category != "Other") %>% 
+#     droplevels()
+#   all.combs <- expand.grid(1:7, 1:7)
+#   
+#   all.mut.info <- map_dfr(1:nrow(all.combs), function(combination){
+#     remove.actions <- all.combs[combination, 1]
+#     remove.things <- all.combs[combination, 2]
+#     this.attempt <- lang.df %>% 
+#       mutate(phon = ifelse(ontological.category == "Action", 
+#                            str_sub(phon, as.character(remove.actions)), 
+#                            str_sub(phon, as.character(remove.things))
+#       ), 
+#       beginning = str_sub(phon, "1", "1"), beginning = as.factor(beginning)) %>% 
+#       filter(nchar(phon) > 2) %>% 
+#       droplevels()
+#     if(nrow(this.attempt) == 0){return(tibble(actions.removed = NA, things.removed = NA, mut.info = NA, words.remaining = NA))}
+#     cat <- this.attempt$ontological.category
+#     affix <- this.attempt$beginning
+#     mutual.information <- mutinformation(affix, cat) / sqrt(entropy(cat) * entropy(affix))
+#     tibble(actions.removed = remove.actions, 
+#            things.removed = remove.things, 
+#            mut.info = mutual.information, 
+#            words.remaining = nrow(this.attempt) / nrow(lang.df)) %>% 
+#       return()
+#   }) %>% 
+#     filter(!(is.na(mut.info)))
+#   
+#   all.mut.info <- all.mut.info %>% 
+#     arrange(desc(words.remaining)) %>% 
+#     add_column(language = this.language)
+# })
+# 
+# quantiles <- quantile(all.langs.info.preffix$mut.info, probs = seq(0, 1, 0.25))
+# all.langs.info.preffix %>% ggplot(aes(x = mut.info)) + geom_density(fill = "blue", alpha = 0.3) + geom_vline(xintercept = quantiles)
+# 
+# 
+# preffix.removal <- all.langs.info.preffix %>% 
+#   group_by(language) %>% 
+#   filter(mut.info <= quantiles[2]) %>% 
+#   top_n(1, words.remaining)
+# missing.langs <- setdiff(unique(all.phon$language), preffix.removal$language)
+# missing.langs <- all.langs.info.preffix %>% 
+#   filter(language %in% missing.langs) %>% 
+#   filter(mut.info <= 0.1) %>% 
+#   group_by(language) %>% 
+#   top_n(1, words.remaining)
+# preffix.removal <- bind_rows(preffix.removal, missing.langs)
+# 
+# all.phon.adjusted <- map_dfr(1:nrow(preffix.removal), function(this.row){
+#   this.language <- preffix.removal$language[this.row]
+#   action.position <- preffix.removal$actions.removed[this.row]
+#   thing.position <- preffix.removal$things.removed[this.row]
+#   all.phon.adjusted %>% 
+#     filter(language == this.language) %>%
+#     mutate(phon = ifelse(ontological.category == "Action",
+#                          str_sub(phon, as.character(action.position)),
+#                          str_sub(phon, as.character(thing.position))))
+#   
+# })
+# 
+# adjustment.census <- select(suffix.removal, language, suffix.action = actions.removed, suffix.things = things.removed) %>% 
+#   left_join(select(preffix.removal, preffix.action = actions.removed, preffix.things = things.removed, language)) %>% 
+#   replace_na(replace = list(0, 0, 0, 0, 0)) %>% 
+#   mutate_if(is.numeric, function(x){return(abs(x) - 1)})
+# 
+# all.phon.adjusted <- filter(all.phon.adjusted, nchar(phon) > 2)
+# 
+# homophone.census <- all.phon.adjusted %>% 
+#   group_by(language, ontological.category, phon) %>% 
+#   tally() %>% 
+#   filter(n > 1) %>% 
+#   group_by() %>% 
+#   group_by(language, ontological.category) %>% 
+#   tally()
+# 
+# homophone.census <- homophone.census %>% 
+#   group_by(language) %>% 
+#   dplyr::summarize(Number.Homophones = sum(n))
+# all.phon.adjusted <- all.phon.adjusted %>% 
+#   distinct(language, ontological.category, phon, .keep_all = TRUE)
+# 
+# write_csv(all.phon.adjusted, "../Data/Processed/all_phon_adjusted_mi.csv")
+
+# --- Old procedure -------
+
+
 # Store all languages that had something removed in a list
 marker.group <- list()
 
 # Prepare a list with languages that had suffixes removed and how many
 ending.census <- list()
+lang <- "Spanish"
 
+lang.df <- all.phon.adjusted %>% 
+  filter(language == lang,
+         ontological.category == "Action") %>% 
+  droplevels()
+
+
+get.ngram.endings <- function(language.df, level){
+  ngram.df <- language.df %>% 
+    mutate(ending = str_sub(phon, level),
+           successor = str_sub(phon, level - 1, level - 1))
+  return(ngram.df)
+}
+
+get.ngram.entropy <- function(ngram.df, ngram){
+  filtered.df <- filter(ngram.df, ending == ngram) 
+  ngram.entropy <- infotheo::entropy(filtered.df$successor)
+  results <- list("ngram" = ngram, "entropy" = ngram.entropy)
+  return(results)
+}
+
+unigram.endings <- get.ngram.endings(lang.df, -1)
+for(unigram in unique(unigram.endings$ending)){
+  unigram.entropy <- get.ngram.entropy(unigram.endings, unigram)
+  # check if bigger
+  gram.df <- filter(unigram.endings, ending == unigram)
+  bigram.endings <- get.ngram.endings(gram.df, -2)
+  for(bigram in unique(bigram.endings$ending)){
+    bigram.entropy <- get.ngram.entropy(bigram.endings, bigram)
+    print(paste("ngrams", unigram.entropy$ngram, bigram.entropy$ngram))
+    print(paste("entropies", unigram.entropy$entropy, bigram.entropy$entropy))
+    if(bigram.entropy$entropy > unigram.entropy$entropy){print(paste("morph marker might be", bigram))} else{
+      print("morph marker is further ahead")
+    }
+  }
+}
+
+for(ngram in unique(lang.df$ending.bi)){
+  ngram.df <- filter(lang.df, ending.uni == unigram.test,
+         ending.bi == ngram)
+  if(nrow(ngram.df) == 0){
+    next
+  }
+  ngram.df <- ngram.df %>% 
+    mutate(successors = str_sub(phon, "-3", "-3"))
+  print(ngram)
+  print(infotheo::entropy(ngram.df$successors))
+}
+bigram.test <- "ar"
+for(ngram in unique(lang.df$ending.tr)){
+  ngram.df <- filter(lang.df, ending.uni == unigram.test,
+                     ending.bi == bigram.test, 
+                     ending.tr == ngram)
+  if(nrow(ngram.df) == 0){
+    next
+  }
+  # print(head(ngram.df))
+  
+  ngram.df <- ngram.df %>%
+    mutate(successors = str_sub(phon, "-4", "-4"))
+  print(ngram)
+  print(infotheo::entropy(ngram.df$successors))
+}
+trigram.test <- "rse"
+lang.df <- lang.df %>% 
+  mutate(ending.te = str_sub(phon, "-4"))
+for(ngram in unique(lang.df$ending.te)){
+  ngram.df <- filter(lang.df, ending.uni == unigram.test,
+                     ending.bi == bigram.test, 
+                     ending.tr == trigram.test,
+                     ending.te == ngram)
+  if(nrow(ngram.df) == 0){
+    next
+  }
+  # print(head(ngram.df))
+  
+  ngram.df <- ngram.df %>%
+    mutate(successors = str_sub(phon, "-5", "-5"))
+  print(ngram)
+  print(infotheo::entropy(ngram.df$successors))
+}
+lang.df <- lang.df %>% 
+  mutate(ending.pe = str_sub(phon, "-5"))
+
+tetragram.test <- "arse"
+for(ngram in unique(lang.df$ending.pe)){
+  # print(ngram)
+  ngram.df <- filter(lang.df, ending.uni == unigram.test,
+                     ending.bi == bigram.test, 
+                     ending.tr == trigram.test,
+                     ending.te == tetragram.test,
+                     ending.pe == ngram)
+  if(nrow(ngram.df) == 0){
+    next
+  }
+  ngram.df <- ngram.df %>%
+    mutate(successors = str_sub(phon, "-6", "-6"))
+  print(ngram)
+  print(infotheo::entropy(ngram.df$successors))
+}
+
+
+
+bigram.test <- unique(lang.df$ending.bi)[1]
+successor <- lang.df %>% 
+  filter(ending.bi == bigram.test) %>% 
+  mutate(bigram.successor = str_sub(phon, "-3", "-3")) %>% 
+  .$bigram.successor
+infotheo::entropy(successor)
+
+
+
+test <- lang.df %>% 
+  mutate(second.ending = str_sub(phon, "-2", "-2"),
+         third.ending = str_sub(phon, "-3", "-3"),
+         fourth.ending = str_sub(phon, "-4", "-4"),
+         fifth.ending = str_sub(phon, "-5", "-5"))
+
+model <- MASS::lda(data = test, ontological.category ~ fifth.ending)
+prediction <- predict(model, dplyr::select(test, -ontological.category))
+caret::confusionMatrix(data = prediction$class, reference = test$ontological.category)$overall["Kappa"]
+
+
+
+
+entropy_distribution <- map_dbl(1:1000, function(i){
+  if(i %% 50 == 0){print(i)}
+  df <- filter(lang.df, ontological.category == "Action") %>% 
+    mutate(phon = stringi::stri_rand_shuffle(phon),
+           ending = str_sub(phon, "-1", "-1"))
+  return(entropy(table(df$ending)))
+})
+
+
+mean(entropy_distribution) - sd(entropy_distribution)
+entropy(table(test$ending))
+entropy(table(test$second.ending))
+entropy(table(test$third.ending))
+entropy(table(test$fourth.ending))
+
+
+
+infotheo::entropy(table(test$ending))
+infotheo::entropy(table(test$second.ending))
+
+
+contingency.table <- table(lang.df$ending, lang.df$ontological.category)
+(contingency.table / rowSums(contingency.table)) %>% 
+  round(3)
+
+corrected.lang.df <- lang.df %>% 
+  mutate(phon = str_sub(phon, "1", "-2"),
+         ending = str_sub(phon, "-1"))
+
+contingency.table <- table(corrected.lang.df$ending, corrected.lang.df$ontological.category)
+(contingency.table / rowSums(contingency.table)) %>% 
+  round(3)
+
+corrected.lang.df <- lang.df %>% 
+  mutate(phon = ifelse(ontological.category == "Action", str_sub(phon, "1", "-2"), phon),
+         ending = str_sub(phon, "-1"))
+
+
+
+map_dfr(c("Action", "Thing", "Other"), function(category){
+  cat.df <- lang.df %>% 
+    filter(ontological.category == category)
+  # Get the number of words that share the same suffix
+  number <- nrow(cat.df)
+  proportions <- cat.df %>% 
+    mutate(ending = str_sub(phon, "-1")) # %>% 
+  # .$ending %>% 
+  # table()
+  proportions <- proportions / number
+  # Check whether any suffix is present in more than a third of the words of that category
+  has.marker <- proportions > 0.33
+  # If *any* of them do, return a tibble where "marker" is TRUE
+  if(TRUE %in% has.marker){
+    return(tibble(ontological.category = category, marker = TRUE))
+  } 
+  else{
+    return(tibble(ontological.category = category, marker = FALSE))
+  }
+  
+})
 # Loop through languages 6 times. After 6 passes, no suffixes are removed.
+
 for(i in 1:6){
   markers <- purrr::map_dfr(sort(unique(all.phon.adjusted$language)), function(lang){
     # For each language, make a dataframe of each category
@@ -319,9 +668,9 @@ for(i in 1:6){
       # Get the number of words that share the same suffix
       number <- nrow(cat.df)
       proportions <- cat.df %>% 
-        mutate(ending = str_sub(phon, "-1")) %>% 
-        .$ending %>% 
-        table()
+        mutate(ending = str_sub(phon, "-1")) # %>% 
+        # .$ending %>% 
+        # table()
       proportions <- proportions / number
       # Check whether any suffix is present in more than a third of the words of that category
       has.marker <- proportions > 0.33

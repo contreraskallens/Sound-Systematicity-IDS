@@ -322,9 +322,9 @@ def save_repeated_measures(results, lang_name):
     :return: Doesn't return anything. Saves a CSV version of the results Dataframe.
     """
     if spurt_model:
-        filename_performance = "Results/Spurt/" + f"{language_name}" + "_spurt_performance.csv"
+        filename_performance = "../Results/Spurt/" + f"{language_name}" + "_spurt_performance.csv"
     else:
-        filename_performance = "Results/ten-fold/" + f"{lang_name}" + "_rnn_performance.csv"
+        filename_performance = "../Results/ten-fold/" + f"{lang_name}" + "_rnn_performance.csv"
     results.to_csv(filename_performance)
 
 
@@ -336,7 +336,7 @@ np.random.seed(1)
 torch.manual_seed(1)
 
 # Load all language data and extract an ordered set of the names
-lang_data = pd.read_csv("Data/Processed/all_phon_adjusted.csv", keep_default_na=False)
+lang_data = pd.read_csv("../Data/Processed/all_phon_adjusted_mi.csv", keep_default_na=False)
 all_languages = sorted(set(lang_data["language"]))
 
 # Loop through all language names, get performance of RNN on them and save them as CSV.

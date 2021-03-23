@@ -8,7 +8,7 @@ source('functions.R')
 # no_marker_group has a list of the languages that weren't adjusted.
 
 all.phon <- read_csv('../Data/Processed/all_phon.csv')
-all.phon.adjusted <- read_csv("../Data/Processed/all_phon_adjusted.csv")
+all.phon.adjusted <- read_csv("../Data/Processed/all_phon_adjusted_mi.csv")
 phon.languages <- read_csv('../Data/Processed/all_language_info.csv')
 no.marker.group <- read_rds("../Data/r_objects/no_marker_group.rds")
 language.groups <- read_csv("../Data/Processed/language_groups.csv") %>% 
@@ -37,18 +37,26 @@ wals_info <- read_csv("../Data/Raw/WALS/walslanguage.csv")
 #                          }
 # )
 # 
-# all.distances.adjusted <- map_dfr(.x = unique(all.phon.adjusted$language),
-#                                   .f = function(language.name) {
-#                                     language <- get.language(a.language = language.name, 
-#                                                              data = all.phon.adjusted)
-#                                     distances <- get.distance.matrix(language)
-#                                     mean.distances <- get.mean.distances(language.df = language, 
-#                                                                          distance.matrix = distances) %>%
-#                                       mutate(language = language.name)
-#                                     return(mean.distances)
-#                                   }
-# )
-# 
+
+all.phon.adjusted <- all.phon.adjusted %>% 
+  filter(!(language %in% c("Chatino (Zacatepec variety)", "Tehuelche", "Tabasaran (Southern dialect)", "Kryz")))
+all.phon.adjusted %>% 
+  write_csv("../Data/Processed/all_phon_adjusted_mi.csv")
+
+
+all.distances.adjusted <- map_dfr(.x = unique(all.phon.adjusted$language),
+                                  .f = function(language.name) {
+                                    print(language.name)
+                                    language <- get.language(a.language = language.name,
+                                                             data = all.phon.adjusted)
+                                    distances <- get.distance.matrix(language)
+                                    mean.distances <- get.mean.distances(language.df = language,
+                                                                         distance.matrix = distances) %>%
+                                      mutate(language = language.name)
+                                    return(mean.distances)
+                                  }
+)
+
 
 # Save distance objects
 # write_rds(all.distances, "../Data/r_objects/all_distances.RDS")
@@ -57,7 +65,7 @@ wals_info <- read_csv("../Data/Raw/WALS/walslanguage.csv")
 # Load distances objects instead of rerunning everytime. Uncomment previous lines to rerun.
 
 all.distances <- read_rds("../Data/r_objects/all_distances.RDS")
-all.distances.adjusted <- read_rds("../Data/r_objects/all_distances_adjusted.RDS")
+all.distances.adjusted.old <- read_rds("../Data/r_objects/all_distances_adjusted.RDS")
 
 
 # Sorted scatter of typicality per class ----
@@ -162,7 +170,7 @@ label.text.adjusted[which(label.text.adjusted == "Thai (Korat variety)")] <- "Th
 #       }) %>%
 #       return()
 #   })
-
+# 
 # all.phon.list.adjusted <- all.phon.adjusted %>%
 #   split(.$language)
 # all.phon.list.adjusted <- all.phon.list.adjusted[sort(names(all.phon.list.adjusted))]
@@ -181,14 +189,14 @@ label.text.adjusted[which(label.text.adjusted == "Thai (Korat variety)")] <- "Th
 #   }) %>%
 #     return()
 # })
-
+# 
 # repeated.neighbor %>% write_rds("../Data/r_objects/neighbor_original.Rds")
-# repeated.neighbor.adjusted %>% write_rds("../Data/r_objects/neighbor_adjusted.Rds")
-
+# repeated.neighbor.adjusted %>% write_rds("../Data/r_objects/neighbor_adjusted_mi.Rds")
+# 
 # Load data generated from previous lines
 repeated.neighbor <- read_rds("../Data/r_objects/neighbor_original.Rds") %>% 
   filter(language != "Chechen (Akkin dialect)")
-repeated.neighbor.adjusted <- read_rds("../Data/r_objects/neighbor_adjusted.Rds") %>% 
+repeated.neighbor.adjusted <- read_rds("../Data/r_objects/neighbor_adjusted_mi.Rds") %>% 
   filter(language != "Chechen (Akkin dialect)")
 
 # For hypothesis testing, generate a permutation-based null distribution. This
@@ -204,7 +212,7 @@ repeated.neighbor.adjusted <- read_rds("../Data/r_objects/neighbor_adjusted.Rds"
 # future::plan(multiprocess)
 
 # Change this to a reasonable number considering your machine. Number of cores - 2 seems reasonable.
-# cores <- 6
+# cores <- 4
 # options(future.globals.maxSize = +Inf, mc.cores = cores)
 
 # neighbor.mc <- furrr::future_map2_dfr(.progress = TRUE, .x = all.phon.list, .y = all.distance.matrices,
@@ -221,14 +229,14 @@ repeated.neighbor.adjusted <- read_rds("../Data/r_objects/neighbor_adjusted.Rds"
 #                             }) %>%
 #                             group_by(language, ontological.category, permutation) %>%
 #                             summarize(Mean = mean(proportion.of.hits),
-#                                     Standard.Dev = sd(proportion.of.hits)
+#                                     Standard.Dev = sd(proportion.of.hits),
 #                                     Upper = (Mean + sd(proportion.of.hits)),
 #                                     Lower = (Mean - sd(proportion.of.hits))) %>%
 #                             return()
 # })
 
-# neighbor.mc.adjusted <- furrr::future_map2_dfr(.progress = TRUE, 
-#                                                .x = all.phon.list.adjusted, 
+# neighbor.mc.adjusted <- furrr::future_map2_dfr(.progress = TRUE,
+#                                                .x = all.phon.list.adjusted,
 #                                                .y = all.distance.matrices.adjusted,
 #                                                .f = function(language, distance.matrix){
 #                                         purrr::map_dfr(1:1000, function(x){
@@ -242,8 +250,8 @@ repeated.neighbor.adjusted <- read_rds("../Data/r_objects/neighbor_adjusted.Rds"
 #                                           return(all.neighbors)
 #                                         }) %>%
 #                                           group_by(language, ontological.category, permutation) %>%
-#                                           summarize(Mean = mean(proportion.of.hits),
-#                                                    Standard.Dev = sd(proportion.of.hits)
+#                                           summarise(Mean = mean(proportion.of.hits),
+#                                                    Standard.Dev = sd(proportion.of.hits),
 #                                                    Upper = (Mean + sd(proportion.of.hits)),
 #                                                     Lower = (Mean - sd(proportion.of.hits))) %>%
 #                                           return()
@@ -251,11 +259,11 @@ repeated.neighbor.adjusted <- read_rds("../Data/r_objects/neighbor_adjusted.Rds"
 # neighbor.mc %>%
 # write_rds("../Data/r_objects/neighbor_mc_original.Rds")
 # neighbor.mc.adjusted %>%
-# write_rds("../Data/r_objects/neighbor_mc_adjusted.Rds")
+  # write_rds("../Data/r_objects/neighbor_mc_adjusted_mi.Rds")
 
 neighbor.mc <- read_rds("../Data/r_objects/neighbor_mc_original.Rds") %>% 
   filter(language != "Chechen (Akkin dialect)")
-neighbor.mc.adjusted <- read_rds("../Data/r_objects/neighbor_mc_adjusted.Rds") %>% 
+neighbor.mc.adjusted <- read_rds("../Data/r_objects/neighbor_mc_adjusted_mi.Rds") %>% 
   filter(language != "Chechen (Akkin dialect)")
 
 
