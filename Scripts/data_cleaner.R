@@ -469,7 +469,7 @@ marker.group <- list()
 
 # Prepare a list with languages that had suffixes removed and how many
 ending.census <- list()
-lang <- "Spanish"
+lang <- "Mansi"
 
 lang.df <- all.phon.adjusted %>% 
   filter(language == lang,
@@ -478,18 +478,222 @@ lang.df <- all.phon.adjusted %>%
 
 
 get.ngram.endings <- function(language.df, level){
-  ngram.df <- language.df %>% 
-    mutate(ending = str_sub(phon, level),
-           successor = str_sub(phon, level - 1, level - 1))
+  all.levels <- c(-1:level)
+  names(all.levels) <- all.levels
+  all.ngram.endings <- map_dfc(all.levels, function(n){
+    str_sub(lang.df$phon, n)
+  })
+  ngram.df <- lang.df %>% 
+    dplyr::select(phon, ontological.category, Form) %>% 
+    bind_cols(all.ngram.endings)
   return(ngram.df)
 }
 
-get.ngram.entropy <- function(ngram.df, ngram){
-  filtered.df <- filter(ngram.df, ending == ngram) 
-  ngram.entropy <- infotheo::entropy(filtered.df$successor)
-  results <- list("ngram" = ngram, "entropy" = ngram.entropy)
+all.ngrams <- get.ngram.endings(lang.df, -(max(nchar(lang.df$phon))))
+
+get.successors <- function(ngram.df, ngram){
+  level <- -(nchar(ngram))
+  this.ngram.rows <- ngram.df[[as.character(level)]] == ngram
+  this.df <- ngram.df[this.ngram.rows,]
+  next.level <- as.character(level - 1)
+  successors <- str_sub(this.df[[next.level]], 1, 1)
+  return(successors)
+}
+
+
+all.ngram.segments <- c(all.ngrams$`-1`, all.ngrams$`-2`, all.ngrams$`-3`, 
+                        all.ngrams$`-4`, all.ngrams$`-5`, all.ngrams$`-6`, 
+                        all.ngrams$`-7`, all.ngrams$`-8`) %>% unlist
+character.frequency <- paste0(all.ngram.segments, collapse = "") %>% 
+  str_split("") %>% 
+  table()
+character.frequency <- character.frequency / sum(character.frequency)
+ngram.frequency <- table(all.ngram.segments)
+ngram.frequency <- ngram.frequency / sum(ngram.frequency)
+
+get.random.frequency <- function(ngram, char.table){
+  ngram.components <- str_split(ngram, "") %>% 
+    unlist()
+  if(length(ngram.components) == 1){return(frequency.table[ngram])} else{
+    return(prod(frequency.table[ngram.components]))
+  }
+}
+
+get.ngram.stats <- function(ngram.df, ngram, char.table, ngram.freq){
+  level <- -(nchar(ngram))
+  this.entropy <- infotheo::entropy(get.successors(ngram.df, ngram))
+  ngram.frequency <- table(ngram.df[[as.character(level)]])
+  this.frequency <- ngram.frequency[ngram]
+  length.frequency <- this.frequency
+  norm.frequency <- scale(ngram.frequency)[ngram, 1]
+  random.frequency <- get.random.frequency(ngram, char.freq.table)
+  results <- list("ngram" = ngram, "entropy" = this.entropy, "frequency" = this.frequency,
+                  "norm.frequency" = norm.frequency, "length.frequency" = length.frequency,
+                  "random.frequency" = random.frequency, "ngram.freq" = ngram.freq,
+                  "higher.than.random" = ngram.freq / random.frequency)
   return(results)
 }
+all.ngram.vector <- all.ngrams[,as.character(c(-1:-(max(nchar(lang.df$phon)))))]
+
+
+all.ngram.vector <- all.ngram.vector %>% 
+  unlist() %>% 
+  unique()
+names(all.ngram.vector) <- all.ngram.vector
+
+all.ngram.stats <- map(all.ngram.vector, function(x){
+  ngram.stats <- get.ngram.stats(all.ngrams, x, character.frequency, ngram.frequency[x])
+  return(ngram.stats)
+})
+
+all.stats.df <- map_dfr(all.ngram.vector, function(x){
+  ngram.stats <- get.ngram.stats(all.ngrams, x, character.frequency, ngram.frequency[x])
+  return(as_tibble(ngram.stats))
+})
+
+all.ngram.stats[["#"]] <- list("ngram" = "#", "entropy" = infotheo::entropy(all.ngrams$`-1`), "frequency" = 0)
+
+get.word.stats <- function(word, ngram.results){
+  word.ngrams <- map_chr(-1:(-(nchar(word) - 1)), function(n){
+    return(str_sub(word, n))
+  })
+  word.entropies <- map_dbl(word.ngrams, function(ngram){
+    return(all.ngram.stats[[ngram]][["entropy"]])
+  })
+  word.entropies <- c(all.ngram.stats[["#"]][["entropy"]], word.entropies)
+  word.norm.frequencies <- map_dbl(word.ngrams, function(ngram){
+    return(all.ngram.stats[[ngram]][["norm.frequency"]])
+  })
+  word.norm.frequencies <- c(all.ngram.stats[["#"]][["frequency"]], word.norm.frequencies)
+  word.overrep <- map_dbl(word.ngrams, function(ngram){
+    return(all.ngram.stats[[ngram]][["higher.than.random"]])
+  })
+  word.overrep <- c(all.ngram.stats[["#"]][["frequency"]], word.overrep)
+  word.length.freq <- map_dbl(word.ngrams, function(ngram){
+    return(all.ngram.stats[[ngram]][["length.frequency"]])
+  })
+
+  names(word.entropies) <- c("#", word.ngrams)
+  names(word.norm.frequencies) <- c("#", word.ngrams)
+  names(word.overrep) <- c("#", word.ngrams)
+  names(word.length.freq) <- word.ngrams
+  return(list("entropies" = word.entropies, "length.frequencies" = word.length.freq,
+              "norm.frequencies" = word.norm.frequencies, "overrep" = word.overrep))
+}
+
+evaluate.word <- function(word, ngram.results){
+  
+  word.stats <- get.word.stats(word, ngram.results)
+  word.entropies <- word.stats$entropies
+  print(word.entropies)
+  word.entropies <- word.entropies[!is.nan(word.entropies)]
+  word.frequencies <- word.stats$norm.frequencies
+  word.ngram.frequencies <- word.stats$length.frequencies > 1
+  word.overrep <- word.stats$overrep
+  if(length(word.entropies) < 3){ # If most of the word's components have NAN entropy
+    frequency.test <- word.frequencies > 0
+    if(sum(frequency.test) == 0){
+      return("#")
+    } else {
+        return(names(word.entropies)[which.max(word.entropies)])
+      }
+  }
+  
+  tested.ngrams <- names(word.entropies)[2:(length(word.entropies) - 1)]
+  entropy.test <- map_lgl(2:(length(word.entropies) - 1), function(x){
+    this.entropy <- word.entropies[x]
+    prev.entropy <- word.entropies[x - 1]
+    next.entropy <- word.entropies[x + 1]
+    is.peak <- (this.entropy >= prev.entropy) & (this.entropy >= next.entropy)
+    return(is.peak)
+  })
+  peaks <- tested.ngrams[entropy.test]
+  print(peaks)
+  possible.markers <- tested.ngrams[entropy.test]
+  if(length(possible.markers) == 0){print("#");return("#")}
+  
+  possible.markers <- possible.markers[possible.markers != word]
+  
+  if(length(possible.markers) == 0){print("#");return("#")}
+  
+
+  possible.markers <- possible.markers[word.ngram.frequencies[possible.markers]] # check for singletons
+  print(possible.markers)
+  frequency.test <- map_lgl(possible.markers, function(ngram){
+    if(word.frequencies[ngram] > 0){
+      return(TRUE)
+    } else{return(FALSE)}
+  })
+  print(word.frequencies)
+  print(word.overrep)
+  # If no marker
+  
+  if(sum(frequency.test) == 0){
+    return("#")
+  }
+  
+  
+  
+  
+  # If more than one
+
+  candidate.entropies <- word.entropies[possible.markers[frequency.test]]
+  # now check if any of them has more entropy than the ending mark
+  entropy.test <- candidate.entropies >= ngram.results[["#"]][["entropy"]]
+  if(sum(entropy.test) == 0){return("#")}
+  return(names(candidate.entropies)[which.max(candidate.entropies)])
+}
+
+# NOW: MAKE IT SO IT RETURNS TO PREVIOUS PARTS OF THE PEAK (??kwe      i??kwe) IN CASE OF NO FREQUENCY MATCHES
+
+
+lang.df %>% 
+  rowwise() %>% 
+  mutate(marker = evaluate.word(phon, ngram.results = all.ngram.stats)) %>% 
+  View()
+
+lang.df %>% 
+  rowwise() 
+  mutate(marker = evaluate.word(phon, all.ngram.stats))
+
+evaluate.word("ahogado", all.ngram.stats)
+evaluate.word("caminar", all.ngram.stats)
+evaluate.word("comer", all.ngram.stats)
+evaluate.word("acordarse", all.ngram.stats)
+evaluate.word("rendirse", all.ngram.stats)
+evaluate.word("ver", all.ngram.stats)
+evaluate.word("construir", all.ngram.stats)
+evaluate.word("atreverse", all.ngram.stats)
+
+test <- evaluate.word("acordarse", all.ngram.stats)
+test.entropies <- test$entropies
+test.frequencies <- test$frequencies
+tested.ngrams <- names(test.entropies)[2:length(test.entropies) - 1]
+entropy.test <- map_lgl(2:(length(test.entropies) - 1), function(x){
+  this.entropy <- test.entropies[x]
+  prev.entropy <- test.entropies[x - 1]
+  next.entropy <- test.entropies[x + 1]
+  is.peak <- (this.entropy >= prev.entropy) & (this.entropy >= next.entropy)
+  return(is.peak)
+})
+
+
+names(test.entropies)[2:(length(test.entropies) - 1)][entropy.test]
+
+
+word.entropies <- map_dbl(word.ngrams, function(ngram){
+  return(all.ngram.stats[[ngram]][["entropy"]])
+})
+word.entropies <- c(ending.entropy, word.entropies)
+word.frequencies <- map_dbl(word.ngrams, function(ngram){
+  return(all.ngram.stats[[ngram]][["frequency"]] - all.ngram.stats[[ngram]][["mean.freq"]])
+})
+word.frequencies <- c(0, word.frequencies)
+
+
+
+all.ngram.stats[word.ngrams]
+
 
 unigram.endings <- get.ngram.endings(lang.df, -1)
 for(unigram in unique(unigram.endings$ending)){
