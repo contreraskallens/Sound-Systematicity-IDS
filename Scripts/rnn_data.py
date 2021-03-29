@@ -15,7 +15,8 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 # If true, then use use spurt model
 # If false, use 10-fold cross validation
-spurt_model = False
+spurt_model = True
+
 
 # - Supporting Functions
 
@@ -67,7 +68,10 @@ def pack_word(list_of_samples):
     lengths = torch.LongTensor(lengths)
     sorted_lengths, indices = torch.sort(lengths, descending=True)
     sample_data = [sample_data[index] for index in indices]
-    sample_labels = torch.LongTensor([sample_labels[index] for index in indices])
+    sample_labels = [sample_labels[index] for index in indices]
+    sample_labels = torch.stack(sample_labels, 0)
+    # sample_labels = sample_labels.long()
+    sample_labels = torch.flatten(sample_labels)
     sample_data = rnn_utils.pad_sequence(sample_data)
     sample_data = rnn_utils.pack_padded_sequence(sample_data, sorted_lengths, batch_first=False)
     return [sample_data, sample_labels]
@@ -126,9 +130,9 @@ class RNNConcept(nn.Module):
         self.vocab_size = vocab_size
         self.rnn = nn.RNN(input_size=vocab_size, hidden_size=hidden_dim,
                           nonlinearity="relu", batch_first=True)
-        self.classifier = nn.Linear(hidden_dim, 2)
-        self.softmax = nn.LogSoftmax(dim=1)
-
+        self.classifier = nn.Linear(hidden_dim, 1)
+        # self.softmax = nn.LogSoftmax(dim=1)
+        self.sigmoid = nn.Sigmoid()
         for name, param in self.rnn.named_parameters():
             if "weight_ih" in name:
                 torch.nn.init.normal_(param.data, mean=0, std=0.001)
@@ -149,7 +153,9 @@ class RNNConcept(nn.Module):
         rnn_out, rnn_hidden = self.rnn(word)
         rnn_hidden = rnn_hidden.view(rnn_hidden.size()[1], rnn_hidden.size()[2])
         class_space = self.classifier(rnn_hidden)
-        class_scores = self.softmax(class_space)
+        class_scores = self.sigmoid(class_space)
+        class_scores = torch.squeeze(class_scores)
+        # class_scores = self.softmax(class_space)
         return class_scores
 
 
@@ -212,7 +218,7 @@ def get_network_performance(language_data):
     iter_thing_accuracy = []
     iter_f1 = []
     iter_matthews = []
-
+    iter_auc = []
     # Loop through the iteration and get performance in each one.
     for train_indices, test_indices in training_set_data:
 
@@ -226,17 +232,16 @@ def get_network_performance(language_data):
 
         # - Create datasets and loaders
         training_set = Dataset(ids=partition['train'], labels=all_classes, all_data=encoded_words)
-        training_loader = data.DataLoader(training_set, batch_size=32,
-                                          shuffle=True, collate_fn=pack_word)
-
+        training_loader = data.DataLoader(training_set, batch_size=16,
+                                          shuffle=True, collate_fn=pack_word, drop_last=True)
         # - Create network and optimizer
         # Define loss function
-        loss = nn.NLLLoss()
+        loss = nn.BCELoss()
+        # loss = nn.NLLLoss()
         # Initialize RNN
         model = RNNConcept(hidden_dim=10, vocab_size=len(char_dict))
         model = model.to(device)  # If using CUDA, this sends RNN to GPU.
         optimizer = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=0.01)
-
         # - Training loop
         for epoch in range(max_epochs):
             if epoch % 50 == 0:
@@ -246,7 +251,6 @@ def get_network_performance(language_data):
             for batch, batch_labels in training_loader:
                 batch = batch.to(device)
                 batch_labels = batch_labels.to(device)
-
                 # Prediction for this training batch
                 prediction_scores = model(batch)
                 epoch_loss = loss(prediction_scores, batch_labels)
@@ -269,26 +273,36 @@ def get_network_performance(language_data):
             test_scores = model(test_data).cpu()  # Do this part on the CPU
             test_ground = [all_classes[id_n] for id_n in test_id]
             test_ground = [test_ground[index] for index in indices]
-            test_prediction = (torch.max(test_scores, 1)[1]).tolist()
+            test_ground = torch.flatten(torch.stack(test_ground, 0))
+            test_ground = test_ground.long()
+            test_auc = metrics.roc_auc_score(test_ground, test_scores)
+            # Choose a threshold
 
-            # Calculate accuracy metrics
+            fpr, tpr, thresholds = metrics.roc_curve(test_ground, test_scores)
+            j_statistic = tpr - fpr
+            best_threshold = np.argmax(j_statistic)
+            best_threshold = thresholds[best_threshold]
+            test_prediction = (test_scores > best_threshold)
+            test_prediction = test_prediction.long()
+
+            # # Calculate accuracy metrics
             test_matthews = metrics.matthews_corrcoef(test_ground, test_prediction)
             test_accuracy = metrics.balanced_accuracy_score(test_ground, test_prediction)
             test_f1 = metrics.f1_score(test_ground, test_prediction)
-            # Hand calculate the accuracy for actions and the accuracy for things separately
+            # # Hand calculate the accuracy for actions and the accuracy for things separately
             tn, fp, fn, tp = metrics.confusion_matrix(test_ground, test_prediction).ravel()
             acc_action = tp / (tp + fn)
             acc_thing = tn / (tn + fp)
 
-            # Append them to the lists that track per-iteration, per-measure performance
+            # # Append them to the lists that track per-iteration, per-measure performance
             iter_action_accuracy.append(acc_action)
             iter_thing_accuracy.append(acc_thing)
             iter_matthews.append(test_matthews)
             iter_f1.append(test_f1)
             iter_accuracy.append(test_accuracy)
-
+            iter_auc.append(test_auc)
     # Aggregate iteration performance and return dataframe
-    all_results = pd.DataFrame({'Matthews': iter_matthews,
+    all_results = pd.DataFrame({'Matthews': iter_matthews, 'AUC': iter_auc,
                                 'Accuracy': iter_accuracy, 'F1': iter_f1,
                                 'ActionAccuracy': iter_action_accuracy, 'ThingAccuracy': iter_thing_accuracy})
     print(all_results)  # Print for monitoring
@@ -336,10 +350,10 @@ np.random.seed(1)
 torch.manual_seed(1)
 
 # Load all language data and extract an ordered set of the names
-lang_data = pd.read_csv("../Data/Processed/all_phon_adjusted_mi.csv", keep_default_na=False)
+lang_data = pd.read_csv("../Data/Processed/all_phon_adjusted.csv", keep_default_na=False)
 all_languages = sorted(set(lang_data["language"]))
 
 # Loop through all language names, get performance of RNN on them and save them as CSV.
-for language_name in all_languages:
+for language_name in all_languages[all_languages.index("Toba"):len(all_languages)]:
     language_performance = get_language_performance(lang_data, language_name)
     save_repeated_measures(language_performance, language_name)

@@ -52,11 +52,11 @@ levels(wals.languages$`27A Reduplication`) <- c("0", "1")
 
 # Recode 28
 
-levels(wals.languages$`28A Case Syncretism`) <- c("1", "3", "2", "4")
+# levels(wals.languages$`28A Case Syncretism`) <- c("1", "3", "2", "4")
 
 # Recode 29
 
-levels(wals.languages$`29A Syncretism in Verbal Person/Number Marking`) <- c("1", "2", "3")
+# levels(wals.languages$`29A Syncretism in Verbal Person/Number Marking`) <- c("1", "2", "3")
 
 # Recode 30
 
@@ -73,15 +73,18 @@ levels(wals.languages$`34A Occurrence of Nominal Plurality`) <- as.character(c(1
 
 # 37A Definite Articles: 5 cat. (non-continuous)
 #    binarization: definite affix: 1   all others: 0
+# HERE: SWEDISH AND DANISH DONT HAVE THE AFFIXES. ROMANIAN controls it with the cleanup. Everything else is noise.
 
-levels(wals.languages$`37A Definite Articles`) <- as.character(c(0, 0, 1, 0, 0))
+# levels(wals.languages$`37A Definite Articles`) <- as.character(c(0, 0, 1, 0, 0))
 
 # 38A Indefinite Articles: 5 categories (non-continuous)
-#    binarization: indefinite affix: 1   all others: 0
+#    binarization: indefinite affix: 1   all others: 
+# No affixes here
 # 
 # levels(wals.languages$`38A Indefinite Articles`) <- as.character(c(0, 0, 0, 0))
 
 # 49A Number of Cases: 9 categories (continuous, but "9 borderline case marking" removed)
+# Estonian and Finnish, nominative. Hunzib has themn in Absolutive.
 
 levels(wals.languages$`49A Number of Cases`) <- as.character(c(1, 2, 3, 4, 5, 6, 7, 8, NA))
   
@@ -92,29 +95,33 @@ levels(wals.languages$`51A Position of Case Affixes`) <- as.character(c(1, 1, 1,
 
 # 57A Position of Pronominal Possessive Affixes: 4 categories (non-continuous)
 #    binarization: no affixes: 0   all others: 1
+# Words not expected to be in possessives
 
-levels(wals.languages$`57A Position of Pronominal Possessive Affixes`) <- as.character(c(1, 1, 1, 0))
+
+# levels(wals.languages$`57A Position of Pronominal Possessive Affixes`) <- as.character(c(1, 1, 1, 0))
 
 # 59A Possessive Classification: 4 cat. (continuous)
 
-levels(wals.languages$`59A Possessive Classification`) <- as.character(c(1, 2, 3, 4))
+# levels(wals.languages$`59A Possessive Classification`) <- as.character(c(1, 2, 3, 4))
+# Words not expected to be in possessives
+
 
 # 65A Perfective/Imperfective Aspect
 #    binarization: "little or no inflectional morphology": 0   all others: 1
-
-levels(wals.languages$`65A Perfective/Imperfective Aspect`) <- c("1", "0")
+# Words not expected to be in past/perfect
+# levels(wals.languages$`65A Perfective/Imperfective Aspect`) <- c("1", "0")
 
 
 # 66A The Past Tense: 4 continuous (but reordered)
 #    reordering: 1: "4 no past tense", 2: "1 Present, no remoteness distinctions", 
 #             3: "2 Present, 2-3 remoteness distinctions", 4: "3 Present, 4 or more remoteness distinctions"
-
-levels(wals.languages$`66A The Past Tense`) <- c("2", "3", "4", "1")
+# Words not expected to be in past/perfect
+# levels(wals.languages$`66A The Past Tense`) <- c("2", "3", "4", "1")
 
 # 67A The Future Tense
 #    binarization: existent/non-existent
-
-levels(wals.languages$`67A The Future Tense`) <- c("1", "0")
+# Words not expected to be in Future
+# levels(wals.languages$`67A The Future Tense`) <- c("1", "0")
 
 # 69A Position of Tense/Aspect Affixes: 5 cat. (non-continuous)
 #    binarization: no tense-aspect inflection: 0   all others: 1
@@ -124,8 +131,8 @@ levels(wals.languages$`69A Position of Tense-Aspect Affixes`) <- c("1", "1", "1"
 # 70A The Morphological Imperative: 5 cat. (partial continuous)
 #    recategorization: 1: "5 no second person imperatives", 2: "4 second person number-neutral", 
 #                     3: "3 Second plural" and "2 Second singular", 4: "1 Second singular and plural"
-
-levels(wals.languages$`70A The Morphological Imperative`) <- c("4", "3", "3", "2", "1")
+# Words not in imperative
+# levels(wals.languages$`70A The Morphological Imperative`) <- c("4", "3", "3", "2", "1")
 
 # 73A The Optative
 #    binarization: present/absent

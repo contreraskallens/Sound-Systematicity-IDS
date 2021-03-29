@@ -43,6 +43,9 @@ get.distance.matrix <- function(language.df){
   #   An n x n matrix where n is the number of phon forms included in language
   #   DF, and each cell contains the string distance between the word in the row
   #   and the word in the column.
+  language.df <- language.df %>% 
+    filter(ontological.category != "Other") %>% 
+    droplevels()
   words <- language.df$phon
   distance.matrix <- stringdistmatrix(words, words)
   colnames(distance.matrix) <- words
@@ -135,7 +138,9 @@ get.nearest.neighbors <- function(a.language, randomize = FALSE, distance.matrix
   #   data: a data frame as subset of allPhon or allPhonCtrl.
   #   randomize: if TRUE, labels are shuffled because calculating the closest neighbors
   #   distance.matrix: pre calculated distance matrix to use to speed up calculation.
-  
+  a.language <- a.language %>% 
+    filter(ontological.category != "Other") %>% 
+    droplevels()
   if(randomize == TRUE){
     a.language$ontological.category <- sample(a.language$ontological.category, replace = FALSE)
   }
@@ -171,7 +176,7 @@ bootstrapped.cis <- function(rnn.language){
   #   A tibble with 1 rows and 3 columns per measure that include mean, lower and upper CI.
   language <- unique(rnn.language$language)
   print(language)
-  mean.boots <- boot::boot(data = rnn.language, statistic = rnn.means, R = 10000)
+  mean.boots <- boot::boot(data = rnn.language, statistic = rnn.means, R = 1000)
   original.means <- mean.boots$t0[c("Matthews", "F1", "ActionAccuracy","ThingAccuracy")] %>% 
     t() %>% 
     as_tibble()

@@ -298,186 +298,14 @@ all.phon %>% write_csv('../Data/Processed/all_phon.csv')
 
 # Create a morphology-adjusted dataset --------
 
-# Create a copy of the original dataset to modify "in place"
-all.phon.adjusted <- all.phon
-
-
-
-# ----- ALTERNATIVE PROCEDURE
-# 
-# 
-# all.langs.info.suffix <- map_dfr(unique(all.phon$language), function(this.language){
-#   print(this.language)
-#   lang.df <- all.phon %>% 
-#     filter(language == this.language) %>% 
-#     mutate(ending = str_sub(phon, "-1"), ending = factor(ending)) %>% 
-#     filter(ontological.category != "Other") %>% 
-#     droplevels()
-#   all.combs <- expand.grid(-1:-7, -1:-7)
-#   
-#   all.mut.info <- map_dfr(1:nrow(all.combs), function(combination){
-#     remove.actions <- all.combs[combination, 1]
-#     remove.things <- all.combs[combination, 2]
-#     this.attempt <- lang.df %>% 
-#       mutate(phon = ifelse(ontological.category == "Action", 
-#                            str_sub(phon, "1", as.character(remove.actions)), 
-#                            str_sub(phon, "1", as.character(remove.things))
-#                            ), 
-#              ending = str_sub(phon, "-1"), ending = as.factor(ending)) %>% 
-#       filter(nchar(phon) > 2) %>% 
-#       droplevels()
-#     if(nrow(this.attempt) == 0){return(tibble(actions.removed = NA, things.removed = NA, mut.info = NA, words.remaining = NA))}
-#     cat <- this.attempt$ontological.category
-#     affix <- this.attempt$ending
-#     mutual.information <- mutinformation(affix, cat) / sqrt(entropy(cat) * entropy(affix))
-#     tibble(actions.removed = remove.actions, 
-#            things.removed = remove.things, 
-#            mut.info = mutual.information, 
-#            words.remaining = nrow(this.attempt) / nrow(lang.df)) %>% 
-#       return()
-#   }) %>% 
-#     filter(!(is.na(mut.info)))
-#   
-#   all.mut.info <- all.mut.info %>% 
-#     arrange(desc(words.remaining)) %>% 
-#     add_column(language = this.language)
-# })
-# 
-# quantiles <- quantile(all.langs.info.suffix$mut.info, probs = seq(0, 1, 0.25))
-# all.langs.info.suffix %>% ggplot(aes(x = mut.info)) + geom_density(fill = "blue", alpha = 0.3) + geom_vline(xintercept = quantiles)
-# 
-# 
-# suffix.removal <- all.langs.info.suffix %>% 
-#   group_by(language) %>% 
-#   filter(mut.info <= quantiles[2]) %>% 
-#   top_n(1, words.remaining)
-# missing.langs <- setdiff(unique(all.phon$language), suffix.removal$language)
-# missing.langs <- all.langs.info.suffix %>% 
-#   filter(language %in% missing.langs) %>% 
-#   filter(mut.info <= 0.1) %>% 
-#   group_by(language) %>% 
-#   top_n(1, words.remaining)
-# suffix.removal <- bind_rows(suffix.removal, missing.langs)
-# 
-# all.phon.adjusted <- map_dfr(1:nrow(suffix.removal), function(this.row){
-#   this.language <- suffix.removal$language[this.row]
-#   action.position <- suffix.removal$actions.removed[this.row]
-#   thing.position <- suffix.removal$things.removed[this.row]
-#   all.phon %>% 
-#     filter(language == this.language) %>%
-#     mutate(phon = ifelse(ontological.category == "Action",
-#                          str_sub(phon, "1", as.character(action.position)),
-#                          str_sub(phon, "1", as.character(thing.position))))
-#     
-# })
-# 
-# write_csv(suffix.removal, "suffix_info.csv")
-# 
-# all.langs.info.preffix <- map_dfr(unique(all.phon$language), function(this.language){
-#   print(this.language)
-#   lang.df <- all.phon %>% 
-#     filter(language == this.language) %>% 
-#     mutate(beginning = str_sub(phon, "1", "1"), beginning = factor(beginning)) %>% 
-#     filter(ontological.category != "Other") %>% 
-#     droplevels()
-#   all.combs <- expand.grid(1:7, 1:7)
-#   
-#   all.mut.info <- map_dfr(1:nrow(all.combs), function(combination){
-#     remove.actions <- all.combs[combination, 1]
-#     remove.things <- all.combs[combination, 2]
-#     this.attempt <- lang.df %>% 
-#       mutate(phon = ifelse(ontological.category == "Action", 
-#                            str_sub(phon, as.character(remove.actions)), 
-#                            str_sub(phon, as.character(remove.things))
-#       ), 
-#       beginning = str_sub(phon, "1", "1"), beginning = as.factor(beginning)) %>% 
-#       filter(nchar(phon) > 2) %>% 
-#       droplevels()
-#     if(nrow(this.attempt) == 0){return(tibble(actions.removed = NA, things.removed = NA, mut.info = NA, words.remaining = NA))}
-#     cat <- this.attempt$ontological.category
-#     affix <- this.attempt$beginning
-#     mutual.information <- mutinformation(affix, cat) / sqrt(entropy(cat) * entropy(affix))
-#     tibble(actions.removed = remove.actions, 
-#            things.removed = remove.things, 
-#            mut.info = mutual.information, 
-#            words.remaining = nrow(this.attempt) / nrow(lang.df)) %>% 
-#       return()
-#   }) %>% 
-#     filter(!(is.na(mut.info)))
-#   
-#   all.mut.info <- all.mut.info %>% 
-#     arrange(desc(words.remaining)) %>% 
-#     add_column(language = this.language)
-# })
-# 
-# quantiles <- quantile(all.langs.info.preffix$mut.info, probs = seq(0, 1, 0.25))
-# all.langs.info.preffix %>% ggplot(aes(x = mut.info)) + geom_density(fill = "blue", alpha = 0.3) + geom_vline(xintercept = quantiles)
-# 
-# 
-# preffix.removal <- all.langs.info.preffix %>% 
-#   group_by(language) %>% 
-#   filter(mut.info <= quantiles[2]) %>% 
-#   top_n(1, words.remaining)
-# missing.langs <- setdiff(unique(all.phon$language), preffix.removal$language)
-# missing.langs <- all.langs.info.preffix %>% 
-#   filter(language %in% missing.langs) %>% 
-#   filter(mut.info <= 0.1) %>% 
-#   group_by(language) %>% 
-#   top_n(1, words.remaining)
-# preffix.removal <- bind_rows(preffix.removal, missing.langs)
-# 
-# all.phon.adjusted <- map_dfr(1:nrow(preffix.removal), function(this.row){
-#   this.language <- preffix.removal$language[this.row]
-#   action.position <- preffix.removal$actions.removed[this.row]
-#   thing.position <- preffix.removal$things.removed[this.row]
-#   all.phon.adjusted %>% 
-#     filter(language == this.language) %>%
-#     mutate(phon = ifelse(ontological.category == "Action",
-#                          str_sub(phon, as.character(action.position)),
-#                          str_sub(phon, as.character(thing.position))))
-#   
-# })
-# 
-# adjustment.census <- select(suffix.removal, language, suffix.action = actions.removed, suffix.things = things.removed) %>% 
-#   left_join(select(preffix.removal, preffix.action = actions.removed, preffix.things = things.removed, language)) %>% 
-#   replace_na(replace = list(0, 0, 0, 0, 0)) %>% 
-#   mutate_if(is.numeric, function(x){return(abs(x) - 1)})
-# 
-# all.phon.adjusted <- filter(all.phon.adjusted, nchar(phon) > 2)
-# 
-# homophone.census <- all.phon.adjusted %>% 
-#   group_by(language, ontological.category, phon) %>% 
-#   tally() %>% 
-#   filter(n > 1) %>% 
-#   group_by() %>% 
-#   group_by(language, ontological.category) %>% 
-#   tally()
-# 
-# homophone.census <- homophone.census %>% 
-#   group_by(language) %>% 
-#   dplyr::summarize(Number.Homophones = sum(n))
-# all.phon.adjusted <- all.phon.adjusted %>% 
-#   distinct(language, ontological.category, phon, .keep_all = TRUE)
-# 
-# write_csv(all.phon.adjusted, "../Data/Processed/all_phon_adjusted_mi.csv")
-
-# --- Old procedure -------
-
-
-# Store all languages that had something removed in a list
-marker.group <- list()
-
-# Prepare a list with languages that had suffixes removed and how many
-ending.census <- list()
-
 
 get.ngram.endings <- function(language.df, level){
   all.levels <- c(-1:level)
   names(all.levels) <- all.levels
   all.ngram.endings <- map_dfc(all.levels, function(n){
-    str_sub(lang.df$phon, n)
+    str_sub(language.df$phon, n)
   })
-  ngram.df <- lang.df %>% 
+  ngram.df <- language.df %>% 
     dplyr::select(phon, ontological.category, Form) %>% 
     bind_cols(all.ngram.endings)
   return(ngram.df)
@@ -507,6 +335,9 @@ get.ngram.stats <- function(ngram.df, ngram, char.table, ngram.freq){
   ngram.frequency <- table(ngram.df[[as.character(level)]])
   length.frequency <- ngram.frequency[ngram]
   norm.frequency <- scale(ngram.frequency)[ngram, 1]
+  if(is.nan(norm.frequency)){
+    norm.frequency <- 1 # This is in case there's only one ending, thus scaled frequency is NAN because of 0 SD
+  }
   random.frequency <- get.random.frequency(ngram, char.table)
   results <- list("ngram" = ngram, 
                   "entropy" = this.entropy, 
@@ -540,8 +371,12 @@ get.word.stats <- function(word, ngram.results){
 }
 
 evaluate.word <- function(word, ngram.results){
+  print(word)
   word.stats <- get.word.stats(word, ngram.results)
   is.candidate <- word.stats$length.frequencies > 1 # Use only segments with more than 1 length frequency
+  if(sum(is.candidate) == 0){ # If none of the ngrams appear in any other word, no marker.
+    return("#")
+  }
   word.entropies <- word.stats$entropies[is.candidate]
   word.entropies <- word.entropies[!is.nan(word.entropies)]
   word.frequencies <- word.stats$norm.frequencies
@@ -589,7 +424,7 @@ evaluate.word <- function(word, ngram.results){
 }
 
 get.morph.markers <- function(language.df){
-  all.ngrams <- get.ngram.endings(language.df, -(max(nchar(lang.df$phon))))
+  all.ngrams <- get.ngram.endings(language.df, -(max(nchar(language.df$phon))))
   
   # Get data for frequency
   all.ngram.segments <- all.ngrams %>% 
@@ -627,9 +462,9 @@ get.morph.markers <- function(language.df){
 
 
 clean.language <- function(language, all.data){
+  this.language <- language
   lang.df <- all.data %>% 
-    filter(language == lang)
-  
+    filter(language == this.language)
   categories <- as.character(unique(lang.df$ontological.category))
   names(categories) <- categories
   
@@ -638,252 +473,116 @@ clean.language <- function(language, all.data){
     this.df <- lang.df %>% 
       filter(ontological.category == category) %>% 
       droplevels()
-    return(get.morph.markers(this.df))    
+    these.markers <- get.morph.markers(this.df)
+    return(these.markers)    
   })
+  marker.census <- bind_rows(all.marker.df$Thing$marker.census, all.marker.df$Action$marker.census, all.marker.df$Other$marker.census)
+  all.markers <- bind_rows(all.marker.df$Thing$marked.words, all.marker.df$Action$marked.words, all.marker.df$Other$marked.words)
+  
+  all.markers <- all.markers %>% 
+    mutate(marker.position = nchar(phon) - nchar(marker),
+           clean.phon = ifelse(marker == "#", phon, str_sub(phon, 1, marker.position))) %>% 
+    dplyr::select(-marker.position)
+  results <- list("census" = marker.census, "clean.df" = all.markers)
 }
 
+# all.lang.adjusted <- map(as.character(sort(unique(all.phon$language))), function(language){
+#   print(language)
+#   lang.results <- clean.language(language, all.phon)
+#   lang.results$census$language <- language
+#   return(lang.results)
+# })
+
+# names(all.lang.adjusted) <- as.character(sort(unique(all.phon$language)))
 
 
-lang <- "Spanish"
+# write_rds(all.lang.adjusted, "all_langs_adjusted.rds")
+all.lang.adjusted <- read_rds("all_langs_adjusted.rds")
 
-lang.df <- all.phon.adjusted %>% 
-  filter(language == lang,
-         ontological.category == "Action") %>%
-  droplevels()
-x <- get.morph.markers(lang.df)
+complete.markers <- map_dfr(all.lang.adjusted, function(lang){
+  return(lang$clean.df)
+}) %>% 
+  dplyr::select(-clean.phon, suffix = marker)
 
-x$marked.words %>% 
-  mutate(marker.position = nchar(phon) - nchar(marker),
-         clean.phon = ifelse(marker == "#", phon, str_sub(phon, 1, marker.position)))
+# prefix.languages <- all.phon %>% 
+#   mutate(phon = stringi::stri_reverse(phon))
+# 
+# all.lang.adjusted.prefix <- map(as.character(sort(unique(all.phon$language))), function(language){
+#   print(language)
+#   lang.results <- clean.language(language, prefix.languages)
+#   lang.results$census$language <- language
+#   return(lang.results)
+# })
 
+# all.lang.adjusted.prefix %>% 
+#   write_rds("all_lang_adjusted_prefix.rds")
+all.lang.adjusted.prefix <- read_rds("all_lang_adjusted_prefix.rds")
+ 
+complete.markers.prefix <- map_dfr(all.lang.adjusted.prefix, function(lang){
+  return(lang$clean.df)
+}) %>% 
+  dplyr::select(-clean.phon, prefix = marker) %>% 
+  mutate(phon = stringi::stri_reverse(phon), prefix = stringi::stri_reverse(prefix))
 
+all.phon.adjusted <- left_join(complete.markers, complete.markers.prefix)
 
+suffix.census <- all.phon.adjusted %>% 
+  group_by(language, ontological.category, suffix) %>% 
+  tally() %>% 
+  rename(marker = suffix) %>% 
+  add_column(position = "Suffix")
+prefix.census <- all.phon.adjusted %>% 
+  group_by(language, ontological.category, prefix) %>% 
+  tally() %>% 
+  rename(marker = prefix) %>% 
+  add_column(position = "Prefix")
 
-map_dfr(c("Action", "Thing", "Other"), function(category){
-  cat.df <- lang.df %>% 
-    filter(ontological.category == category)
-  # Get the number of words that share the same suffix
-  number <- nrow(cat.df)
-  proportions <- cat.df %>% 
-    mutate(ending = str_sub(phon, "-1")) # %>% 
-  # .$ending %>% 
-  # table()
-  proportions <- proportions / number
-  # Check whether any suffix is present in more than a third of the words of that category
-  has.marker <- proportions > 0.33
-  # If *any* of them do, return a tibble where "marker" is TRUE
-  if(TRUE %in% has.marker){
-    return(tibble(ontological.category = category, marker = TRUE))
-  } 
-  else{
-    return(tibble(ontological.category = category, marker = FALSE))
-  }
-  
-})
-# Loop through languages 6 times. After 6 passes, no suffixes are removed.
+marker.census <- full_join(suffix.census, prefix.census) %>% 
+  arrange(language, ontological.category)
+write_csv(marker.census, "marker_census.csv")
 
-for(i in 1:6){
-  markers <- purrr::map_dfr(sort(unique(all.phon.adjusted$language)), function(lang){
-    # For each language, make a dataframe of each category
-    lang.df <- all.phon.adjusted %>% 
-      filter(language == lang)
-    map_dfr(c("Action", "Thing", "Other"), function(category){
-      cat.df <- lang.df %>% 
-        filter(ontological.category == category)
-      # Get the number of words that share the same suffix
-      number <- nrow(cat.df)
-      proportions <- cat.df %>% 
-        mutate(ending = str_sub(phon, "-1")) # %>% 
-        # .$ending %>% 
-        # table()
-      proportions <- proportions / number
-      # Check whether any suffix is present in more than a third of the words of that category
-      has.marker <- proportions > 0.33
-      # If *any* of them do, return a tibble where "marker" is TRUE
-      if(TRUE %in% has.marker){
-        return(tibble(ontological.category = category, marker = TRUE))
-      } 
-      else{
-        return(tibble(ontological.category = category, marker = FALSE))
-      }
-      
-    }) %>% 
-      add_column(language = lang)
-  })
-  # Add an element to the census with all the languages that had a marker when number of chars = i.
-  ending.census[[i]] <- markers %>% 
-    filter(marker == TRUE) %>%
-    add_column(ending.markers = i)
-  langs.with.markers <- markers %>% 
-    filter(marker == TRUE) %>% 
-    .$language %>% 
-    unique()
-  # Add languages with markers to the marker group list
-  marker.group[[i]] <- c(langs.with.markers)
-  
-  # For each language that had a marker when number of chars = i, update that
-  # language's entries in all.phon.adjusted with the strings without the last
-  # character
-  all.phon.adjusted <- map_dfr(1:nrow(markers), function(index){
-    lang <- markers$language[index]
-    category <- markers$ontological.category[index]
-    has.marker <- markers$marker[index]
-    if(has.marker){
-      all.phon.adjusted %>% 
-        filter(lang == language, ontological.category == category) %>% 
-        # Note that after i = 1, all loops will consider strings in their
-        # ADJUSTED forms, such that the next line will remove each subsequent
-        # character instead of just the suffix.
-        mutate(phon = str_sub(phon, "1", "-2")) %>% 
-        return()
-    }else{
-      all.phon.adjusted %>% 
-        filter(lang == language, ontological.category == category) %>% 
-        return()
-    }
-  })
-  # Delete all words that are now only 1 character long.
-  all.phon.adjusted <- all.phon.adjusted %>% 
-    filter(nchar(phon) > 1)
-}
-
-# Generate a "suffix census" dataframe from the list.
-ending.census <- ending.census %>% 
-  bind_rows() %>% 
-  group_by(language, ontological.category) %>% 
-  dplyr::summarize(ending.markers = max(ending.markers))
-
-
-# Same procedure as above, but for preffixes.
-start.langs <- list()
-start.census <- list()
-
-for(i in 1:3){
-  # 3 passes gets rid of all of them
-  print(i)
-  markers <- purrr::map_dfr(sort(unique(all.phon.adjusted$language)), function(lang){
-    lang.df <- all.phon.adjusted %>% 
-      filter(language == lang)
-    map_dfr(c("Action", "Thing", "Other"), function(category){
-      cat.df <- lang.df %>% 
-        filter(ontological.category == category)
-      number <- nrow(cat.df)
-      proportions <- cat.df %>% 
-        mutate(start = str_sub(phon, "1", "1")) %>% 
-        .$start %>% 
-        table()
-      proportions <- proportions / number
-      has.marker <- proportions > 0.33
-      if(TRUE %in% has.marker){
-        return(tibble(ontological.category = category,
-                      marker = TRUE))} else{
-                        return(tibble(ontological.category = category,
-                                      marker = FALSE))
-                      }
-      
-    }) %>% 
-      add_column(language = lang)
-  })
-  start.census[[i]] <- markers %>% 
-    filter(marker == TRUE) %>% 
-    add_column(start.markers = i)
-  
-  langs.with.markers <- markers %>% 
-    filter(marker == TRUE) %>% 
-    .$language %>% 
-    unique()
-  print(langs.with.markers)
-  start.langs[[i]] <- c(langs.with.markers)
-  all.phon.adjusted <- map_dfr(1:nrow(markers), function(index){
-    lang <- markers$language[index]
-    category <- markers$ontological.category[index]
-    has.marker <- markers$marker[index]
-    if(has.marker){
-      all.phon.adjusted %>% 
-        filter(lang == language, ontological.category == category) %>% 
-        mutate(phon = str_sub(phon, "2", "-1")) %>% 
-        return()
-    }else{
-      all.phon.adjusted %>% 
-        filter(lang == language, ontological.category == category) %>% 
-        return()
-    }
-  })
-  all.phon.adjusted <- all.phon.adjusted %>% 
-    filter(nchar(phon) > 1)
-}
-
-start.census <- start.census %>% 
-  bind_rows() %>%  
-  group_by(language, ontological.category) %>% 
-  dplyr::summarize(start.markers = max(start.markers))
-
-# Join suffix and affix census into one dataframe.
-marker.census <- full_join(start.census, ending.census) %>% 
-  # Note that Munduruku and Kanok had only "Other" words adjusted, so not on census
-  filter(ontological.category != "Other")
-# Generate category-specific census
-action.census <- marker.census %>% 
-  filter(ontological.category == "Action") %>% 
-  select(-ontological.category) %>% 
-  rename(Preffixes.Removed.Action = start.markers, Suffixes.Removed.Action = ending.markers)
-thing.census <- marker.census %>% 
-  filter(ontological.category == "Thing") %>% 
-  select(-ontological.category) %>% 
-  rename(Preffixes.Removed.Thing = start.markers, Suffixes.Removed.Thing = ending.markers)
-marker.census <-full_join(action.census, thing.census) 
-all.marker.group <- unique(marker.census$language)
-# Make an "empty" census for languages with no markers removed.
-no.marker.group <- setdiff(unique(all.phon$language), all.marker.group)
-
-# Save unmodified languages for reference
-no.marker.group %>% 
- write_rds("../Data/Processed/no_marker_group.rds")
-
-no.marker.group.table <- tibble(language = no.marker.group, Preffixes.Removed.Action = 0,
-                                Suffixes.Removed.Action = 0, Preffixes.Removed.Thing = 0, 
-                                Suffixes.Removed.Thing = 0)
-
-# For each language in the database, display how many suffixes and affixes were
-# removed for each category, including languages without adjustment.
-marker.census.complete <- marker.census %>% 
-  bind_rows(no.marker.group.table) %>% 
-  group_by() %>% 
-  mutate_if(is.numeric, function(x){replace_na(x, 0)}) %>% 
-  arrange(language)
+all.phon.adjusted <- all.phon.adjusted %>% 
+  rowwise() %>% 
+  mutate(suffix.position = nchar(phon) - nchar(suffix), prefix.position = nchar(prefix) + 1,
+    clean.phon = ifelse(suffix == "#", phon, str_sub(phon, 1, suffix.position)),
+    clean.phon = ifelse(prefix == "#", clean.phon, str_sub(clean.phon, prefix.position))) %>% 
+  dplyr::select(Form, alt_form, language, english.name, ontological.category, old.phon = phon, phon = clean.phon) %>% 
+  filter(nchar(phon) > 2)
 
 # Further adjustment: remove within-class homophones but keep between-class homophones.
 # Gets rid of within-class colexification
 # Save how many homophones were removed.
 
 homophone.census <- all.phon.adjusted %>% 
-  group_by(language, ontological.category, phon) %>% 
+  # group_by(language, ontological.category, phon) %>%
+  group_by(language, phon) %>% 
   tally() %>% 
   filter(n > 1) %>% 
   group_by() %>% 
-  group_by(language, ontological.category) %>% 
+  group_by(language) %>% 
   tally()
 
 homophone.census <- homophone.census %>% 
   group_by(language) %>% 
   dplyr::summarize(Number.Homophones = sum(n))
 all.phon.adjusted <- all.phon.adjusted %>% 
-  distinct(language, ontological.category, phon, .keep_all = TRUE)
+  distinct(language, phon, .keep_all = TRUE)
+
 
 # Join marker census with homophone census, and compare original/adjusted number of words
-original.number.words <- all.phon %>% group_by(language) %>% dplyr::summarize(original.number.words = n())
-adjusted.number.words <- all.phon.adjusted %>% group_by(language) %>% dplyr::summarize(adjusted.number.words = n())
+# original.number.words <- all.phon %>% group_by(language) %>% dplyr::summarize(original.number.words = n())
+# adjusted.number.words <- all.phon.adjusted %>% group_by(language) %>% dplyr::summarize(adjusted.number.words = n())
 
-marker.census.complete <- left_join(marker.census.complete, original.number.words) %>% 
-  left_join(adjusted.number.words) %>% 
-  left_join(select(all.languages, language = Name, Family = family)) %>% 
-  left_join(homophone.census) %>% 
-  select(language, Family, everything())
+# marker.census.complete <- left_join(marker.census.complete, original.number.words) %>% 
+#   left_join(adjusted.number.words) %>% 
+#   left_join(select(all.languages, language = Name, Family = family)) %>% 
+#   left_join(homophone.census) %>% 
+#   select(language, Family, everything())
 
 # Replace NA with 0 for the numeric columns. NAs result from languages without within-class homophones to remove.
-marker.census.complete <- mutate_if(.tbl = marker.census.complete, .predicate = is.numeric, .funs = function(x){replace_na(x, 0)})
+# marker.census.complete <- mutate_if(.tbl = marker.census.complete, .predicate = is.numeric, .funs = function(x){replace_na(x, 0)})
 
-write_csv(marker.census.complete, "../Data/Processed/marker_census.csv")
+write_csv(homophone.census, "../Data/Processed/homophonre_census.csv")
 write_csv(all.phon.adjusted, "../Data/Processed/all_phon_adjusted.csv")
 
 
