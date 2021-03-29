@@ -166,27 +166,27 @@ label.text.adjusted[which(label.text.adjusted == "Thai (Korat variety)")] <- "Th
 #       return()
 #   })
 
-all.phon.list.adjusted <- all.phon.adjusted %>%
-  split(.$language)
-all.phon.list.adjusted <- all.phon.list.adjusted[sort(names(all.phon.list.adjusted))]
-all.distance.matrices.adjusted <- purrr::map(all.phon.list.adjusted, function(x){get.distance.matrix(x)})
-repeated.neighbor.adjusted <- map2_dfr(.x = all.phon.list.adjusted, .y = all.distance.matrices.adjusted, .f = function(x, y){
-  print(unique(x$language))
-  purrr::map_dfr(1:10, function(z){
-    all.neighbors <- get.nearest.neighbors(a.language = x,
-                                           distance.matrix = y,
-                                           randomize = FALSE) %>%
-      mutate(same.neighbor = (ontological.category == neighbor.category)) %>%
-      group_by(language, ontological.category) %>%
-      summarise(proportion.of.hits = sum(same.neighbor) / n()) %>%
-      mutate(permutation = z)
-    return(all.neighbors)
-  }) %>%
-    return()
-})
+# all.phon.list.adjusted <- all.phon.adjusted %>%
+#   split(.$language)
+# all.phon.list.adjusted <- all.phon.list.adjusted[sort(names(all.phon.list.adjusted))]
+# all.distance.matrices.adjusted <- purrr::map(all.phon.list.adjusted, function(x){get.distance.matrix(x)})
+# repeated.neighbor.adjusted <- map2_dfr(.x = all.phon.list.adjusted, .y = all.distance.matrices.adjusted, .f = function(x, y){
+#   print(unique(x$language))
+#   purrr::map_dfr(1:10, function(z){
+#     all.neighbors <- get.nearest.neighbors(a.language = x,
+#                                            distance.matrix = y,
+#                                            randomize = FALSE) %>%
+#       mutate(same.neighbor = (ontological.category == neighbor.category)) %>%
+#       group_by(language, ontological.category) %>%
+#       summarise(proportion.of.hits = sum(same.neighbor) / n()) %>%
+#       mutate(permutation = z)
+#     return(all.neighbors)
+#   }) %>%
+#     return()
+# })
 
 # repeated.neighbor %>% write_rds("../Data/r_objects/neighbor_original.Rds")
-repeated.neighbor.adjusted %>% write_rds("../Data/r_objects/neighbor_adjusted.Rds")
+# repeated.neighbor.adjusted %>% write_rds("../Data/r_objects/neighbor_adjusted.Rds")
 # 
 # Load data generated from previous lines
 repeated.neighbor <- read_rds("../Data/r_objects/neighbor_original.Rds") %>% 
@@ -314,28 +314,6 @@ mcc.wilcox <- map_dfr(rnn.performance.adjusted, function(x){
 rnn.stats.adjusted <- bind_rows(auc.wilcox, mcc.wilcox) %>% 
   left_join(rnn.stats)
 
-
-# Because the bootstrapping takes long, the results are preallocated as an RDS and loaded further down.
-# rnn.stats <- purrr::map_dfr(rnn.performance, bootstrapped.cis)
-# rnn.stats.adjusted <- purrr::map_dfr(rnn.performance.adjusted, bootstrapped.cis)
-# rnn.stats %>%
-#   write_rds("../Data/r_objects/boot_ci_fold_original.rds")
-# rnn.stats.adjusted %>%
-  # write_rds("../Data/r_objects/boot_ci_fold_adjusted.rds")
-
-# rnn.stats <- read_rds("../Data/r_objects/boot_ci_fold_original.rds") %>% 
-  #  This language is in the bootstrap, but it's not part of the languages considered.
-  # filter(Language != "Chechen (Akkin dialect)") 
-# non.adjusted.stats <- rnn.stats %>%
-  # filter(Language %in% no.marker.group)
-
-rnn.stats.adjusted <- read_rds("../Data/r_objects/boot_ci_fold_adjusted.rds") %>% 
-  #  This language is in the bootstrap, but it's not part of the languages considered.
-  filter(Language != "Chechen (Akkin dialect)") # %>% 
-  # filter(!(Language %in% no.marker.group)) %>%   # Remove languages that weren't adjusted
-  # bind_rows(non.adjusted.stats)  # Add the non-adjusted languages CIs.
-
-
 # RNN Spurt --------------------------------------------------------
 
 # Load data
@@ -347,31 +325,34 @@ for(file in list.files('../Results/Spurt//', recursive = T, full.names = T)){
   spurt.performance[[language]]$language <- language
 }
 spurt.performance.adjusted <- list()
-for(file in list.files('../Results/Spurt-Adjusted//', recursive = T, full.names = T)){
-  language <- str_extract(file, "(?<=Results/Spurt-Adjusted//).+(?=_spurt_)")
+for(file in list.files('../Results/Spurt//', recursive = T, full.names = T)){
+  language <- str_extract(file, "(?<=Results/Spurt//).+(?=_spurt_)")
   print(language)
   spurt.performance.adjusted[[language]] <- read_csv(file)
   spurt.performance.adjusted[[language]]$language <- language
 }
 
-# Get the same bootstrapped confidence intervals for these performance metrics.
-# The data is also loaded from an RDS because of how long it takes.
+spurt.stats <- map_dfr(spurt.performance.adjusted, function(x){
+  median.auc <- median(x$AUC)
+  iqr.auc <- IQR(x$AUC)
+  median.mcc <- median(x$Matthews)
+  iqr.mcc <- IQR(x$Matthews)
+  language <- unique(x$language)
+  results <- tibble(median.auc = median.auc, iqr.auc = iqr.auc, median.mcc = median.mcc, iqr.mcc = iqr.mcc, language = language)
+})
 
-# spurt.stats <- purrr::map_dfr(spurt.performance, bootstrapped.cis)
-# spurt.stats.adjusted <- purrr::map_dfr(spurt.performance.adjusted, bootstrapped.cis)
+spurt.auc.wilcox <- map_dfr(spurt.performance.adjusted, function(x){
+  stat.test <- wilcox.test(x$AUC, mu = 0.5, alternative = "greater", conf.int = TRUE, conf.level = 0.95, exact = FALSE,
+                           digits.rank = 7)
+  tibble(p.value = stat.test$p.value, conf = stat.test$conf.int[1], statistic = stat.test$statistic, language = unique(x$language),
+         measure = "AUC")
+})
+spurt.mcc.wilcox <- map_dfr(spurt.performance.adjusted, function(x){
+  stat.test <- wilcox.test(x$Matthews, mu = 0.1, alternative = "greater", conf.int = TRUE, conf.level = 0.95, exact = FALSE,
+                           digits.rank = 7)
+  tibble(p.value = stat.test$p.value, conf = stat.test$conf.int[1], statistic = stat.test$statistic, language = unique(x$language),
+         measure = "Matthews")
+})
 
-# spurt.stats %>%
-#   write_rds("../Data/Processed/boot_ci_spurt_original.rds")
-# spurt.stats.adjusted %>%
-#   write_rds("../Data/Processed/boot_ci_spurt_adjusted.rds")
-
-spurt.stats <- read_rds("../Data/r_objects/boot_ci_spurt_original.rds")
-non.adjusted.spurt <- spurt.stats %>% 
-  filter(Language %in% no.marker.group) %>% 
-  #  This language is in the bootstrap, but it's not part of the languages considered.
-  filter(Language != "Chechen (Akkin dialect)") 
-
-spurt.stats.adjusted <- read_rds("../Data/r_objects/boot_ci_spurt_adjusted.rds") %>% 
-  filter(!(Language %in% no.marker.group)) %>%   # Remove languages that weren't adjusted
-  filter(Language != "Chechen (Akkin dialect)") %>% 
-  bind_rows(non.adjusted.spurt)  # Add the non-adjusted languages CIs.
+spurt.stats.adjusted <- bind_rows(spurt.auc.wilcox, spurt.mcc.wilcox) %>% 
+  left_join(spurt.stats)

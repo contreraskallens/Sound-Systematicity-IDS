@@ -398,51 +398,72 @@ ggsave("../Figures/Main/rnn_adjusted_mcc.png", width = 17, height = 7, units = "
 
 # RNN Spurt --------------------------------------------------------
 
-## Descriptive stats
-spurt.stats.adjusted %>%
-  select(Language, Matthews) %>% 
-  dplyr::summarize(Mean.Matthews = mean(Matthews), SD.Matthews = sd(Matthews))
+spurt.stats.adjusted
 
-## Count the number of languages whose bootstrapped 99% ci include 0.1
 spurt.stats.adjusted %>% 
-  select(Language, contains("Matthews")) %>% 
-  mutate(includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE)) %>% 
-  group_by(includes.baseline) %>% 
-  tally() %>% 
-  mutate(percentage = (n / sum(n)) * 100)
+  arrange(desc(median.auc)) %>% 
+  filter(measure == "AUC") %>% 
+  mutate(language = factor(language, levels = .$language)) %>% 
+  ggplot(aes(x = language, y = median.auc)) +
+  geom_pointrange(aes(ymin = median.auc - iqr.auc, ymax = median.auc + iqr.auc), size = 0.2) +
+  geom_hline(yintercept = 0.5) +
+  labs(y = "Mean AUC")
 
-## Check reference languages
+spurt.stats.adjusted %>% 
+  arrange(desc(median.auc)) %>% 
+  filter(measure == "AUC") %>% 
+  mutate(language = factor(language, levels = .$language),
+         significant = ifelse(p.value < 0.01, TRUE, FALSE)) %>% 
+  ggplot(aes(x = language, y = median.auc, color = significant)) +
+  geom_pointrange(aes(ymin = conf, ymax = median.auc), size = 0.2) +
+  geom_hline(yintercept = 0.5) +
+  labs(y = "Median AUC") +
+  theme_minimal()
+
+spurt.stats.adjusted %>% 
+  arrange(desc(median.mcc)) %>% 
+  filter(measure == "Matthews") %>% 
+  mutate(language = factor(language, levels = .$language),
+         significant = ifelse(p.value < 0.01, TRUE, FALSE)) %>% 
+  ggplot(aes(x = language, y = median.mcc, color = significant)) +
+  geom_pointrange(aes(ymin = conf, ymax = median.mcc), size = 0.2) +
+  geom_hline(yintercept = 0.1) +
+  labs(y = "Median MCC") +
+  theme_minimal()
+
+## Count the number of languages with UAC and MCC significantly higher than baseline
 spurt.tally.adjusted <- spurt.stats.adjusted %>% 
-  select(Language, contains("Matthews")) %>% 
-  mutate(includes.baseline = ifelse(Matthews.Lower < 0.1, TRUE, FALSE)) %>% 
-  group_by(includes.baseline) %>% 
+  mutate(significant = ifelse(p.value < 0.01, TRUE, FALSE)) %>% 
+  group_by(measure, significant) %>% 
   tally() %>% 
   mutate(percentage = (n / sum(n)) * 100)
 spurt.tally.adjusted
 
-# Plot all languages, their CI and the baseline
+## Check reference languages
+spurt.stats.adjusted %>% 
+  mutate(significant = ifelse(p.value < 0.01, TRUE, FALSE)) %>% 
+  filter(language %in% test.languages) 
 
-spurt.plot.adjusted <- spurt.stats.adjusted %>% 
-  arrange(desc(Matthews)) %>% 
-  mutate(Language = factor(Language, levels = .$Language),
-         includes.baseline = ifelse(Matthews.Lower < 0.1, "Includes 0.1", "Doesn't Include 0.1"),
-         lang.label = ifelse(Language %in% test.languages, 
-                             as.character(Language), ""),
-         include = ifelse(lang.label == "", NA, Language))
-
-
-spurt.adjusted <- ggplot(data = spurt.plot.adjusted, aes(x = Language, ymin = Matthews.Lower, ymax = Matthews.Upper,
-                                                         y = Matthews, fill = includes.baseline)) + 
+spurt.stats.adjusted %>% 
+  arrange(desc(median.auc)) %>% 
+  filter(measure == "AUC") %>% 
+  mutate(language = factor(language, levels = .$language),
+         significant = ifelse(p.value < 0.01, TRUE, FALSE),
+         lang.label = ifelse(language %in% test.languages, 
+                             as.character(language), ""),
+         include = ifelse(lang.label == "", NA, language)) %>% 
+  ggplot(aes(x = language, y = median.auc, fill = significant)) +
   geom_vline(aes(xintercept = include), linetype = "dotted", size = .5, color = palette_line) +
-  geom_linerange(size = 0.5, color = palette_line) +
+  geom_linerange(aes(ymin = median.auc - iqr.auc, ymax = median.auc + iqr.auc), size = 0.5, color = palette_line) +
   geom_point(shape = 22, size = .75, color = palette_line) + 
-  geom_hline(yintercept = 0.1, size = .75, color = palette_line) +
-  scale_x_discrete(name = "Language", labels = function(x){ifelse(x %in% test.languages,
-                                                                  str_wrap(as.character(x), 10), "")}) +
-  expand_limits(x = -1) +
-  expand_limits(x = 229) + 
+  geom_hline(yintercept = 0.5) +
+  scale_x_discrete(name = "Language", labels = function(x){
+    ifelse(x %in% test.languages, str_wrap(as.character(x), 10), "")
+  }) +
+  expand_limits(x = 229) +
   cowplot::theme_cowplot()  + 
-  scale_fill_manual(name = "Includes baseline", values = c(palette_other[3], palette_other[2])) +
+  scale_fill_manual(name = "Significantly > 0.5", values = c(palette_other[1], palette_world)) +
+  scale_y_continuous(name = "Learning performance (AUC)", breaks = seq(0, 1, 0.1)) + 
   theme(axis.title.x = element_blank(),
         axis.title.y = element_text(size = 8),
         axis.text.x = element_text(size = 6),
@@ -451,8 +472,39 @@ spurt.adjusted <- ggplot(data = spurt.plot.adjusted, aes(x = Language, ymin = Ma
         legend.text = element_text(size = 6),
         strip.text = element_text(size = 8),
         axis.ticks.x = element_blank(),
-        legend.position = "none") +
-  labs(y = "Learning Performance (MCC)")
+        legend.position = "none") 
 
-spurt.adjusted
-ggsave("../Figures/Main/spurt_adjusted.png", width = 17, height = 7, units = "cm", dpi = 900)
+ggsave("../Figures/Main/rnn_adjusted_auc.png", width = 17, height = 7, units = "cm", dpi = 900)
+
+
+spurt.stats.adjusted %>% 
+  arrange(desc(median.mcc)) %>% 
+  filter(measure == "Matthews") %>% 
+  mutate(language = factor(language, levels = .$language),
+         significant = ifelse(p.value < 0.01, TRUE, FALSE),
+         lang.label = ifelse(language %in% test.languages, 
+                             as.character(language), ""),
+         include = ifelse(lang.label == "", NA, language)) %>% 
+  ggplot(aes(x = language, y = median.mcc, fill = significant)) +
+  geom_vline(aes(xintercept = include), linetype = "dotted", size = .5, color = palette_line) +
+  geom_linerange(aes(ymin = median.mcc - iqr.mcc, ymax = median.mcc + iqr.mcc), size = 0.5, color = palette_line) +
+  geom_point(shape = 22, size = .75, color = palette_line) + 
+  geom_hline(yintercept = 0.1) +
+  scale_x_discrete(name = "Language", labels = function(x){
+    ifelse(x %in% test.languages, str_wrap(as.character(x), 10), "")
+  }) +
+  expand_limits(x = 229) +
+  cowplot::theme_cowplot()  + 
+  scale_fill_manual(name = "Significantly > 0.2", values = c(palette_other[1], palette_world)) +
+  scale_y_continuous(name = "Learning performance (MCC)", breaks = seq(0, 1, 0.1)) + 
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_text(size = 8),
+        axis.text.x = element_text(size = 6),
+        axis.text.y = element_text(size = 6),
+        legend.title = element_text(size = 8),
+        legend.text = element_text(size = 6),
+        strip.text = element_text(size = 8),
+        axis.ticks.x = element_blank(),
+        legend.position = "none") 
+
+ggsave("../Figures/Main/rnn_adjusted_mcc.png", width = 17, height = 7, units = "cm", dpi = 900)
