@@ -1,227 +1,238 @@
-ID,Name,Macroarea,Latitude,Longitude,Glottocode,ISO639P3code,WALS code
-319,Ossetic,NA,41.7882,43.2674,osse1243,oss,oss
-61,Aghul,NA,41.9242,47.5843,aghu1253,agx,agl
-33,Akhvakh (Northern dialect),NA,42.4003,46.3037,akhv1239,akv,axv
-34,Akhvakh (Southern dialect),NA,42.4003,46.3037,akhv1239,akv,axv
-32,Andi,NA,42.8078,46.2919,andi1255,ani,anx
-62,Archi (variety 1),NA,42.3239,46.8267,arch1244,aqc,arc
-107,Avar,NA,41.7047,46.558,avar1256,ava,ava
-71,Azerbaijani,NA,40.9777,46.4737,nort2697,azj,aze
-35,Bagvalal,NA,42.3966,46.1041,bagv1239,kva,bgv
-37,Botlikh,NA,42.7658,46.1944,botl1242,bph,NA
-63,Budukh,NA,41.2272,48.3353,budu1248,bdk,bdk
-51,Chamalal,NA,42.5024,45.995,cham1309,cji,chm
-75,Chechen,NA,43.5,45.5,chec1245,che,chc
-57,Dargwa,NA,42.4257,47.4388,darg1241,dar,drg
-126,Erzya Mordvin,NA,52.8548,45.3901,erzy1239,myv,moe
-127,Estonian,NA,58.55,25.82,esto1258,est,est
-128,Finnish,NA,64.7628,25.5577,finn1318,fin,fin
-38,Godoberi,NA,42.7428,46.2252,ghod1238,gdo,god
-42,Hinuq,NA,42.4502,45.8064,hinu1240,gin,hnk
-131,Hungarian,NA,46.9069,19.6555,hung1274,hun,hun
-52,Hunzib,NA,42.0808,46.1369,hunz1247,huz,hzb
-39,Karata,NA,42.6501,46.3151,kara1474,kpt,krt
-135,Khanty,NA,62.4308,66.1218,khan1273,kca,kty
-69,Khinalug,NA,41.1801,48.0571,khin1240,kjj,khi
-54,Khwarshi (Inkhokvari dialect),NA,NA,NA,inxo1238,NA,khv
-41,Khwarshi (Khwarshi dialect),NA,NA,NA,xvar1237,NA,khv
-139,Komi,NA,64.0527,54.946,komi1268,kpv,kzy
-72,Kumyk,NA,43,47,kumy1244,kum,kuq
-56,Lak,NA,42.1328,47.0809,lakk1252,lbe,lak
-143,Northern Saami,NA,68.725,22.1113,nort2671,sme,sno
-64,Lezgian,NA,41.5157,47.8951,lezg1247,lez,lez
-146,Mansi,NA,64.4118,61.344,mans1258,mns,mns
-147,Mari,NA,55.8307,48.405,east2328,mhr,mme
-148,Nenets,NA,66.1775,71.0234,nene1249,yrk,ntu
-73,Nogai,NA,43.5917,46.6618,noga1249,nog,nog
-66,Rutul,NA,41.6187,47.3244,rutu1240,rut,rut
-151,Selkup,NA,59.9409,82.3004,selk1253,sel,skp
-67,Tabasaran (Northern dialect Khanag subdialect),NA,42.0198,47.8379,taba1259,tab,tbs
-68,Tabasaran (Southern dialect),NA,NA,NA,sout2752,NA,tbs
-74,Judeo-Tat,NA,32.33,34.75,jude1256,jdt,NA
-50,Tindi,NA,42.3316,45.9227,tind1238,tin,tnd
-70,Tsakhur,NA,41.5916,46.8858,tsak1249,tkr,tsa
-55,Tsez (Sagada dialect),NA,NA,NA,saga1261,NA,tsz
-80,Udi,NA,40.9,47.7236,udii1243,udi,udi
-159,Udmurt,NA,56.1292,52.6355,udmu1245,udm,udm
-160,Bezhta,NA,42.1206,46.0332,bezh1248,kap,bez
-162,Tsez (Mokok dialect),NA,42.2646,45.8096,dido1241,ddo,tsz
-168,Modern Greek,NA,42.3224,24.8699,mode1248,ell,grk
-172,Panare,NA,6.95035,-65.8483,enap1235,pbh,pnr
-170,Italian,NA,43.0464,12.6489,ital1282,ita,ita
-171,French,NA,48,2,stan1290,fra,fre
-173,Macushi,NA,4.31861,-60.2209,macu1259,mbc,mac
-174,De'kwana,NA,4.70705,-64.3877,maqu1238,mch,cde
-175,Wai Wai,NA,1.50881,-59.1417,waiw1244,waw,wai
-176,Spanish,NA,40.4414,-1.11788,stan1288,spa,spa
-177,Catalan,NA,41.8983,3.39375,stan1289,cat,ctl
-178,Portuguese,NA,39.91,-8.1,port1283,por,por
-179,Romanian,NA,46.3913,24.2256,roma1327,ron,rom
-183,Breton,NA,48.2452,-3.78934,bret1244,bre,bre
-186,Danish,NA,54.8655,9.36284,dani1285,dan,dsh
-187,Swedish,NA,59.800634,17.389526,swed1254,swe,swe
-190,English,NA,53,-1,stan1293,eng,eng
-191,Dutch,NA,52,5,dutc1256,nld,dut
-194,German,NA,48.649,12.4676,stan1295,deu,ger
-195,Yiddish,NA,51.75,19.42,east2295,ydd,ydd
-197,Latvian,NA,56.826108,24.309118,latv1249,lav,lat
-200,Bulgarian,NA,43.3646,25.047,bulg1262,bul,bul
-201,Serbo-Croatian,NA,NA,NA,sout1528,hbs,scr
-202,Czech,NA,49.873398,15.10437,czec1258,ces,cze
-203,Polish,NA,51.8439,18.6255,poli1260,pol,pol
-204,Russian,NA,59,50,russ1263,rus,rus
-205,Albanian (Tosk variety),NA,41,20,tosk1239,als,alb
-206,Armenian (Eastern variety),NA,NA,NA,east2283,NA,arm
-207,Armenian (Western variety),NA,NA,NA,west2348,NA,arw
-212,Romani,NA,46.8191,14.8451,vlax1238,rmy,rka
-213,Avestan,NA,31.541,53.633,aves1237,ave,NA
-214,Persian,NA,28.6593,55.1586,west2369,pes,prs
-218,Jamaican Creole (Limonese Creole dialect),NA,18.13,-77.2612,jama1262,jam,jcr
-219,Basque,NA,43.2787,-1.31622,basq1248,eus,bsq
-220,Hausa,NA,11.1513,8.7804,haus1257,hau,hau
-221,Polci,NA,10.0258,9.53362,polc1243,plj,NA
-222,Nahuatl (Sierra de Zacapoaxtla variety),NA,20.1554,-97.5556,high1278,azz,nsz
-223,Chatino (Zacatepec variety),NA,16.08,-97.3069,zaca1242,ctz,cht
-224,Karok,NA,41.8228,-123.315,karo1304,kyh,krk
-225,Seri,NA,28.9877,-112.384,seri1257,sei,ser
-226,Zuni,NA,35.0056,-108.782,zuni1245,zun,zun
-227,Northern Haida,NA,54.6931,-132.465,nort2938,hdn,hno
-228,Tlingit,NA,59.4447,-135.29,tlin1245,tli,tli
-229,Tsimshian,NA,54.6214,-130.496,nucl1649,tsi,tsi
-230,Nuu-chah-nulth,NA,NA,NA,nuuc1236,nuk,nuu
-231,Bella Coola,NA,52.3448,-126.689,bell1243,blc,bco
-232,Upper Chehalis,NA,46.7981,-123.169,uppe1439,cjh,chl
-235,Hawaiian,NA,19.6297,-155.43,hawa1245,haw,haw
-236,Maori,NA,-38.2881,176.541,maor1246,mri,mao
-237,Marquesan,NA,-9.75663,-138.979,sout2866,mqm,mrq
-238,Rapa Nui,NA,-27.113,-109.342,rapa1244,rap,rap
-239,Rotuman,NA,-12.5008,177.066,rotu1241,rtm,rot
-240,Tongan,NA,-21.17,-175.25,tong1325,ton,tng
-241,Tuamotuan,NA,-21.709,-140.658,tuam1242,pmt,tua
-242,Barí,NA,9.08497,-72.9353,bari1297,mot,mti
-243,Muisca,NA,6.24999,-74.1666,chib1270,chb,msc
-244,Páez,NA,2.61516,-76.3125,paez1247,pbb,pae
-245,Cayapa,NA,0.71489,-79.0508,chac1249,cbi,cay
-246,Colorado,NA,-0.21181,-79.2347,colo1256,cof,tsf
-247,Embera,NA,7.12761,-77.574,nort2972,emp,emb
-248,Epena,NA,4.25877,-77.3566,epen1239,sja,epe
-249,Puinave,NA,3.92974,-67.6886,puin1248,pui,pui
-250,Yuwana,NA,5.63879,-65.4267,yuwa1244,yau,NA
-251,Yaruro,NA,7.10677,-67.5996,pume1238,yae,yrr
-252,Ninam (Shirishana variety),NA,4.03894,-62.7801,nina1238,shb,shi
-253,Yanomámi,NA,2.48999,-62.8522,yano1262,wca,ynm
-254,Cofán,NA,0.276675,-77.0643,cofa1242,con,cof
-255,Waorani,NA,-1.12312,-76.683,waor1240,auc,wao
-256,Siona,NA,0.31733,-76.0237,sion1247,snn,sin
-257,Tuyuca,NA,0.39441,-70.0435,tuyu1244,tue,tuy
-258,Aguaruna,NA,-5.30044,-77.9218,agua1253,agr,agr
-260,Yagua,NA,-3.42913,-72.2186,yagu1244,yad,yag
-261,Baure,NA,-13.1278,-64.1838,baur1253,brg,baq
-262,Goajiro,NA,10.2252,-71.8101,wayu1243,guc,goa
-263,Ignaciano,NA,-15.1188,-65.3993,igna1246,ign,ign
-264,Mashco Piro,NA,-11.4745,-70.7953,mash1270,cuj,pir
-265,Trinitario,NA,-15.3331,-65.4096,trin1274,trn,NA
-266,Wapishana,NA,2.58744,-59.8021,wapi1253,wap,wps
-267,Waurá,NA,-13.296,-53.6971,waur1244,wau,wur
-268,Yavitero,NA,2.800281,-68.084219,yavi1244,yvt,NA
-269,Aymara,NA,-17,-68.5,cent2142,ayr,aym
-270,Chipaya,NA,-18.7395,-67.8963,chip1262,cap,cpy
-271,Mosetén,NA,-14.6445,-67.8376,mose1249,cas,mos
-272,Araona,NA,-12.4242,-67.7293,arao1248,aro,ana
-273,Cavineña,NA,-13.3544,-66.6277,cavi1250,cav,cav
-274,Ese Ejja,NA,-11.7268,-67.515,esee1248,ese,ese
-276,Tacana,NA,-13.3925,-68.0406,taca1256,tna,tac
-277,Cashibo,NA,-8.70232,-75.4206,cash1251,cbr,cas
-278,Catuquina,NA,-7.97456,-71.5615,pano1254,knt,NA
-279,Chácobo,NA,-12.133,-66.7164,chac1251,cao,cbo
-281,Shipibo-Conibo,NA,-7.17105,-74.8219,ship1254,shp,shk
-282,Yaminahua,NA,-9.8846,-71.5964,yami1256,yaa,yam
-283,Cayuvava,NA,-13.2482,-65.4822,cayu1262,cyb,cyv
-284,Itonama,NA,-12.8043,-64.3575,iton1250,ito,ito
-285,Movima,NA,-13.8115,-65.6348,movi1243,mzp,mov
-286,Pacaas Novos,NA,-10.6995,-64.5615,wari1268,pav,war
-287,Mundurukú,NA,-8.41095,-57.691,mund1330,myu,muu
-288,Aché,NA,-25.5865,-56.4697,ache1246,guq,ach
-289,Chiriguano,NA,-21.0909,-61.7179,east2555,gui,crg
-290,Guaraní,NA,-25.6055,-57.0882,para1311,gug,gua
-291,Sirionó,NA,-15.5298,-63.9688,siri1273,srq,srn
-292,Wayampi,NA,1.73817,-52.6887,waya1270,oym,way
-293,Canela,NA,-6.10712,-45.1299,cane1242,ram,cnl
-294,Kaingáng,NA,-27.7671,-52.5394,kain1272,kgp,kng
-295,Karajá,NA,-11.1881,-50.3492,kara1500,kpj,jva
-296,Trumai,NA,-11.8119,-53.5717,trum1247,tpy,tru
-297,Ayoreo,NA,-19.2201,-60.2175,ayor1240,ayo,ayr
-298,Sanapaná (Angaité dialect),NA,NA,NA,anga1295,NA,NA
-299,Sanapaná (Enlhet dialect),NA,-22.1145,-58.907,sana1281,sap,NA
-300,Lengua,NA,-22.6559,-58.9053,leng1262,leg,lng
-301,Mocoví,NA,-28.097,-60.4145,moco1246,moc,mcv
-302,Pilagá,NA,-25.0058,-60.1537,pila1245,plg,pga
-304,Chorote,NA,-22.1896,-63.2383,iyoj1235,crt,crt
-305,Maca,NA,-25.0119,-57.3694,maca1260,mca,mca
-306,Wichí,NA,-23.1633,-62.1757,wich1264,mzh,wch
-307,Nivaclé,NA,-22.8557,-61.7606,niva1238,cag,chu
-308,Kunza,NA,-23,-69,kunz1244,kuz,atm
-309,Mapudungun,NA,-38.7392,-71.277,mapu1245,arn,map
-310,Tehuelche,NA,-47.5796,-68.3235,tehu1242,teh,teh
-311,Selknam,NA,-54,-68.5,onaa1245,ona,sel
-312,Gününa Küne,NA,-36.6376,-62.9413,puel1244,pue,gku
-313,Qawasqar,NA,-49.703,-75.3756,qawa1238,alc,qaw
-314,Toba,NA,-24.4025,-60.4473,toba1269,tob,tob
-315,Yagán,NA,-55.2748,-68.2648,yama1264,yag,yah
-318,Uncunwee,NA,11.6432,29.8122,ghul1238,ghl,nbh
-401,Central Thai,NA,14.192,100.671,thai1261,tha,tha
-402,Southern Tai (Songkhla variety),NA,6.85668,99.7031,sout2746,sou,NA
-403,Thai (Korat variety),NA,6.85668,99.7031,sout2746,sou,NA
-404,Khamuang (Chiang Mai variety),NA,18.8575,100.207,nort2740,nod,NA
-405,Dehong,NA,21.7837,99.722,tain1252,tdd,NA
-407,Tai Lü,NA,21.0321,101.282,luuu1242,khb,lu
-408,Tai Khün,NA,19.6062,99.3363,khun1259,kkh,khn
-409,Shan,NA,21.5995,98.0342,shan1277,shn,sha
-411,Nung-Fengshan,NA,23.6818,107.184,guib1244,zgn,nun
-412,Nung-Lazhai,NA,23.6818,107.184,guib1244,zgn,nun
-413,Nung-Ninbei,NA,20.8965,104.286,nung1283,nut,nun
-414,Zhuang-Longzhou,NA,21.8375,107.362,zuoj1238,zzj,zhn
-415,Sui,NA,24.0488,106.563,suii1243,swi,sui
-420,Lakkia,NA,24.1169,110.106,lakk1238,lbc,lkk
-421,Hlai (Baoting variety),NA,18.8062,109.459,hlai1239,lic,lic
-422,Langja Buyang,NA,23.0105,104.449,emab1235,yzg,NA
-423,Ecun Buyang,NA,23.0105,104.449,lang1316,yln,NA
-424,Sanchong Kelao,NA,22.5632,104.698,gree1278,giq,gla
-425,Qau Kelao,NA,26.155438,106.16455,qaua1234,gqu,gla
-516,Ingush,NA,42.9525,44.158,ingu1240,inh,ing
-518,Kryz,NA,41.1811,48.1846,kryt1240,kry,krz
-533,Tsova-Tush,NA,42.1806,45.344,bats1242,bbl,ttu
-534,Archi (variety 2),NA,42.3239,46.8267,arch1244,aqc,arc
-701,Bengali,NA,24,90,beng1280,ben,ben
-702,Hindi,NA,25,77,hind1269,hin,hin
-704,Mahasu Pahari (Kotghari dialect),NA,31.0088,77.5317,maha1287,bfz,NA
-705,Marathi,NA,17.9344,76.6665,mara1378,mar,mhi
-706,Nepali,NA,NA,NA,east1436,nep,nep
-707,Punjabi,NA,30.0948,75.3474,west2386,pnb,pan
-708,Tamil,NA,10.520219,78.825989,tami1289,tam,tml
-709,Telugu,NA,16.4529,78.7024,telu1262,tel,tel
-710,Tibetan,NA,28.3681,90.1872,tibe1272,bod,tib
-801,Bulang,NA,22.0092,99.7405,blan1242,blr,NA
-804,Keme (Kemie variety),NA,22.0743,100.842,manm1238,mml,NA
-805,Xu,NA,22.0163,100.881,huuu1240,huo,NA
-807,Wa,NA,23.1024,99.108,nucl1290,wbm,puk
-808,Rumai,NA,23.6404,97.3172,ruma1248,rbb,plg
-810,Pusing,NA,21.3474,101.916,bitt1240,bgk,NA
-811,Paliu,NA,24.7013,104.955,boly1239,ply,NA
-814,Mlabri,NA,18.5533,101.163,mlab1235,mra,mlm
-815,Cuoi,NA,NA,NA,cuoi1242,NA,NA
-816,Vietnamese,NA,18.3887,106.757,viet1252,vie,vie
-819,LiHa,NA,NA,NA,cuoi1242,NA,NA
-820,Phong,NA,19.9622,104.088,phon1246,pnx,NA
-822,Tum,NA,NA,NA,cuoi1242,NA,NA
-825,Kha Poong,NA,NA,NA,khap1242,NA,NA
-826,Malieng,NA,NA,NA,mali1278,NA,NA
-827,Ahlao Th,NA,17.7655,104.229,aheu1239,thm,NA
-829,Nyakur,NA,15.8909,101.515,nyah1250,cbn,nkt
-830,Pear,NA,13.593,105.028,pear1247,pcb,NA
-832,Kasong,NA,11.936,104.136,suoy1242,syo,ksn
-833,Samre,NA,13.479,103.978,samr1245,sxm,NA
-834,Chong,NA,12.5218,102.514,chon1284,cog,NA
-836,Surin Khmer,NA,NA,NA,suri1265,NA,khm
-838,Iduh,NA,19.3497,104.106,oduu1239,tyh,NA
-839,Mang Ch,NA,21.4305,102.133,mang1378,zng,NA
+ID,Name,wals_code
+288,Aché,ach
+61,Aghul,agl
+258,Aguaruna,agr
+205,Albanian (Tosk variety),alb
+272,Araona,ana
+32,Andi,anx
+62,Archi (variety 1),arc
+206,Armenian (Eastern variety),arm
+207,Armenian (Western variety),arw
+308,Kunza,atm
+107,Avar,ava
+33,Akhvakh (Northern dialect),axv
+34,Akhvakh (Southern dialect),axv
+269,Aymara,aym
+297,Ayoreo,ayr
+71,Azerbaijani,aze
+261,Baure,baq
+231,Bella Coola,bco
+63,Budukh,bdk
+701,Bengali,ben
+160,Bezhta,bez
+35,Bagvalal,bgv
+183,Breton,bre
+219,Basque,bsq
+200,Bulgarian,bul
+277,Cashibo,cas
+273,Cavineña,cav
+245,Cayapa,cay
+279,Chácobo,cbo
+174,De'kwana,cde
+75,Chechen,chc
+232,Upper Chehalis,chl
+51,Chamalal,chm
+223,Chatino (Zacatepec variety),cht
+307,Nivaclé,chu
+293,Canela,cnl
+254,Cofán,cof
+270,Chipaya,cpy
+289,Chiriguano,crg
+304,Chorote,crt
+177,Catalan,ctl
+283,Cayuvava,cyv
+202,Czech,cze
+57,Dargwa,drg
+186,Danish,dsh
+191,Dutch,dut
+247,Embera,emb
+190,English,eng
+248,Epena,epe
+274,Ese Ejja,ese
+127,Estonian,est
+128,Finnish,fin
+171,French,fre
+194,German,ger
+312,Gününa Küne,gku
+424,Sanchong Kelao,gla
+425,Qau Kelao,gla
+262,Goajiro,goa
+38,Godoberi,god
+168,Modern Greek,grk
+290,Guaraní,gua
+220,Hausa,hau
+235,Hawaiian,haw
+702,Hindi,hin
+42,Hinuq,hnk
+227,Northern Haida,hno
+131,Hungarian,hun
+52,Hunzib,hzb
+263,Ignaciano,ign
+516,Ingush,ing
+170,Italian,ita
+284,Itonama,ito
+218,Jamaican Creole (Limonese Creole dialect),jcr
+295,Karajá,jva
+69,Khinalug,khi
+836,Surin Khmer,khm
+408,Tai Khün,khn
+54,Khwarshi (Inkhokvari dialect),khv
+41,Khwarshi (Khwarshi dialect),khv
+294,Kaingáng,kng
+224,Karok,krk
+39,Karata,krt
+518,Kryz,krz
+832,Kasong,ksn
+135,Khanty,kty
+72,Kumyk,kuq
+139,Komi,kzy
+56,Lak,lak
+197,Latvian,lat
+64,Lezgian,lez
+421,Hlai (Baoting variety),lic
+420,Lakkia,lkk
+300,Lengua,lng
+407,Tai Lü,lu
+173,Macushi,mac
+236,Maori,mao
+309,Mapudungun,map
+305,Maca,mca
+301,Mocoví,mcv
+705,Marathi,mhi
+814,Mlabri,mlm
+147,Mari,mme
+146,Mansi,mns
+126,Erzya Mordvin,moe
+271,Mosetén,mos
+285,Movima,mov
+237,Marquesan,mrq
+243,Muisca,msc
+242,Barí,mti
+287,Mundurukú,muu
+325,Khwarshi (Kwantlada dialect),khv
+37,Botlikh,NA
+74,Judeo-Tat,NA
+181,Irish,iri
+182,Welsh,wel
+196,Lithuanian,lit
+213,Avestan,NA
+216,Elamite,NA
+221,Polci,NA
+250,Yuwana,NA
+265,Trinitario,NA
+268,Yavitero,NA
+278,Catuquina,NA
+280,Pacahuara,NA
+298,Sanapaná (Angaité dialect),NA
+299,Sanapaná (Enlhet dialect),NA
+402,Southern Tai (Songkhla variety),NA
+403,Thai (Korat variety),NA
+404,Khamuang (Chiang Mai variety),NA
+405,Dehong,NA
+406,Jinsha Dai,NA
+416,Maonan,NA
+417,Mulam,mul
+418,Chadong,NA
+419,Southern Kam,don
+422,Langja Buyang,NA
+423,Ecun Buyang,NA
+703,Khasi,khs
+704,Mahasu Pahari (Kotghari dialect),NA
+801,Bulang,NA
+804,Keme (Kemie variety),NA
+805,Xu,NA
+809,Prai,NA
+810,Pusing,NA
+811,Paliu,NA
+815,Cuoi,NA
+820,Phong,NA
+822,Tum,NA
+823,Chut (Ruc variety),NA
+826,Malieng,NA
+827,Ahlao Th,NA
+828,Thavung So,NA
+830,Pear,NA
+833,Samre,NA
+834,Chong,NA
+838,Iduh,NA
+318,Uncunwee,nbh
+706,Nepali,nep
+829,Nyakur,nkt
+73,Nogai,nog
+222,Nahuatl (Sierra de Zacapoaxtla variety),nsz
+148,Nenets,ntu
+411,Nung-Fengshan,nun
+412,Nung-Lazhai,nun
+413,Nung-Ninbei,nun
+230,Nuu-chah-nulth,nuu
+319,Ossetic,oss
+244,Páez,pae
+707,Punjabi,pan
+302,Pilagá,pga
+264,Mashco Piro,pir
+808,Rumai,plg
+172,Panare,pnr
+203,Polish,pol
+178,Portuguese,por
+214,Persian,prs
+249,Puinave,pui
+807,Wa,puk
+313,Qawasqar,qaw
+238,Rapa Nui,rap
+212,Romani,rka
+179,Romanian,rom
+239,Rotuman,rot
+204,Russian,rus
+66,Rutul,rut
+201,Serbo-Croatian,scr
+311,Selknam,sel
+225,Seri,ser
+409,Shan,sha
+252,Ninam (Shirishana variety),shi
+281,Shipibo-Conibo,shk
+256,Siona,sin
+151,Selkup,skp
+143,Northern Saami,sno
+176,Spanish,spa
+291,Sirionó,srn
+415,Sui,sui
+187,Swedish,swe
+276,Tacana,tac
+67,Tabasaran (Northern dialect Khanag subdialect),tbs
+68,Tabasaran (Southern dialect),tbs
+310,Tehuelche,teh
+709,Telugu,tel
+401,Central Thai,tha
+710,Tibetan,tib
+228,Tlingit,tli
+708,Tamil,tml
+50,Tindi,tnd
+240,Tongan,tng
+314,Toba,tob
+296,Trumai,tru
+70,Tsakhur,tsa
+246,Colorado,tsf
+229,Tsimshian,tsi
+55,Tsez (Sagada dialect),tsz
+162,Tsez (Mokok dialect),tsz
+533,Tsova-Tush,ttu
+241,Tuamotuan,tua
+257,Tuyuca,tuy
+80,Udi,udi
+159,Udmurt,udm
+816,Vietnamese,vie
+175,Wai Wai,wai
+255,Waorani,wao
+286,Pacaas Novos,war
+292,Wayampi,way
+306,Wichí,wch
+266,Wapishana,wps
+267,Waurá,wur
+260,Yagua,yag
+315,Yagán,yah
+282,Yaminahua,yam
+195,Yiddish,ydd
+253,Yanomámi,ynm
+251,Yaruro,yrr
+414,Zhuang-Longzhou,zhn
+226,Zuni,zun

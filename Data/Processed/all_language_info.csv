@@ -55,6 +55,8 @@ ID,Name,iso_code,latitude,longitude,family
 177,Catalan,cat,41.75,2,Indo-European
 178,Portuguese,por,39,-8,Indo-European
 179,Romanian,ron,46,25,Indo-European
+181,Irish,gle,53,-8,Indo-European
+182,Welsh,cym,52,-3,Indo-European
 183,Breton,bre,48,-3,Indo-European
 186,Danish,dan,56,10,Indo-European
 187,Swedish,swe,60,15,Indo-European
@@ -62,6 +64,7 @@ ID,Name,iso_code,latitude,longitude,family
 191,Dutch,nld,52.5,6,Indo-European
 194,German,deu,52,10,Indo-European
 195,Yiddish,ydd,52,23,Indo-European
+196,Lithuanian,lit,55,24,Indo-European
 197,Latvian,lav,57,24,Indo-European
 200,Bulgarian,bul,42.5,25,Indo-European
 201,Serbo-Croatian,hbs,44,19,Indo-European
@@ -168,6 +171,8 @@ ID,Name,iso_code,latitude,longitude,family
 413,Nung-Ninbei,nut,21.9166666667,106.416666667,Tai-Kadai
 414,Zhuang-Longzhou,zzj,24,108,Tai-Kadai
 415,Sui,swi,26,107.5,Tai-Kadai
+417,Mulam,mlm,25,108,Tai-Kadai
+419,Southern Kam,kmc,27,109,Tai-Kadai
 420,Lakkia,lbc,24.0833333333,110.166666667,Tai-Kadai
 421,Hlai (Baoting variety),lic,19,109.5,Tai-Kadai
 424,Sanchong Kelao,giq,22.9166666667,105.5,Tai-Kadai
@@ -175,7 +180,6 @@ ID,Name,iso_code,latitude,longitude,family
 516,Ingush,inh,43.1666666667,45.0833333333,Nakh-Daghestanian
 518,Kryz,kry,41.0833333333,48,Nakh-Daghestanian
 533,Tsova-Tush,bbl,42.5,45.5,Nakh-Daghestanian
-534,Archi (variety 2),aqc,42,46.8333333333,Nakh-Daghestanian
 701,Bengali,ben,24,90,Indo-European
 702,Hindi,hin,25,77,Indo-European
 705,Marathi,mar,19,76,Indo-European
@@ -197,31 +201,34 @@ ID,Name,iso_code,latitude,longitude,family
 221,Polci,plj,10.0258,9.53362,Afro-Asiatic
 250,Yuwana,yau,5.63879,-65.4267,Jodi-Saliban
 265,Trinitario,trn,-15.3331,-65.4096,Arawakan
-268,Yavitero,yvt,2.800281,-68.084219,Arawakan
 278,Catuquina,knt,-7.97456,-71.56151,Panoan
+280,Pacahuara,pcp,-11.9968,-65.5568,Panoan
 298,Sanapaná (Angaité dialect),NA,NA,NA,Bookkeeping
 299,Sanapaná (Enlhet dialect),sap,-22.11454,-58.90698,Bookkeeping
 402,Southern Tai (Songkhla variety),sou,6.85668,99.7031,Tai-Kadai
 403,Thai (Korat variety),sou,6.85668,99.7031,Tai-Kadai
 404,Khamuang (Chiang Mai variety),nod,18.857495,100.20739,Tai-Kadai
 405,Dehong,tdd,21.7837,99.722,Tai-Kadai
+406,Jinsha Dai,huj,26.7238,106.682,Hmong-Mien
+416,Maonan,mmd,25.0169,108.024,Tai-Kadai
+418,Chadong,cdy,25.23532,109.96041,Tai-Kadai
 422,Langja Buyang,yzg,23.0105,104.449,Tai-Kadai
 423,Ecun Buyang,yln,23.0105,104.449,Tai-Kadai
 704,Mahasu Pahari (Kotghari dialect),bfz,31.0088,77.5317,Indo-European
 801,Bulang,blr,22.0092,99.7405,Austro-Asiatic
 804,Keme (Kemie variety),mml,22.0743,100.842,Austro-Asiatic
 805,Xu,huo,22.0163,100.881,Austro-Asiatic
+809,Prai,pry,19.4306,101.021,Bookkeeping
 810,Pusing,bgk,21.3474,101.916,Austro-Asiatic
 811,Paliu,ply,24.7013,104.955,Austro-Asiatic
 815,Cuoi,NA,NA,NA,Austro-Asiatic
-819,LiHa,NA,NA,NA,Austro-Asiatic
 820,Phong,pnx,19.9622,104.088,Austro-Asiatic
 822,Tum,NA,NA,NA,Austro-Asiatic
-825,Kha Poong,NA,NA,NA,Austro-Asiatic
+823,Chut (Ruc variety),NA,NA,NA,Austro-Asiatic
 826,Malieng,NA,NA,NA,Austro-Asiatic
 827,Ahlao Th,thm,17.7655,104.229,Austro-Asiatic
+828,Thavung So,thm,17.7655,104.229,Austro-Asiatic
 830,Pear,pcb,13.593,105.028,Austro-Asiatic
 833,Samre,sxm,13.479,103.978,Bookkeeping
 834,Chong,cog,12.5218,102.514,Austro-Asiatic
 838,Iduh,tyh,19.3497,104.106,Austro-Asiatic
-839,Mang Ch,zng,21.4305,102.133,Austro-Asiatic
