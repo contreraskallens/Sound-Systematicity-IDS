@@ -172,7 +172,8 @@ all.phon <- all.words %>%
 
 # Clean phon forms --------------------------------------------------------
 all.phon <- all.phon %>% 
-  filter(!is.na(phon))
+  filter(!is.na(phon),
+         str_detect(phon, "\\?", negate = TRUE)) # Get rid of forms that have a question mark on them
 
 # extract the first form of multi form entries separated by ~
 while(length(all.phon$phon[str_detect(all.phon$phon, "~")]) > 0){ # clean multiwords separated by ~
@@ -265,10 +266,39 @@ while(length(all.phon$phon[str_detect(all.phon$phon, "[-/\\.'\\*\\+\\s]$")]) > 0
 } # Remove all final dashes, slash, dots, asterisks, quotes, plus signs and spaces
 
 # Remove all dots (phon linkings)
-all.phon$phon <-  str_remove_all(all.phon$phon, "\\.")
+# all.phon$phon <-  str_remove_all(all.phon$phon, "\\.")
+all.phon <- all.phon %>% 
+  mutate(phon = str_remove_all(phon, "-"), # Remove dashes. They mostly (always?) denote pronunciation pauses
+         phon = str_remove_all(phon, "'"), # Remove  stress markers
+         phon = str_remove_all(phon, "\\p{Lm}"), # Remove diacritic markers like "???", "??", "??", "??", "??", "??", "??", "??", "??", "??", "???", "??", "???"
+         phon = str_remove_all(phon, "'"), # Remove more stress markers and diacritics
+         phon = str_remove_all(phon, "`"),
+         phon = str_remove_all(phon, ":"),
+         phon = str_remove_all(phon, "\\\\"),
+         phon = str_remove_all(phon, "\\$")) 
+
+all.phon <- all.phon %>% 
+  mutate(number.of.spaces = str_count(phon, " ")) %>% 
+  filter(number.of.spaces < 2)
 
 # Tonal languages have tones marked with numbers
-all.tones <- filter(all.phon, str_detect(phon, "[:digit:]"))
+all.tone.languages <- filter(all.phon, str_detect(phon, "[:digit:]")) 
+all.tone.languages <- unique(all.tone.languages$language)
+
+all.tones <- filter(all.phon, language %in% all.tone.languages)
+
+# Form inventories of characters to hand construct the vowel inventory of each of them (no in principle way of identifying it a priori)
+# for(this.language in all.tone.languages){
+#   all.chars <- all.tones %>% 
+#     filter(language == this.language)
+#   all.chars <- str_split(all.chars$phon, "") %>% 
+#     unlist() %>% 
+#     unique()
+#   file.name <- paste0("VowelInventories/", this.language, ".txt")
+#   write_lines(all.chars, file.name)
+# }
+
+
 all.phon <- filter(all.phon, str_detect(phon, "[:digit:]", negate = TRUE))
 
 # Make within language placeholders for the different tones.
@@ -305,15 +335,7 @@ all.tones <- map_dfr(unique(all.tones$language), function(this.language){
 
 
 all.phon <- bind_rows(all.phon, all.tones) 
-all.phon <- all.phon %>% 
-  mutate(phon = str_remove_all(phon, "-"), # Remove dashes. They mostly (always?) denote pronunciation pauses
-    phon = str_remove_all(phon, "'"), # Remove  stress markers
-    phon = str_remove_all(phon, "\\p{Lm}"), # Remove diacritic markers like "???", "??", "??", "??", "??", "??", "??", "??", "??", "??", "???", "??", "???"
-    phon = str_remove_all(phon, "'")) # Remove more stress markers
 
-all.phon <- all.phon %>% 
-  mutate(number.of.spaces = str_count(phon, " ")) %>% 
-  filter(number.of.spaces < 2)
 all.phon %>% 
   group_by(language, number.of.spaces) %>% 
   tally() %>% 
