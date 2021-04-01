@@ -264,6 +264,16 @@ while(length(all.phon$phon[str_detect(all.phon$phon, "[-/\\.'\\*\\+\\s]$")]) > 0
                                                                                    "[-/\\.'\\*\\+\\s]$")
 } # Remove all final dashes, slash, dots, asterisks, quotes, plus signs and spaces
 
+# Save the espeak language list of words
+
+espeak.df <- all.phon %>% 
+  filter(language %in% espeak.languages$language) 
+for(this.language in espeak.languages$language){
+  file.name <- paste0("PhonMining/espeak_lists/", this.language, ".txt")
+  this.df <- filter(espeak.df, language == this.language)
+  write_lines(this.df$phon, file.name)
+}
+
 # Remove all dots (phon linkings)
 all.phon$phon <-  str_remove_all(all.phon$phon, "\\.")
 

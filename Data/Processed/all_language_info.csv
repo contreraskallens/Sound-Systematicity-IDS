@@ -198,9 +198,11 @@ ID,Name,iso_code,latitude,longitude,family
 37,Botlikh,bph,42.665,46.22,Nakh-Daghestanian
 74,Judeo-Tat,jdt,42.068306,48.264749,Indo-European
 213,Avestan,ave,31.541,53.633,Indo-European
+216,Elamite,elx,31.1833,48.2333,Bookkeeping
 221,Polci,plj,10.0258,9.53362,Afro-Asiatic
 250,Yuwana,yau,5.63879,-65.4267,Jodi-Saliban
 265,Trinitario,trn,-15.3331,-65.4096,Arawakan
+268,Yavitero,yvt,2.800281,-68.084219,Arawakan
 278,Catuquina,knt,-7.97456,-71.56151,Panoan
 280,Pacahuara,pcp,-11.9968,-65.5568,Panoan
 298,Sanapaná (Angaité dialect),NA,NA,NA,Bookkeeping

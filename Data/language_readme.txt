@@ -42,5 +42,4 @@ Proto-polynesian
 Proto-austronesian
 Tocharian A
 Tocharian B
-
 Elamite and Prai had extremely noisy transcriptions.
