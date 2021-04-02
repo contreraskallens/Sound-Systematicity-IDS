@@ -276,8 +276,7 @@ all.tones <- map_dfr(all.tone.languages, function(this.language){
 })
 
 all.phon <- all.phon %>% 
-  mutate(phon = str_remove_all(phon, regex("[\\p{S}]")),
-         phon = stringi::stri_enc_toutf8(phon))
+  mutate(phon = str_remove_all(phon, regex("[\\p{S}]")))
 
 all.tones <- select(all.tones, -phon, phon = new.phon)
 all.tones <- clean.phon(all.tones)
@@ -287,7 +286,11 @@ all.phon <- bind_rows(all.tones, all.phon)
 all.phon <-  mutate(all.phon, phon = str_remove_all(phon, "\\."))
 
 # Now merge collocations
-all.phon <- mutate(all.phon, phon = str_remove_all(phon, " "))
+all.phon <- mutate(all.phon, phon = str_remove_all(phon, " "),
+                   phon = stringi::stri_trans_nfkc_casefold(phon))
+
+
+
 
 # Only keep strings longer than 2
 all.phon <- filter(all.phon, nchar(phon) > 2)
@@ -297,9 +300,13 @@ all.phon <- all.phon %>%
   group_by(language) %>%
   mutate(numberOfWords = n()) %>%
   group_by() %>%
-  filter(numberOfWords > 100) %>% # Exclude languages with fewer than 100 phon forms
+  filter(numberOfWords > 200) %>% # Exclude languages with fewer than 100 phon forms
   dplyr::select(-numberOfWords) %>%
   droplevels()
+all.phon <- all.phon %>% 
+  mutate(phon = str_remove_all(phon, "[\\p{Mn}[:punct:]]"),
+         phon = str_to_lower(phon))
+
 
 all.phon %>% write_csv('../Data/Processed/all_phon.csv')
 
@@ -378,9 +385,7 @@ get.word.stats <- function(word, ngram.results){
 }
 
 evaluate.word <- function(word, ngram.results){
-  print(word)
   word.stats <- get.word.stats(word, ngram.results)
-  print(word.stats)
   is.candidate <- word.stats$length.frequencies > 1 # Use only segments with more than 1 length frequency
   if(sum(is.candidate) == 0){ # If none of the ngrams appear in any other word, no marker.
     return("#")
@@ -441,6 +446,7 @@ get.morph.markers <- function(language.df){
   character.frequency <- paste0(all.ngram.segments, collapse = "") %>% 
     str_split("") %>% 
     table()
+  print(character.frequency)
   character.frequency <- character.frequency / sum(character.frequency)
   ngram.frequency <- table(all.ngram.segments)
   ngram.frequency <- ngram.frequency / sum(ngram.frequency)

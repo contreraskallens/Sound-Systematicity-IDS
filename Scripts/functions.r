@@ -216,18 +216,23 @@ bootstrapped.cis <- function(rnn.language){
 }
 
 clean.phon <- function(df){
+  df <- ungroup(df)
   # extract the first form of multi form entries separated by ~
   while(length(df$phon[str_detect(df$phon, "~")]) > 0){ # clean multiwords separated by ~
+    if(is.na(df$phon[str_detect(df$phon, "~")])){break}
     df$phon[str_detect(df$phon, "~")] <- str_extract(df$phon[str_detect(df$phon, "~")], 
                                                                  "[[:graph:]]*[[:space:]]*[[:graph:]]+(?=[[:space:]]*[[:punct:]]*~)")
+    
   } # extract the first form of multi form entries separated by ~
   # extract the first form of multi form entries separated by ,
-  while(length(df$phon[str_detect(df$phon, ",")]) > 0){ 
+  while(length(df$phon[str_detect(df$phon, ",")]) > 0){
+    if(is.na(df$phon[str_detect(df$phon, ",")])){break}
     df$phon[str_detect(df$phon, ",")] <- str_extract(df$phon[str_detect(df$phon, ",")], 
                                                                  "[[:graph:]]*[[:space:]]*[[:graph:]]+(?=[[:space:]]*[[:punct:]]*,)")
   }
   # extract the first form of multi form entries separated by |
   while(length(df$phon[str_detect(df$phon, "\\|")]) > 0){ # clean multiwords separated by |
+    if(is.na(df$phon[str_detect(df$phon, "\\|")])){break}
     df$phon[str_detect(df$phon, "\\|")] <- str_extract(df$phon[str_detect(df$phon, "\\|")], 
                                                                    "[[:graph:]]*[[:space:]]*[[:graph:]]+(?=[[:space:]]*[[:punct:]]*\\|+)")
     df <- filter(df, !(is.na(phon)))
@@ -242,7 +247,6 @@ clean.phon <- function(df){
     df$phon[str_detect(df$phon, "[-/\\.'\\*\\+\\s]$")] <- str_remove_all(df$phon[str_detect(df$phon, "[-/\\.'\\*\\+\\s]$")],
                                                                                      "[-/\\.'\\*\\+\\s]$")
   } # Remove all final dashes, slash, dots, asterisks, quotes, plus signs and spaces
-  
   
   # Parentheses
   df$phon[str_detect(df$phon, "^\\(+.+\\)$")] <- str_remove_all(df$phon[str_detect(df$phon,
@@ -306,7 +310,6 @@ clean.phon <- function(df){
                                                                                      "[-/\\.'\\*\\+\\s]$")
   } # Remove all final dashes, slash, dots, asterisks, quotes, plus signs and spaces
   
-  df <- ungroup(df)
   return(df)
 }
 
