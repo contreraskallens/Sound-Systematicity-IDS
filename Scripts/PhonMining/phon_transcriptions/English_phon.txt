@@ -144,10 +144,10 @@
  lˈiːd
  sˈɛnd
  bɹˈɪŋ
- kˈæɹiˌʌndɚɹˈɑːɹm
- kˈæɹiˌɔnhˈɛd
- kˈæɹiˌɔnʃˈoʊldɚ
- kˈæɹiɪnhˈænd
+ kˈærjuːndɚɹˌɑːɹm
+ kˈæɹɪənhˌɛd
+ kˈæɹɪˌɑːnʃʊdɚ
+ kˈæɹɪˌɪnhænd
  kˈæɹi
  ˈɛntɚ
  ɐpɹˈoʊtʃ
@@ -268,7 +268,6 @@
  hjˈuː
  kˈʌt dˈaʊn
  kˈʌt
- pˈaʊnd wɪð fˈɪst
  nˈɑːt
  ɹˈoʊp
  kˈoːɹd
@@ -330,7 +329,7 @@
  ɡɹˈeɪn
  kɹˈɑːp
  hˈɑːɹvɪst
- θɹˈɛʃɪŋflˈoːɹ
+ θɹˈɛʃɪŋflˌoːɹ
  θɹˈɛʃ
  mˈoʊ
  ɹˈiːp
@@ -380,7 +379,7 @@
  wˈɪndoʊ
  kˈiː
  lˈætʃ
- dˈoːɹbˈoʊlt
+ dˈoːɹboʊlt
  lˈɑːk
  dˈoːɹpoʊst
  dʒˈæm
@@ -393,7 +392,7 @@
  jˈɑːɹd
  kˈoːɹt
  tˈɛnt
- ɡˈɑːɹdənhˈaʊs
+ ɡˈɑːɹdənhˌaʊs
  hˈʌt
  hˈaʊs
  dwˈɛl
@@ -433,7 +432,7 @@
  stˈɑːkɪŋ
  sˈɑːk
  tɹˈaʊsɚz
- ɡɹˈæsskˈɜːt
+ ɡɹˈæsskɜːt
  skˈɜːt
  ʃˈɜːt
  kˈoʊt
@@ -461,7 +460,6 @@
  tˈeɪlɚ
  klˈoʊðɪŋ
  klˈoʊðz
- pˌʊt ˌɔŋ klˈoʊðz
  ˈɛɡ jˈoʊk
  ˈɛɡ
  fɜːmˈɛntᵻd dɹˈɪŋk
@@ -579,7 +577,6 @@
  bᵻɡˈɛt
  bˈeɪð
  ʃˈɪvɚ
- hæv sˈɛkʃuːəl ˌɪntɚkˈoːɹs
  dˈɛfɪkˌeɪt
  jˈʊɹɹᵻnˌeɪt
  bɹˈeɪk wˈɪnd
@@ -628,14 +625,12 @@
  ˈæŋkəl
  fˈʊt
  nˈiː
- kˈæf ʌv lˈɛɡ
  θˈaɪ
  lˈɛɡ
  klˈɔː
  fˈɪŋɡɚnˌeɪl
  θˈʌm
  fˈɪŋɡɚ
- pˈɑːm ʌv hˈænd
  hˈænd
  ɹˈɪst
  ˈɛlboʊ
@@ -645,7 +640,6 @@
  ʃˈoʊldɚblˌeɪd
  ʃˈoʊldɚ
  θɹˈoʊt
- nˈeɪp ʌv nˈɛk
  nˈɛk
  mˈoʊlɑːɹtˌuːθ
  tˈuːθ
@@ -671,7 +665,6 @@
  dʒˈɔː
  fˈeɪs
  bɹˈeɪn
- sˈaɪd ʌv hˈɛd
  tˈɛmpəl
  skˈʌl
  hˈɛd
@@ -772,7 +765,7 @@
  stˈæliən
  hˈɔːɹs
  kˈɪd
- hiːɡˈoʊt
+ hˈɛɡoʊt
  ɡˈoʊt
  pˈɪɡ
  sˈoʊ
@@ -1087,7 +1080,6 @@
  skˈoʊld
  kˈɔːl
  sˈʌmən
- kˈɔːl baɪ nˈeɪm
  ɐnˈaʊns
  θɹˈɛʔn̩
  bˈoʊst
@@ -1101,7 +1093,6 @@
  dɹˈʌm
  ɹˈæɾəl
  kˈʌntɹi
- wˈʌnz nˈeɪɾɪv kˈʌntɹi
  sˈɪɾi
  tˈaʊn
  vˈɪlɪdʒ
@@ -1157,7 +1148,7 @@
  wˈɛpənz
  ˈɑːɹmz
  klˈʌb
- bˈæɾəlˈæks
+ bˈæɾəlˌæks
  slˈɪŋ
  bˈoʊ
  ˈæɹoʊ

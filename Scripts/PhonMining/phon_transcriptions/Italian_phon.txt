@@ -6,11 +6,11 @@
  inˈitsio
  ritardˈare
  affretːˈarsɪ
- ˈeta
+ etˈa
  tˈɛmpo
  pˈaio
  kˈɔpːia
- mˈeta
+ metˈa
  pˈɛtsːo
  kontˈare
  kambjˈare
@@ -53,7 +53,6 @@
  avˈantsɪ
  rimanˈɛre
  restˈare
- stˈare in pjˈedɪ
  zdrajˈarsɪ
  sedˈersɪ
  mˈetːere
@@ -78,7 +77,6 @@
  paɡˈare
  dˈebito
  dovˈere
- prˈɛndere in prˈɛstito
  prestˈare
  mendikˈante
  monˈeta
@@ -158,7 +156,6 @@
  dzopːikˈare
  kamminˈare
  ballˈare
- dˈare ʊn kˈaltʃo
  saltˈare
  ʃivolˈare
  akːovatʃːˈarsɪ
@@ -265,8 +262,7 @@
  ortˈika
  verbˈasko
  tassobarbˈasso
- kˈanna da dzˈukːeɾo
- bˈambʊ
+ bambˈu
  dzˈukːa
  dzˈukːa
  tapiˈɔka
@@ -274,10 +270,8 @@
  kassˈava
  iɲˈame
  patˈata amerikˈana
- fˈiko del bˈanjan
  banˈano
  aɡrˈume
- nˈotʃe dɪ kˈɔkːo
  pˈalma
  lˈinfa
  kortˈetʃːa
@@ -340,12 +334,9 @@
  matːˈone
  ˈarko
  mʊratˈore
- tˈavola dɪ lˈeɲɲo
  pˈalo
  trˈave
  travitʃˈɛllo
- ˈasta dɪ kˈolmo
- kopertˈura dɪ pˈaʎa
  tˈetːo
  trˈɔɡolo
  mˈɛnsola
@@ -371,9 +362,7 @@
  stˈipite
  stˈantsa
  pˈɔrta kantʃˈɛllo
- lʊˈɔɡo dɪ riʊniˈone
  kʊtʃˈina
- kˈaza rizervˈata ˌaʎɪ wˈɔminɪ
  kortˈile
  tˈɛnda
  padiʎˈone
@@ -414,7 +403,6 @@
  kˈaltsa
  kaltsˈino
  pantalˈonɪ
- ɡonnellˈino dɪ pˈaʎa
  ɡˈonna
  kamˈitʃa
  mantˈɛllo
@@ -442,7 +430,7 @@
  vestˈitɪ
  vestˈirsɪ
  tʊˈɔrlo
- rˈosso dwˈɔvo
+ rˈosso dʊˈovo
  wˈɔvo
  bevˈanda fermentˈata
  bˈirɾa
@@ -561,12 +549,10 @@
  baɲˈarsɪ
  rabːrividˈire
  fˈotːere
- avˈere rapːˈɔrtɪ sessʊˈalɪ
  defekˈare
  kakˈare
  orinˈare
  piʃˈare
- fˈare ʊn pˈeto
  zveʎˈarse
  soɲˈare
  rʊssˈare
@@ -604,7 +590,6 @@
  pˈɛtːo
  pjˈuma
  ˈala
- dˈito del pjˈɛde
  ˈɔrma
  kalkˈaɲɲo
  kavˈiʎa
@@ -643,7 +628,6 @@
  tʃerˈume
  lˈɔbo dellorˈekːio
  orˈekːio
- bˈatːere le pˈalpebre
  tʃˈiʎo
  pˈalpebra
  sopratʃːˈiʎo
@@ -669,7 +653,6 @@
  artˈɛria
  sˈaŋɡwe
  fˈorfora
- pˈelɪ del pˈube
  pˈelo
  bˈarba
  kapˈello
@@ -688,7 +671,6 @@
  serpˈɛnte
  lombrˈiko
  dzandzˈaɾa
- pˈultʃe dɪ mˈare
  mˈoska
  vˈɛspa
  alveˈare
@@ -714,7 +696,6 @@
  ˈorso
  leˈone
  lˈupo
- aŋɡwˈilla dˈakːwa dˈoltʃe
  rˈatsːa
  balˈena
  fotʃˈɛna
@@ -791,11 +772,7 @@
  kʊdʒˈino
  nipˈote
  nipˈote
- sorˈɛlla del pˈadre
  dzˈia
- sorˈɛlla dˌella mˈadre
- fratˈɛllo del pˈadre
- fratˈɛllo dˌella mˈadre
  dzˈio
  nipˈote
  nipotˈino
@@ -862,7 +839,7 @@
  ˈaria
  rʊdʒˈada
  ˈombra
- oskʊrˈita
+ oskʊritˈa
  bˈuːjo
  lˈutʃe
  arkobalˈeno
@@ -932,11 +909,11 @@
  orolˈodʒo
  setːimˈana
  domˈenika
- lʊnˈedɪ
- martˈedɪ
- merkolˈedɪ
- dʒovˈedɪ
- venˈɛrdɪ
+ lʊnedˈi
+ martedˈi
+ merkoledˈi
+ dʒovedˈi
+ venerdˈi
  sˈabato
  mˈɛze
  ˈanno
@@ -1055,7 +1032,6 @@
  balbʊtsjˈare
  dˈire
  rakːontˈare
- fˈare ʊn diskˈorso
  tatʃˈɛre
  rimanˈɛre dzˈitːo
  lˈiŋɡwa
@@ -1086,13 +1062,13 @@
  sonˈaʎo
  paˈeze
  pˈatria
- tʃˈitːa
+ tʃitːˈa
  paˈeze
  konfˈine
  frontiˈɛra
  pˈɔpolo
  dʒˈɛnte
- trˈibʊ
+ tribˈu
  klˈan
  kˈapo
  bastˈone
@@ -1168,13 +1144,11 @@
  peskatˈore
  ˈamo
  lˈɛntsa
- rˈete da pˈɛska
  nˈassa
  katʃːˈare
  spaɾˈare
  mankˈare
  trˈapːola
- prˈɛndere in trˈapːola
  intrapːolˈare
  lˈedʒːe
  tribʊnˈale

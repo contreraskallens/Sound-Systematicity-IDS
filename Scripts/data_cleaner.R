@@ -164,7 +164,9 @@ concepticon <- concepticon %>%
 all.words <- left_join(all.words, concepticon) %>% 
   select(-Concepticon_ID, -ID, -Parameter_ID) %>% 
   mutate(ontological.category = as.factor(ontological.category)) %>% 
-  filter(ontological.category %in% c("Action/Process", "Person/Thing"))
+  filter(ontological.category %in% c("Action/Process", "Person/Thing")) %>% 
+  droplevels()
+levels(all.words$ontological.category) <- c("Action", "Thing")
 
 # Store the phon form as "phon" in the dataframe. 
 all.phon <- all.words %>% 
@@ -204,35 +206,22 @@ espeak.phon.df <- clean.phon(espeak.phon.df)
 all.phon <- filter(all.phon, !(language %in% espeak.languages$language))
 all.phon <- bind_rows(all.phon, espeak.phon.df)
 
-
-# Save the espeak language list of words
-
-all.phon <- all.phon %>% 
-  mutate(number.of.spaces = str_count(phon, " ")) %>% 
-  filter(number.of.spaces < 2)
-
-# Remove dashes. They mostly (always?) denote pronunciation pauses
-# Remove  stress markers
-# Remove diacritic markers and stress markers
-all.phon <- all.phon %>% 
-  mutate(phon = str_remove_all(phon, "[-'[\\p{Lm}]`:\\$\\\\]"))
-
 # Tonal languages have tones marked with numbers
 all.tone.languages <- filter(all.phon, str_detect(phon, "[:digit:]")) 
 all.tone.languages <- unique(all.tone.languages$language)
 all.tone.languages <- all.tone.languages[!(all.tone.languages == "Telugu")] # Telugu has 2 words with numbers which are not tones
 all.tone.languages <- all.tone.languages[!(all.tone.languages == "Pear")] # Same with Pear
-
 all.tones <- filter(all.phon, language %in% all.tone.languages)
+all.tones <- mutate(all.tones, phon = ifelse(language == "Malieng", str_to_lower(phon), phon))
 
 all.phon <- filter(all.phon, !(language %in% all.tone.languages))
 
 # Form inventories of characters to hand construct the vowel inventory of each of them (no in principle way of identifying it a priori)
 # for(this.language in all.tone.languages){
-#   all.chars <- all.tones %>% 
+#   all.chars <- all.tones %>%
 #     filter(language == this.language)
-#   all.chars <- str_split(all.chars$phon, "") %>% 
-#     unlist() %>% 
+#   all.chars <- str_split(all.chars$phon, "") %>%
+#     unlist() %>%
 #     unique()
 #   file.name <- paste0("VowelInventories/", this.language, ".txt")
 #   write_lines(all.chars, file.name)
@@ -246,9 +235,10 @@ all.tones <- map_dfr(all.tone.languages, function(this.language){
   vowel.inventory <- read_lines(file.name)
   # After looking at database, tones are ALWAYS written after a period, 
   # and ONLY use either numbers or upper case letters
-  tone.inventory <- str_extract_all(lang.words, "\\.[A-Z0-9]{1,3}") %>% 
+  tone.inventory <- str_extract_all(lang.words, "\\.[A-Z0-9\\$]{1,3}") %>% 
     unlist() %>% 
     unique()
+  print(tone.inventory)
   all.combs <- expand_grid(vowel = vowel.inventory, tone = tone.inventory) %>% 
     mutate(pattern = paste0(vowel, "[[a-z][\\p{Sm}]]*\\", tone))
   exists <- map_lgl(all.combs$pattern, function(this.pattern){
@@ -258,8 +248,9 @@ all.tones <- map_dfr(all.tone.languages, function(this.language){
   })
   all.combs <- all.combs[exists,] %>% 
     arrange(desc(nchar(tone))) # Arrange combinations into descending order of length for matching tones with more than 1 number later
-  tone.placeholders <- stringi::stri_rand_strings(nrow(all.combs), 1, "[\\p{Sm}]")
+  tone.placeholders <- stringi::stri_rand_strings(nrow(all.combs), 1, "[\\p{script = han}]") # replace with kanji placeholders
   all.combs$placeholder <- tone.placeholders
+  print(all.combs)
   lang.df$new.phon <- lang.df$phon
   for(i in 1:nrow(all.combs)){
     vowel.tone <- all.combs[i,]
@@ -275,22 +266,13 @@ all.tones <- map_dfr(all.tone.languages, function(this.language){
   return(lang.df)
 })
 
-all.phon <- all.phon %>% 
-  mutate(phon = str_remove_all(phon, regex("[\\p{S}]")))
-
 all.tones <- select(all.tones, -phon, phon = new.phon)
-all.tones <- clean.phon(all.tones)
-
 all.phon <- bind_rows(all.tones, all.phon)
-# Remove all dots (remaining phon linkings, kept there for tone process)
-all.phon <-  mutate(all.phon, phon = str_remove_all(phon, "\\."))
 
+# Remove all remaining symbols and punctuation marks
+all.phon <-  mutate(all.phon, phon = str_remove_all(phon, "[\\p{S}\\p{P}]"))
 # Now merge collocations
-all.phon <- mutate(all.phon, phon = str_remove_all(phon, " "),
-                   phon = stringi::stri_trans_nfkc_casefold(phon))
-
-
-
+all.phon <- mutate(all.phon, phon = str_remove_all(phon, " "))
 
 # Only keep strings longer than 2
 all.phon <- filter(all.phon, nchar(phon) > 2)
@@ -300,16 +282,13 @@ all.phon <- all.phon %>%
   group_by(language) %>%
   mutate(numberOfWords = n()) %>%
   group_by() %>%
-  filter(numberOfWords > 200) %>% # Exclude languages with fewer than 100 phon forms
+  filter(numberOfWords > 200,
+         numberOfWords < 2000) %>% # Exclude languages with fewer than 200 phon forms and more than 2000 words
   dplyr::select(-numberOfWords) %>%
   droplevels()
-all.phon <- all.phon %>% 
-  mutate(phon = str_remove_all(phon, "[\\p{Mn}[:punct:]]"),
-         phon = str_to_lower(phon))
 
-
+all.phon <- mutate(all.phon, phon = str_to_lower(phon))
 all.phon %>% write_csv('../Data/Processed/all_phon.csv')
-
 
 # Create a morphology-adjusted dataset --------
 

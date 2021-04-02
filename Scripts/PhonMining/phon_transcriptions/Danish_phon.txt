@@ -1,7 +1,7 @@
  ˈʔʌphœˌʔʌ
  ˈεnə
  slˈʔutə
- ˈaslˈʔutə
+ ˈ?ɑwslʔutə
  ˈεnə
  slˈʔutnʔeŋ
  ʋˈɑɑ
@@ -32,7 +32,7 @@
  kʁˈɒw
  hˈajə
  fˈ?ɑwn
- mˈalə
+ mˈɒɒlə
  ʋˈʔʌksə
  sˈʔyð
  nˈʔoɐ̯
@@ -51,13 +51,13 @@
  skjˈulə
  ɡˈεmə
  lˈɒkə
- tʔellˈɒkə
+ tˈʔelɒkə
  dˈεkə
- ˈabnə
+ ˈɒbnə
  lˈɒkə ˈʔʌp
  dˈelə
  skˈʔelə
- ˈaskˈʔelə
+ ˈaðskʔelə
  fʔʌbˈʔenə
  fʌˈeːnə
  hˈobə ˈʔʌp
@@ -65,7 +65,7 @@
  sˈ?ɑmlə
  ʁˈ?astʔʌ
  blˈiə
- stˈa
+ stˈɒ
  lˈʔeɡə
  sˈʔeðə
  sˈεtə
@@ -93,8 +93,8 @@
  bʔetˈalə
  ɡˈεl
  skˈʔylə
- lˈanə
- lˈanə
+ lˈɒnə
+ lˈɒnə
  tˈʔeɡʔʌ
  mˈʔœnt
  pˈεŋə
@@ -109,12 +109,12 @@
  bʔeskˈaðˌiə
  ˈœðəlεɡə
  bʔeʋˈɑɑ
- pˈasə pˈa
+ pˈasə pɒ
  ɡˈʔi telbˈajə
  ɡˈʔi
  tˈʔeŋ
  bʔehˈʔʌlə
- fˈa
+ fˈɒ
  hˈʔʌlə
  tˈajə
  ˈ?ɑjə
@@ -129,13 +129,13 @@
  ʁˈʔoɐ̯
  ʁˈʔo
  pˈ?ɑɡ?ɑj
- ˈaʔʌ
- flˈadə
+ ˈɒɒ
+ flˈɒðə
  ˈʔuðlˌεɡʔʌ
  kˈanʔo
- bˈad
+ bˈɒð
  skˈʔib
- ˈaɡ
+ ˈɒu
  ˈ?ɑksəl
  jˈʔul
  ʋˈʔʌwn
@@ -149,38 +149,33 @@
  fˈœʔʌ
  sˈεnə
  bɐ̯ˈʔeŋə
- bˈɛʔʌ ˈɒnʔʌ ˈɑmən
- bˈɛʔʌ pˈa hˈoəðəð
- bˈɛʔʌ pˈa skˈʔulʌːʌn
- bˈɛʔʌ i hˈandən
  bˈɛʔʌ
  ˈʔentʁɛðə
  nˈεɐ̯mə saɪ
  ˈankʔʌmə
- nˈa
+ nˈʌ
  fʔʌfˈʔœljə
  fˈʔœljə
  flˈʔœɡdə
  flˈʔy
  fʔʌsʋˈʔenə
- ɡˈa bˈɒɒt
+ ɡˈɒ bˈɒɒt
  kˈʔʌmə telbˈajə
  kˈʔʌmə
- ɡˈa ˈʔuð
+ ɡˈɒ ˈʔuð
  klˈatʁʔʌ
- ɡˈa
+ ɡˈɒ
  fˈɑɑ
- ɡˈa ˈʔʌp
+ ɡˈɒ ˈʔʌp
  lˈœbə
  hˈʔenkə
  hˈaldə
- ɡˈa
+ ɡˈɒ
  dˈansə
  spˈɑkə
  hˈʔʌpə
  spʁˈʔeŋə
  ɡlˈiðə
- sˈʔeðə pˈa hˈɒɡ
  knˈɛlə
  kʁˈybə
  kʁˈɑwlə
@@ -199,7 +194,7 @@
  fˈalə
  lˈʔœfdə
  hˈɛʋə
- stˈa ˈʔʌp
+ stˈɒ ˈʔʌp
  dʁˈaɪə
  tˈabə
  ʁˈʔulə
@@ -220,7 +215,7 @@
  ʋˈʔefdə
  ʋˈʔefdə
  dˈεkə
- mˈatə
+ mˈʔʌtə
  kˈʔuɐ̯ʋ
  flˈεtə
  ɡlˈas
@@ -269,7 +264,7 @@
  stʁˈ?akə
  spˈεnə
  ɡnˈiðə
- flˈa
+ flˈɒ
  ʁˈiʋə
  spˈaldə
  klˈœʋə
@@ -285,7 +280,6 @@
  fˈεlə
  skˈɛʔʌ
  hˈɔɡə
- slˈa mεð nˈɛʋə
  knˈuðə
  ʁˈεb
  tˈɔw
@@ -306,7 +300,7 @@
  banˈantʁε
  sʔitʁˈʔon
  kˈʔokʔosnˌʔœð
- pˈalmətʁˈε
+ pˈalmətʁε
  sˈ?ɑft
  bˈɑɑk
  ɡˈ?ɑfəlʁεn
@@ -315,8 +309,8 @@
  pˈibə
  ʁˈyə
  tʔobˈ?ɑk
- ʋˈʔinʁˈ?ɑnkə
- ʋˈʔinstˈʔʌk
+ ʋˈʔinʁ?ɑnkə
+ ʋˈʔenstʔʌk
  ˈaɡɛɐ̯n
  ɡʁˈ?ɑn
  fˈʔyɐ̯
@@ -345,10 +339,10 @@
  ɡʁˈœðə
  lˈʔo
  tˈεɐ̯skə
- slˈa
+ slˈɒ
  mˈ?ɑjə
  fʁˈʔœ
- sˈa
+ sˈɒ
  ʁˈiʋə
  ɡʁˈεb
  ɡˈ?ɑfəl
@@ -376,8 +370,8 @@
  bjˈεlkə
  spˈεɐ̯
  spˈɑʁʔʌ
- ʁˈʔœɡas
- stʁˈɑtaj
+ ʁˈʔœɡɒs
+ stɐ̯ˈʔʌtaj
  tˈaj
  tʁˈʔu
  hˈʔylə
@@ -396,14 +390,14 @@
  ɡˈɒl
  ʋˈʔendu
  nˈʔʌjlə
- dˈʔœɐ̯klˈʔenkə
- lˈas
- dˈʔœɐ̯stˈʔʌlpə
+ dˈʔœɐ̯klʔenkə
+ lˈɒs
+ dˈʔœɐ̯stʔʌlpə
  ʋˈɛʌlsə
  ʁˈɒm
  dˈʔœɐ̯
  fʔʌsˈ?ɑmlʔeŋshˌʔus
- ɡˈaɐ̯d
+ ɡˈɒɒ
  tˈεlt
  hˈaʋəhʔus
  hˈʔytə
@@ -416,18 +410,18 @@
  flˈεtə
  bˈʔœɐ̯sdə
  kˈ?ɑm
- hˈandklɛðə
+ hˈʔʌnklɛðə
  lˈʔʌmətʔœɐ̯klˌɛðə
  tˌatʔoʋˈʔeɐ̯ʔeŋ
  hˈoəðbʔeklˌεðnʔeŋ
  ˈœʔʌnʁˌʔeŋ
  pˈεɐ̯lə
- hˈalsband
- ˈɑmband
+ hˈalsbʔʌn
+ ˈɑmbʔʌn
  ʁˈʔeŋ
  juʋˈʔel
  smˈʔœkə
- nˈal
+ nˈɒl
  knˈɑp
  lˈʔʌmə
  slˈʔœɐ̯
@@ -447,8 +441,8 @@
  pˈʔʌnʃʔo
  fˈɑʋə
  mˈantəl
- tʁˈɑd
- nˈal
+ tʁˈɒð
+ nˈɒl
  sˈʔyl
  sˈʔy
  ʋˈɛʋεstˌol
@@ -469,7 +463,7 @@
  sɡʁˈ?aðʔʌ
  bʔeklˈεðnʔeŋ
  klˈεðʔʌ
- tˈajə pˈa
+ tˈajə pɒ
  ˈεɡʔeblˌʔʌmə
  ˈεɡ
  ˈʔœl
@@ -516,14 +510,14 @@
  mˈʔeda
  fʁˈɔkʔʌst
  mˈɒɒənmˌað
- mˈaltʔið
+ mˈʔʌltʔið
  tˈ?ɑŋ
  ɡˈ?ɑfəl
  knˈʔiw
  skˈʔe
  ˈɒnʔʌkˌʔʌp
  kˈʔʌp
- skˈal
+ skˈɒl
  kʁˈɒkə
  talˈεɐ̯kən
  fˈað
@@ -556,14 +550,14 @@
  lˈɛjə
  hˈεlbɐ̯ɛðə
  lˈɛjə
- ˈaɐ̯
+ ˈɒ
  matˈʔeɐ̯jə
  bˈulə
  bˈʔʌblə
  klˈʔœ
  hˈɛʋəlsə
  kʋˈεstəlsə
- sˈaɐ̯
+ sˈɒ
  fʔʌkˈœləlsə
  kɐ̯ˈʔʌp
  fˈʔebʔʌ
@@ -592,8 +586,8 @@
  fjˈεɐ̯də
  fˈisə
  ʋˈεkə
- ʋˈaɡnə
- ʋˈaɡə
+ ʋˈɔunə
+ ʋˈɒwə
  dʁˈʔœmə
  snˈɒɒkə
  sˈɒwə
@@ -607,8 +601,8 @@
  hˈosdə
  hˈʔik
  ɡˈabə
- ˈandə
- ˈandə
+ ˈʔʌnə
+ ˈʔʌnə
  pˈʔenʔis
  tεstˈikəl
  mˈoːðʌlˌʔiw
@@ -630,22 +624,22 @@
  fjˈʔeðʔʌ
  fjˈʔeɐ̯
  ʋˈʔeŋə
- tˈa
+ tˈɒ
  fˈʔoð?ɑwtʁˌʔœk
  hˈεl
  ˈ?ɑnkəl
  fˈʔoð
  knˈε
  lˈεɡ
- lˈaɐ̯
+ lˈɒ
  bˈʔen
  klˈʔo
  fˈʔeŋʌnˌ?ɑjl
  tˈʔʌməlfʔeŋˌʌ
  fˈʔeŋʌ
- hˈandflaðə
- hˈand
- hˈandlʔeð
+ hˈʔʌnflaðə
+ hˈʔʌn
+ hˈʔʌnlʔeð
  ˈalbuː
  ˈɑmhulə
  ˈɑm
@@ -670,8 +664,8 @@
  ˈœʔʌflˌʔep
  ˈœʔʌ
  blˈʔenkə
- ˈʌjənhaɐ̯
- ˈʌjəlaɡ
+ ˈʌjənhɒɒ
+ ˈʌjəlɒˌu
  ˈʌjənbɐ̯ʔyn
  ˈʌjə
  kˈʔen
@@ -692,13 +686,13 @@
  ʁˈʔibʔen
  bˈʔen
  knˈɒwlə
- ˈaʔʌ
+ ˈɒɒ
  blˈʔoð
  skˈεl
- skˈ?ɑmhaɐ̯
- hˈaɐ̯
+ skˈ?ɑmhɒɒ
+ hˈɒ
  skˈεɡ
- hˈaɐ̯
+ hˈɒ
  hˈʔuð
  skˈʔen
  lˈɛjəmə
@@ -739,7 +733,7 @@
  bjˈʔœɐ̯n
  lˈœʋə
  ˈʔulʋ
- fˈεɐ̯skʋansˌal
+ fˈεɐ̯skʋansˌɒl
  ɐ̯ˈʔʌkə
  ʋˈal
  mˈɑsʋʔin
@@ -761,12 +755,12 @@
  ɡʁˈʔib
  hˈʔœj
  ˈʔœɐ̯n
- mˈaɡə
+ mˈɒwə
  hˈ?ɑjʁʔʌ
  fˈʔul
  ʁˈɛðə
  ˈan
- ɡˈas
+ ɡˈɒs
  kˈʔylʔeŋ
  hˈœnə
  hˈanə
@@ -785,9 +779,9 @@
  sˈʔo
  ˈɒɒnə
  lˈ?ɑm
- mˈoːðʌfˌaɐ̯
+ mˈoːðʌfˌɒɒ
  ʋˈεðʔʌ
- fˈaɐ̯
+ fˈɒ
  kˈalʋ
  kˈʔo
  ˈʔʌksə
@@ -823,7 +817,7 @@
  sˈʔœnʔesˌʔœn
  dˈatʔʌsˌʔœn
  sˈʔœnəðatˌʔʌ
- dˈatʔʌdˌatʔʌ
+ dˈatʔʌ
  ɡˈ?ɑməl kʋˈʔenə
  bˈεstəmʔoɐ̯
  ɡˈ?ɑməl mˈan
@@ -848,7 +842,7 @@
  fˈaðʔʌ
  fˈɑ
  skˈʔelsmʔisə
- ɡˈʔiftaɐ̯mˌal
+ ɡˈʔiftaɐ̯mˌɒl
  bɐ̯ˈʔœlʔʌp
  ɡˈʔifdə saɪ
  kˈonə
@@ -880,7 +874,7 @@
  ˈis
  snˈʔe
  ʁˈ?ɑjn
- tˈaɡə
+ tˈɒwə
  ʋˈʔen
  skˈʔy
  lˈɒft
@@ -893,7 +887,7 @@
  tˈʔoɐ̯dən
  lˈʔyn
  stjˈεɐ̯nə
- mˈanə
+ mˈɒnə
  sˈʔol
  hˈʔeməl
  jˈʔoɐ̯skεlʋ
@@ -958,13 +952,13 @@
  tˈɒɒsda
  fʁˈεda
  lˈʔœɐ̯da
- mˈanəð
- ˈaɐ̯
+ mˈɒnəð
+ ˈɒ
  ʋˈʔentʔʌ
- fʔʌˈaɐ̯
+ fˈɒɒɒɒ
  sˈʔʌmʔʌ
- ˈεftʔʌˌaɐ̯
- ˈaɐ̯stʔið
+ ˈεftʔʌˌɒɒ
+ ˈɒɒstʔið
  lˈɒɡdə
  snˈusə
  lˈɒɡdə
@@ -973,7 +967,7 @@
  lˈʔytə
  lˈʔyð
  sˈʔe
- sˈʔe pˈa
+ sˈʔe pɒ
  ʋˈisə
  skˈʔenə
  lˈysə
@@ -983,7 +977,7 @@
  knˈibə
  fˈœlə
  sjˈεl
- ˈand
+ ˈʔʌn
  lˈʔœkə
  ulˈʔœkə
  lˈʔe
@@ -1001,7 +995,7 @@
  ˈ?ɑŋʁʔʌ
  mεðlˈʔiðənhʔeð
  ɡʁˈaðə
- tˈaʔʌ
+ tˈɒɒ
  stˈʔœnə
  hˈaðə
  ʋʁˈɛðə
@@ -1016,7 +1010,7 @@
  fˈɑɑ
  ˈʔœnskə
  ʋˈεljə
- hˈab
+ hˈɒb
  lˈʔʌjn
  bʔeðʁˈɑwʔʌˌʔi
  snˈʔyð
@@ -1025,14 +1019,14 @@
  fˈ?ɑjl
  bʔebɐ̯ˈ?ɑjdəlsə
  ʁˈʔos
- ˈand
+ ˈʔʌn
  sˈʔen
  tˈεnkə
  mˈenə
  tˈεnkə
  tʁˈʔo
  tʁˈʔo
- fʔʌstˈa
+ fʔʌstˈɒ
  ʋˈiðə
  kˈεnə
  ɡˈεtə
@@ -1053,17 +1047,17 @@
  fʔʌklˈɑɑ
  hˈεnsʔeɡt
  fˈɒɒsεt
- ˈaɐ̯saj
+ ˈɒɒsaj
  tʋˈʔiwl
  mˈʔistεnkə
- fʔʌʁˈadə
+ fʔʌʁˈɒðə
  nˌœðʋˈεndihˌʔeð
  fʔʌsˈʔœjə
- mˈadə
+ mˈɒðə
  stˈεmə
  ʁˈʔœst
  sˈʔœŋə
- ʁˈabə
+ ʁˈɒbə
  ʋˈʔeskə
  mˈɒmlə
  flˈʔʌjdə
@@ -1077,7 +1071,7 @@
  tˈalə
  tjˈʔe
  spʁˈow
- mˈal
+ mˈɒl
  ˈʔoɐ̯
  nˈ?ɑwn
  spˈœɐ̯ʌ
@@ -1087,8 +1081,7 @@
  fʔʌlˈ?ɑŋə
  fʔʌdʁˈʔʌ
  lˈoʋə
- ˈ?ɑwsla
- ʋˈεɡʁʔʌ saɪ ʋˈʔeð
+ ˈ?ɑwslɒ
  fʔʌbˈyðə
  bʔebɐ̯ˈ?ɑjdə
  kˈalə
@@ -1142,22 +1135,22 @@
  ʋˈεɐ̯t
  jˈεlpə
  hˈʔendʁʔʌ
- fˈʌhˈʔendʁʔʌ
+ fʔʌhˈʔendʁʔʌ
  skˈʔik
  ʋˈanə
  stʁˈʔið
  tʋˈʔest
  mˈœðə
  pʁˌostʔitʔuˈʔeʌð
- slˈas
+ slˈɒs
  kˈεmpə
  kʁˈʔi
  slˈaj
  fʁˈεð
  hˈεɐ̯
- ˈɑmʔe
+ ɑmˈʔe
  sʔoldˈad
- ʋˈabən
+ ʋˈɔbən
  kˈʔœlə
  stʁˈʔiðsʔœksə
  slˈʔœŋə
@@ -1174,7 +1167,7 @@
  jˈεlm
  skjˈʔʌl
  fˈεstnʔeŋ
- tˈaɐ̯n
+ tˈɒɐ̯n
  sˈ?ɑjʔʌ
  nˈeðʔʌlˌaj
  ˈanɡʁεb
@@ -1233,7 +1226,7 @@
  fˈasdə
  hˈʔeməl
  hˈεlʋəðə
- ˈʔon ˈand
+ ˈʔon ˈʔʌn
  ˈ?ɑwɡʔuð
  tɐ̯ˈʔʌldʔʌm
  maɡˈʔi

@@ -1,16 +1,16 @@
- ˈaʊfhˌoːrən
+ ˈaʊfhˌøːrən
  fɔlˈɛndən
  bəˈɛndən
  bəˈɛndɪɡən
  ˈɛndə
  ʃlˈʊs
  dˈaʊɜn
- vˈɑhrən
+ vˈɛːrən
  ˈanfˌaŋən
  bəɡˈɪnən
  ˈanfˌaŋ
- tsˈoːɡɜn
- zˈɑʊmən
+ tsˈøːɡɜn
+ zˈɔømən
  ˈaɪlən
  zɪç bəˈaɪlən
  ˈaltɜ
@@ -18,12 +18,12 @@
  vˈaɪlə
  aɪn pˈɑːɾ
  hˈalp
- hˈɑlftə
+ hˈɛlftə
  tˈaɪl
- ʃtˈuːk
- tsˈɑhlən
+ ʃtˈʏk
+ tsˈɛːlən
  ˈɛndɜn
- fɛɾˈɑndɜn
+ fɛɾˈɛndɜn
  vˈɛksəln
  tˈaʊʃən
  lˈiːnɪə
@@ -35,11 +35,11 @@
  ˈɛkə
  vˈɪnkəl
  hˈɑːkən
- ˈuːbɜʃpˌanən
+ ˌyːbɜʃpˈanən
  ˈapmˌɛsən
  mˈɛsən
  vˈaxzən
- zˈuːdən
+ zˈyːdən
  nˈɔɾdən
  vˈɛstən
  ˈɔstən
@@ -59,17 +59,17 @@
  ʃlˈiːsən
  tsuːmˈaxən
  bədˈɛkən
- ˈoːfnən
+ ˈœfnən
  ˈaʊfmˌaxən
  tˈaɪlən
  tɾˈɛnən
  ʃˈaɪdən
  tɾˈɛnən
  fɛɾbˈɪndən
- fˈuːɡən
+ fˈyːɡən
  fɛɾˈaɪnɪɡən
- ˈaʊfhˌɑuːfən
- ˈaʊftˌuːɾmən
+ ˈaʊfhˌɔøfən
+ ˈaʊftˌʏɾmən
  ˈaʊfhˌeːbən
  ˈaphˌoːlən
  zˈaməln
@@ -91,10 +91,10 @@
  fɛɾtˈaɪlən
  pɾˈaɪs
  lˈɑːdən
- ɡəʃˈɑft
+ ɡəʃˈɛft
  mˈaɾkt
  kˈaʊfman
- hˈɑndlɜ
+ hˈɛndlɜ
  fɛɾkˈaʊfən
  kˈaʊfən
  fɛɾdˈiːnən
@@ -118,19 +118,19 @@
  bˈɔɾɡən
  lˈeːnən
  bˈɛtlɜ
- mˈuːntsə
+ mˈʏntsə
  ɡˈɛlt
  ɛntlˈasən
  lˈɔslasən
  fɛɾlˈiːrən
  fˈɪndən
  zˈuːxən
- bəʃˈɑdɪɡən
+ bəʃˈɛːdɪɡən
  ʃˈɑːdən
- tsɛɾʃtˈoːrən
+ tsɛɾʃtˈøːrən
  fɛɾnˈɪçtən
  bəvˈɑːrən
- tsuːrˈuːkɡeːbən
+ tsuːrˈʏkɡˌeːbən
  ɡˈeːbən
  zˈaxə
  dˈɪŋ
@@ -162,7 +162,7 @@
  rˈɑːt
  vˈɑːɡən
  kˈarən
- bɾˈuːkə
+ bɾˈʏkə
  vˈeːk
  ʃtɾˈɑːsə
  ʃtˈoːsən
@@ -170,7 +170,7 @@
  rˈaɪtən
  fˈɑːrən
  tɾˈaɪbən
- fˈuːhrən
+ fˈyːrən
  lˈaɪtən
  ʃˈɪkən
  zˈɛndən
@@ -186,7 +186,7 @@
  hɪnˈaɪnɡˌeːən
  ˈaɪntɾˌeːtən
  nˈɑːən
- zɪç nˈɑhɜn
+ zɪç nˈɛːɜn
  ɛɾrˈaɪçən
  ˈankˌɔmən
  ɡəlˈaŋən
@@ -197,7 +197,7 @@
  fɛɾʃvˈɪndən
  vˈeːkɡˌeːən
  fˈɔɾtɡeːən
- tsuːrˈuːkɔmən
+ tsuːrˈʏkkˌɔmən
  kˈɔmən
  ˈaʊsɡˌeːən
  ɛɾklˈɪmən
@@ -213,10 +213,9 @@
  hˈɪŋkən
  ɡˈeːən
  tˈantsən
- mɪt deːm fˈuːs ʃtˈoːsən
  ʃpɾˈɪŋən
  ɡlˈaɪtən
- ʃlˈuːpfən
+ ʃlˈʏpfən
  hˈɔkən
  knˈiːən
  kɾˈiːçən
@@ -234,7 +233,7 @@
  ʃvˈɪmən
  zˈɪŋkən
  zˈɛŋkən
- ʃˈuːtəln
+ ʃˈʏtəln
  fˈaŋən
  vˈɛɾfən
  fˈalən
@@ -249,7 +248,7 @@
  dɾˈɪlən
  fˈalən
  fˈalənlˌasən
- vˈɑltsən
+ vˈɛltsən
  rˈɔlən
  vˈɪndən
  vˈɪkəln
@@ -260,13 +259,13 @@
  mˈaɪsəl
  fˈaɾbə
  ʃtˈɑtuːə
- bˈɪldzaˌuːlə
+ bˈɪldzɔølə
  bˈɪlthaʊɜ
  bəhˈaʊən
  ˈaɪnmˌaɪsəln
  rˈɪtsən
- fˈɑçəln
- fˈɑçɜ
+ fˈɛçəln
+ fˈɛçɜ
  vˌɛntiːlˈɑtoːɾ
  nˈɛts
  tˈɛpɪç
@@ -278,7 +277,7 @@
  lˈeːm
  fˈɔɾmən
  bˈɪldən
- tˈoːpfɜ
+ tˈœpfɜ
  tsˈɪn
  blˈɛç
  blˈaɪ
@@ -295,8 +294,8 @@
  klˈɛpstɔf
  nˈɑɡəl
  hˈamɜ
- zˈɑɡə
- ˈaʊshˌoːhlən
+ zˈɛːɡə
+ ˈaʊshˌøːlən
  ˈaʊskˌeːlən
  bˈoːrən
  bˈaʊən
@@ -307,15 +306,15 @@
  fˈeːɡən
  kˈeːrən
  ɡˈiːsən
- ʃˈuːtən
+ ʃˈʏtən
  ˈaʊsʃˌɛŋkən
  kvˈɛtʃən
  ˈaʊskvˌɛtʃən
  ˈaʊspɾˌɛsən
  vrˈɪŋən
- dɾˈuːkən
+ dɾˈʏkən
  pɾˈɛsən
- ˈaʊfhˌɑŋən
+ ˈaʊfhˌɛŋən
  ˈaʊsbɾˌaɪtən
  ʃtɾˈɔøən
  tsˈiːən
@@ -324,7 +323,7 @@
  ʃpˈanən
  rˈaɪbən
  vˈɪʃən
- hˈɑuːtən
+ hˈɔøtən
  rˈaɪsən
  ʃpˈaltən
  bɾˈɛçən
@@ -340,7 +339,7 @@
  hˈaʊən
  tsɛɾhˈakən
  hˈakən
- fˈɑlən
+ fˈɛlən
  ˈapʃnˌaɪdən
  ʃnˈaɪdən
  ʃlˈɑːɡən
@@ -352,7 +351,7 @@
  ʃnˈuːɾ
  kˈɛtə
  ˈaʊfbˌɪndən
- lˈoːzən
+ lˈøːzən
  bˈɪndən
  fˈaltən
  ˈaɾbaɪtən
@@ -362,8 +361,8 @@
  nˈɛsəl
  tsˈʊkɜrˌoːɾ
  bˈambʊs
- kˈuːɾbɪs
- flˈaʃənkˌuːɾbɪs
+ kˈʏɾbɪs
+ flˈaʃənkˌʏɾbɪs
  tˈɑpɪˌoːkɑː
  mˈɑnɪˌoːk
  kˈasɑːvə
@@ -389,7 +388,7 @@
  ˈaɪçəl
  tˈanə
  kˈiːfɜ
- fˈoːhrə
+ fˈøːrə
  bˈɪɾkə
  bˈuːxə
  ˈaɪçə
@@ -416,10 +415,10 @@
  ɛɾtɾˈɑːk
  tˈɛnə
  dɾˈɛʃən
- mˈɑhən
+ mˈɛːən
  zˈɑːmən
  zˈɑːt
- zˈɑən
+ zˈɛːən
  zˈɑːmən
  hˈaɾkə
  rˈɛçən
@@ -445,12 +444,12 @@
  bˈaʊɜ
  ˈɑdoːbə
  lˈeːmtsiːɡəl
- mˈoːɾtəl
+ mˈœɾtəl
  tsˈiːɡəl
  tsˈiːɡˌɛlstaɪn
  bˈakstaɪn
  bˈoːɡən
- vˈoːlbʊŋ
+ vˈœlbʊŋ
  mˈaʊrɜ
  bɾˈɛt
  pfˈɑːl
@@ -478,7 +477,7 @@
  kamˈiːn
  rˈaʊxfaŋ
  ˈoːfən
- fˈɔøɜstˌɑtə
+ fˈɔøɜʃtˌɛtə
  kamˈiːn
  hˈeːɾt
  mˈaʊɜ
@@ -488,25 +487,25 @@
  dˈiːlə
  ˈɛstɾɪç
  fˈeːnstɜ
- ʃlˈuːsəl
+ ʃlˈʏsəl
  klˈɪŋkə
- dɾˈuːkɜ
+ dɾˈʏkɜ
  ʃlˈɔs
- tˈuːɾpfɔstən
+ tˈʏɾpfɔstən
  tsˈɪmɜ
  ʃtˈuːbə
  ɡəmˈax
- tˈuːɾ
+ tˈyːɾ
  tˈoːɾ
  pfˈɔɾtə
  ɡəmˈaɪnʃaftshˌaʊs
  zˈɔmɜkˌʏçə
- mˈɑnɜhˌaʊs
+ mˈɛnɜhˌaʊs
  hˈoːf
  tsˈɛlt
  ɡˈaɾtənhˌaʊs
  lˈaʊbə
- hˈuːtə
+ hˈʏtə
  hˈaʊs
  vˈoːnən
  ʃpˈiːɡəl
@@ -514,12 +513,12 @@
  zˈalbə
  rˈɑziːɾmˌɛsɜ
  tsˈɔpf
- bˈuːɾstə
+ bˈyːɾstə
  kˈam
  hˈanttˌʊx
  tˈaʃəntˌʊx
  ʃnˈʊpftʊx
- tˌɑtoːvˈiːrʊŋ
+ tˌɛːtoːvˈiːrʊŋ
  tˈɑtuː
  kˈɔpfbant
  ʃtˈɪɾnbant
@@ -536,7 +535,7 @@
  tˈaʃə
  ʃlˈaɪɜ
  hˈantʃˌuː
- ɡˈuːɾtəl
+ ɡˈʏɾtəl
  ʃˈuːmaxɜ
  ʃˈʊstɜ
  ʃˈuː
@@ -559,7 +558,7 @@
  nˈɑdəl
  ˈɑːlə
  pfrˈiːm
- nˈɑhən
+ nˈɛːən
  vˈɛpʃtuːl
  vˈeːbən
  ʃpˈɪndəl
@@ -583,13 +582,13 @@
  ˈaɪɡɛlp
  ˈaɪ
  mˈɔst
- fˌɛɾməntˈiːɾtəs ɡətɾˈɑŋk
+ fˌɛɾməntˈiːɾtəs ɡətɾˈɛŋk
  bˈiːɾ
  vˈaɪn
  mˈeːt
- ɡətɾˈɑŋk
+ ɡətɾˈɛŋk
  bˈʊtɜ
- kˈɑzə
+ kˈɛːzə
  mˈɛlkən
  tsˈʊkɜ
  mˈɪlç
@@ -598,7 +597,7 @@
  pfˈɛfɜ
  zˈalts
  fˈɛt
- ˈoːl
+ ˈøːl
  ˈoːliːvə
  tɾˈaʊbə
  vˈaɪnbeːrə
@@ -609,15 +608,15 @@
  kaɾtˈɔfəl
  ɛɾdˈapfəl
  bˈoːnə
- ɡəmˈuːzə
+ ɡəmˈyːzə
  zˈʊpə
- bɾˈuːhə
+ bɾˈyːə
  vˈuːɾst
  flˈaɪʃ
- ʃtˈoːsəl
- mˈoːɾzɜkˌɔølə
- mˈoːɾzɜ
- mˈuːhlə
+ ʃtˈœsəl
+ mˈœɾzɜkˌɔølə
+ mˈœɾzɜ
+ mˈyːlə
  mˈɑːlən
  mˈeːl
  knˈeːtən
@@ -627,28 +626,28 @@
  ʃˈɑːbən
  dˈʊɐçzˌiːbən
  dˈʊɐçzˌaɪən
- ʃˈɑlən
+ ʃˈɛːlən
  ˈɑːbəndˌɛsən
  ˈɑːbəndbɾˌoːt
  dˈiːnɜ
  ˈɑːbəndˌɛsən
  mˈɪtaɡˌɛsən
- frˈuːhstuːk
+ frˈyːʃtʏk
  mˈɑːltsaɪt
  mˈɑːl
  tsˈaŋə
  ɡˈɑbəl
  mˈɛsɜ
- lˈoːfəl
+ lˈœfəl
  ˌʊntɜtˈasə
  tˈasə
  bˈɛçɜ
- ʃˈuːsəl
+ ʃˈʏsəl
  nˈapf
  ʃˈɑːlə
  kɾˈuːk
  tˈɛlɜ
- ʃˈuːsəl
+ ʃˈʏsəl
  pfˈanə
  tˈɔpf
  kˈɛsəl
@@ -683,13 +682,13 @@
  nˈaɾbə
  ˈaɪtɜ
  fˈuːrʊnkəl
- blˈʊtɡɛʃvˌuːɾ
+ blˈʊtɡɛʃvˌyːɾ
  blˈɑːzə
  jˈʊkən
  ʃvˈɛlʊŋ
  kvˈɛtʃʊŋ
  vˈʊndə
- ɛɾkˈɑltʊŋ
+ ɛɾkˈɛltʊŋ
  kɾˈɔpf
  fˈiːbɜ
  ɡɾˈɑːp
@@ -698,7 +697,7 @@
  bəʃtˈatən
  lˈaɪçnɑːm
  lˈaɪçə
- tˈoːtən
+ tˈøːtən
  ɛɾʃlˈɑːɡən
  ʊmbɾˈɪŋən
  ɛɾtɾˈʊŋkən
@@ -714,7 +713,7 @@
  tsˈɔøɡən
  bˈɑːdən
  ʃˈaʊɜn
- frˈoːstəln
+ frˈœstəln
  tsˈɪtɜn
  ɡəʃlˈɛçtsfɜkˌeːɾ hˈɑːbən
  bˈaɪʃlɑːfən
@@ -725,11 +724,10 @@
  pˈɪsən
  fˈʊɐtsən
  fˈaɾtsən
- ˌaɪnən fˈɑːrən lˈasən
  ˈaʊfvˌaxən
  vˈɛkən
  vˈaxən
- tɾˈɑʊmən
+ tɾˈɔømən
  ʃnˈɑːɾçən
  ʃlˈɑːfən
  ɡˈaɪfɜn
@@ -745,7 +743,7 @@
  nˈiːzən
  hˈuːstən
  ʃlˈʊkaʊf
- ɡˈɑhnən
+ ɡˈɛːnən
  ɡˈafən
  ˈatmən
  ˈɑːtəm
@@ -753,14 +751,14 @@
  pˈeːnɪs
  hˈoːdən
  hˈoːdə
- ɡəbˈɑɾmʊtɜ
+ ɡəbˈɛɾmʊtɜ
  hˌɪntɜbˈakə
  hˌɪntɜtˈaɪl
- ɡəzˈɑs
- hˈuːftə
+ ɡəzˈɛːs
+ hˈʏftə
  tˈaɪlə
  ˈaɪnɡəvˌaɪdə
- ɡədˈɑɾmə
+ ɡədˈɛɾmə
  bˈaʊx
  mˈɑːɡən
  mˈɪlts
@@ -774,7 +772,7 @@
  bɾˈʊst
  bɾˈʊst
  fˈeːdɜ
- flˈuːɡəl
+ flˈyːɡəl
  tsˈeː
  tsˈeːə
  fˈuːsabdɾˌʊk
@@ -785,7 +783,7 @@
  fˈɛɾzə
  hˈakə
  knˈœçəl
- fˈʊsknoːçəl
+ fˈʊsknœçəl
  fˈuːs
  knˈiː
  vˈɑːdə
@@ -797,13 +795,13 @@
  nˈɑɡəl
  dˈaʊmən
  fˈɪŋɜ
- hˈantflˌɑçə
+ hˈantflˌɛçə
  hˈant
  hˈantɡəlˌɛŋk
  ˌɛlənbˈoːɡən
- ˈaksəlhˌoːhlə
+ ˈaksəlhˌøːlə
  ˈaɾm
- ʃlˈuːsəlbˌaɪn
+ ʃlˈʏsəlbˌaɪn
  ʃˈuːltˌɛɾblat
  ʃˈuːltɜ
  ˈaksəl
@@ -822,7 +820,7 @@
  nˈɑzənlˌɔx
  nˈɑːzə
  ˈoːrənʃmˌalts
- ˈoːɾlapçən
+ ˈoːɾlɛpçən
  ˈoːɾ
  ˈaʊɡənʃlˌɑːk
  lˈɪtʃlɑːk
@@ -845,14 +843,14 @@
  ˈantlˌɪts
  ɡəhˈɪɾn
  hˈɪɾn
- ʃlˈɑfə
- ʃˈɑdəl
+ ʃlˈɛːfə
+ ʃˈɛːdəl
  hˈɪɾnʃɑːlə
  kˈɔpf
  hˈaʊpt
- vˈɪɾbəlzˌɑuːlə
- ruːkɡɾˈɑːt
- rˈuːkən
+ vˈɪɾbəlzˌɔølə
+ rʏkɡɾˈɑːt
+ rˈʏkən
  ʃvˈants
  ʃvˈaɪf
  hˈɔɾn
@@ -864,15 +862,15 @@
  ʃˈʊpən
  hˈɑːɾʃʊpən
  ʃˈamhɑːɾ
- kˈoːɾpɜhˌɑːɾ
+ kˈœɾpɜhˌɑːɾ
  fˈɛl
  bˈaɾt
  hˈɑːɾ
  hˈaʊt
  fˈɛl
  lˈaɪp
- kˈoːɾpɜ
- ʃˈɪltkɾoːtə
+ kˈœɾpɜ
+ ʃˈɪltkɾøːtə
  kɾˌoːkoːdˈiːl
  ˌalɪɡˈɑtoːɾ
  kaɪmˈɑːn
@@ -882,13 +880,13 @@
  hˈɔøʃrɛkə
  ʃmˈɛtɜlˌɪŋ
  ɡlˈyːvʏɾmçən
- lˈɔøçtkafɜ
+ lˈɔøçtkɛːfɜ
  ʃlˈaŋə
  vˈʊɐm
- ʃtˈɛçmuːkə
+ ʃtˈɛçmʏkə
  ʃnˈɑːkə
  mɔskˈiːtoː
- mˈuːkə
+ mˈʏkə
  ʃnˈɑːkə
  flˈiːɡə
  vˈɛspə
@@ -899,7 +897,7 @@
  ʃpˈɪnveːbə
  ʃpˈɪnə
  ˈɑmaɪzə
- kˈuːçənʃˌɑːbə
+ kˈʏçənʃˌɑːbə
  kˈɑkɜlˌɑːkə
  skɔɾpjˈoːn
  tˈaʊzəntfˌʏslɜ
@@ -914,13 +912,13 @@
  hˈɪɾʃ
  rˈeː
  fˈʊxs
- bˈɑɾ
- lˈoːvə
+ bˈɛːɾ
+ lˈøːvə
  vˈɔlf
  flˈʊsɑːl
  ʃtˈaxəlrˌɔxən
  vˈɑːl
- tˈuːmlɜ
+ tˈʏmlɜ
  dˈɛlfɪn
  hˈaɪ
  hˈaɪfɪʃ
@@ -928,7 +926,7 @@
  kˈiːmə
  ʃˈʊpə
  fˈɪnə
- rˈuːkənflˌɔsə
+ rˈʏkənflˌɔsə
  fˈɪʃ
  bˈɔøtəlrˌatə
  ˈoːpɔsˌʊm
@@ -937,32 +935,32 @@
  kˈɑnɪnçən
  tˈaʊbə
  ˈɔølə
- kɾˈɑhə
+ kɾˈɛːə
  pˈɑpaɡˌaɪ
  flˈeːdɜmˌaʊs
  ɡˈaɪɜ
  fˈalkə
  hˈɑbɪçt
  ˈadlɜ
- mˈoːvə
+ mˈøːvə
  rˈaɪɜ
  fˈoːɡəl
  nˈɛst
  ˈɛntə
  ɡˈɑːns
  kˈʏkən
- hˈuːhnçən
+ hˈyːnçən
  hˈuːn
  hˈɛnə
  hˈɑːn
  ɡˈɔkəl
  maʊltˈiːɾ
  mˈaʊleːzəl
- ɡəflˈuːɡəl
+ ɡəflˈyːɡəl
  ˈeːzəl
  fˈoːlən
  ʃtˈuːtə
- mˈɑhrə
+ mˈɛːrə
  hˈɛŋst
  pfˈeːɾt
  rˈɔs
@@ -1001,7 +999,7 @@
  ʃtˈiːfzoːn
  ʃtˈiːfmʊtɜ
  ʃtˈiːffɑːtɜ
- ˈapkˌoːmlɪŋə
+ ˈapkˌœmlɪŋə
  nˈaxkɔmən
  ˈɑːnən
  fˈoːɾfˌɑːrən
@@ -1032,14 +1030,14 @@
  ɡɾˈɔsfɑːtɜ
  tsvˈɪlɪŋə
  ɡəʃvˈɪstɜ
- jˈuːŋərə ʃvˈɛstɜ
+ jˈʏŋərə ʃvˈɛstɜ
  klˈaɪnə ʃvˈɛstɜ
- ˈɑltərə ʃvˈɛstɜ
+ ˈɛltərə ʃvˈɛstɜ
  ɡɾˈoːsə ʃvˈɛstɜ
  ʃvˈɛstɜ
- jˈuːŋərɜ bɾˈuːdɜ
+ jˈʏŋərɜ bɾˈuːdɜ
  klˈaɪnɜ bɾˈuːdɜ
- ˈɑltərɜ bɾˈuːdɜ
+ ˈɛltərɜ bɾˈuːdɜ
  ɡɾˈoːsɜ bɾˈuːdɜ
  bɾˈuːdɜ
  kˈɪnt
@@ -1066,14 +1064,14 @@
  ˈeːeːmˌan
  ɡˈatə
  ɡəmˈɑːl
- zˈɑʊɡlˌɪŋ
+ zˈɔøɡlɪŋ
  (en)bˈeɪbi(de)
  kˈɪnt
- mˈɑdçən
- mˈɑdçən
+ mˈɛːdçən
+ mˈɛːdçən
  jˈʊŋə
  jˈʊŋɜ mˈan
- jˈuːŋlɪŋ
+ jˈʏŋlɪŋ
  jˈʊŋə
  knˈɑːbə
  frˈaʊ
@@ -1083,9 +1081,9 @@
  hˈɔltskoːlə
  bɾˈɛnhɔlts
  ʃtɾˈaɪçhɔlts
- tsˈuːnthɔlts
- ˈaʊslˌoːʃən
- ˈantsˌuːndən
+ tsˈʏnthɔlts
+ ˈaʊslˌœʃən
+ ˈantsˌʏndən
  ˈanʃtˌɛkən
  bɾˈɛnən
  bɾˈɛnən
@@ -1148,7 +1146,7 @@
  mˈeːɾ
  zˈeː
  vˈasɜ
- hˈoːhlə
+ hˈøːlə
  ˈuːfɜ
  ʃtɾˈant
  ɡəʃtˈɑːdə
@@ -1156,7 +1154,7 @@
  ˈɪnzəl
  tˈɑːl
  ˈeːbənə
- flˈɑçə
+ flˈɛçə
  fˈɛlt
  klˈɪpə
  ʃlˈam
@@ -1170,7 +1168,7 @@
  vˈɛlt
  tˈɑːk
  nˈaxt
- mˌɔɾɡəndˈɑmərˌʊŋ
+ mˌɔɾɡəndˈɛmərˌʊŋ
  tˈɑɡeːzˌanbɾʊx
  mˈɔɾɡən
  mˈɪtɑːk
@@ -1190,21 +1188,21 @@
  moːnˈɑːt
  jˈɑːɾ
  vˈɪntɜ
- frˈuːhlɪŋ
+ frˈyːlɪŋ
  zˈɔmɜ
  hˈɛɾpst
  jˈɑːrɛstsˌaɪt
  rˈiːçən
- ʃnˈuːfəln
+ ʃnˈʏfəln
  rˈiːçən
  ʃmˈɛkən
  kˈɔstən
- hˈoːrən
+ hˈøːrən
  tsuːhˈøːrən
  hˈoːɾçən
  lˈaʊʃən
  lˈaʊt
- ɡərˈɑʊʃ
+ ɡərˈɔøʃ
  zˈeːən
  ʃˈaʊən
  blˈɪkən
@@ -1213,21 +1211,21 @@
  ʃˈaɪnən
  lˈɔøçtən
  fˈaɾbə
- bərˈuːhrən
+ bərˈyːrən
  knˈaɪfən
  tsvˈɪkən
- fˈuːhlən
+ fˈyːlən
  tˈastən
  zˈeːlə
  ɡˈaɪst
- ɡlˈuːk
- ˈʊnɡlˌuːk
+ ɡlˈʏk
+ ˈʊnɡlˌʏk
  lˈaxən
- lˈɑçəln
+ lˈɛçəln
  ʃpˈiːlən
  lˈiːbən
  lˈiːbə
- kˈuːsən
+ kˈʏsən
  kˈʊs
  ʊmˈaɾmən
  ʊmfˈasən
@@ -1236,7 +1234,7 @@
  pˈaɪn
  kvˈɑːl
  kˈʊmɜ
- bətɾˈuːbnɪs
+ bətɾˈʏbnɪs
  zˈɔɾɡə
  ˈaŋst
  zˈɔɾɡə
@@ -1246,10 +1244,10 @@
  mˈɪtlˌaɪt
  bˈaɾmhɜtsˌɪçkaɪt
  vˈaɪnən
- tɾˈɑnə
- tsˈɑhrə
- ʃtˈoːhnən
- ˈɑçtsən
+ tɾˈɛːnə
+ tsˈɛːrə
+ ʃtˈøːnən
+ ˈɛçtsən
  hˈas
  hˈasən
  tsˈɔɾn
@@ -1263,10 +1261,10 @@
  ɡəfˈɑːɾ
  bəɡˈeːrən
  fɛɾlˈaŋən
- vˈɑhlən
+ vˈɛːlən
  hˈɔfnʊŋ
  lˈyːɡə
- lˈuːɡən
+ lˈyːɡən
  bətɾˈuːk
  lˈɪst
  fɛɾtsˈaɪən
@@ -1294,20 +1292,20 @@
  rˈɑːtən
  nˈaxɑːmən
  ʃˈaɪnən
- dˈuːŋkən
+ dˈʏŋkən
  iːdˈeː
  fˈoːɾʃtˌɛlʊŋ
  lˈɛɾnən
  ʃtuːdˈiːrən
  lˈeːrən
  ˌʊntɜrˈɪçtən
- ʃˈuːlɜ
+ ʃˈyːlɜ
  lˈeːrɜ
  ʃˈuːlə
  zɪç ɛɾˈɪnɜn
  ɡədˈɛŋkən
  fɛɾɡˈɛsən
- ɛɾklˈɑrən
+ ɛɾklˈɛːrən
  tsvˈɛk
  ˈʊɐzaxə
  tsvˈaɪfəl
@@ -1315,7 +1313,7 @@
  ˈaɾɡvoːn
  fɛɾrˈɑːtən
  nˈɔtvəndˌɪçkaɪt
- bədˈuːɾfnɪs
+ bədˈʏɾfnɪs
  fɛɾzˈuːxən
  vˈeːk
  vˈaɪzə
@@ -1324,7 +1322,7 @@
  zˈɪŋən
  ʃrˈaɪən
  rˈuːfən
- flˈuːstɜn
+ flˈʏstɜn
  mˈʊɐməln
  pfˈaɪfən
  ʃrˈaɪən
@@ -1335,7 +1333,7 @@
  ʃtˈɔtɜn
  ʃtˈaməln
  zˈɑːɡən
- ɛɾtsˈɑhlən
+ ɛɾtsˈɛːlən
  rˈeːdən
  fˈoːɾtɾˌɑːɡən
  fˈoːɾtɾˌɑːk hˈaltən
@@ -1361,12 +1359,12 @@
  ʃlˈeːtən
  tˈɑdəln
  rˈuːfən
- nˈɛnən
+ nˈeːn
  hˈaɪsən
- ˈankˌuːndɪɡən
- fɛɾkˈuːndɪɡən
+ ˈankˌʏndɪɡən
+ fɛɾkˈʏndɪɡən
  dɾˈoːən
- zɪç rˈuːhmən
+ zɪç rˈyːmən
  pɾˈɑːlən
  ʃrˈaɪbən
  lˈeːzən
@@ -1376,7 +1374,7 @@
  bˈuːx
  dˈɪçtɜ
  poːˈeːt
- flˈoːtə
+ flˈøːtə
  tɾˈɔməl
  pˈaʊkə
  rˈasəl
@@ -1391,17 +1389,17 @@
  ʃtˈam
  ɡəʃlˈɛçt
  zˈɪpə
- hˈɑʊptlˌɪŋ
+ hˈɔøptlɪŋ
  ʃˈɛf
  ʃtˈɑːp
  ʃtˈɔk
  hˈɛɾʃən
  reːɡˈiːrən
- kˈoːnɪç
- kˈoːnɪɡˌɪn
+ kˈøːnɪç
+ kˈøːnɪɡˌɪn
  ˈadlɪɡɜ
  ˈeːdəlmˌan
- bˈuːɾɡɜ
+ bˈʏɾɡɜ
  hˈɛɾ
  sklˈɑːvə
  dˈiːnɜ
@@ -1437,7 +1435,7 @@
  pɾoːstˌiːtuːˈiːɾtə
  hˈuːrə
  dˈɪɾnə
- kˈɑmpfən
+ kˈɛmpfən
  ʃlˈaxt
  kˈampf
  ɡəfˈɛçt
@@ -1457,7 +1455,7 @@
  ʃvˈeːɾt
  ɡəvˈeːɾ
  kanˈoːnə
- rˈuːstʊŋ
+ rˈʏstʊŋ
  hˈaɾnɪʃ
  hˈɛlm
  ʃˈɪlt
@@ -1467,11 +1465,11 @@
  nˈiːdɜlˌɑːɡə
  ˈanɡɾˌɪf
  fɛɾtˈaɪdɪɡˌʊŋ
- rˈuːktsuːk
+ rˈʏktsuːk
  ɛɾɡˈeːbən
  kˌɑpiːtuːlˈiːrən
  ɡəfˈaŋənɜ
- vˈɑçtɜ
+ vˈɛçtɜ
  vˈaxə
  bˈɔøtə
  hˌɪntɜhˈalt
@@ -1498,18 +1496,18 @@
  bəklˈɑːktɜ
  ˈanɡəklˌɑːktɜ
  tsˈɔøɡə
- ʃvˈoːrən
+ ʃvˈøːrən
  ˈaɪt
  ʃvˈuːɾ
  ˈanklˌɑːɡən
  bəʃˈʊldɪɡən
  fɛɾˈʊɐtaɪlən
- ˈuːbɜfˌuːhrən
+ ˌyːbɜfˈyːrən
  frˈaɪʃpɾɛçən
  ʃtɾˈɑːfə
  bˈuːsə
  ʃtɾˈɑːfə
- ɡəfˈɑŋnɪs
+ ɡəfˈɛŋnɪs
  kˈɛɾkɜ
  mˈɔɾt
  ˈeːɛbɾˌʊx
@@ -1533,13 +1531,13 @@
  pɾˈeːdɪɡən
  zˈɛɡnən
  fɛɾflˈʊxən
- fɛɾvˈuːnʃən
+ fɛɾvˈʏnʃən
  fˈastən
  hˈɪməl
- hˈoːlə
+ hˈœlə
  tˈɔøfəl
- dˈɑmoːn
- ɡˈoːtsə
+ dˈɛːmoːn
+ ɡˈœtsə
  iːdˈoːl
  tsˌaʊbeːrˈaɪ
  tsˈaʊbɜ
