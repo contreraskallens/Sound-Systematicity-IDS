@@ -4,6 +4,8 @@ library(ggdendro)
 library(cluster)
 library(geosphere)
 
+source("functions.r")
+
 # Loading and coding data language data  -----------------------------------------------
 
 # Construct list of languages and language data
@@ -175,127 +177,55 @@ all.phon <- all.phon %>%
   filter(!is.na(phon),
          str_detect(phon, "\\?", negate = TRUE)) # Get rid of forms that have a question mark on them
 
-# extract the first form of multi form entries separated by ~
-while(length(all.phon$phon[str_detect(all.phon$phon, "~")]) > 0){ # clean multiwords separated by ~
-  all.phon$phon[str_detect(all.phon$phon, "~")] <- str_extract(all.phon$phon[str_detect(all.phon$phon, "~")], 
-                                                               "[[:graph:]]*[[:space:]]*[[:graph:]]+(?=[[:space:]]*[[:punct:]]*~)")
-  } # extract the first form of multi form entries separated by ~
-# extract the first form of multi form entries separated by ,
-while(length(all.phon$phon[str_detect(all.phon$phon, ",")]) > 0){ 
-  all.phon$phon[str_detect(all.phon$phon, ",")] <- str_extract(all.phon$phon[str_detect(all.phon$phon, ",")], 
-                                                               "[[:graph:]]*[[:space:]]*[[:graph:]]+(?=[[:space:]]*[[:punct:]]*,)")
-  }
-# extract the first form of multi form entries separated by |
-while(length(all.phon$phon[str_detect(all.phon$phon, "\\|")]) > 0){ # clean multiwords separated by |
-  all.phon$phon[str_detect(all.phon$phon, "\\|")] <- str_extract(all.phon$phon[str_detect(all.phon$phon, "\\|")], 
-                                                               "[[:graph:]]*[[:space:]]*[[:graph:]]+(?=[[:space:]]*[[:punct:]]*\\|+)")
-  all.phon <- filter(all.phon, !(is.na(phon)))
-  } # extract the first form of multi form entries separated by ~
-
-while(length(all.phon$phon[str_detect(all.phon$phon, "^[-/\\.'\\*\\+\\s]")]) > 0){
-  all.phon$phon[str_detect(all.phon$phon, "^[-/\\.'\\*\\+\\s]")] <- str_remove_all(all.phon$phon[str_detect(all.phon$phon, "^[-/\\.'\\*\\+\\s]")],
-                                                                                   "^[-/\\.'\\*\\+\\s]")
-} # Remove all initial dashes, slash, dots, asterisks, quotes, plus signs, and spaces
-
-while(length(all.phon$phon[str_detect(all.phon$phon, "[-/\\.'\\*\\+\\s]$")]) > 0){
-  all.phon$phon[str_detect(all.phon$phon, "[-/\\.'\\*\\+\\s]$")] <- str_remove_all(all.phon$phon[str_detect(all.phon$phon, "[-/\\.'\\*\\+\\s]$")],
-                                                                                   "[-/\\.'\\*\\+\\s]$")
-} # Remove all final dashes, slash, dots, asterisks, quotes, plus signs and spaces
+all.phon <- clean.phon(all.phon)
 
 
-# Parentheses
-all.phon$phon[str_detect(all.phon$phon, "^\\(+.+\\)$")] <- str_remove_all(all.phon$phon[str_detect(all.phon$phon,
-                                                                                                "^\\(+.+\\)$")],
-                                                                        "[\\(\\)]") # When words are surrounded by () with nothing outside, keep the whole word
-
-all.phon$phon[str_detect(all.phon$phon, "\\(+.+\\)")] <- str_remove_all(all.phon$phon[str_detect(all.phon$phon,
-                                                                                                "\\(+.+\\)")],
-                                                                        "\\(+.+\\)") # Anything else inside a parenthesis is most probably an optional addendum and it goes
-
-# Another pass of initial and final cleaning
-
-while(length(all.phon$phon[str_detect(all.phon$phon, "^[-/\\.'\\*\\+\\s]")]) > 0){
-  all.phon$phon[str_detect(all.phon$phon, "^[-/\\.'\\*\\+\\s]")] <- str_remove_all(all.phon$phon[str_detect(all.phon$phon, "^[-/\\.'\\*\\+\\s]")],
-                                                                                   "^[-/\\.'\\*\\+\\s]")
-} # Remove all initial dashes, slash, dots, asterisks, quotes, plus signs and spaces
-
-while(length(all.phon$phon[str_detect(all.phon$phon, "[-/\\.'\\*\\+\\s]$")]) > 0){
-  all.phon$phon[str_detect(all.phon$phon, "[-/\\.'\\*\\+\\s]$")] <- str_remove_all(all.phon$phon[str_detect(all.phon$phon, "[-/\\.'\\*\\+\\s]$")],
-                                                                                   "[-/\\.'\\*\\+\\s]$")
-} # Remove all final dashes, slash, dots, asterisks, quotes, plus signs and spaces
-
-# Square brackets
-
-all.phon$phon[str_detect(all.phon$phon, "^\\[+.+\\]$")] <- str_remove_all(all.phon$phon[str_detect(all.phon$phon,
-                                                                                                "^\\[+.+\\]$")],
-                                                                        "[\\[\\]]") # When words are surrounded by [] with nothing outside, keep the whole word
-# Remove square brackets when addenda inside square brackets are 1 or characters long. 
-# In some languages, the stem is in the square brackets, so cannot afford to just delete it. Thus, after this, just delete the square brackets
-all.phon$phon[str_detect(all.phon$phon, "\\[.{1,2}\\]")] <- str_remove_all(all.phon$phon[str_detect(all.phon$phon, "\\[.{1,2}\\]")],
-                                                                         "[\\[\\]]") 
-all.phon$phon[str_detect(all.phon$phon, "[\\[\\]]")] <- str_remove_all(all.phon$phon[str_detect(all.phon$phon, "[\\[\\]]")],
-                                                                           "[\\[\\]]") 
-
-# Another pass of initial and final cleaning
-
-while(length(all.phon$phon[str_detect(all.phon$phon, "^[-/\\.'\\*\\+\\s]")]) > 0){
-  all.phon$phon[str_detect(all.phon$phon, "^[-/\\.'\\*\\+\\s]")] <- str_remove_all(all.phon$phon[str_detect(all.phon$phon, "^[-/\\.'\\*\\+\\s]")],
-                                                                                   "^[-/\\.'\\*\\+\\s]")
-} # Remove all initial dashes, slash, dots, asterisks, quotes, plus signs and spaces
-
-while(length(all.phon$phon[str_detect(all.phon$phon, "[-/\\.'\\*\\+\\s]$")]) > 0){
-  all.phon$phon[str_detect(all.phon$phon, "[-/\\.'\\*\\+\\s]$")] <- str_remove_all(all.phon$phon[str_detect(all.phon$phon, "[-/\\.'\\*\\+\\s]$")],
-                                                                                   "[-/\\.'\\*\\+\\s]$")
-} # Remove all final dashes, slash, dots, asterisks, quotes, plus signs and spaces
-
-# Slash
-
-# Remove stuff that is after slashes.
-all.phon$phon[str_detect(all.phon$phon, "/+.*")] <- str_remove_all(all.phon$phon[str_detect(all.phon$phon, "/+.*")], "/+.*")
-
-# Another pass of initial and final cleaning
-
-while(length(all.phon$phon[str_detect(all.phon$phon, "^[-/\\.'\\*\\+\\s]")]) > 0){
-  all.phon$phon[str_detect(all.phon$phon, "^[-/\\.'\\*\\+\\s]")] <- str_remove_all(all.phon$phon[str_detect(all.phon$phon, "^[-/\\.'\\*\\+\\s]")],
-                                                                                   "^[-/\\.'\\*\\+\\s]")
-} # Remove all initial dashes, slash, dots, asterisks, quotes, plus signs and spaces
-
-while(length(all.phon$phon[str_detect(all.phon$phon, "[-/\\.'\\*\\+\\s]$")]) > 0){
-  all.phon$phon[str_detect(all.phon$phon, "[-/\\.'\\*\\+\\s]$")] <- str_remove_all(all.phon$phon[str_detect(all.phon$phon, "[-/\\.'\\*\\+\\s]$")],
-                                                                                   "[-/\\.'\\*\\+\\s]$")
-} # Remove all final dashes, slash, dots, asterisks, quotes, plus signs and spaces
-
-# Save the espeak language list of words
+# Add espeak
 
 espeak.df <- all.phon %>% 
   filter(language %in% espeak.languages$language) 
 for(this.language in espeak.languages$language){
   file.name <- paste0("PhonMining/espeak_lists/", this.language, ".txt")
   this.df <- filter(espeak.df, language == this.language)
-  write_lines(this.df$phon, file.name)
+  write_lines(this.df$phon, file.name, sep = ", ")
 }
 
-# Remove all dots (phon linkings)
-# all.phon$phon <-  str_remove_all(all.phon$phon, "\\.")
-all.phon <- all.phon %>% 
-  mutate(phon = str_remove_all(phon, "-"), # Remove dashes. They mostly (always?) denote pronunciation pauses
-         phon = str_remove_all(phon, "'"), # Remove  stress markers
-         phon = str_remove_all(phon, "\\p{Lm}"), # Remove diacritic markers like "???", "??", "??", "??", "??", "??", "??", "??", "??", "??", "???", "??", "???"
-         phon = str_remove_all(phon, "'"), # Remove more stress markers and diacritics
-         phon = str_remove_all(phon, "`"),
-         phon = str_remove_all(phon, ":"),
-         phon = str_remove_all(phon, "\\\\"),
-         phon = str_remove_all(phon, "\\$")) 
+espeak.phon.df <- map_dfr(espeak.languages$language, function(this.language){
+  lang.df <- filter(all.phon, language == this.language)
+  file.name <- paste0("PhonMining/phon_transcriptions/", this.language, "_phon.txt")
+  new.phon <- read_lines(file.name) %>% 
+    str_squish()
+  lang.df$phon <- new.phon
+  return(lang.df)
+})
+
+espeak.phon.df <- clean.phon(espeak.phon.df)
+
+all.phon <- filter(all.phon, !(language %in% espeak.languages$language))
+all.phon <- bind_rows(all.phon, espeak.phon.df)
+
+
+# Save the espeak language list of words
 
 all.phon <- all.phon %>% 
   mutate(number.of.spaces = str_count(phon, " ")) %>% 
   filter(number.of.spaces < 2)
 
+# Remove dashes. They mostly (always?) denote pronunciation pauses
+# Remove  stress markers
+# Remove diacritic markers and stress markers
+all.phon <- all.phon %>% 
+  mutate(phon = str_remove_all(phon, "[-'[\\p{Lm}]`:\\$\\\\]"))
+
 # Tonal languages have tones marked with numbers
 all.tone.languages <- filter(all.phon, str_detect(phon, "[:digit:]")) 
 all.tone.languages <- unique(all.tone.languages$language)
+all.tone.languages <- all.tone.languages[!(all.tone.languages == "Telugu")] # Telugu has 2 words with numbers which are not tones
+all.tone.languages <- all.tone.languages[!(all.tone.languages == "Pear")] # Same with Pear
 
 all.tones <- filter(all.phon, language %in% all.tone.languages)
+
+all.phon <- filter(all.phon, !(language %in% all.tone.languages))
 
 # Form inventories of characters to hand construct the vowel inventory of each of them (no in principle way of identifying it a priori)
 # for(this.language in all.tone.languages){
@@ -308,85 +238,62 @@ all.tones <- filter(all.phon, language %in% all.tone.languages)
 #   write_lines(all.chars, file.name)
 # }
 
-
-all.phon <- filter(all.phon, str_detect(phon, "[:digit:]", negate = TRUE))
-
-# Make within language placeholders for the different tones.
-# We assume that tones are represented by CONTINUOUS digits. 
-replace.tones <- function(lang.df){
-  all.tones <- str_extract_all(lang.df$phon, "[:digit:]+") %>% 
+all.tones <- map_dfr(all.tone.languages, function(this.language){
+  print(this.language)
+  lang.df <- filter(all.tones, language == this.language)
+  lang.words <- lang.df[["phon"]]
+  file.name <- paste0("VowelInventories/", this.language, ".txt")
+  vowel.inventory <- read_lines(file.name)
+  # After looking at database, tones are ALWAYS written after a period, 
+  # and ONLY use either numbers or upper case letters
+  tone.inventory <- str_extract_all(lang.words, "\\.[A-Z0-9]{1,3}") %>% 
     unlist() %>% 
     unique()
-  # Sort by length to simplify tone matching
-  all.tones <- all.tones[order(nchar(all.tones), all.tones, decreasing = TRUE)]
-  tone.placeholders <- c()
-  while(length(unique(tone.placeholders)) < length(all.tones)){
-    tone.placeholders <- stringi::stri_rand_strings(length(all.tones), 1, "[\\p{Ll}&\\p{script=Greek}]")  
+  all.combs <- expand_grid(vowel = vowel.inventory, tone = tone.inventory) %>% 
+    mutate(pattern = paste0(vowel, "[[a-z][\\p{Sm}]]*\\", tone))
+  exists <- map_lgl(all.combs$pattern, function(this.pattern){
+    exists <- str_detect(lang.words, this.pattern)
+    exists <- sum(exists)
+    return(ifelse(exists > 0, TRUE, FALSE))
+  })
+  all.combs <- all.combs[exists,] %>% 
+    arrange(desc(nchar(tone))) # Arrange combinations into descending order of length for matching tones with more than 1 number later
+  tone.placeholders <- stringi::stri_rand_strings(nrow(all.combs), 1, "[\\p{Sm}]")
+  all.combs$placeholder <- tone.placeholders
+  lang.df$new.phon <- lang.df$phon
+  for(i in 1:nrow(all.combs)){
+    vowel.tone <- all.combs[i,]
+    lang.df <- lang.df %>% 
+      rowwise() %>% 
+      mutate(new.phon = replace.vowel(string = new.phon, 
+                                      vowel = vowel.tone[["vowel"]],
+                                      tone = vowel.tone[["tone"]],
+                                      placeholder = vowel.tone[["placeholder"]]))
   }
-  tone.replacements <- list()
-  for(i in 1:length(all.tones)){
-    tone.replacements[[all.tones[i]]] = tone.placeholders[i]
-    }
-  replaced.phon <- lang.df$phon
-  for(i in 1:length(tone.replacements)){
-    og.tone <- names(tone.replacements)[i]
-    rp.tone <- tone.replacements[[i]]
-    replaced.phon <- str_replace_all(replaced.phon, og.tone, rp.tone)
-  }
-  lang.df$phon <- replaced.phon
+  lang.df <- ungroup(lang.df) %>% 
+    mutate(new.phon = str_remove_all(new.phon, "\\.[A-Z0-9]{1,3}")) 
   return(lang.df)
-}
-
-all.tones <- map_dfr(unique(all.tones$language), function(this.language){
-  all.tones %>% 
-    filter(language == this.language) %>% 
-    replace.tones()
 })
 
+all.phon <- all.phon %>% 
+  mutate(phon = str_remove_all(phon, regex("[\\p{S}]")),
+         phon = stringi::stri_enc_toutf8(phon))
 
-all.phon <- bind_rows(all.phon, all.tones) 
+all.tones <- select(all.tones, -phon, phon = new.phon)
+all.tones <- clean.phon(all.tones)
 
-all.phon %>% 
-  group_by(language, number.of.spaces) %>% 
-  tally() %>% 
-  group_by(language) %>% 
-  mutate(n = n / sum(n)) %>% 
-  filter(number.of.spaces == 1) %>% 
-  left_join(select(all.languages, language = Name, family)) %>% 
-  group_by(family) %>% 
-  summarise(mean.number.spaces = mean(n)) %>% 
-  add_column(scaled = scale(.$mean.number.spaces)[,1]) %>% View()
+all.phon <- bind_rows(all.tones, all.phon)
+# Remove all dots (remaining phon linkings, kept there for tone process)
+all.phon <-  mutate(all.phon, phon = str_remove_all(phon, "\\."))
 
+# Now merge collocations
+all.phon <- mutate(all.phon, phon = str_remove_all(phon, " "))
 
-
-all.phon %>% 
-  filter(str_detect(phon, " ")) %>% 
-  group_by(language) %>% 
-  tally() %>% 
-  arrange(desc(n))
-
-
-all.phon %>% 
-  .$phon %>% 
-  str_extract_all("\\p{Lm}") %>%  # 
-  unlist() %>% unique()
-
-all.tones %>% 
-  mutate(number.of.spaces = str_count(phon, " ")) %>% 
-  filter(number.of.spaces < 2) %>% View()
-
-
-# Now remove every word that still has spaces.
-# Have to assume by this point that it means that it's encoded as more than one word.
-
-all.phon <- all.phon %>%
-  filter(!(str_detect(phon, "\\s"))) %>%  # delete all spaces.
-  mutate(phon = str_remove_all(phon, regex("[\\p{Lm}\\p{N}\\p{S}\\p{P}\\p{M}\\s]"))) %>%
-  filter(nchar(phon) > 1) # Only keep strings longer than 1
+# Only keep strings longer than 2
+all.phon <- filter(all.phon, nchar(phon) > 2)
 
 all.phon <- all.phon %>%
   filter(!(is.na(ontological.category))) %>%  # remove words without concepticon information
-  distinct(phon, ontological.category, language, .keep_all = TRUE) %>%
   group_by(language) %>%
   mutate(numberOfWords = n()) %>%
   group_by() %>%
@@ -398,7 +305,6 @@ all.phon %>% write_csv('../Data/Processed/all_phon.csv')
 
 
 # Create a morphology-adjusted dataset --------
-
 
 get.ngram.endings <- function(language.df, level){
   all.levels <- c(-1:level)
@@ -474,6 +380,7 @@ get.word.stats <- function(word, ngram.results){
 evaluate.word <- function(word, ngram.results){
   print(word)
   word.stats <- get.word.stats(word, ngram.results)
+  print(word.stats)
   is.candidate <- word.stats$length.frequencies > 1 # Use only segments with more than 1 length frequency
   if(sum(is.candidate) == 0){ # If none of the ngrams appear in any other word, no marker.
     return("#")
@@ -568,7 +475,6 @@ clean.language <- function(language, all.data){
     filter(language == this.language)
   categories <- as.character(unique(lang.df$ontological.category))
   names(categories) <- categories
-  
   all.marker.df <- map(categories, function(category){
     print(category)
     this.df <- lang.df %>% 
@@ -587,12 +493,12 @@ clean.language <- function(language, all.data){
   results <- list("census" = marker.census, "clean.df" = all.markers)
 }
 
-# all.lang.adjusted <- map(as.character(sort(unique(all.phon$language))), function(language){
-#   print(language)
-#   lang.results <- clean.language(language, all.phon)
-#   lang.results$census$language <- language
-#   return(lang.results)
-# })
+all.lang.adjusted <- map(as.character(sort(unique(all.phon$language))), function(language){
+  print(language)
+  lang.results <- clean.language(language, all.phon)
+  lang.results$census$language <- language
+  return(lang.results)
+})
 
 # names(all.lang.adjusted) <- as.character(sort(unique(all.phon$language)))
 

@@ -214,3 +214,108 @@ bootstrapped.cis <- function(rnn.language){
                                                     Thing.Upper = original.means$ThingAccuracy[1])}
   return(bind_cols(original.means, matthews, f1, action, thing, Language = language))
 }
+
+clean.phon <- function(df){
+  # extract the first form of multi form entries separated by ~
+  while(length(df$phon[str_detect(df$phon, "~")]) > 0){ # clean multiwords separated by ~
+    df$phon[str_detect(df$phon, "~")] <- str_extract(df$phon[str_detect(df$phon, "~")], 
+                                                                 "[[:graph:]]*[[:space:]]*[[:graph:]]+(?=[[:space:]]*[[:punct:]]*~)")
+  } # extract the first form of multi form entries separated by ~
+  # extract the first form of multi form entries separated by ,
+  while(length(df$phon[str_detect(df$phon, ",")]) > 0){ 
+    df$phon[str_detect(df$phon, ",")] <- str_extract(df$phon[str_detect(df$phon, ",")], 
+                                                                 "[[:graph:]]*[[:space:]]*[[:graph:]]+(?=[[:space:]]*[[:punct:]]*,)")
+  }
+  # extract the first form of multi form entries separated by |
+  while(length(df$phon[str_detect(df$phon, "\\|")]) > 0){ # clean multiwords separated by |
+    df$phon[str_detect(df$phon, "\\|")] <- str_extract(df$phon[str_detect(df$phon, "\\|")], 
+                                                                   "[[:graph:]]*[[:space:]]*[[:graph:]]+(?=[[:space:]]*[[:punct:]]*\\|+)")
+    df <- filter(df, !(is.na(phon)))
+  } # extract the first form of multi form entries separated by ~
+  
+  while(length(df$phon[str_detect(df$phon, "^[-/\\.'\\*\\+\\s]")]) > 0){
+    df$phon[str_detect(df$phon, "^[-/\\.'\\*\\+\\s]")] <- str_remove_all(df$phon[str_detect(df$phon, "^[-/\\.'\\*\\+\\s]")],
+                                                                                     "^[-/\\.'\\*\\+\\s]")
+  } # Remove all initial dashes, slash, dots, asterisks, quotes, plus signs, and spaces
+  
+  while(length(df$phon[str_detect(df$phon, "[-/\\.'\\*\\+\\s]$")]) > 0){
+    df$phon[str_detect(df$phon, "[-/\\.'\\*\\+\\s]$")] <- str_remove_all(df$phon[str_detect(df$phon, "[-/\\.'\\*\\+\\s]$")],
+                                                                                     "[-/\\.'\\*\\+\\s]$")
+  } # Remove all final dashes, slash, dots, asterisks, quotes, plus signs and spaces
+  
+  
+  # Parentheses
+  df$phon[str_detect(df$phon, "^\\(+.+\\)$")] <- str_remove_all(df$phon[str_detect(df$phon,
+                                                                                                     "^\\(+.+\\)$")],
+                                                                            "[\\(\\)]") # When words are surrounded by () with nothing outside, keep the whole word
+  
+  df$phon[str_detect(df$phon, "\\(+.+\\)")] <- str_remove_all(df$phon[str_detect(df$phon,
+                                                                                                   "\\(+.+\\)")],
+                                                                          "\\(+.+\\)") # Anything else inside a parenthesis is most probably an optional addendum and it goes
+  
+  # Another pass of initial and final cleaning
+  
+  while(length(df$phon[str_detect(df$phon, "^[-/\\.'\\*\\+\\s]")]) > 0){
+    df$phon[str_detect(df$phon, "^[-/\\.'\\*\\+\\s]")] <- str_remove_all(df$phon[str_detect(df$phon, "^[-/\\.'\\*\\+\\s]")],
+                                                                                     "^[-/\\.'\\*\\+\\s]")
+  } # Remove all initial dashes, slash, dots, asterisks, quotes, plus signs and spaces
+  
+  while(length(df$phon[str_detect(df$phon, "[-/\\.'\\*\\+\\s]$")]) > 0){
+    df$phon[str_detect(df$phon, "[-/\\.'\\*\\+\\s]$")] <- str_remove_all(df$phon[str_detect(df$phon, "[-/\\.'\\*\\+\\s]$")],
+                                                                                     "[-/\\.'\\*\\+\\s]$")
+  } # Remove all final dashes, slash, dots, asterisks, quotes, plus signs and spaces
+  
+  # Square brackets
+  
+  df$phon[str_detect(df$phon, "^\\[+.+\\]$")] <- str_remove_all(df$phon[str_detect(df$phon,
+                                                                                                     "^\\[+.+\\]$")],
+                                                                            "[\\[\\]]") # When words are surrounded by [] with nothing outside, keep the whole word
+  # Remove square brackets when addenda inside square brackets are 1 or characters long. 
+  # In some languages, the stem is in the square brackets, so cannot afford to just delete it. Thus, after this, just delete the square brackets
+  df$phon[str_detect(df$phon, "\\[.{1,2}\\]")] <- str_remove_all(df$phon[str_detect(df$phon, "\\[.{1,2}\\]")],
+                                                                             "[\\[\\]]") 
+  df$phon[str_detect(df$phon, "[\\[\\]]")] <- str_remove_all(df$phon[str_detect(df$phon, "[\\[\\]]")],
+                                                                         "[\\[\\]]") 
+  
+  # Another pass of initial and final cleaning
+  
+  while(length(df$phon[str_detect(df$phon, "^[-/\\.'\\*\\+\\s]")]) > 0){
+    df$phon[str_detect(df$phon, "^[-/\\.'\\*\\+\\s]")] <- str_remove_all(df$phon[str_detect(df$phon, "^[-/\\.'\\*\\+\\s]")],
+                                                                                     "^[-/\\.'\\*\\+\\s]")
+  } # Remove all initial dashes, slash, dots, asterisks, quotes, plus signs and spaces
+  
+  while(length(df$phon[str_detect(df$phon, "[-/\\.'\\*\\+\\s]$")]) > 0){
+    df$phon[str_detect(df$phon, "[-/\\.'\\*\\+\\s]$")] <- str_remove_all(df$phon[str_detect(df$phon, "[-/\\.'\\*\\+\\s]$")],
+                                                                                     "[-/\\.'\\*\\+\\s]$")
+  } # Remove all final dashes, slash, dots, asterisks, quotes, plus signs and spaces
+  
+  # Slash
+  
+  # Remove stuff that is after slashes.
+  df$phon[str_detect(df$phon, "/+.*")] <- str_remove_all(df$phon[str_detect(df$phon, "/+.*")], "/+.*")
+  
+  # Another pass of initial and final cleaning
+  
+  while(length(df$phon[str_detect(df$phon, "^[-/\\.'\\*\\+\\s]")]) > 0){
+    df$phon[str_detect(df$phon, "^[-/\\.'\\*\\+\\s]")] <- str_remove_all(df$phon[str_detect(df$phon, "^[-/\\.'\\*\\+\\s]")],
+                                                                                     "^[-/\\.'\\*\\+\\s]")
+  } # Remove all initial dashes, slash, dots, asterisks, quotes, plus signs and spaces
+  
+  while(length(df$phon[str_detect(df$phon, "[-/\\.'\\*\\+\\s]$")]) > 0){
+    df$phon[str_detect(df$phon, "[-/\\.'\\*\\+\\s]$")] <- str_remove_all(df$phon[str_detect(df$phon, "[-/\\.'\\*\\+\\s]$")],
+                                                                                     "[-/\\.'\\*\\+\\s]$")
+  } # Remove all final dashes, slash, dots, asterisks, quotes, plus signs and spaces
+  
+  df <- ungroup(df)
+  return(df)
+}
+
+replace.vowel <- function(string, vowel, tone, placeholder){
+  if(str_detect(string, paste0(vowel, "[[a-z][\\p{Sm}]]*\\", tone), negate = TRUE)){
+    return(string)
+  }
+  new.string <- str_replace_all(string = string,
+                                pattern = vowel,
+                                replacement = placeholder)
+  return(new.string)
+}
