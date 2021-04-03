@@ -38,19 +38,19 @@ wals_info <- read_csv("../Data/Raw/WALS/walslanguage.csv")
 #                          }
 # )
 # 
-
-# all.distances.adjusted <- map_dfr(.x = unique(all.phon.adjusted$language),
-#                                   .f = function(language.name) {
-#                                     print(language.name)
-#                                     language <- get.language(a.language = language.name,
-#                                                              data = all.phon.adjusted)
-#                                     distances <- get.distance.matrix(language)
-#                                     mean.distances <- get.mean.distances(language.df = language,
-#                                                                          distance.matrix = distances) %>%
-#                                       mutate(language = language.name)
-#                                     return(mean.distances)
-#                                   }
-# )
+all.phon.adjusted <- filter(all.phon.adjusted, language != "Puinave")
+all.distances.adjusted <- map_dfr(.x = unique(all.phon.adjusted$language),
+                                  .f = function(language.name) {
+                                    print(language.name)
+                                    language <- get.language(a.language = language.name,
+                                                             data = all.phon.adjusted)
+                                    distances <- get.distance.matrix(language)
+                                    mean.distances <- get.mean.distances(language.df = language,
+                                                                         distance.matrix = distances) %>%
+                                      mutate(language = language.name)
+                                    return(mean.distances)
+                                  }
+)
 
 
 # Save distance objects
@@ -166,24 +166,24 @@ label.text.adjusted[which(label.text.adjusted == "Thai (Korat variety)")] <- "Th
 #       return()
 #   })
 
-# all.phon.list.adjusted <- all.phon.adjusted %>%
-#   split(.$language)
-# all.phon.list.adjusted <- all.phon.list.adjusted[sort(names(all.phon.list.adjusted))]
-# all.distance.matrices.adjusted <- purrr::map(all.phon.list.adjusted, function(x){get.distance.matrix(x)})
-# repeated.neighbor.adjusted <- map2_dfr(.x = all.phon.list.adjusted, .y = all.distance.matrices.adjusted, .f = function(x, y){
-#   print(unique(x$language))
-#   purrr::map_dfr(1:10, function(z){
-#     all.neighbors <- get.nearest.neighbors(a.language = x,
-#                                            distance.matrix = y,
-#                                            randomize = FALSE) %>%
-#       mutate(same.neighbor = (ontological.category == neighbor.category)) %>%
-#       group_by(language, ontological.category) %>%
-#       summarise(proportion.of.hits = sum(same.neighbor) / n()) %>%
-#       mutate(permutation = z)
-#     return(all.neighbors)
-#   }) %>%
-#     return()
-# })
+all.phon.list.adjusted <- all.phon.adjusted %>%
+  split(.$language)
+all.phon.list.adjusted <- all.phon.list.adjusted[sort(names(all.phon.list.adjusted))]
+all.distance.matrices.adjusted <- purrr::map(all.phon.list.adjusted, function(x){get.distance.matrix(x)})
+repeated.neighbor.adjusted <- map2_dfr(.x = all.phon.list.adjusted, .y = all.distance.matrices.adjusted, .f = function(x, y){
+  print(unique(x$language))
+  purrr::map_dfr(1:10, function(z){
+    all.neighbors <- get.nearest.neighbors(a.language = x,
+                                           distance.matrix = y,
+                                           randomize = FALSE) %>%
+      mutate(same.neighbor = (ontological.category == neighbor.category)) %>%
+      group_by(language, ontological.category) %>%
+      summarise(proportion.of.hits = sum(same.neighbor) / n()) %>%
+      mutate(permutation = z)
+    return(all.neighbors)
+  }) %>%
+    return()
+})
 
 # repeated.neighbor %>% write_rds("../Data/r_objects/neighbor_original.Rds")
 # repeated.neighbor.adjusted %>% write_rds("../Data/r_objects/neighbor_adjusted.Rds")
@@ -201,13 +201,13 @@ repeated.neighbor.adjusted <- read_rds("../Data/r_objects/neighbor_adjusted_mi.R
 # scheme using the package FURRR.
 
 # Load multicore mc
-# library(future)
-# library(furrr)
-# future::plan(multisession)
+library(future)
+library(furrr)
+future::plan(multisession)
 
 # Change this to a reasonable number considering your machine. Number of cores - 2 seems reasonable.
-# cores <- 6
-# options(future.globals.maxSize = +Inf, mc.cores = cores)
+cores <- 4
+options(future.globals.maxSize = +Inf, mc.cores = cores)
 
 # neighbor.mc <- furrr::future_map2_dfr(.progress = TRUE, .x = all.phon.list, .y = all.distance.matrices,
 #                         .f = function(language, distance.matrix){
@@ -228,29 +228,28 @@ repeated.neighbor.adjusted <- read_rds("../Data/r_objects/neighbor_adjusted_mi.R
 #                                     Lower = (Mean - sd(proportion.of.hits))) %>%
 #                             return()
 # })
-
-# neighbor.mc.adjusted <- furrr::future_map2_dfr(.progress = TRUE,
-#                                                .x = all.phon.list.adjusted,
-#                                                .y = all.distance.matrices.adjusted,
-#                                                .options = furrr_options(seed = 123),
-#                                                .f = function(language, distance.matrix){
-#                                         purrr::map_dfr(1:1000, function(x){
-#                                           all.neighbors <- get.nearest.neighbors(a.language = language,
-#                                                                                  distance.matrix = distance.matrix,
-#                                                                                  randomize = TRUE) %>%
-#                                             mutate(same.neighbor = (ontological.category == neighbor.category)) %>%
-#                                             group_by(language, ontological.category) %>%
-#                                             summarise(proportion.of.hits = sum(same.neighbor) / n()) %>%
-#                                             mutate(permutation = x)
-#                                           return(all.neighbors)
-#                                         }) %>%
-#                                           group_by(language, ontological.category, permutation) %>%
-#                                           summarise(Mean = mean(proportion.of.hits),
-#                                                    Standard.Dev = sd(proportion.of.hits),
-#                                                    Upper = (Mean + sd(proportion.of.hits)),
-#                                                     Lower = (Mean - sd(proportion.of.hits))) %>%
-#                                           return()
-#                                       })
+future_options(seed = as.integer(123))
+neighbor.mc.adjusted <- furrr::future_map2_dfr(.progress = TRUE,
+                                               .x = all.phon.list.adjusted,
+                                               .y = all.distance.matrices.adjusted,
+                                               .f = function(language, distance.matrix){
+                                        purrr::map_dfr(1:1000, function(x){
+                                          all.neighbors <- get.nearest.neighbors(a.language = language,
+                                                                                 distance.matrix = distance.matrix,
+                                                                                 randomize = TRUE) %>%
+                                            mutate(same.neighbor = (ontological.category == neighbor.category)) %>%
+                                            group_by(language, ontological.category) %>%
+                                            summarise(proportion.of.hits = sum(same.neighbor) / n()) %>%
+                                            mutate(permutation = x)
+                                          return(all.neighbors)
+                                        }) %>%
+                                          group_by(language, ontological.category, permutation) %>%
+                                          summarise(Mean = mean(proportion.of.hits),
+                                                   Standard.Dev = sd(proportion.of.hits),
+                                                   Upper = (Mean + sd(proportion.of.hits)),
+                                                    Lower = (Mean - sd(proportion.of.hits))) %>%
+                                          return()
+                                      })
 # neighbor.mc %>%
 # write_rds("../Data/r_objects/neighbor_mc_original.Rds")
 # neighbor.mc.adjusted %>%

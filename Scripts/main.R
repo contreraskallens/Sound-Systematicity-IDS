@@ -242,7 +242,9 @@ neighbor.plot.adjusted <- neighbor.stats.adjusted %>%
   group_by() %>%
   filter(ontological.category != "Other") %>%
   left_join(neighbor.mc.plot.adjusted) %>%
-  mutate(language = factor(language, levels = sorted.langs.adjusted$language, labels = sorted.langs.adjusted$language))
+  mutate(language = factor(language, 
+                           levels = sorted.langs.adjusted$language, 
+                            labels = sorted.langs.adjusted$language))
 
 morph.complexity %>% 
   rename(language = Language) %>% 

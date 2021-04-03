@@ -15,7 +15,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 # If true, then use use spurt model
 # If false, use 10-fold cross validation
-spurt_model = True
+spurt_model = False
 
 
 # - Supporting Functions
@@ -211,7 +211,11 @@ def get_network_performance(language_data):
         training_set = cv.StratifiedKFold(n_splits=10, shuffle=True)
 
     training_set_data = training_set.split(language_data, classes)
-
+    training_remainder = len(encoded_words) % 64
+    if training_remainder == 1:
+        have_to_drop = True
+    else:
+        have_to_drop = False
     # Creates lists to store the performance of the network in each iteration
     iter_accuracy = []
     iter_action_accuracy = []
@@ -232,8 +236,8 @@ def get_network_performance(language_data):
 
         # - Create datasets and loaders
         training_set = Dataset(ids=partition['train'], labels=all_classes, all_data=encoded_words)
-        training_loader = data.DataLoader(training_set, batch_size=16,
-                                          shuffle=True, collate_fn=pack_word, drop_last=True)
+        training_loader = data.DataLoader(training_set, batch_size=64,
+                                          shuffle=True, collate_fn=pack_word, drop_last=have_to_drop)
         # - Create network and optimizer
         # Define loss function
         loss = nn.BCELoss()
@@ -354,6 +358,6 @@ lang_data = pd.read_csv("../Data/Processed/all_phon_adjusted.csv", keep_default_
 all_languages = sorted(set(lang_data["language"]))
 
 # Loop through all language names, get performance of RNN on them and save them as CSV.
-for language_name in all_languages[all_languages.index("Toba"):len(all_languages)]:
+for language_name in all_languages:
     language_performance = get_language_performance(lang_data, language_name)
     save_repeated_measures(language_performance, language_name)
