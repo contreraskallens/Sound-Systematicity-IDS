@@ -485,18 +485,18 @@ all.lang.adjusted <- map(as.character(sort(unique(all.phon$language))), function
   return(lang.results)
 })
 
-# names(all.lang.adjusted) <- as.character(sort(unique(all.phon$language)))
+names(all.lang.adjusted) <- as.character(sort(unique(all.phon$language)))
 
 
 # write_rds(all.lang.adjusted, "all_langs_adjusted.rds")
 all.lang.adjusted <- read_rds("all_langs_adjusted.rds")
 
-complete.markers <- map_dfr(all.lang.adjusted, function(lang){
-  return(lang$clean.df)
-}) %>% 
-  dplyr::select(-clean.phon, suffix = marker)
-
-# prefix.languages <- all.phon %>% 
+# complete.markers <- map_dfr(all.lang.adjusted, function(lang){
+#   return(lang$clean.df)
+# }) %>% 
+#   dplyr::select(-clean.phon, suffix = marker)
+# 
+# prefix.languages <- all.phon %>%
 #   mutate(phon = stringi::stri_reverse(phon))
 # 
 # all.lang.adjusted.prefix <- map(as.character(sort(unique(all.phon$language))), function(language){
@@ -506,8 +506,8 @@ complete.markers <- map_dfr(all.lang.adjusted, function(lang){
 #   return(lang.results)
 # })
 
-# all.lang.adjusted.prefix %>% 
-#   write_rds("all_lang_adjusted_prefix.rds")
+# all.lang.adjusted.prefix %>%
+  # write_rds("all_lang_adjusted_prefix.rds")
 all.lang.adjusted.prefix <- read_rds("all_lang_adjusted_prefix.rds")
  
 complete.markers.prefix <- map_dfr(all.lang.adjusted.prefix, function(lang){
@@ -557,8 +557,11 @@ homophone.census <- all.phon.adjusted %>%
 homophone.census <- homophone.census %>% 
   group_by(language) %>% 
   dplyr::summarize(Number.Homophones = sum(n))
+
 all.phon.adjusted <- all.phon.adjusted %>% 
-  distinct(language, phon, .keep_all = TRUE)
+  group_by(language, ontological.category) %>% 
+  mutate(has.homophone = duplicated(phon)) %>% 
+  filter(has.homophone == FALSE) # Removes only within category homophones
 
 
 # Join marker census with homophone census, and compare original/adjusted number of words
@@ -574,7 +577,7 @@ all.phon.adjusted <- all.phon.adjusted %>%
 # Replace NA with 0 for the numeric columns. NAs result from languages without within-class homophones to remove.
 # marker.census.complete <- mutate_if(.tbl = marker.census.complete, .predicate = is.numeric, .funs = function(x){replace_na(x, 0)})
 
-write_csv(homophone.census, "../Data/Processed/homophonre_census.csv")
+write_csv(homophone.census, "../Data/Processed/homophone_census.csv")
 write_csv(all.phon.adjusted, "../Data/Processed/all_phon_adjusted.csv")
 
 
@@ -615,16 +618,16 @@ silhouettes <- map_dbl(2:100, function(i){
 silhouettes <- silhouettes %>% enframe %>% mutate(name = 2:100)
 ggplot(silhouettes, aes(x = name, y = value)) + geom_point() + geom_label(aes(label = name))
 
-# Plot shows that a good number of clusters is k = 20.
+# Plot shows that a good number of clusters is k = 19
 # Make a color vector of 20 colors
 col_vector<-c('#e6194b', '#3cb44b', '#ffe119', '#4363d8','#f58231', 
               '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe', 
               '#008080', '#e6beff', '#9a6324', '#fffac8', '#800000', 
-              '#aaffc3', '#808000', '#ffd8b1', '#000075', '#808080')
+              '#aaffc3', '#808000', '#ffd8b1', '#000075')
 
 # Make a dataframe with all langauge information including WALS info, Family and Geo Cluster
 language.groups <- reduced %>% 
-  add_column(geo.cluster = cutree(cluster.regions, k = 20)) %>% 
+  add_column(geo.cluster = cutree(cluster.regions, k = 19)) %>% 
   select(Name, geo.cluster) %>% 
   mutate(geo.cluster = factor(geo.cluster)) %>% 
   right_join(all.languages)
@@ -635,6 +638,9 @@ hull <- language.groups %>%
   filter(!(is.na(geo.cluster))) %>% 
   group_by(geo.cluster) %>% 
   slice(chull(longitude, latitude))
+
+
+
 
 # Manually modify to avoid weird cluster 12
 cluster.12 <- hull %>% 
