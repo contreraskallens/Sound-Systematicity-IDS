@@ -112,14 +112,14 @@ density.adjusted <- all.distances.adjusted %>%
   labs(x = "Mean Distance to Actions", y = "Mean Distance to Things") +
   cowplot::theme_cowplot() +
   facet_wrap(vars(class), ncol = 2) +
-  cowplot::panel_border() +
-  theme(axis.title.x = element_text(size = 8),
-        axis.title.y = element_text(size = 8),
-        axis.text.x = element_text(size = 6),
-        axis.text.y = element_text(size = 6),
-        legend.title = element_text(size = 8),
-        legend.text = element_text(size = 6),
-        strip.text = element_text(size = 8))
+  cowplot::panel_border()  #+
+  # theme(axis.title.x = element_text(size = 8),
+  #       axis.title.y = element_text(size = 8),
+  #       axis.text.x = element_text(size = 6),
+  #       axis.text.y = element_text(size = 6),
+  #       legend.title = element_text(size = 8),
+  #       legend.text = element_text(size = 6),
+  #       strip.text = element_text(size = 8))
 density.adjusted
 ggsave("../Figures/Main/density_adjusted.png", width = 17, height = 9, units = "cm", dpi = 900)
 
@@ -138,11 +138,12 @@ scatter.adjusted <- ggplot(data = plot.data.adjusted, aes(y = Median, x = langua
   cowplot::theme_cowplot() + 
   expand_limits(x = -1) +
   expand_limits(x = 228) + 
-  theme(axis.title.x = element_text(size = 8),
-    axis.title.y = element_text(size = 6),
-    axis.text.x = element_text(size = 6),
-    axis.text.y = element_text(size = 6),
-    strip.text = element_text(size = 8),
+  theme(
+    # axis.title.x = element_text(size = 8),
+  #   axis.title.y = element_text(size = 6),
+  #   axis.text.x = element_text(size = 6),
+  #   axis.text.y = element_text(size = 6),
+  #   strip.text = element_text(size = 8),
     axis.ticks.x = element_blank()) +
   guides(color = guide_legend(override.aes = list(size=4)))
 
@@ -295,7 +296,7 @@ rnn.stats.adjusted %>%
   ggplot(aes(x = language, y = median.auc)) +
   geom_pointrange(aes(ymin = median.auc - iqr.auc, ymax = median.auc + iqr.auc), size = 0.2) +
   geom_hline(yintercept = 0.5) +
-  labs(y = "Mean AUC")
+  labs(y = "Mean AUC") 
 
 rnn.stats.adjusted %>% 
   arrange(desc(median.auc)) %>% 
@@ -306,7 +307,8 @@ rnn.stats.adjusted %>%
   geom_pointrange(aes(ymin = conf, ymax = median.auc), size = 0.2) +
   geom_hline(yintercept = 0.5) +
   labs(y = "Median AUC") +
-  theme_minimal()
+  theme_minimal() + 
+  theme(x.axis)
 
 rnn.stats.adjusted %>% 
   arrange(desc(median.mcc)) %>% 
