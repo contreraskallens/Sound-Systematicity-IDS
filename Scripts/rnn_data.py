@@ -135,7 +135,7 @@ class RNNConcept(nn.Module):
         self.sigmoid = nn.Sigmoid()
         for name, param in self.rnn.named_parameters():
             if "weight_ih" in name:
-                torch.nn.init.normal_(param.data, mean=0, std=0.001)
+                torch.nn.init.normal_(param.data, mean=0, std=0.0001)
             elif "weight_hh" in name:
                 torch.nn.init.eye_(param.data)
                 param.data = param.data * 0.01
@@ -200,7 +200,7 @@ def get_network_performance(language_data):
 
     # Training and cross-validation parameters.
     # Number of training epochs
-    max_epochs = 300
+    max_epochs = 1000
 
     if spurt_model:
         # Performance is measured on the spurt model
@@ -210,12 +210,9 @@ def get_network_performance(language_data):
         # Cross-validation scheme.
         training_set = cv.StratifiedKFold(n_splits=10, shuffle=True)
 
-    training_set_data = training_set.split(language_data, classes)
-    training_remainder = len(encoded_words) % 64
-    if training_remainder == 1:
-        have_to_drop = True
-    else:
-        have_to_drop = False
+    training_set_data = training_set.split(language_data, classes)  
+    training_set_data = list(training_set_data)
+
     # Creates lists to store the performance of the network in each iteration
     iter_accuracy = []
     iter_action_accuracy = []
@@ -225,42 +222,85 @@ def get_network_performance(language_data):
     iter_auc = []
     # Loop through the iteration and get performance in each one.
     for train_indices, test_indices in training_set_data:
-
+        train_indices, test_indices = training_set_data[0]
+        
+        
         print("doing new iteration")
         # - Allocate data
-        all_test = [ind for ind in test_indices]
-        # For accessing dict of classes
-        train_id = [str(ind) for ind in train_indices]
+        # Build a stratified validation set
+        train_classes = classes[train_indices]
+        train_actions = train_indices[list(train_classes == 1)]
+        train_things = train_indices[list(train_classes == 0)]
+        val_actions = np.random.choice(train_actions, int(len(train_actions) / 5), replace = False)
+        val_things = np.random.choice(train_things, int(len(train_things) / 5), replace = False)
+        all_val = np.concatenate((val_actions, val_things), axis = None)
+        all_val = [ind for ind in all_val]
         test_id = [str(ind) for ind in test_indices]
-        partition = {'train': train_id, 'test': test_id}
-
+        train_indices = [ind for ind in train_indices if ind not in all_val]
+        all_test = [ind for ind in test_indices]
+            
+        # Separate validation data
+        val_data = [encoded_words[ind] for ind in all_val]    
+        sorted_lengths = torch.LongTensor([len(word) for word in val_data])
+        sorted_lengths, indices = torch.sort(sorted_lengths, descending=True)
+        val_data = [val_data[index] for index in indices]
+        val_data = rnn_utils.pad_sequence(val_data)
+        val_data = rnn_utils.pack_padded_sequence(val_data, sorted_lengths, batch_first=False)
+        val_data = val_data.to(device)    
+        val_labels = [all_classes[str(ind)] for ind in indices.numpy()]
+        val_labels = torch.Tensor(val_labels)
+        val_id = [str(ind) for ind in all_val]
+        train_id = [str(ind) for ind in train_indices] # Get this for the train classes to build a stratified validation set
+        partition = {'train': train_id, 'test': test_id, 'val': val_id}
+        
+        training_remainder = len(train_indices) % 16
+        if training_remainder == 1:
+            have_to_drop = True
+        else:
+            have_to_drop = False
         # - Create datasets and loaders
         training_set = Dataset(ids=partition['train'], labels=all_classes, all_data=encoded_words)
-        training_loader = data.DataLoader(training_set, batch_size=64,
+        training_loader = data.DataLoader(training_set, batch_size=16,
                                           shuffle=True, collate_fn=pack_word, drop_last=have_to_drop)
         # - Create network and optimizer
         # Define loss function
         loss = nn.BCELoss()
-        # loss = nn.NLLLoss()
+        
         # Initialize RNN
-        model = RNNConcept(hidden_dim=10, vocab_size=len(char_dict))
+        model = RNNConcept(hidden_dim=10, num_features=len(char_dict))
         model = model.to(device)  # If using CUDA, this sends RNN to GPU.
-        optimizer = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=0.01)
+        optimizer = torch.optim.Adam(model.parameters(), lr=0.0001, weight_decay=0.01)
+        patience = 0 # patience for early stop
         # - Training loop
         for epoch in range(max_epochs):
-            if epoch % 50 == 0:
-                # Monitor training.
-                print(epoch)
-            # -- Loop through training mini batches
+        # -- Loop through training mini batches
             for batch, batch_labels in training_loader:
                 batch = batch.to(device)
                 batch_labels = batch_labels.to(device)
+                model.zero_grad()  # Reset gradient after each batch
                 # Prediction for this training batch
                 prediction_scores = model(batch)
                 epoch_loss = loss(prediction_scores, batch_labels)
-                model.zero_grad()  # Reset gradient after each batch
                 epoch_loss.backward()  # Back-propagate gradient
                 optimizer.step()
+            if epoch % 5 == 0:
+                print(epoch)
+            # Loss for early stop
+                with torch.no_grad():
+                    val_scores = model(val_data)
+                    val_loss = loss(val_scores, val_labels)
+                    print(val_loss)
+                if epoch == 0: # If it's the first time doing it, set it to that
+                    minimum_loss = val_loss
+                    continue
+                else:
+                    if val_loss > minimum_loss:
+                        patience += 1
+                        if patience > 9:
+                            break
+                    else:
+                        minimum_loss = val_loss
+                        patience = 0
 
         # - Performance for this iteration
         with torch.no_grad():  # Don't track this gradient

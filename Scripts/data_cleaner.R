@@ -116,11 +116,16 @@ all.words <- all.words %>%
 
 # Recode Phonemic, IPA and Phonetic transcriptions as "phon" for use in the study
 # These levels previously: "CyrillTrans", "IPA", "LatinTrans", "Phonemic", "phonetic", "Standard", "StandardOrth", "StandardOrthTone"
+og.transcriptions <- all.words$transcription
 levels(all.words$transcription) <- c("CyrillTrans", "phon", "LatinTrans", "phon", "phon", "Standard", "StandardOrth", "StandardOrthTone")
 # These levels previously: "Original (M. R. Key)", "Phonemic", "Phonemic (vars)", "Standard"
+og.alt.transcriptions <- all.words$alt_transcription
 levels(all.words$alt_transcription) <- c("Original (M. R. Key)", "phon", "Phonemic (vars)", "Standard") # Phonemic (vars) is only NA in Rapa Nui
 
-all.words <- mutate(all.words, transcription = as.character(transcription), alt_transcription = as.character(alt_transcription))
+all.words <- mutate(all.words, transcription = as.character(transcription), 
+                    alt_transcription = as.character(alt_transcription),
+                    og_transcription = og.transcriptions,
+                    og_alt_transcription = og.alt.transcriptions)
 
 # Load list of languages with no phon transcription and manually get them if they do
 languages.no.phon <- read_csv("../Data/Processed/languages_no_phon.csv")
@@ -142,7 +147,7 @@ paste("Number of families:", number.of.families)
 
 # Save relevant data on new file
 all.languages <- all.languages %>% 
-  select(ID, Name, iso_code = ISO639P3code, latitude, longitude, family)
+  select(ID, Name, latitude, longitude, family)
 all.languages %>% 
   write_csv("../Data/Processed/all_language_info.csv")
 
@@ -170,11 +175,29 @@ levels(all.words$ontological.category) <- c("Action", "Thing")
 
 # Store the phon form as "phon" in the dataframe. 
 all.phon <- all.words %>% 
-  mutate(phon = ifelse(transcription == "phon", Form, alt_form),
-         phon = ifelse(is.na(phon), Form, phon))
+  mutate(phon = ifelse(transcription == "phon", Form, alt_form)) %>% 
+  filter(!(is.na(phon)))
+
+# Recode in IPA
+# for(this.language in unique(all.phon$language)){
+#   if(this.language %in% espeak.languages$language){next}
+#   language.df <- filter(all.phon, language == this.language)
+#   unique.phonemes <- str_split(language.df$phon, pattern = "") %>% 
+#     unlist() %>% 
+#     unique()
+#   unique.phonemes <- enframe(unique.phonemes) %>% 
+#     select(-name) %>% 
+#     add_column(transcription = unique(language.df$og_transcription),
+#            alt_transcription = unique(language.df$og_alt_transcription),
+#            IPA = "",
+#            Comment = "")
+#   write_csv(x = unique.phonemes, file = paste0("IDS-To-IPA/", this.language, ".csv"))
+# }
+
 
 
 # Clean phon forms --------------------------------------------------------
+
 all.phon <- all.phon %>% 
   filter(!is.na(phon),
          str_detect(phon, "\\?", negate = TRUE)) # Get rid of forms that have a question mark on them
@@ -182,29 +205,9 @@ all.phon <- all.phon %>%
 all.phon <- clean.phon(all.phon)
 
 
-# Add espeak
 
-espeak.df <- all.phon %>% 
-  filter(language %in% espeak.languages$language) 
-for(this.language in espeak.languages$language){
-  file.name <- paste0("PhonMining/espeak_lists/", this.language, ".txt")
-  this.df <- filter(espeak.df, language == this.language)
-  write_lines(this.df$phon, file.name, sep = ", ")
-}
 
-espeak.phon.df <- map_dfr(espeak.languages$language, function(this.language){
-  lang.df <- filter(all.phon, language == this.language)
-  file.name <- paste0("PhonMining/phon_transcriptions/", this.language, "_phon.txt")
-  new.phon <- read_lines(file.name) %>% 
-    str_squish()
-  lang.df$phon <- new.phon
-  return(lang.df)
-})
-
-espeak.phon.df <- clean.phon(espeak.phon.df)
-
-all.phon <- filter(all.phon, !(language %in% espeak.languages$language))
-all.phon <- bind_rows(all.phon, espeak.phon.df)
+# all.phon$phon %>% str_split(string = ., pattern = "") %>% unlist %>% unique %>% write_lines("all_phonemes.txt")
 
 # Tonal languages have tones marked with numbers
 all.tone.languages <- filter(all.phon, str_detect(phon, "[:digit:]")) 

@@ -1,0 +1,1328 @@
+Form,alt_form,language,english.name,ontological.category,old.phon,phon,has.homophone
+konec,NA,Czech,end (temporal),Thing,konets,konets,FALSE
+věk,NA,Czech,age,Thing,vjek,vjek,FALSE
+čas,NA,Czech,time,Thing,tʃas,tʃas,FALSE
+doba,NA,Czech,time,Thing,doba,doba,FALSE
+pár,NA,Czech,pair,Thing,par,par,FALSE
+poloviční,NA,Czech,half,Thing,polovitʃɲi,polovitʃɲ,FALSE
+půl,NA,Czech,half,Thing,pul,pul,FALSE
+díl,NA,Czech,"part, piece",Thing,ɟil,ɟil,FALSE
+část,NA,Czech,"part, piece",Thing,tʃast,tʃast,FALSE
+čára,NA,Czech,line,Thing,tʃara,tʃara,FALSE
+přimka,NA,Czech,line,Thing,primka,primka,FALSE
+díra,NA,Czech,hole,Thing,ɟira,ɟira,FALSE
+koule,NA,Czech,"sphere, ball",Thing,koʊle,koʊle,FALSE
+kruh,NA,Czech,circle,Thing,krux,krux,FALSE
+čtverec,NA,Czech,square,Thing,tʃtverets,tʃtverets,FALSE
+čtverhran,NA,Czech,square,Thing,tʃtverhran,tʃtverhran,FALSE
+kříž,NA,Czech,cross,Thing,kriʃ,kriʃ,FALSE
+roh,NA,Czech,corner,Thing,rox,rox,FALSE
+kout,NA,Czech,corner,Thing,koʊt,koʊt,FALSE
+úhel,NA,Czech,corner,Thing,uhel,uhel,FALSE
+hák,NA,Czech,hook,Thing,hak,hak,FALSE
+píd’,NA,Czech,"span, fathom",Thing,pit,pit,FALSE
+sáh,NA,Czech,"span, fathom",Thing,sax,sax,FALSE
+jih,NA,Czech,south,Thing,jix,jix,FALSE
+sever,NA,Czech,north,Thing,sever,sever,FALSE
+půlnoc,NA,Czech,north,Thing,pulnots,pulnots,FALSE
+západ,NA,Czech,west,Thing,zapat,zapat,FALSE
+východ,NA,Czech,east,Thing,vixot,vixot,FALSE
+střední,NA,Czech,"middle, center",Thing,stredɲi,stredɲ,FALSE
+strana,NA,Czech,side,Thing,strana,strana,FALSE
+bok,NA,Czech,side,Thing,bok,bok,FALSE
+ostří,NA,Czech,edge,Thing,ostri,ostr,FALSE
+hrana,NA,Czech,edge,Thing,hrana,hrana,FALSE
+okraj,NA,Czech,edge,Thing,okraj,okraj,FALSE
+kraj,NA,Czech,end,Thing,kraj,kraj,FALSE
+dno,NA,Czech,bottom,Thing,dno,dno,FALSE
+vrch,NA,Czech,top,Thing,vrx,vrx,FALSE
+zůstati,NA,Czech,"remains, left overs",Thing,zustaci,zustac,FALSE
+místo,NA,Czech,place,Thing,misto,misto,FALSE
+cena,NA,Czech,price,Thing,tsena,tsena,FALSE
+krám,NA,Czech,"store, shop",Thing,kram,kram,FALSE
+trh,NA,Czech,market (place),Thing,trx,trx,FALSE
+tržiště,NA,Czech,market (place),Thing,trʒiʃce,trʒiʃce,FALSE
+kupec,NA,Czech,merchant,Thing,kupets,kupets,FALSE
+obchodník,NA,Czech,merchant,Thing,opxodɲik,opxodɲik,FALSE
+mzda,NA,Czech,wages,Thing,mzda,mzda,FALSE
+plat,NA,Czech,wages,Thing,plat,plat,FALSE
+daň,NA,Czech,"tax, tribute",Thing,daɲ,daɲ,FALSE
+berně,NA,Czech,"tax, tribute",Thing,berɲe,berɲe,FALSE
+poplatek,NA,Czech,"tax, tribute",Thing,poplatek,poplatek,FALSE
+účet,NA,Czech,"account, reckoning",Thing,utʃet,utʃet,FALSE
+dluh,NA,Czech,debt,Thing,dlux,dlux,FALSE
+žebrák,NA,Czech,beggar,Thing,ʒebrak,ʒebrak,FALSE
+mince,NA,Czech,coin,Thing,mintse,mintse,FALSE
+peníze,NA,Czech,money,Thing,peɲize,peɲize,FALSE
+věc,NA,Czech,thing,Thing,vjets,vjets,FALSE
+přístav,NA,Czech,"harbor, port",Thing,pristav,pristav,FALSE
+kotva,NA,Czech,anchor,Thing,kotva,kotva,FALSE
+plachta,NA,Czech,sail (noun),Thing,plaxta,plaxta,FALSE
+stěžeň,NA,Czech,mast,Thing,sceʒeɲ,sceʒeɲ,FALSE
+stožár,NA,Czech,mast,Thing,stoʒar,stoʒar,FALSE
+kormidlo,NA,Czech,rudder,Thing,kormidlo,kormidlo,FALSE
+pádlo,NA,Czech,paddle (noun),Thing,padlo,padlo,FALSE
+veslo,NA,Czech,oar,Thing,veslo,veslo,FALSE
+vor,NA,Czech,raft,Thing,vor,vor,FALSE
+plt’,NA,Czech,raft,Thing,peelte,peelte,FALSE
+traversa,NA,Czech,outrigger,Thing,traversa,traversa,FALSE
+kanoe,NA,Czech,canoe,Thing,kanoe,kanoe,FALSE
+člun,NA,Czech,boat,Thing,tʃlun,tʃlun,FALSE
+lod’ka,NA,Czech,boat,Thing,lotka,lotka,FALSE
+lod’,NA,Czech,ship,Thing,lot,lot,FALSE
+koráb,NA,Czech,ship,Thing,korap,korap,FALSE
+jařmo,NA,Czech,yoke,Thing,jarmo,jarmo,FALSE
+jho,NA,Czech,yoke,Thing,jho,jho,FALSE
+náprava,NA,Czech,axle,Thing,naprava,naprava,FALSE
+kolo,NA,Czech,wheel,Thing,kolo,kolo,FALSE
+vůz,NA,Czech,"carriage, wagon, cart",Thing,vus,vus,FALSE
+povoz,NA,Czech,"carriage, wagon, cart",Thing,povos,povos,FALSE
+kára,NA,Czech,"carriage, wagon, cart",Thing,kara,kara,FALSE
+most,NA,Czech,bridge,Thing,most,most,FALSE
+cesta,NA,Czech,road,Thing,tsesta,tsesta,FALSE
+dláto,NA,Czech,chisel,Thing,dlato,dlato,FALSE
+barva,NA,Czech,paint (noun),Thing,barva,barva,FALSE
+socha,NA,Czech,statue,Thing,soxa,soxa,FALSE
+sochař,NA,Czech,sculptor,Thing,soxar,soxar,FALSE
+řezbář,NA,Czech,sculptor,Thing,rezbar,rezbar,FALSE
+vějíř,NA,Czech,fan (noun),Thing,vjejir,vjejir,FALSE
+dmychadlo,NA,Czech,fan (noun),Thing,dmixadlo,dmixadlo,FALSE
+sít’,NA,Czech,netbag,Thing,sit,sit,FALSE
+kobereček,NA,Czech,rug,Thing,koberetʃek,koberetʃek,FALSE
+rohož,NA,Czech,mat,Thing,rohoʃ,rohoʃ,FALSE
+koš,NA,Czech,basket,Thing,koʃ,koʃ,FALSE
+košík,NA,Czech,basket,Thing,koʃik,koʃik,FALSE
+sklo,NA,Czech,glass,Thing,sklo,sklo,FALSE
+hlína,NA,Czech,clay,Thing,hlina,hlina,FALSE
+jíl,NA,Czech,clay,Thing,jil,jil,FALSE
+hrnčíř,NA,Czech,potter,Thing,hrntʃir,hrntʃir,FALSE
+cín,NA,Czech,"tin, tinplate",Thing,tsin,tsin,FALSE
+plech,NA,Czech,"tin, tinplate",Thing,plex,plex,FALSE
+olovo,NA,Czech,lead (noun),Thing,olovo,olovo,FALSE
+železo,NA,Czech,iron,Thing,ʒelezo,ʒelezo,FALSE
+měd’,NA,Czech,"copper, bronze",Thing,mɲet,mɲet,FALSE
+bronz,NA,Czech,"copper, bronze",Thing,brons,brons,FALSE
+stříbro,NA,Czech,silver,Thing,stribro,stribro,FALSE
+zlato,NA,Czech,gold,Thing,zlato,zlato,FALSE
+kovadlina,NA,Czech,anvil,Thing,kovadlina,kovadlina,FALSE
+kovář,NA,Czech,"smith, blacksmith",Thing,kovar,kovar,FALSE
+klih,NA,Czech,glue,Thing,klix,klix,FALSE
+hřebík,NA,Czech,nail,Thing,hrebik,hrebik,FALSE
+hřeb,NA,Czech,nail,Thing,hrep,hrep,FALSE
+kladivo,NA,Czech,hammer,Thing,klaɟivo,klaɟivo,FALSE
+pila,NA,Czech,saw,Thing,pila,pila,FALSE
+tesař,NA,Czech,carpenter,Thing,tesar,tesar,FALSE
+náčiní,NA,Czech,tool,Thing,natʃiɲi,natʃiɲ,FALSE
+nástroj,NA,Czech,tool,Thing,nastroj,nastroj,FALSE
+nářadí,NA,Czech,tool,Thing,naraɟi,naraɟ,FALSE
+koště,NA,Czech,broom,Thing,koʃce,koʃce,FALSE
+pometlo,NA,Czech,broom,Thing,pometlo,pometlo,FALSE
+sekyra,NA,Czech,ax,Thing,sekira,sekira,FALSE
+sekera,NA,Czech,ax,Thing,sekera,sekera,FALSE
+širočina,NA,Czech,adze,Thing,ʃirotʃina,ʃirotʃina,FALSE
+nůžky,NA,Czech,"scissors, shears",Thing,nuʃki,nuʃk,FALSE
+nůž,NA,Czech,knife,Thing,nuʃ,nuʃ,FALSE
+uzel,NA,Czech,knot (noun),Thing,uzel,uzel,FALSE
+provaz,NA,Czech,"rope, cord",Thing,provas,provas,FALSE
+lano,NA,Czech,"rope, cord",Thing,lano,lano,FALSE
+řetěz,NA,Czech,chain,Thing,reces,reces,FALSE
+práce,NA,Czech,work,Thing,pratse,pratse,FALSE
+dílo,NA,Czech,work,Thing,ɟilo,ɟilo,FALSE
+houba,NA,Czech,mushroom,Thing,hoʊba,hoʊba,FALSE
+kopřiva,NA,Czech,nettle,Thing,kopriva,kopriva,FALSE
+cukrová třtina,NA,Czech,sugar cane,Thing,tsukrovatrcina,tsukrovatrcina,FALSE
+bambus,NA,Czech,bamboo,Thing,bambus,bambus,FALSE
+dýně,NA,Czech,"pumpkin, squash",Thing,diɲe,diɲe,FALSE
+tykev,NA,Czech,gourd,Thing,tikev,tikev,FALSE
+maniok,NA,Czech,"tapioca, manioc, cassava",Thing,maɲiok,maɲiok,FALSE
+batáta,NA,Czech,sweet potato,Thing,batata,batata,FALSE
+sladký brambor,NA,Czech,sweet potato,Thing,slatkibrambor,slatkibrambor,FALSE
+banán,NA,Czech,banyan,Thing,banan,banan,FALSE
+banánovník,NA,Czech,banana tree,Thing,bananovɲik,bananovɲik,FALSE
+citrón,NA,Czech,citrus fruit,Thing,tsitron,tsitron,FALSE
+kokosový ořech,NA,Czech,coconut,Thing,kokosoviorex,kokosoviorex,FALSE
+palma,NA,Czech,palm tree,Thing,palma,palma,FALSE
+míza,NA,Czech,sap,Thing,miza,miza,FALSE
+kůra,NA,Czech,bark,Thing,kura,kura,FALSE
+vidlicovitá větev,NA,Czech,forked branch,Thing,vidlitsovitavjetev,vidlitsovitavjetev,FALSE
+kmen stromu,NA,Czech,tree trunk,Thing,kmenstromu,kmenstromu,FALSE
+pařez,NA,Czech,tree stump,Thing,pares,pares,FALSE
+dymka,NA,Czech,pipe,Thing,dimka,dimka,FALSE
+fajfka,NA,Czech,pipe,Thing,fajfka,fajfka,FALSE
+tabák,NA,Czech,tobacco,Thing,tabak,tabak,FALSE
+vinná réva,NA,Czech,vine,Thing,vinareva,vinareva,FALSE
+vinný keř,NA,Czech,vine,Thing,viniker,viniker,FALSE
+žalud,NA,Czech,acorn,Thing,ʒalut,ʒalut,FALSE
+jedle,NA,Czech,fir,Thing,jedle,jedle,FALSE
+sosna,NA,Czech,pine,Thing,sosna,sosna,FALSE
+smrk,NA,Czech,pine,Thing,smrk,smrk,FALSE
+bříza,NA,Czech,birch,Thing,briza,briza,FALSE
+buk,NA,Czech,beech,Thing,buk,buk,FALSE
+dub,NA,Czech,oak,Thing,dup,dup,FALSE
+strom,NA,Czech,tree,Thing,strom,strom,FALSE
+květina,NA,Czech,flower,Thing,kvjecina,kvjecina,FALSE
+list,NA,Czech,leaf,Thing,list,list,FALSE
+větev,NA,Czech,branch,Thing,vjetev,vjetev,FALSE
+haluz,NA,Czech,branch,Thing,halus,halus,FALSE
+kořen,NA,Czech,root,Thing,koren,koren,FALSE
+seno,NA,Czech,hay,Thing,seno,seno,FALSE
+rostlina,NA,Czech,plant (noun),Thing,rostlina,rostlina,FALSE
+bylina,NA,Czech,plant (noun),Thing,bilina,bilina,FALSE
+tráva,NA,Czech,grass,Thing,trava,trava,FALSE
+rýže,NA,Czech,rice,Thing,riʒe,riʒe,FALSE
+kukuřice,NA,Czech,"maize, corn",Thing,kukuritse,kukuritse,FALSE
+oves,NA,Czech,oats,Thing,oves,oves,FALSE
+žito,NA,Czech,rye,Thing,ʒito,ʒito,FALSE
+rež,NA,Czech,rye,Thing,reʃ,reʃ,FALSE
+pšenice,NA,Czech,wheat,Thing,pʃeɲitse,pʃeɲitse,FALSE
+ječmen,NA,Czech,barley,Thing,jetʃmen,jetʃmen,FALSE
+obilí,NA,Czech,"grain (barley, oats etc)",Thing,obili,obil,FALSE
+žeň,NA,Czech,"crop, harvest",Thing,ʒeɲ,ʒeɲ,FALSE
+úroda,NA,Czech,"crop, harvest",Thing,uroda,uroda,FALSE
+mlat,NA,Czech,threshing-floor,Thing,mlat,mlat,FALSE
+semeno,NA,Czech,seed,Thing,semeno,semeno,FALSE
+hrábě,NA,Czech,rake,Thing,hrabje,hrabje,FALSE
+vidle,NA,Czech,fork,Thing,vidle,vidle,FALSE
+motyka,NA,Czech,hoe,Thing,motika,motika,FALSE
+lopata,NA,Czech,shovel,Thing,lopata,lopata,FALSE
+rýč,NA,Czech,spade,Thing,ritʃ,ritʃ,FALSE
+lopatka,NA,Czech,spade,Thing,lopatka,lopatka,FALSE
+brázda,NA,Czech,furrow,Thing,brazda,brazda,FALSE
+ohrada,NA,Czech,fence,Thing,ohrada,ohrada,FALSE
+plot,NA,Czech,fence,Thing,plot,plot,FALSE
+zahrada,NA,Czech,garden,Thing,zahrada,zahrada,FALSE
+pole,NA,Czech,field (for cultivation),Thing,pole,pole,FALSE
+role,NA,Czech,field (for cultivation),Thing,role,role,FALSE
+rolník,NA,Czech,farmer,Thing,rolɲik,rolɲik,FALSE
+sedlák,NA,Czech,farmer,Thing,sedlak,sedlak,FALSE
+farmář,NA,Czech,farmer,Thing,farmar,farmar,FALSE
+zemědělec,NA,Czech,farmer,Thing,zemɲeɟelets,zemɲeɟelets,FALSE
+vepřovice,NA,Czech,adobe,Thing,veprovitse,veprovitse,FALSE
+nepálená cihla,NA,Czech,adobe,Thing,nepalenatsihla,nepalenatsihla,FALSE
+moždíř,NA,Czech,mortar,Thing,moʒɟir,moʒɟir,FALSE
+cihla,NA,Czech,brick,Thing,tsihla,tsihla,FALSE
+oblouk,NA,Czech,arch,Thing,obloʊk,obloʊk,FALSE
+zedník,NA,Czech,mason,Thing,zedɲik,zedɲik,FALSE
+prkno,NA,Czech,board,Thing,prkno,prkno,FALSE
+deska,NA,Czech,board,Thing,deska,deska,FALSE
+tyč,NA,Czech,"post, pole",Thing,titʃ,titʃ,FALSE
+trám,NA,Czech,beam,Thing,tram,tram,FALSE
+nosník,NA,Czech,beam,Thing,nosɲik,nosɲik,FALSE
+krov,NA,Czech,rafter,Thing,krov,krov,FALSE
+hřeben střechy,NA,Czech,ridgepole,Thing,hrebenstrexi,hrebenstrex,FALSE
+došek,NA,Czech,thatch,Thing,doʃek,doʃek,FALSE
+střecha,NA,Czech,roof,Thing,strexa,strexa,FALSE
+koryto,NA,Czech,trough,Thing,korito,korito,FALSE
+díž,NA,Czech,trough,Thing,ɟiʃ,ɟiʃ,FALSE
+police,NA,Czech,shelf,Thing,politse,politse,FALSE
+svíce,NA,Czech,candle,Thing,svitse,svitse,FALSE
+svíčka,NA,Czech,candle,Thing,svitʃka,svitʃka,FALSE
+stůl,NA,Czech,table,Thing,stul,stul,FALSE
+sedadlo,NA,Czech,chair,Thing,sedadlo,sedadlo,FALSE
+židle,NA,Czech,chair,Thing,ʒidle,ʒidle,FALSE
+přikrývka,NA,Czech,blanket,Thing,prikrifka,prikrifka,FALSE
+polštář,NA,Czech,pillow,Thing,polʃtar,polʃtar,FALSE
+lože,NA,Czech,bed,Thing,loʒe,loʒe,FALSE
+postel,NA,Czech,bed,Thing,postel,postel,FALSE
+žebřík,NA,Czech,ladder,Thing,ʒebrik,ʒebrik,FALSE
+komín,NA,Czech,chimney,Thing,komin,komin,FALSE
+kamna,NA,Czech,stove,Thing,kamna,kamna,FALSE
+ohniště,NA,Czech,fireplace,Thing,ohɲiʃce,ohɲiʃce,FALSE
+zed’,NA,Czech,wall,Thing,zet,zet,FALSE
+stěna,NA,Czech,wall,Thing,scena,scena,FALSE
+podlaha,NA,Czech,floor,Thing,podlaha,podlaha,FALSE
+okno,NA,Czech,window,Thing,okno,okno,FALSE
+klíč,NA,Czech,key,Thing,klitʃ,klitʃ,FALSE
+klika,NA,Czech,"latch, door-bolt",Thing,klika,klika,FALSE
+zámek,NA,Czech,lock (noun),Thing,zamek,zamek,FALSE
+veřeje,NA,Czech,"doorpost, jamb",Thing,vereje,vereje,FALSE
+futra dveří,NA,Czech,"doorpost, jamb",Thing,futradveri,futradver,FALSE
+futro dveří,NA,Czech,"doorpost, jamb",Thing,futrodveri,futrodver,FALSE
+pokoj,NA,Czech,room,Thing,pokoj,pokoj,FALSE
+místnost,NA,Czech,room,Thing,mistnost,mistnost,FALSE
+dveře,NA,Czech,"door, gate",Thing,dvere,dvere,FALSE
+vrata,NA,Czech,"door, gate",Thing,vrata,vrata,FALSE
+brána,NA,Czech,"door, gate",Thing,brana,brana,FALSE
+dvůr,NA,Czech,"yard, court",Thing,dvur,dvur,FALSE
+stan,NA,Czech,tent,Thing,stan,stan,FALSE
+zahradní dům,NA,Czech,garden-house,Thing,zahradɲidum,zahradɲidum,FALSE
+chata,NA,Czech,garden-house,Thing,xata,xata,FALSE
+chatrč,NA,Czech,hut,Thing,xatrtʃ,xatrtʃ,FALSE
+chalupa,NA,Czech,hut,Thing,xalupa,xalupa,FALSE
+dům,NA,Czech,house,Thing,dum,dum,FALSE
+zrcadlo,NA,Czech,mirror,Thing,zrtsadlo,zrtsadlo,FALSE
+mýdlo,NA,Czech,soap,Thing,midlo,midlo,FALSE
+mast,NA,Czech,ointment,Thing,mast,mast,FALSE
+břitva,NA,Czech,razor,Thing,britva,britva,FALSE
+cop,NA,Czech,braid,Thing,tsop,tsop,FALSE
+kartáč,NA,Czech,brush,Thing,kartatʃ,kartatʃ,FALSE
+hřeben,NA,Czech,comb,Thing,hreben,hreben,FALSE
+ručník,NA,Czech,towel,Thing,rutʃɲik,rutʃɲik,FALSE
+kapesník,NA,Czech,"handkerchief, rag",Thing,kapesɲik,kapesɲik,FALSE
+tetování,NA,Czech,tattoo,Thing,tetovaɲi,tetovaɲ,FALSE
+čelenka,NA,Czech,"headband, headdress",Thing,tʃeleŋka,tʃeleŋka,FALSE
+náušnice,NA,Czech,earring,Thing,nauʃɲitse,nauʃɲitse,FALSE
+korálek,NA,Czech,bead,Thing,koralek,koralek,FALSE
+náhrdelník,NA,Czech,necklace,Thing,nahrdelɲik,nahrdelɲik,FALSE
+náramek,NA,Czech,bracelet,Thing,naramek,naramek,FALSE
+prsten,NA,Czech,ring (for finger),Thing,prsten,prsten,FALSE
+klenot,NA,Czech,jewel,Thing,klenot,klenot,FALSE
+drahokam,NA,Czech,jewel,Thing,drahokam,drahokam,FALSE
+okrasa,NA,Czech,"ornament, adornment",Thing,okrasa,okrasa,FALSE
+špendlík,NA,Czech,pin,Thing,ʃpendlik,ʃpendlik,FALSE
+knoflík,NA,Czech,button,Thing,knoflik,knoflik,FALSE
+kapsa,NA,Czech,pocket,Thing,kapsa,kapsa,FALSE
+závoj,NA,Czech,veil,Thing,zavoj,zavoj,FALSE
+rukavice,NA,Czech,glove,Thing,rukavitse,rukavitse,FALSE
+pás,NA,Czech,"belt, girdle",Thing,pas,pas,FALSE
+švec,NA,Czech,"shoemaker, cobbler",Thing,ʃvets,ʃvets,FALSE
+obuvník,NA,Czech,"shoemaker, cobbler",Thing,obuvɲik,obuvɲik,FALSE
+střevíc,NA,Czech,shoe,Thing,strevits,strevits,FALSE
+obuv,NA,Czech,shoe,Thing,obuv,obuv,FALSE
+bota,NA,Czech,shoe,Thing,bota,bota,FALSE
+punčocha,NA,Czech,"stocking, sock",Thing,puntʃoxa,puntʃoxa,FALSE
+spodky,NA,Czech,trousers,Thing,spotki,spotk,FALSE
+kalhoty,NA,Czech,trousers,Thing,kalhoti,kalhot,FALSE
+sukně,NA,Czech,skirt,Thing,sukɲe,sukɲe,FALSE
+košile,NA,Czech,shirt,Thing,koʃile,koʃile,FALSE
+kabát,NA,Czech,coat,Thing,kabat,kabat,FALSE
+(dámské) šaty,NA,Czech,woman's dress,Thing,ʃati,ʃat,FALSE
+pončo,NA,Czech,poncho,Thing,pontʃo,pontʃo,FALSE
+plášt’,NA,Czech,cloak,Thing,plaʃt,plaʃt,FALSE
+nit,NA,Czech,thread,Thing,ɲit,ɲit,FALSE
+jehla,NA,Czech,needle,Thing,jehla,jehla,FALSE
+šídlo,NA,Czech,awl,Thing,ʃidlo,ʃidlo,FALSE
+stav,NA,Czech,loom,Thing,stav,stav,FALSE
+vřeteno,NA,Czech,spindle,Thing,vreteno,vreteno,FALSE
+kůže,NA,Czech,leather,Thing,kuʒe,kuʒe,FALSE
+kožešina,NA,Czech,fur,Thing,koʒeʃina,koʒeʃina,FALSE
+plst’,NA,Czech,felt,Thing,peeleste,peeleste,FALSE
+hedvábí,NA,Czech,silk,Thing,hedvabi,hedvab,FALSE
+bavlna,NA,Czech,cotton,Thing,bavlna,bavlna,FALSE
+plátno,NA,Czech,"linen, flax",Thing,platno,platno,FALSE
+len,NA,Czech,"linen, flax",Thing,len,len,FALSE
+vlna,NA,Czech,wool,Thing,vlna,vlna,FALSE
+sukno,NA,Czech,cloth,Thing,sukno,sukno,FALSE
+látka,NA,Czech,cloth,Thing,latka,latka,FALSE
+krejčí,NA,Czech,tailor,Thing,kreɪtʃi,kreɪtʃ,FALSE
+švadlena,NA,Czech,tailor,Thing,ʃvadlena,ʃvadlena,FALSE
+oděv,NA,Czech,"clothing, clothes",Thing,oɟev,oɟev,FALSE
+oblek,NA,Czech,"clothing, clothes",Thing,oblek,oblek,FALSE
+žloutek,NA,Czech,egg yolk,Thing,ʒloʊtek,ʒloʊtek,FALSE
+vejce,NA,Czech,egg,Thing,veɪtse,veɪtse,FALSE
+kvas,NA,Czech,fermented drink,Thing,kvas,kvas,FALSE
+kvašený nápoj,NA,Czech,fermented drink,Thing,kvaʃeninapoj,kvaʃeninapoj,FALSE
+pivo,NA,Czech,beer,Thing,pivo,pivo,FALSE
+víno,NA,Czech,wine,Thing,vino,vino,FALSE
+medovina,NA,Czech,mead,Thing,medovina,medovina,FALSE
+nápoj,NA,Czech,"beverage, drink",Thing,napoj,napoj,FALSE
+pití,NA,Czech,"beverage, drink",Thing,pici,pic,FALSE
+máslo,NA,Czech,butter,Thing,maslo,maslo,FALSE
+sýr,NA,Czech,cheese,Thing,sir,sir,FALSE
+tvaroh,NA,Czech,cheese,Thing,tvarox,tvarox,FALSE
+cukr,NA,Czech,sugar,Thing,tsukr,tsukr,FALSE
+mléko,NA,Czech,milk (noun),Thing,mleko,mleko,FALSE
+med,NA,Czech,honey,Thing,met,met,FALSE
+[čili],NA,Czech,chili pepper,Thing,tʃili,tʃil,FALSE
+pepř,NA,Czech,pepper,Thing,pepr,pepr,FALSE
+sůl,NA,Czech,salt,Thing,sul,sul,FALSE
+sádlo,NA,Czech,"grease, fat",Thing,sadlo,sadlo,FALSE
+olej,NA,Czech,oil,Thing,oleɪ,oleɪ,FALSE
+oliva,NA,Czech,olive,Thing,oliva,oliva,FALSE
+hrozen,NA,Czech,grape,Thing,hrozen,hrozen,FALSE
+ořech,NA,Czech,nut,Thing,orex,orex,FALSE
+fík,NA,Czech,fig,Thing,fik,fik,FALSE
+svazek,NA,Czech,bunch,Thing,svazek,svazek,FALSE
+ovoce,NA,Czech,fruit,Thing,ovotse,ovotse,FALSE
+brambor,NA,Czech,potato,Thing,brambor,brambor,FALSE
+zemák,NA,Czech,potato,Thing,zemak,zemak,FALSE
+bob,NA,Czech,bean,Thing,bop,bop,FALSE
+fazol,NA,Czech,bean,Thing,fazol,fazol,FALSE
+zelenina,NA,Czech,vegetables,Thing,zeleɲina,zeleɲina,FALSE
+polévka,NA,Czech,"soup, broth",Thing,polefka,polefka,FALSE
+jítrnice,NA,Czech,sausage,Thing,jitrɲitse,jitrɲitse,FALSE
+klobása,NA,Czech,sausage,Thing,klobasa,klobasa,FALSE
+maso,NA,Czech,meat,Thing,maso,maso,FALSE
+palička,NA,Czech,pestle,Thing,palitʃka,palitʃka,FALSE
+mlýn,NA,Czech,mill,Thing,mlin,mlin,FALSE
+mouka,NA,Czech,"meal, flour",Thing,moʊka,moʊka,FALSE
+těsto,NA,Czech,dough,Thing,cesto,cesto,FALSE
+chléb,NA,Czech,bread,Thing,xlep,xlep,FALSE
+večeře,NA,Czech,supper,Thing,vetʃere,vetʃere,FALSE
+oběd,NA,Czech,dinner,Thing,objet,objet,FALSE
+hostina,NA,Czech,dinner,Thing,hoscina,hoscina,FALSE
+snídaně,NA,Czech,breakfast,Thing,sɲidaɲe,sɲidaɲe,FALSE
+jídlo,NA,Czech,meal (a),Thing,jidlo,jidlo,FALSE
+kleště,NA,Czech,tongs,Thing,kleʃce,kleʃce,FALSE
+vidlička,NA,Czech,fork (2),Thing,vidlitʃka,vidlitʃka,FALSE
+lžíce,NA,Czech,spoon,Thing,lʒitse,lʒitse,FALSE
+miska,NA,Czech,saucer,Thing,miska,miska,FALSE
+talířek,NA,Czech,saucer,Thing,talirek,talirek,FALSE
+šálek,NA,Czech,"cup, drinking vessel",Thing,ʃalek,ʃalek,FALSE
+číše,NA,Czech,"cup, drinking vessel",Thing,tʃiʃe,tʃiʃe,FALSE
+mísa,NA,Czech,bowl,Thing,misa,misa,FALSE
+džbán,NA,Czech,"pitcher, jug",Thing,dʒban,dʒban,FALSE
+talíř,NA,Czech,plate,Thing,talir,talir,FALSE
+pánev,NA,Czech,pan,Thing,panev,panev,FALSE
+hrnek,NA,Czech,"pot, cooking vessel",Thing,hrnek,hrnek,FALSE
+hrnec,NA,Czech,"pot, cooking vessel",Thing,hrnets,hrnets,FALSE
+kotel,NA,Czech,kettle,Thing,kotel,kotel,FALSE
+pec,NA,Czech,oven,Thing,pets,pets,FALSE
+žízeň,NA,Czech,thirst,Thing,ʒizeɲ,ʒizeɲ,FALSE
+hladomor,NA,Czech,famine,Thing,hladomor,hladomor,FALSE
+hlad,NA,Czech,hunger,Thing,hlat,hlat,FALSE
+pokrm,NA,Czech,food,Thing,pokrm,pokrm,FALSE
+potrava,NA,Czech,food,Thing,potrava,potrava,FALSE
+jed,NA,Czech,poison,Thing,jet,jet,FALSE
+otrava,NA,Czech,poison,Thing,otrava,otrava,FALSE
+lék,NA,Czech,"medicine, drug",Thing,lek,lek,FALSE
+lékař,NA,Czech,physician,Thing,lekar,lekar,FALSE
+jizva,NA,Czech,scar,Thing,jizva,jizva,FALSE
+hnis,NA,Czech,pus,Thing,hɲis,hɲis,FALSE
+vřed,NA,Czech,boil (noun),Thing,vret,vret,FALSE
+vřídek,NA,Czech,boil (noun),Thing,vridek,vridek,FALSE
+puchýř,NA,Czech,blister,Thing,puxir,puxir,FALSE
+svrab,NA,Czech,itch,Thing,svrap,svrap,FALSE
+otok,NA,Czech,swelling,Thing,otok,otok,FALSE
+modřina,NA,Czech,bruise,Thing,modrina,modrina,FALSE
+podlitina,NA,Czech,bruise,Thing,podlicina,podlicina,FALSE
+pohmožděnina,NA,Czech,bruise,Thing,pohmoʒɟeɲina,pohmoʒɟeɲina,FALSE
+rána,NA,Czech,"wound, sore",Thing,rana,rana,FALSE
+rýma,NA,Czech,cold (catarrh),Thing,rima,rima,FALSE
+nastuzení,NA,Czech,cold (catarrh),Thing,nastuzeɲi,nastuzeɲ,FALSE
+katar,NA,Czech,cold (catarrh),Thing,katar,katar,FALSE
+vole,NA,Czech,goiter,Thing,vole,vole,FALSE
+horečka,NA,Czech,fever,Thing,horetʃka,horetʃka,FALSE
+teplota,NA,Czech,fever,Thing,teplota,teplota,FALSE
+hrob,NA,Czech,"grave, tomb",Thing,hrop,hrop,FALSE
+mrtvola,NA,Czech,corpse,Thing,mrtvola,mrtvola,FALSE
+pyj,NA,Czech,penis,Thing,pij,pij,FALSE
+pohlavní úd,NA,Czech,penis,Thing,pohlavɲiut,pohlavɲiut,FALSE
+varle,NA,Czech,testicle,Thing,varle,varle,FALSE
+moudí,NA,Czech,testicle,Thing,moʊɟi,moʊɟ,FALSE
+děloha,NA,Czech,womb,Thing,ɟeloha,ɟeloha,FALSE
+lůno,NA,Czech,womb,Thing,luno,luno,FALSE
+zadek,NA,Czech,buttocks,Thing,zadek,zadek,FALSE
+zadnice,NA,Czech,buttocks,Thing,zadɲitse,zadɲitse,FALSE
+kyčel,NA,Czech,hip,Thing,kitʃel,kitʃel,FALSE
+střevo,NA,Czech,"intestines, guts",Thing,strevo,strevo,FALSE
+střeva,NA,Czech,"intestines, guts",Thing,streva,streva,FALSE
+žaludek,NA,Czech,stomach,Thing,ʒaludek,ʒaludek,FALSE
+břich ~ břicho,NA,Czech,stomach,Thing,brix,brix,FALSE
+slezina,NA,Czech,spleen,Thing,slezina,slezina,FALSE
+ledvina,NA,Czech,kidney,Thing,ledvina,ledvina,FALSE
+játra,NA,Czech,liver,Thing,jatra,jatra,FALSE
+plíce,NA,Czech,lung,Thing,plitse,plitse,FALSE
+srdce,NA,Czech,heart,Thing,srttse,srttse,FALSE
+pupek,NA,Czech,navel,Thing,pupek,pupek,FALSE
+vemeno,NA,Czech,udder,Thing,vemeno,vemeno,FALSE
+výmě,NA,Czech,udder,Thing,vimɲe,vimɲe,FALSE
+bradavka,NA,Czech,"nipple, teat",Thing,bradafka,bradafka,FALSE
+prs,NA,Czech,breast (of woman),Thing,prs,prs,FALSE
+ňadro,NA,Czech,breast (of woman),Thing,ɲadro,ɲadro,FALSE
+prsa,NA,Czech,chest,Thing,prsa,prsa,FALSE
+hrud’,NA,Czech,chest,Thing,hrut,hrut,FALSE
+péro,NA,Czech,feather,Thing,pero,pero,FALSE
+křídlo,NA,Czech,wing,Thing,kridlo,kridlo,FALSE
+prst (na noze),NA,Czech,toe,Thing,prst,prst,FALSE
+stopa,NA,Czech,footprint,Thing,stopa,stopa,FALSE
+šlépěj,NA,Czech,footprint,Thing,ʃlepjej,ʃlepjej,FALSE
+pata,NA,Czech,heel,Thing,pata,pata,FALSE
+kloub,NA,Czech,ankle,Thing,kloʊp,kloʊp,FALSE
+noha,NA,Czech,foot,Thing,noha,noha,FALSE
+koleno,NA,Czech,knee,Thing,koleno,koleno,FALSE
+lýtko,NA,Czech,calf of leg,Thing,litko,litko,FALSE
+stehno,NA,Czech,thigh,Thing,stehno,stehno,FALSE
+dráp,NA,Czech,claw,Thing,drap,drap,FALSE
+nehet,NA,Czech,fingernail,Thing,nehet,nehet,FALSE
+palec,NA,Czech,thumb,Thing,palets,palets,FALSE
+dlaň,NA,Czech,palm of hand,Thing,dlaɲ,dlaɲ,FALSE
+ruka,NA,Czech,hand,Thing,ruka,ruka,FALSE
+zápěstí,NA,Czech,wrist,Thing,zapjesci,zapjesc,FALSE
+loket,NA,Czech,elbow,Thing,loket,loket,FALSE
+podpaží,NA,Czech,armpit,Thing,potpaʒi,potpaʒ,FALSE
+rámě,NA,Czech,arm,Thing,ramɲe,ramɲe,FALSE
+paže,NA,Czech,arm,Thing,paʒe,paʒe,FALSE
+klíční kost,NA,Czech,collarbone,Thing,klitʃɲikost,klitʃɲikost,FALSE
+rameno,NA,Czech,shoulder,Thing,rameno,rameno,FALSE
+plece,NA,Czech,shoulder,Thing,pletse,pletse,FALSE
+hrdlo,NA,Czech,throat,Thing,hrdlo,hrdlo,FALSE
+týl,NA,Czech,nape of neck,Thing,til,til,FALSE
+krk,NA,Czech,neck,Thing,krk,krk,FALSE
+šíje,NA,Czech,neck,Thing,ʃije,ʃije,FALSE
+stolička,NA,Czech,molartooth,Thing,stolitʃka,stolitʃka,FALSE
+zub,NA,Czech,tooth,Thing,zup,zup,FALSE
+dásně,NA,Czech,gums,Thing,dasɲe,dasɲe,FALSE
+jazyk,NA,Czech,tongue,Thing,jazik,jazik,FALSE
+ret,NA,Czech,lip,Thing,ret,ret,FALSE
+pysk,NA,Czech,lip,Thing,pisk,pisk,FALSE
+zobák,NA,Czech,beak,Thing,zobak,zobak,FALSE
+ústa,NA,Czech,mouth,Thing,usta,usta,FALSE
+hlen,NA,Czech,mucus (nasal),Thing,hlen,hlen,FALSE
+sliz,NA,Czech,mucus (nasal),Thing,slis,slis,FALSE
+nosní dírka,NA,Czech,nostril,Thing,nosɲiɟirka,nosɲiɟirka,FALSE
+chřípí,NA,Czech,nostril,Thing,xripi,xrip,FALSE
+nos,NA,Czech,nose,Thing,nos,nos,FALSE
+ušní maz,NA,Czech,earwax,Thing,uʃɲimas,uʃɲimas,FALSE
+ušní lalůček,NA,Czech,earlobe,Thing,uʃɲilalutʃek,uʃɲilalutʃek,FALSE
+ucho,NA,Czech,ear,Thing,uxo,uxo,FALSE
+oční řasa,NA,Czech,eyelash,Thing,otʃɲirasa,otʃɲirasa,FALSE
+víčko,NA,Czech,eyelid,Thing,vitʃko,vitʃko,FALSE
+obočí,NA,Czech,eyebrow,Thing,obotʃi,obotʃ,FALSE
+obrv,NA,Czech,eyebrow,Thing,obrv,obrv,FALSE
+oko,NA,Czech,eye,Thing,oko,oko,FALSE
+tváře,NA,Czech,cheek,Thing,tvare,tvare,FALSE
+líce,NA,Czech,cheek,Thing,litse,litse,FALSE
+brada,NA,Czech,chin,Thing,brada,brada,FALSE
+čelo,NA,Czech,forehead,Thing,tʃelo,tʃelo,FALSE
+čelist,NA,Czech,jaw,Thing,tʃelist,tʃelist,FALSE
+tvář,NA,Czech,face,Thing,tvar,tvar,FALSE
+mozek,NA,Czech,brain,Thing,mozek,mozek,FALSE
+spánek,NA,Czech,"side of head, temple",Thing,spanek,spanek,FALSE
+leb,NA,Czech,skull,Thing,lep,lep,FALSE
+lebka,NA,Czech,skull,Thing,lepka,lepka,FALSE
+hlava,NA,Czech,head,Thing,hlava,hlava,FALSE
+páteř,NA,Czech,spine,Thing,pater,pater,FALSE
+hřbet,NA,Czech,back,Thing,hrbet,hrbet,FALSE
+záda,NA,Czech,back,Thing,zada,zada,FALSE
+ocas,NA,Czech,tail,Thing,otsas,otsas,FALSE
+ohon,NA,Czech,tail,Thing,ohon,ohon,FALSE
+chvost,NA,Czech,tail,Thing,xvost,xvost,FALSE
+žebro,NA,Czech,rib,Thing,ʒebro,ʒebro,FALSE
+kost,NA,Czech,bone,Thing,kost,kost,FALSE
+žíla,NA,Czech,"vein, artery",Thing,ʒila,ʒila,FALSE
+tepna,NA,Czech,"vein, artery",Thing,tepna,tepna,FALSE
+krev,NA,Czech,blood,Thing,krev,krev,FALSE
+lupa,NA,Czech,dandruff,Thing,lupa,lupa,FALSE
+lupy,NA,Czech,dandruff,Thing,lupi,lup,FALSE
+pubické ochlupení,NA,Czech,pubic hair,Thing,pubitskeoxlupeɲi,pubitskeoxlupeɲ,FALSE
+chlup,NA,Czech,body hair,Thing,xlup,xlup,FALSE
+vous,NA,Czech,beard,Thing,voʊs,voʊs,FALSE
+vlas,NA,Czech,hair (head),Thing,vlas,vlas,FALSE
+pokožka,NA,Czech,"skin, hide",Thing,pokoʃka,pokoʃka,FALSE
+tělo,NA,Czech,body,Thing,celo,celo,FALSE
+želva,NA,Czech,turtle,Thing,ʒelva,ʒelva,FALSE
+krokodýl,NA,Czech,"crocodile, alligator",Thing,krokodil,krokodil,FALSE
+kajman,NA,Czech,"crocodile, alligator",Thing,kajman,kajman,FALSE
+aligátor,NA,Czech,"crocodile, alligator",Thing,aliɡator,aliɡator,FALSE
+ještěrka,NA,Czech,lizard,Thing,jeʃcerka,jeʃcerka,FALSE
+žába,NA,Czech,frog,Thing,ʒaba,ʒaba,FALSE
+hlemýžd’,NA,Czech,snail,Thing,hlemiʃt,hlemiʃt,FALSE
+šnek,NA,Czech,snail,Thing,ʃnek,ʃnek,FALSE
+kobylka,NA,Czech,grasshopper,Thing,kobilka,kobilka,FALSE
+motýl,NA,Czech,butterfly,Thing,motil,motil,FALSE
+svatojánská muška,NA,Czech,firefly,Thing,svatojanskamuʃka,svatojanskamuʃka,FALSE
+světluška,NA,Czech,firefly,Thing,svjetluʃka,svjetluʃka,FALSE
+had,NA,Czech,snake,Thing,hat,hat,FALSE
+červ,NA,Czech,worm,Thing,tʃerv,tʃerv,FALSE
+komár,NA,Czech,mosquito,Thing,komar,komar,FALSE
+moskyt,NA,Czech,mosquito,Thing,moskit,moskit,FALSE
+písečná moucha,NA,Czech,"sandfly (midge), gnat",Thing,pisetʃnamoʊxa,pisetʃnamoʊxa,FALSE
+moucha,NA,Czech,fly,Thing,moʊxa,moʊxa,FALSE
+vosa,NA,Czech,wasp,Thing,vosa,vosa,FALSE
+(včelí) vosk,NA,Czech,beeswax,Thing,vosk,vosk,FALSE
+včela,NA,Czech,bee,Thing,ftʃela,ftʃela,FALSE
+pavučina,NA,Czech,spider web,Thing,pavutʃina,pavutʃina,FALSE
+pavouk,NA,Czech,spider,Thing,pavoʊk,pavoʊk,FALSE
+mravenec,NA,Czech,ant,Thing,mravenets,mravenets,FALSE
+šváb,NA,Czech,cockroach,Thing,ʃvap,ʃvap,FALSE
+štír,NA,Czech,scorpion,Thing,ʃcir,ʃcir,FALSE
+škorpion,NA,Czech,scorpion,Thing,ʃkorpion,ʃkorpion,FALSE
+stonožka,NA,Czech,centipede,Thing,stonoʃka,stonoʃka,FALSE
+blecha,NA,Czech,flea,Thing,blexa,blexa,FALSE
+hnida,NA,Czech,nit (louse egg),Thing,hɲida,hɲida,FALSE
+veš,NA,Czech,louse,Thing,veʃ,veʃ,FALSE
+hmyz,NA,Czech,insect,Thing,hmis,hmis,FALSE
+velbloud,NA,Czech,camel,Thing,velbloʊt,velbloʊt,FALSE
+slon,NA,Czech,elephant,Thing,slon,slon,FALSE
+opice,NA,Czech,monkey,Thing,opitse,opitse,FALSE
+jelen,NA,Czech,deer,Thing,jelen,jelen,FALSE
+liška,NA,Czech,fox,Thing,liʃka,liʃka,FALSE
+medvěd,NA,Czech,bear,Thing,medvjet,medvjet,FALSE
+lev,NA,Czech,lion,Thing,lev,lev,FALSE
+vlk,NA,Czech,wolf,Thing,veelka,veelka,FALSE
+úhoř,NA,Czech,freshwater eel,Thing,uhor,uhor,FALSE
+rejnok,NA,Czech,stingray,Thing,reɪnok,reɪnok,FALSE
+velryba,NA,Czech,whale,Thing,velriba,velriba,FALSE
+delfín,NA,Czech,"porpoise, dolphin",Thing,delfin,delfin,FALSE
+žralok,NA,Czech,shark,Thing,ʒralok,ʒralok,FALSE
+mušle,NA,Czech,shell,Thing,muʃle,muʃle,FALSE
+ulita,NA,Czech,shell,Thing,ulita,ulita,FALSE
+lastura,NA,Czech,shell,Thing,lastura,lastura,FALSE
+žábra,NA,Czech,gill,Thing,ʒabra,ʒabra,FALSE
+žábry,NA,Czech,gill,Thing,ʒabri,ʒabr,FALSE
+šupina,NA,Czech,fishscale,Thing,ʃupina,ʃupina,FALSE
+ploutev,NA,Czech,fin (dorsal),Thing,ploʊtev,ploʊtev,FALSE
+ryba,NA,Czech,fish,Thing,riba,riba,FALSE
+kočka,NA,Czech,cat,Thing,kotʃka,kotʃka,FALSE
+kocour,NA,Czech,cat,Thing,kotsoʊr,kotsoʊr,FALSE
+kotě,NA,Czech,cat,Thing,koce,koce,FALSE
+králík,NA,Czech,rabbit,Thing,kralik,kralik,FALSE
+holub,NA,Czech,dove,Thing,holup,holup,FALSE
+sova,NA,Czech,owl,Thing,sova,sova,FALSE
+vrána,NA,Czech,crow,Thing,vrana,vrana,FALSE
+papoušek,NA,Czech,parrot,Thing,papoʊʃek,papoʊʃek,FALSE
+netopýr,NA,Czech,bat,Thing,netopir,netopir,FALSE
+sup,NA,Czech,vulture,Thing,sup,sup,FALSE
+jestřáb,NA,Czech,hawk,Thing,jestrap,jestrap,FALSE
+luňák,NA,Czech,hawk,Thing,luɲak,luɲak,FALSE
+sokol,NA,Czech,hawk,Thing,sokol,sokol,FALSE
+orel,NA,Czech,eagle,Thing,orel,orel,FALSE
+racek,NA,Czech,seagull,Thing,ratsek,ratsek,FALSE
+volavka,NA,Czech,heron,Thing,volafka,volafka,FALSE
+pták,NA,Czech,bird,Thing,ptak,ptak,FALSE
+hnízdo,NA,Czech,nest,Thing,hɲizdo,hɲizdo,FALSE
+kachna,NA,Czech,duck,Thing,kaxna,kaxna,FALSE
+husa,NA,Czech,goose,Thing,husa,husa,FALSE
+kuře,NA,Czech,chicken,Thing,kure,kure,FALSE
+slepice,NA,Czech,hen,Thing,slepitse,slepitse,FALSE
+kohout,NA,Czech,"cock, rooster",Thing,kohoʊt,kohoʊt,FALSE
+mezek,NA,Czech,mule,Thing,mezek,mezek,FALSE
+mul,NA,Czech,mule,Thing,mul,mul,FALSE
+kur,NA,Czech,fowl,Thing,kur,kur,FALSE
+osel,NA,Czech,"ass, donkey",Thing,osel,osel,FALSE
+hříbě,NA,Czech,"foal, colt",Thing,hribje,hribje,FALSE
+klisna,NA,Czech,mare,Thing,klisna,klisna,FALSE
+kobyla,NA,Czech,mare,Thing,kobila,kobila,FALSE
+hřebec,NA,Czech,stallion,Thing,hrebets,hrebets,FALSE
+kůň,NA,Czech,horse (equine),Thing,kuɲ,kuɲ,FALSE
+kůzle,NA,Czech,kid,Thing,kuzle,kuzle,FALSE
+kozel,NA,Czech,he-goat,Thing,kozel,kozel,FALSE
+koza,NA,Czech,goat,Thing,koza,koza,FALSE
+prase,NA,Czech,pig,Thing,prase,prase,FALSE
+sele,NA,Czech,pig,Thing,sele,sele,FALSE
+svině,NA,Czech,sow (2),Thing,sviɲe,sviɲe,FALSE
+kanec,NA,Czech,boar,Thing,kanets,kanets,FALSE
+jehně,NA,Czech,lamb,Thing,jehɲe,jehɲe,FALSE
+beránek,NA,Czech,lamb,Thing,beranek,beranek,FALSE
+ovce,NA,Czech,ewe,Thing,oftse,oftse,FALSE
+bahnice,NA,Czech,ewe,Thing,bahɲitse,bahɲitse,FALSE
+beran,NA,Czech,ram,Thing,beran,beran,FALSE
+tele,NA,Czech,calf,Thing,tele,tele,FALSE
+kráva,NA,Czech,cow,Thing,krava,krava,FALSE
+vůl,NA,Czech,ox,Thing,vul,vul,FALSE
+býk,NA,Czech,bull,Thing,bik,bik,FALSE
+skot,NA,Czech,cattle (bovine),Thing,skot,skot,FALSE
+stáj,NA,Czech,"stable, stall",Thing,staj,staj,FALSE
+chlév,NA,Czech,"stable, stall",Thing,xlev,xlev,FALSE
+pastýř,NA,Czech,herdsman,Thing,pastir,pastir,FALSE
+pastucha,NA,Czech,herdsman,Thing,pastuxa,pastuxa,FALSE
+pásti,NA,Czech,pasture,Thing,pasci,pasc,FALSE
+pásti se,NA,Czech,pasture,Thing,pascise,pascise,FALSE
+dobytek,NA,Czech,livestock,Thing,dobitek,dobitek,FALSE
+zvíře,NA,Czech,animal,Thing,zvire,zvire,FALSE
+živočich,NA,Czech,animal,Thing,ʒivotʃix,ʒivotʃix,FALSE
+rodina,NA,Czech,family,Thing,roɟina,roɟina,FALSE
+příbuzní,NA,Czech,"relatives, kinsmen",Thing,pribuzɲi,pribuzɲ,FALSE
+vdovec,NA,Czech,widower,Thing,vdovets,vdovets,FALSE
+vdova,NA,Czech,widow,Thing,vdova,vdova,FALSE
+sirotek,NA,Czech,orphan,Thing,sirotek,sirotek,FALSE
+sirota,NA,Czech,orphan,Thing,sirota,sirota,FALSE
+nevlastní dcera,NA,Czech,stepdaughter,Thing,nevlastɲittsera,nevlastɲittsera,FALSE
+pastorkyně,NA,Czech,stepdaughter,Thing,pastorkiɲe,pastorkiɲe,FALSE
+nevlastní syn,NA,Czech,stepson,Thing,nevlastɲisin,nevlastɲisin,FALSE
+pastorek,NA,Czech,stepson,Thing,pastorek,pastorek,FALSE
+nevlastní matka,NA,Czech,stepmother,Thing,nevlastɲimatka,nevlastɲimatka,FALSE
+macecha,NA,Czech,stepmother,Thing,matsexa,matsexa,FALSE
+nevlastní otec,NA,Czech,stepfather,Thing,nevlastɲiotets,nevlastɲiotets,FALSE
+otčím,NA,Czech,stepfather,Thing,ottʃim,ottʃim,FALSE
+potomci,NA,Czech,descendants,Thing,potomtsi,potomts,FALSE
+předkové,NA,Czech,ancestors,Thing,pretkove,pretkove,FALSE
+bratranec,NA,Czech,cousin,Thing,bratranets,bratranets,FALSE
+sestřenice,NA,Czech,cousin,Thing,sestreɲitse,sestreɲitse,FALSE
+neteř,NA,Czech,niece,Thing,neter,neter,FALSE
+bratrovna,NA,Czech,niece,Thing,bratrovna,bratrovna,FALSE
+synovec,NA,Czech,nephew,Thing,sinovets,sinovets,FALSE
+bratrovec,NA,Czech,nephew,Thing,bratrovets,bratrovets,FALSE
+sestřenec,NA,Czech,nephew,Thing,sestrenets,sestrenets,FALSE
+teta,NA,Czech,father's sister,Thing,teta,teta,FALSE
+strýc,NA,Czech,father's brother,Thing,strits,strits,FALSE
+ujec,NA,Czech,mother's brother,Thing,ujets,ujets,FALSE
+vnuk,NA,Czech,grandson,Thing,vnuk,vnuk,FALSE
+vnučka,NA,Czech,granddaughter,Thing,vnutʃka,vnutʃka,FALSE
+stará žena,NA,Czech,old woman,Thing,staraʒena,staraʒena,FALSE
+stařena,NA,Czech,old woman,Thing,starena,starena,FALSE
+babička,NA,Czech,grandmother,Thing,babitʃka,babitʃka,FALSE
+stařec,NA,Czech,old man,Thing,starets,starets,FALSE
+kmet,NA,Czech,old man,Thing,kmet,kmet,FALSE
+děd,NA,Czech,grandfather,Thing,ɟet,ɟet,FALSE
+děda,NA,Czech,grandfather,Thing,ɟeda,ɟeda,FALSE
+dědeček,NA,Czech,grandfather,Thing,ɟedetʃek,ɟedetʃek,FALSE
+dvojčata,NA,Czech,twins,Thing,dvojtʃata,dvojtʃata,FALSE
+dvojče,NA,Czech,twins,Thing,dvojtʃe,dvojtʃe,FALSE
+sourozenec,NA,Czech,sibling,Thing,soʊrozenets,soʊrozenets,FALSE
+mladší sestra,NA,Czech,younger sister,Thing,mlatʃisestra,mlatʃisestra,FALSE
+starší sestra,NA,Czech,older sister,Thing,starʃisestra,starʃisestra,FALSE
+sestra,NA,Czech,sister,Thing,sestra,sestra,FALSE
+mladší bratr,NA,Czech,younger brother,Thing,mlatʃibratr,mlatʃibratr,FALSE
+starší bratr,NA,Czech,older brother,Thing,starʃibratr,starʃibratr,FALSE
+bratr,NA,Czech,brother,Thing,bratr,bratr,FALSE
+potomek,NA,Czech,offspring (son or daughter),Thing,potomek,potomek,FALSE
+dcera,NA,Czech,daughter,Thing,ttsera,ttsera,FALSE
+syn,NA,Czech,son,Thing,sin,sin,FALSE
+vdaná žena,NA,Czech,married woman,Thing,vdanaʒena,vdanaʒena,FALSE
+ženatý muž,NA,Czech,married man,Thing,ʒenatimuʃ,ʒenatimuʃ,FALSE
+rodiče,NA,Czech,parents,Thing,roɟitʃe,roɟitʃe,FALSE
+matka,NA,Czech,mother,Thing,matka,matka,FALSE
+máti,NA,Czech,mother,Thing,maci,mac,FALSE
+otec,NA,Czech,father,Thing,otets,otets,FALSE
+rozvod,NA,Czech,divorce,Thing,rozvot,rozvot,FALSE
+manželství,NA,Czech,"marriage, wedding",Thing,manʒelstvi,manʒelstv,FALSE
+ženitba,NA,Czech,"marriage, wedding",Thing,ʒeɲidba,ʒeɲidba,FALSE
+vdavky,NA,Czech,"marriage, wedding",Thing,vdafki,vdafk,FALSE
+žena,NA,Czech,wife,Thing,ʒena,ʒena,FALSE
+manželka,NA,Czech,wife,Thing,manʒelka,manʒelka,FALSE
+chot’,NA,Czech,wife,Thing,xot,xot,FALSE
+muž,NA,Czech,husband,Thing,muʃ,muʃ,FALSE
+manžel,NA,Czech,husband,Thing,manʒel,manʒel,FALSE
+dět’átko,NA,Czech,"infant, baby",Thing,ɟetatko,ɟetatko,FALSE
+nemluvně,NA,Czech,"infant, baby",Thing,nemluvɲe,nemluvɲe,FALSE
+dítě,NA,Czech,child,Thing,ɟice,ɟice,FALSE
+mladá žena,NA,Czech,young woman (adolescent),Thing,mladaʒena,mladaʒena,FALSE
+dívka,NA,Czech,girl,Thing,ɟifka,ɟifka,FALSE
+děvče,NA,Czech,girl,Thing,ɟeftʃe,ɟeftʃe,FALSE
+mladík,NA,Czech,young man (adolescent),Thing,mlaɟik,mlaɟik,FALSE
+mladý muž,NA,Czech,young man (adolescent),Thing,mladimuʃ,mladimuʃ,FALSE
+chlapec,NA,Czech,boy,Thing,xlapets,xlapets,FALSE
+hoch,NA,Czech,boy,Thing,hox,hox,FALSE
+člověk,NA,Czech,"person, human being",Thing,tʃlovjek,tʃlovjek,FALSE
+osoba,NA,Czech,"person, human being",Thing,osoba,osoba,FALSE
+dřevěné uhlí,NA,Czech,charcoal,Thing,drevjeneuhli,drevjeneuhl,FALSE
+palivo,NA,Czech,firewood,Thing,palivo,palivo,FALSE
+sirka,NA,Czech,match (noun),Thing,sirka,sirka,FALSE
+zápalka,NA,Czech,match (noun),Thing,zapalka,zapalka,FALSE
+žhavé uhlí,NA,Czech,embers,Thing,ʃhaveuhli,ʃhaveuhl,FALSE
+popel,NA,Czech,ashes,Thing,popel,popel,FALSE
+dým,NA,Czech,smoke (noun),Thing,dim,dim,FALSE
+plamen,NA,Czech,flame (noun),Thing,plamen,plamen,FALSE
+oheň,NA,Czech,fire,Thing,oheɲ,oheɲ,FALSE
+počasí,NA,Czech,weather,Thing,potʃasi,potʃas,FALSE
+led,NA,Czech,ice,Thing,let,let,FALSE
+sníh,NA,Czech,snow (noun),Thing,sɲix,sɲix,FALSE
+déšt’,NA,Czech,rain (noun),Thing,deʃt,deʃt,FALSE
+mlha,NA,Czech,fog,Thing,mlha,mlha,FALSE
+vítr,NA,Czech,wind,Thing,vitr,vitr,FALSE
+oblak,NA,Czech,cloud,Thing,oblak,oblak,FALSE
+mrak,NA,Czech,cloud,Thing,mrak,mrak,FALSE
+vzduch,NA,Czech,air,Thing,vzdux,vzdux,FALSE
+rosa,NA,Czech,dew,Thing,rosa,rosa,FALSE
+stín,NA,Czech,"shade, shadow",Thing,scin,scin,FALSE
+temnota,NA,Czech,darkness,Thing,temnota,temnota,FALSE
+tma,NA,Czech,darkness,Thing,tma,tma,FALSE
+světlo,NA,Czech,light (noun),Thing,svjetlo,svjetlo,FALSE
+duha,NA,Czech,rainbow,Thing,duha,duha,FALSE
+bouře,NA,Czech,storm,Thing,boʊre,boʊre,FALSE
+bouřka,NA,Czech,storm,Thing,boʊrka,boʊrka,FALSE
+hrom,NA,Czech,thunder,Thing,hrom,hrom,FALSE
+blesk,NA,Czech,lightning,Thing,blesk,blesk,FALSE
+hvězda,NA,Czech,star,Thing,hvjezda,hvjezda,FALSE
+měsíc,NA,Czech,moon,Thing,mɲesits,mɲesits,FALSE
+slunce,NA,Czech,sun,Thing,sluntse,sluntse,FALSE
+nebe,NA,Czech,sky,Thing,nebe,nebe,FALSE
+obloha,NA,Czech,sky,Thing,obloha,obloha,FALSE
+zemětřesení,NA,Czech,earthquake,Thing,zemɲetreseɲi,zemɲetreseɲ,FALSE
+dřevo,NA,Czech,wood,Thing,drevo,drevo,FALSE
+les,NA,Czech,"woods, forest",Thing,les,les,FALSE
+vodopád,NA,Czech,waterfall,Thing,vodopat,vodopat,FALSE
+bažina,NA,Czech,swamp,Thing,baʒina,baʒina,FALSE
+močál,NA,Czech,swamp,Thing,motʃal,motʃal,FALSE
+vír,NA,Czech,whirlpool,Thing,vir,vir,FALSE
+řeka,NA,Czech,"river, stream, brook",Thing,reka,reka,FALSE
+tok,NA,Czech,"river, stream, brook",Thing,tok,tok,FALSE
+potok,NA,Czech,"river, stream, brook",Thing,potok,potok,FALSE
+příliv,NA,Czech,hightide,Thing,priliv,priliv,FALSE
+odliv,NA,Czech,lowtide,Thing,odliv,odliv,FALSE
+mys,NA,Czech,"headland, point",Thing,mis,mis,FALSE
+úskalí,NA,Czech,reef,Thing,uskali,uskal,FALSE
+útes,NA,Czech,reef,Thing,utes,utes,FALSE
+laguna,NA,Czech,lagoon,Thing,laɡuna,laɡuna,FALSE
+záliv,NA,Czech,"gulf, bay",Thing,zaliv,zaliv,FALSE
+zátoka,NA,Czech,"gulf, bay",Thing,zatoka,zatoka,FALSE
+jezero,NA,Czech,lake,Thing,jezero,jezero,FALSE
+oceán,NA,Czech,ocean,Thing,otsean,otsean,FALSE
+pěna,NA,Czech,foam,Thing,pjena,pjena,FALSE
+moře,NA,Czech,sea,Thing,more,more,FALSE
+voda,NA,Czech,water,Thing,voda,voda,FALSE
+jeskyně,NA,Czech,cave,Thing,jeskiɲe,jeskiɲe,FALSE
+břeh,NA,Czech,shore,Thing,brex,brex,FALSE
+pobřeží,NA,Czech,shore,Thing,pobreʒi,pobreʒ,FALSE
+pevnina,NA,Czech,mainland,Thing,pevɲina,pevɲina,FALSE
+ostrov,NA,Czech,island,Thing,ostrov,ostrov,FALSE
+údolí,NA,Czech,valley,Thing,udoli,udol,FALSE
+dolina,NA,Czech,valley,Thing,dolina,dolina,FALSE
+rovina,NA,Czech,"plain, field",Thing,rovina,rovina,FALSE
+pláň,NA,Czech,"plain, field",Thing,plaɲ,plaɲ,FALSE
+sráz,NA,Czech,"cliff, precipice",Thing,sras,sras,FALSE
+bláto,NA,Czech,mud,Thing,blato,blato,FALSE
+písek,NA,Czech,sand,Thing,pisek,pisek,FALSE
+prach,NA,Czech,dust,Thing,prax,prax,FALSE
+půda,NA,Czech,"earth=ground, soil",Thing,puda,puda,FALSE
+země,NA,Czech,"earth, land",Thing,zemɲe,zemɲe,FALSE
+svět,NA,Czech,world,Thing,svjet,svjet,FALSE
+den,NA,Czech,day,Thing,den,den,FALSE
+noc,NA,Czech,night,Thing,nots,nots,FALSE
+svítání,NA,Czech,dawn,Thing,svitaɲi,svitaɲ,FALSE
+úsvit,NA,Czech,dawn,Thing,usvit,usvit,FALSE
+jitro,NA,Czech,morning,Thing,jitro,jitro,FALSE
+ráno,NA,Czech,morning,Thing,rano,rano,FALSE
+poledne,NA,Czech,"noon, midday",Thing,poledne,poledne,FALSE
+odpoledne,NA,Czech,afternoon,Thing,otpoledne,otpoledne,FALSE
+večer,NA,Czech,evening,Thing,vetʃer,vetʃer,FALSE
+hodina,NA,Czech,hour,Thing,hoɟina,hoɟina,FALSE
+hodiny,NA,Czech,"clock, timepiece",Thing,hoɟini,hoɟin,FALSE
+týden,NA,Czech,week,Thing,tiden,tiden,FALSE
+neděle,NA,Czech,week,Thing,neɟele,neɟele,FALSE
+pondělí,NA,Czech,Monday,Thing,ponɟeli,ponɟel,FALSE
+úterý,NA,Czech,Tuesday,Thing,uteri,uter,FALSE
+středa,NA,Czech,Wednesday,Thing,streda,streda,FALSE
+čtvrtek,NA,Czech,Thursday,Thing,tʃtvrtek,tʃtvrtek,FALSE
+pátek,NA,Czech,Friday,Thing,patek,patek,FALSE
+sobota,NA,Czech,Saturday,Thing,sobota,sobota,FALSE
+rok,NA,Czech,year,Thing,rok,rok,FALSE
+zima,NA,Czech,winter,Thing,zima,zima,FALSE
+jaro,NA,Czech,spring,Thing,jaro,jaro,FALSE
+vesna,NA,Czech,spring,Thing,vesna,vesna,FALSE
+léto,NA,Czech,summer,Thing,leto,leto,FALSE
+podzim,NA,Czech,autumn,Thing,podʑim,podʑim,FALSE
+jeseň,NA,Czech,autumn,Thing,jeseɲ,jeseɲ,FALSE
+období,NA,Czech,season,Thing,obdobi,obdob,FALSE
+zvuk,NA,Czech,"sound, noise",Thing,zvuk,zvuk,FALSE
+duše,NA,Czech,"soul, spirit",Thing,duʃe,duʃe,FALSE
+duch,NA,Czech,"soul, spirit",Thing,dux,dux,FALSE
+štěstí,NA,Czech,"good fortune, luck",Thing,ʃcesci,ʃcesc,FALSE
+neštěstí,NA,Czech,"misfortune, bad luck",Thing,neʃcesci,neʃcesc,FALSE
+nehoda,NA,Czech,"misfortune, bad luck",Thing,nehoda,nehoda,FALSE
+bolest,NA,Czech,pain,Thing,bolest,bolest,FALSE
+utrpení,NA,Czech,pain,Thing,utrpeɲi,utrpeɲ,FALSE
+zármutek,NA,Czech,"grief, sorrow, sadness",Thing,zarmutek,zarmutek,FALSE
+smutek,NA,Czech,"grief, sorrow, sadness",Thing,smutek,smutek,FALSE
+žalost,NA,Czech,"grief, sorrow, sadness",Thing,ʒalost,ʒalost,FALSE
+úzkost,NA,Czech,"anxiety, worry",Thing,uskost,uskost,FALSE
+útrpnost,NA,Czech,pity,Thing,utrpnost,utrpnost,FALSE
+lítost,NA,Czech,pity,Thing,litost,litost,FALSE
+soucit,NA,Czech,pity,Thing,soʊtsit,soʊtsit,FALSE
+škoda,NA,Czech,pity,Thing,ʃkoda,ʃkoda,FALSE
+slza,NA,Czech,tear (noun),Thing,slza,slza,FALSE
+hněv,NA,Czech,anger,Thing,hɲev,hɲev,FALSE
+zlost,NA,Czech,anger,Thing,zlost,zlost,FALSE
+závist,NA,Czech,"envy, jealousy",Thing,zavist,zavist,FALSE
+žárlivost,NA,Czech,"envy, jealousy",Thing,ʒarlivost,ʒarlivost,FALSE
+stud,NA,Czech,shame (noun),Thing,stut,stut,FALSE
+hanba,NA,Czech,shame (noun),Thing,hanba,hanba,FALSE
+strach,NA,Czech,"fear, fright",Thing,strax,strax,FALSE
+bázeň,NA,Czech,"fear, fright",Thing,bazeɲ,bazeɲ,FALSE
+nebezpečí,NA,Czech,danger,Thing,nebespetʃi,nebespetʃ,FALSE
+klam,NA,Czech,deceit,Thing,klam,klam,FALSE
+šalba,NA,Czech,deceit,Thing,ʃalba,ʃalba,FALSE
+podvod,NA,Czech,deceit,Thing,podvot,podvot,FALSE
+vina,NA,Czech,fault,Thing,vina,vina,FALSE
+chyba,NA,Czech,"mistake, error",Thing,xiba,xiba,FALSE
+omyl,NA,Czech,"mistake, error",Thing,omil,omil,FALSE
+blud,NA,Czech,"mistake, error",Thing,blut,blut,FALSE
+hana,NA,Czech,blame,Thing,hana,hana,FALSE
+chvála,NA,Czech,praise,Thing,xvala,xvala,FALSE
+mysl,NA,Czech,mind,Thing,misl,misl,FALSE
+myšlenka,NA,Czech,"idea, notion",Thing,miʃleŋka,miʃleŋka,FALSE
+žák,NA,Czech,pupil,Thing,ʒak,ʒak,FALSE
+učitel,NA,Czech,teacher,Thing,utʃitel,utʃitel,FALSE
+škola,NA,Czech,school,Thing,ʃkola,ʃkola,FALSE
+úmysl,NA,Czech,"intention, purpose",Thing,umisl,umisl,FALSE
+záměr,NA,Czech,"intention, purpose",Thing,zamɲer,zamɲer,FALSE
+účel,NA,Czech,"intention, purpose",Thing,utʃel,utʃel,FALSE
+příčina,NA,Czech,cause,Thing,pritʃina,pritʃina,FALSE
+pochybnost,NA,Czech,doubt,Thing,poxibnost,poxibnost,FALSE
+potřeba,NA,Czech,"need, necessity",Thing,potreba,potreba,FALSE
+nutnost,NA,Czech,"need, necessity",Thing,nutnost,nutnost,FALSE
+způsob,NA,Czech,"way, manner",Thing,spusop,spusop,FALSE
+hlas,NA,Czech,voice,Thing,hlas,hlas,FALSE
+řeč,NA,Czech,speech (make a),Thing,retʃ,retʃ,FALSE
+slovo,NA,Czech,word,Thing,slovo,slovo,FALSE
+jméno,NA,Czech,name,Thing,jmeno,jmeno,FALSE
+papír,NA,Czech,paper,Thing,papir,papir,FALSE
+kniha,NA,Czech,book,Thing,kɲiha,kɲiha,FALSE
+básník,NA,Czech,poet,Thing,basɲik,basɲik,FALSE
+píšt’ala,NA,Czech,flute,Thing,piʃtala,piʃtala,FALSE
+flétna,NA,Czech,flute,Thing,fletna,fletna,FALSE
+buben,NA,Czech,drum,Thing,buben,buben,FALSE
+řehtačka,NA,Czech,rattle,Thing,rehtatʃka,rehtatʃka,FALSE
+chrastítko,NA,Czech,rattle,Thing,xrascitko,xrascitko,FALSE
+vlast,NA,Czech,one's native country,Thing,vlast,vlast,FALSE
+otčina,NA,Czech,one's native country,Thing,ottʃina,ottʃina,FALSE
+město,NA,Czech,"city, town",Thing,mɲesto,mɲesto,FALSE
+ves,NA,Czech,village,Thing,ves,ves,FALSE
+hranice,NA,Czech,boundary,Thing,hraɲitse,hraɲitse,FALSE
+lid,NA,Czech,people (populace),Thing,lit,lit,FALSE
+národ,NA,Czech,people (populace),Thing,narot,narot,FALSE
+kmen,NA,Czech,"tribe, clan",Thing,kmen,kmen,FALSE
+rod,NA,Czech,"tribe, clan",Thing,rot,rot,FALSE
+náčelník,NA,Czech,"chief, chieftain",Thing,natʃelɲik,natʃelɲik,FALSE
+berla,NA,Czech,"staff, walking stick",Thing,berla,berla,FALSE
+hůl(ka),NA,Czech,"staff, walking stick",Thing,hul,hul,FALSE
+král,NA,Czech,"king, ruler",Thing,kral,kral,FALSE
+královna,NA,Czech,queen,Thing,kralovna,kralovna,FALSE
+šlechtic,NA,Czech,"noble, nobleman",Thing,ʃlexcits,ʃlexcits,FALSE
+občan,NA,Czech,"citizen, subject",Thing,optʃan,optʃan,FALSE
+pán,NA,Czech,master,Thing,pan,pan,FALSE
+otrok,NA,Czech,slave,Thing,otrok,otrok,FALSE
+sluha,NA,Czech,servant,Thing,sluha,sluha,FALSE
+svobodný,NA,Czech,freeman,Thing,svobodni,svobodn,FALSE
+přítel,NA,Czech,"friend, companion",Thing,pritel,pritel,FALSE
+nepřítel,NA,Czech,enemy,Thing,nepritel,nepritel,FALSE
+soused,NA,Czech,neighbor,Thing,soʊset,soʊset,FALSE
+cizinec,NA,Czech,stranger,Thing,tsizinets,tsizinets,FALSE
+host,NA,Czech,guest,Thing,host,host,FALSE
+hostitel,NA,Czech,host,Thing,hoscitel,hoscitel,FALSE
+obyčej,NA,Czech,custom,Thing,obitʃeɪ,obitʃeɪ,FALSE
+zvyk,NA,Czech,custom,Thing,zvik,zvik,FALSE
+mrav,NA,Czech,custom,Thing,mrav,mrav,FALSE
+hádka,NA,Czech,"strife, quarrel",Thing,hatka,hatka,FALSE
+spor,NA,Czech,"strife, quarrel",Thing,spor,spor,FALSE
+svár,NA,Czech,"strife, quarrel",Thing,svar,svar,FALSE
+prostitutka,NA,Czech,prostitute,Thing,proscitutka,proscitutka,FALSE
+nevěstka,NA,Czech,prostitute,Thing,nevjestka,nevjestka,FALSE
+kurva,NA,Czech,prostitute,Thing,kurva,kurva,FALSE
+válka,NA,Czech,"war, battle",Thing,valka,valka,FALSE
+mír,NA,Czech,peace,Thing,mir,mir,FALSE
+vojsko,NA,Czech,army,Thing,vojsko,vojsko,FALSE
+armáda,NA,Czech,army,Thing,armada,armada,FALSE
+voják,NA,Czech,soldier,Thing,vojak,vojak,FALSE
+vojín,NA,Czech,soldier,Thing,vojin,vojin,FALSE
+zbraně,NA,Czech,"weapons, arms",Thing,zbraɲe,zbraɲe,FALSE
+palice,NA,Czech,club,Thing,palitse,palitse,FALSE
+obušek,NA,Czech,club,Thing,obuʃek,obuʃek,FALSE
+bojová sekyra,NA,Czech,battle-ax,Thing,bojovasekira,bojovasekira,FALSE
+prak,NA,Czech,sling,Thing,prak,prak,FALSE
+luk,NA,Czech,bow,Thing,luk,luk,FALSE
+šíp,NA,Czech,arrow,Thing,ʃip,ʃip,FALSE
+střela,NA,Czech,arrow,Thing,strela,strela,FALSE
+oštěp,NA,Czech,spear,Thing,oʃcep,oʃcep,FALSE
+kopí,NA,Czech,spear,Thing,kopi,kop,FALSE
+meč,NA,Czech,sword,Thing,metʃ,metʃ,FALSE
+puška,NA,Czech,"gun, cannon",Thing,puʃka,puʃka,FALSE
+dělo,NA,Czech,"gun, cannon",Thing,ɟelo,ɟelo,FALSE
+brnění,NA,Czech,armor (defensive),Thing,brɲeɲi,brɲeɲ,FALSE
+přílba,NA,Czech,helmet,Thing,prilba,prilba,FALSE
+štít,NA,Czech,shield,Thing,ʃcit,ʃcit,FALSE
+pevnost,NA,Czech,fortress,Thing,pevnost,pevnost,FALSE
+tvrz,NA,Czech,fortress,Thing,tvrs,tvrs,FALSE
+věž,NA,Czech,tower,Thing,vjeʃ,vjeʃ,FALSE
+vítězství,NA,Czech,victory,Thing,vicesstvi,vicesstv,FALSE
+porážka,NA,Czech,defeat,Thing,poraʃka,poraʃka,FALSE
+útok,NA,Czech,attack,Thing,utok,utok,FALSE
+zajatec,NA,Czech,"captive, prisoner",Thing,zajatets,zajatets,FALSE
+stráž,NA,Czech,"guard, sentinel",Thing,straʃ,straʃ,FALSE
+hlídka,NA,Czech,"guard, sentinel",Thing,hlitka,hlitka,FALSE
+kořist,NA,Czech,"booty, spoils",Thing,korist,korist,FALSE
+plen,NA,Czech,"booty, spoils",Thing,plen,plen,FALSE
+záloha,NA,Czech,ambush,Thing,zaloha,zaloha,FALSE
+rybář,NA,Czech,fisherman,Thing,ribar,ribar,FALSE
+udice,NA,Czech,fishhook,Thing,uɟitse,uɟitse,FALSE
+rybářská sít’,NA,Czech,fishnet,Thing,ribarskasit,ribarskasit,FALSE
+past naryby,NA,Czech,fish trap,Thing,pastnaribi,pastnarib,FALSE
+past,NA,Czech,trap (noun),Thing,past,past,FALSE
+právo,NA,Czech,law,Thing,pravo,pravo,FALSE
+soud,NA,Czech,court,Thing,soʊt,soʊt,FALSE
+rozsudek,NA,Czech,judgment,Thing,rossudek,rossudek,FALSE
+soudce,NA,Czech,judge (noun),Thing,soʊttse,soʊttse,FALSE
+obžalovaný,NA,Czech,defendant,Thing,obʒalovani,obʒalovan,FALSE
+svědek,NA,Czech,witness,Thing,svjedek,svjedek,FALSE
+přísaha,NA,Czech,oath,Thing,prisaha,prisaha,FALSE
+trest,NA,Czech,"penalty, punishment",Thing,trest,trest,FALSE
+pokuta,NA,Czech,"penalty, punishment",Thing,pokuta,pokuta,FALSE
+vězení,NA,Czech,"prison, jail",Thing,vjezeɲi,vjezeɲ,FALSE
+žalář,NA,Czech,"prison, jail",Thing,ʒalar,ʒalar,FALSE
+vražda,NA,Czech,murder,Thing,vraʒda,vraʒda,FALSE
+cizoložtví,NA,Czech,adultery,Thing,tsizoloʃtvi,tsizoloʃtv,FALSE
+násilné smilstvo,NA,Czech,rape,Thing,nasilnesmilstvo,nasilnesmilstvo,FALSE
+znásilnění,NA,Czech,rape,Thing,znasilɲeɲi,znasilɲeɲ,FALSE
+žhářství,NA,Czech,arson,Thing,ʃharstvi,ʃharstv,FALSE
+křivá přísaha,NA,Czech,perjury,Thing,krivaprisaha,krivaprisaha,FALSE
+křivopřisežnictví,NA,Czech,perjury,Thing,krivopriseʒɲitstvi,krivopriseʒɲitstv,FALSE
+zloděj,NA,Czech,thief,Thing,zloɟej,zloɟej,FALSE
+náboženství,NA,Czech,religion,Thing,naboʒenstvi,naboʒenstv,FALSE
+víra,NA,Czech,religion,Thing,vira,vira,FALSE
+bůh,NA,Czech,God,Thing,bux,bux,FALSE
+chrám,NA,Czech,"temple, church",Thing,xram,xram,FALSE
+oltář,NA,Czech,altar,Thing,oltar,oltar,FALSE
+kněz,NA,Czech,priest,Thing,kɲes,kɲes,FALSE
+pop,NA,Czech,priest,Thing,pop,pop,FALSE
+peklo,NA,Czech,hell,Thing,peklo,peklo,FALSE
+zlý duch,NA,Czech,demon (evil spirit),Thing,zlidux,zlidux,FALSE
+démon,NA,Czech,demon (evil spirit),Thing,demon,demon,FALSE
+modla,NA,Czech,idol,Thing,modla,modla,FALSE
+bůžek,NA,Czech,idol,Thing,buʒek,buʒek,FALSE
+kouzlo,NA,Czech,"magic, witchcraft, sorcery",Thing,koʊzlo,koʊzlo,FALSE
+čarodějnictví,NA,Czech,"magic, witchcraft, sorcery",Thing,tʃaroɟejɲitstvi,tʃaroɟejɲitstv,FALSE
+strašidlo,NA,Czech,"ghost, phantom",Thing,straʃidlo,straʃidlo,FALSE
+příšera,NA,Czech,"ghost, phantom",Thing,priʃera,priʃera,FALSE
+znamení,NA,Czech,"omen, portent",Thing,znameɲi,znameɲ,FALSE
+přestati,NA,Czech,"cease, stop",Action,prestaci,prest,FALSE
+dokončiti,NA,Czech,finish,Action,dokontʃici,dokontʃ,FALSE
+skončiti,NA,Czech,finish,Action,skontʃici,skontʃ,FALSE
+ukončiti,NA,Czech,finish,Action,ukontʃici,ukontʃ,FALSE
+trvati,NA,Czech,"last, endure",Action,trvaci,trv,FALSE
+začíti,NA,Czech,"begin, beginning",Action,zatʃici,zatʃ,FALSE
+počíti,NA,Czech,"begin, beginning",Action,potʃici,potʃ,FALSE
+prodlévati,NA,Czech,"retard, delay",Action,prodlevaci,prodlev,FALSE
+meškati,NA,Czech,"retard, delay",Action,meʃkaci,meʃk,FALSE
+odkládati,NA,Czech,"retard, delay",Action,otkladaci,otklad,FALSE
+chvátati,NA,Czech,"hasten, hurry",Action,xvataci,xvat,FALSE
+spěchati,NA,Czech,"hasten, hurry",Action,spjexaci,spjex,FALSE
+kvapiti,NA,Czech,"hasten, hurry",Action,kvapici,kvap,FALSE
+počítati,NA,Czech,count,Action,potʃitaci,potʃit,FALSE
+měniti,NA,Czech,change,Action,mɲeɲici,mɲeɲ,FALSE
+měřiti,NA,Czech,measure,Action,mɲerici,mɲer,FALSE
+růsti,NA,Czech,grow,Action,rusci,rus,FALSE
+skrýti,NA,Czech,"hide, conceal",Action,skrici,skr,FALSE
+schovati,NA,Czech,"hide, conceal",Action,sxovaci,sxov,FALSE
+zavříti,NA,Czech,"shut, close",Action,zavrici,zavr,FALSE
+pokrýti,NA,Czech,cover,Action,pokrici,pokr,FALSE
+otevříti,NA,Czech,open,Action,otevrici,otevr,FALSE
+rozděliti,NA,Czech,divide,Action,rozɟelici,rozɟel,FALSE
+odděliti,NA,Czech,separate,Action,odɟelici,odɟel,FALSE
+odloučiti,NA,Czech,separate,Action,odloʊtʃici,odloʊtʃ,FALSE
+spojiti,NA,Czech,"join, unite",Action,spojici,spoj,FALSE
+sloučiti,NA,Czech,"join, unite",Action,sloʊtʃici,sloʊtʃ,FALSE
+nahromaditi,NA,Czech,pile up,Action,nahromaɟici,nahromaɟ,FALSE
+zdvihati,NA,Czech,pick up,Action,zdvihaci,zdvih,FALSE
+sbírati,NA,Czech,"collect, gather",Action,zbiraci,zbir,FALSE
+shromážditi,NA,Czech,"collect, gather",Action,shromaʒɟici,shromaʒɟ,FALSE
+zůstati,NA,Czech,"remain, stay",Action,zustaci,zust,FALSE
+čekati,NA,Czech,"remain, stay",Action,tʃekaci,tʃek,FALSE
+ležeti,NA,Czech,lie down,Action,leʒeci,leʒ,FALSE
+seděti,NA,Czech,sit,Action,seɟeci,seɟ,FALSE
+postaviti,NA,Czech,put,Action,postavici,postav,FALSE
+položiti,NA,Czech,put,Action,poloʒici,poloʒ,FALSE
+klásti,NA,Czech,put,Action,klasci,klas,FALSE
+vážiti,NA,Czech,weigh,Action,vaʒici,vaʒ,FALSE
+děliti se,NA,Czech,share (distribute),Action,ɟelicise,ɟel,FALSE
+sdíleti,NA,Czech,share (distribute),Action,zɟileci,zɟil,FALSE
+prodati,NA,Czech,sell,Action,prodaci,prod,FALSE
+koupiti,NA,Czech,buy,Action,koʊpici,koʊp,FALSE
+vydělati,NA,Czech,earn,Action,viɟelaci,viɟel,FALSE
+najmouti,NA,Czech,hire,Action,najmoʊci,najmoʊ,FALSE
+zaplatiti,NA,Czech,pay (vb),Action,zaplacici,zaplac,FALSE
+býti dlužen,NA,Czech,owe,Action,bicidluʒen,bicidluʒen,FALSE
+vypůjčiti si,NA,Czech,borrow,Action,vipujtʃicisi,vipujtʃicisi,FALSE
+zadlužiti se,NA,Czech,borrow,Action,zadluʒicise,zadluʒ,FALSE
+půjčiti,NA,Czech,lend,Action,pujtʃici,pujtʃ,FALSE
+propustiti,NA,Czech,"release, let go",Action,propuscici,propusc,FALSE
+ztratiti,NA,Czech,lose,Action,stracici,strac,FALSE
+nalézti,NA,Czech,find,Action,nalesci,nal,FALSE
+najíti,NA,Czech,find,Action,najici,naj,FALSE
+nacházeti,NA,Czech,find,Action,naxazeci,naxaz,FALSE
+hledati,NA,Czech,"seek, look for",Action,hledaci,hled,FALSE
+ublížiti,NA,Czech,"harm, injure, damage",Action,ubliʒici,ubliʒ,FALSE
+poškoditi,NA,Czech,"harm, injure, damage",Action,poʃkoɟici,poʃkoɟ,FALSE
+uškoditi,NA,Czech,"harm, injure, damage",Action,uʃkoɟici,uʃkoɟ,FALSE
+zničiti,NA,Czech,destroy,Action,zɲitʃici,zɲitʃ,FALSE
+zbořiti,NA,Czech,destroy,Action,zborici,zbor,FALSE
+chovati,NA,Czech,"preserve, look after",Action,xovaci,xov,FALSE
+chrániti,NA,Czech,"preserve, look after",Action,xraɲici,xraɲ,FALSE
+vrátiti,NA,Czech,give back,Action,vracici,vrac,FALSE
+držeti,NA,Czech,"keep, retain",Action,drʒeci,drʒ,FALSE
+dostati,NA,Czech,"get, obtain",Action,dostaci,dost,FALSE
+dobýti,NA,Czech,"get, obtain",Action,dobici,dob,FALSE
+přistáti,NA,Czech,land (vb),Action,pristaci,prist,FALSE
+veslovati,NA,Czech,row (vb),Action,veslovaci,veslov,FALSE
+strkati,NA,Czech,"push, shove",Action,strkaci,strk,FALSE
+šoupati,NA,Czech,"push, shove",Action,ʃoʊpaci,ʃoʊp,FALSE
+honiti,NA,Czech,drive,Action,hoɲici,hoɲ,FALSE
+poslati,NA,Czech,send,Action,poslaci,posl,FALSE
+posílati,NA,Czech,send,Action,posilaci,posil,FALSE
+přinésti,NA,Czech,bring,Action,prinesci,prin,FALSE
+nositi,NA,Czech,carry (bear),Action,nosici,nos,FALSE
+vstoupiti,NA,Czech,enter,Action,fstoʊpici,fstoʊp,FALSE
+vejíti,NA,Czech,enter,Action,vejici,vej,FALSE
+přiblížiti se,NA,Czech,approach,Action,pribliʒicise,pribliʒ,FALSE
+přijíti,NA,Czech,"reach, arrive",Action,prijici,prij,FALSE
+pronásledovati,NA,Czech,pursue,Action,pronasledovaci,pronasledov,FALSE
+stíhati,NA,Czech,pursue,Action,scihaci,scih,FALSE
+následovati,NA,Czech,follow,Action,nasledovaci,nasledov,FALSE
+jíti za,NA,Czech,follow,Action,jiciza,jiciza,FALSE
+utéci,NA,Czech,flee,Action,utetsi,ute,FALSE
+prchnouti,NA,Czech,flee,Action,prxnoʊci,prx,FALSE
+zmizeti,NA,Czech,disappear,Action,zmizeci,zmiz,FALSE
+odejeti,NA,Czech,"go away, depart",Action,odejeci,odej,FALSE
+přicházeti,NA,Czech,come,Action,prixazeci,prixaz,FALSE
+vyjíti,NA,Czech,go out,Action,vijici,vij,FALSE
+šplhati,NA,Czech,climb,Action,ʃplhaci,ʃplh,FALSE
+choditi,NA,Czech,go,Action,xoɟici,xoɟ,FALSE
+stoupati,NA,Czech,go up,Action,stoʊpaci,stoʊp,FALSE
+běžeti,NA,Czech,run,Action,bjeʒeci,bjeʒ,FALSE
+běhati,NA,Czech,run,Action,bjehaci,bjeh,FALSE
+kulhati,NA,Czech,limp,Action,kulhaci,kulh,FALSE
+tancovati,NA,Czech,dance,Action,tantsovaci,tantsov,FALSE
+kopati,NA,Czech,kick,Action,kopaci,kop,FALSE
+skočiti,NA,Czech,"jump, leap",Action,skotʃici,skotʃ,FALSE
+skákati,NA,Czech,"jump, leap",Action,skakaci,skak,FALSE
+klouznouti,NA,Czech,"slide, slip",Action,kloʊznoʊci,kloʊz,FALSE
+krčiti se,NA,Czech,crouch,Action,krtʃicise,krtʃ,FALSE
+hrbiti se,NA,Czech,crouch,Action,hrbicise,hrb,FALSE
+klečeti,NA,Czech,kneel,Action,kletʃeci,kletʃ,FALSE
+plaziti se,NA,Czech,"creep, crawl",Action,plazicise,plaz,FALSE
+douti,NA,Czech,blow,Action,doʊci,doʊ,FALSE
+letěti,NA,Czech,fly (vb),Action,lececi,lec,FALSE
+plaviti se,NA,Czech,sail (vb),Action,plavicise,plav,FALSE
+plouti,NA,Czech,sail (vb),Action,ploʊci,ploʊ,FALSE
+plovati,NA,Czech,sail (vb),Action,plovaci,plov,FALSE
+stříkati,NA,Czech,splash,Action,strikaci,strik,FALSE
+cákati,NA,Czech,splash,Action,tsakaci,tsak,FALSE
+ponořiti se,NA,Czech,dive,Action,ponoricise,ponor,FALSE
+potopiti,NA,Czech,sink,Action,potopici,potop,FALSE
+třásti,NA,Czech,shake,Action,trasci,tras,FALSE
+chytiti,NA,Czech,catch (ball),Action,xicici,xic,FALSE
+házeti,NA,Czech,throw,Action,hazeci,haz,FALSE
+hoditi,NA,Czech,throw,Action,hoɟici,hoɟ,FALSE
+vrhnouti,NA,Czech,throw,Action,vrhnoʊci,vrh,FALSE
+padnouti,NA,Czech,fall,Action,padnoʊci,pad,FALSE
+zvednouti,NA,Czech,"raise, lift",Action,zvednoʊci,zved,FALSE
+povstati,NA,Czech,rise,Action,pofstaci,pofst,FALSE
+splétati,NA,Czech,twist,Action,spletaci,splet,FALSE
+svíjeti,NA,Czech,twist,Action,svijeci,svij,FALSE
+stáčeti,NA,Czech,twist,Action,statʃeci,statʃ,FALSE
+klesati,NA,Czech,drop (vb),Action,klesaci,kles,FALSE
+trousiti,NA,Czech,drop (vb),Action,troʊsici,troʊs,FALSE
+váleti,NA,Czech,roll,Action,valeci,val,FALSE
+ovinouti,NA,Czech,"wind, wrap",Action,ovinoʊci,ovi,FALSE
+točiti,NA,Czech,turn around,Action,totʃici,totʃ,FALSE
+kroutiti,NA,Czech,turn around,Action,kroʊcici,kroʊc,FALSE
+vrtěti,NA,Czech,turn around,Action,vrceci,vrc,FALSE
+obrátiti,NA,Czech,turn over,Action,obracici,obrac,FALSE
+hýbati,NA,Czech,move,Action,hibaci,hib,FALSE
+vytesati,NA,Czech,carve,Action,vitesaci,vites,FALSE
+ovívati,NA,Czech,fan (vb),Action,ovivaci,oviv,FALSE
+rozdmýchati,NA,Czech,fan (vb),Action,rozdmixaci,rozdmix,FALSE
+zformovati,NA,Czech,mold (clay etc),Action,sformovaci,sformov,FALSE
+(vy)modelovati,NA,Czech,mold (clay etc),Action,modelovaci,modelov,FALSE
+vytvořiti,NA,Czech,mold (clay etc),Action,vitvorici,vitvor,FALSE
+odlíti,NA,Czech,cast (metals),Action,odlici,odl,FALSE
+kouti,NA,Czech,forge,Action,koʊci,koʊ,FALSE
+kovati,NA,Czech,forge,Action,kovaci,kov,FALSE
+vyhloubiti,NA,Czech,hollow out,Action,vihloʊbici,vihloʊb,FALSE
+vrtati,NA,Czech,bore,Action,vrtaci,vrt,FALSE
+stavěti,NA,Czech,build,Action,stavjeci,stavj,FALSE
+budovati,NA,Czech,build,Action,budovaci,budov,FALSE
+mačkati,NA,Czech,"squeeze, wring",Action,matʃkaci,matʃk,FALSE
+tisknouti,NA,Czech,press,Action,cisknoʊci,cisk,FALSE
+tlačiti,NA,Czech,press,Action,tlatʃici,tlatʃ,FALSE
+pověsiti,NA,Czech,hang up,Action,povjesici,povjes,FALSE
+prostříti,NA,Czech,spread out,Action,prostrici,prostr,FALSE
+stláti,NA,Czech,spread out,Action,stlaci,stl,FALSE
+sypati,NA,Czech,spread out,Action,sipaci,sip,FALSE
+táhnouti,NA,Czech,pull,Action,tahnoʊci,tah,FALSE
+roztáhnouti,NA,Czech,stretch,Action,rostahnoʊci,rostah,FALSE
+napínati,NA,Czech,stretch,Action,napinaci,napin,FALSE
+trhati,NA,Czech,tear,Action,trhaci,trh,FALSE
+štípati,NA,Czech,split,Action,ʃcipaci,ʃcip,FALSE
+lámati,NA,Czech,break,Action,lamaci,lam,FALSE
+lomiti,NA,Czech,break,Action,lomici,lom,FALSE
+bodnouti,NA,Czech,stab,Action,bodnoʊci,bod,FALSE
+sekati,NA,Czech,"chop, hew",Action,sekaci,sek,FALSE
+tesati,NA,Czech,"chop, hew",Action,tesaci,tes,FALSE
+káceti,NA,Czech,cut down,Action,katseci,kats,FALSE
+porážeti,NA,Czech,cut down,Action,poraʒeci,poraʒ,FALSE
+řezati,NA,Czech,cut,Action,rezaci,rez,FALSE
+krájeti,NA,Czech,cut,Action,krajeci,kraj,FALSE
+tlouci pěstí,NA,Czech,pound with fist,Action,tloʊtsipjesci,tloʊtsipj,FALSE
+rozvázati,NA,Czech,untie,Action,rozvazaci,rozvaz,FALSE
+vázati,NA,Czech,"tie, bind",Action,vazaci,vaz,FALSE
+skládati,NA,Czech,fold,Action,skladaci,sklad,FALSE
+zahýbati,NA,Czech,fold,Action,zahibaci,zahib,FALSE
+kouřiti,NA,Czech,smoke (tobacco),Action,koʊrici,koʊr,FALSE
+pěstovati,NA,Czech,plant (vb),Action,pjestovaci,pjestov,FALSE
+sázeti,NA,Czech,plant (vb),Action,sazeci,saz,FALSE
+mlátiti,NA,Czech,thresh,Action,mlacici,mlac,FALSE
+kositi,NA,Czech,"mow, reap",Action,kosici,kos,FALSE
+pluh,NA,Czech,plow,Action,plux,plux,FALSE
+vzdělávati,NA,Czech,"cultivate, till",Action,vzɟelavaci,vzɟelav,FALSE
+obdělávati,NA,Czech,"cultivate, till",Action,obɟelavaci,obɟelav,FALSE
+bydleti,NA,Czech,"dwell, live",Action,bidleci,bidl,FALSE
+obývati,NA,Czech,"dwell, live",Action,obivaci,obiv,FALSE
+barviti,NA,Czech,dye,Action,barviti,barviti,FALSE
+oblékati,NA,Czech,put on (clothes),Action,oblekaci,oblek,FALSE
+ošatiti,NA,Czech,put on (clothes),Action,oʃacici,oʃac,FALSE
+dojiti,NA,Czech,milk (vb),Action,dojici,doj,FALSE
+škrábati,NA,Czech,scrape,Action,ʃkrabaci,ʃkrab,FALSE
+prosíti,NA,Czech,"sieve, strain",Action,prosici,pros,FALSE
+procediti,NA,Czech,"sieve, strain",Action,protseɟici,protseɟ,FALSE
+loupati,NA,Czech,peel,Action,loʊpaci,loʊp,FALSE
+vařiti ~ vříti,NA,Czech,boil (vb),Action,varici,var,FALSE
+dusiti,NA,Czech,choke,Action,dusici,dus,FALSE
+škrtiti,NA,Czech,choke,Action,ʃkrcici,ʃkrc,FALSE
+hltati,NA,Czech,swallow,Action,hltaci,hlt,FALSE
+žvýkati,NA,Czech,chew,Action,ʒvikaci,ʒvik,FALSE
+odpočívat,NA,Czech,rest,Action,otpotʃivat,otpotʃivat,FALSE
+hojiti,NA,Czech,"cure, heal",Action,hojici,hoj,FALSE
+léčiti,NA,Czech,"cure, heal",Action,letʃici,letʃ,FALSE
+pochovati,NA,Czech,bury (the dead),Action,poxovaci,poxov,FALSE
+pohřbíti,NA,Czech,bury (the dead),Action,pohrbici,pohrb,FALSE
+zabíti,NA,Czech,kill,Action,zabici,zab,FALSE
+usmrtiti,NA,Czech,kill,Action,usmrcici,usmrc,FALSE
+utopený,NA,Czech,drowned,Action,utopeni,utopeni,FALSE
+umříti,NA,Czech,"die, dead",Action,umrici,umr,FALSE
+mrtvý,NA,Czech,"die, dead",Action,mrtvi,mrtvi,FALSE
+smrt,NA,Czech,"die, dead",Action,smrt,smrt,FALSE
+živý,NA,Czech,"live, living, life",Action,ʒivi,ʒivi,FALSE
+živoucí,NA,Czech,"live, living, life",Action,ʒivoʊtsi,ʒivoʊ,FALSE
+život,NA,Czech,"live, living, life",Action,ʒivot,ʒivot,FALSE
+roditi,NA,Czech,born (to be),Action,roɟici,roɟ,FALSE
+zploditi,NA,Czech,beget (of father),Action,sploɟici,sploɟ,FALSE
+chvěti se,NA,Czech,shiver,Action,xvjecise,xvje,FALSE
+teteliti se,NA,Czech,shiver,Action,tetelicise,tetel,FALSE
+souložiti,NA,Czech,have sexual intercourse,Action,soʊloʒici,soʊloʒ,FALSE
+jebati,NA,Czech,have sexual intercourse,Action,jebaci,jeb,FALSE
+lejno,NA,Czech,defecate,Action,leɪno,leɪno,FALSE
+hnůj,NA,Czech,defecate,Action,hnuj,hnuj,FALSE
+močiti,NA,Czech,urinate,Action,motʃici,motʃ,FALSE
+prděti,NA,Czech,break wind,Action,prɟeci,prɟ,FALSE
+bzdíti,NA,Czech,break wind,Action,bzɟici,bzɟ,FALSE
+probuditi,NA,Czech,wake up,Action,probuɟici,probuɟ,FALSE
+sen,NA,Czech,dream,Action,sen,sen,FALSE
+chrápati,NA,Czech,snore,Action,xrapaci,xrap,FALSE
+spaní,NA,Czech,sleep,Action,spaɲi,spaɲi,FALSE
+spánek,NA,Czech,sleep,Action,spanek,spanek,FALSE
+kapati,NA,Czech,dribble,Action,kapaci,kap,FALSE
+lízati,NA,Czech,lick,Action,lizaci,liz,FALSE
+kousati,NA,Czech,bite,Action,koʊsaci,koʊs,FALSE
+hryzati,NA,Czech,bite,Action,hrizaci,hriz,FALSE
+dáviti,NA,Czech,vomit,Action,davici,dav,FALSE
+zvraceti,NA,Czech,vomit,Action,zvratseci,zvrats,FALSE
+plivati,NA,Czech,spit,Action,plivaci,pliv,FALSE
+pot,NA,Czech,perspire,Action,pot,pot,FALSE
+potit se,NA,Czech,perspire,Action,pocitse,poci,FALSE
+kýchati,NA,Czech,sneeze,Action,kixaci,kix,FALSE
+kašlati,NA,Czech,cough,Action,kaʃlaci,kaʃl,FALSE
+škytati,NA,Czech,hiccough,Action,ʃkitaci,ʃkit,FALSE
+zívati,NA,Czech,"yawn, gape",Action,zivaci,ziv,FALSE
+dýchati,NA,Czech,"breathe, breath",Action,dixaci,dix,FALSE
+dech,NA,Czech,"breathe, breath",Action,dex,dex,FALSE
+mrkati,NA,Czech,blink,Action,mrkaci,mrk,FALSE
+oženiti se,NA,Czech,marry,Action,oʒeɲicise,oʒeɲ,FALSE
+uhasiti,NA,Czech,extinguish,Action,uhasici,uhas,FALSE
+zapáliti,NA,Czech,"light, kindle, ignite",Action,zapalici,zapal,FALSE
+hořeti,NA,Czech,burn (vb intrans),Action,horeci,hor,FALSE
+páliti,NA,Czech,burn (vb intrans),Action,palici,pal,FALSE
+spáliti (se),NA,Czech,burn (vb trans),Action,spalici,spal,FALSE
+čichati,NA,Czech,smell (vb intrans),Action,tʃixaci,tʃix,FALSE
+frkati,NA,Czech,sniff,Action,frkaci,frk,FALSE
+páchnouti,NA,Czech,smell (vb trans),Action,paxnoʊci,pax,FALSE
+voněti,NA,Czech,smell (vb trans),Action,voɲeci,voɲ,FALSE
+okusiti,NA,Czech,taste,Action,okusici,okus,FALSE
+ochutnati,NA,Czech,taste,Action,oxutnaci,oxutn,FALSE
+slyšeti,NA,Czech,hear,Action,sliʃeci,sliʃ,FALSE
+naslouchati,NA,Czech,listen,Action,nasloʊxaci,nasloʊx,FALSE
+viděti,NA,Czech,see,Action,viɟeci,viɟ,FALSE
+hleděti,NA,Czech,"look, look at",Action,hleɟeci,hleɟ,FALSE
+patřiti,NA,Czech,"look, look at",Action,patrici,patr,FALSE
+dívati se,NA,Czech,"look, look at",Action,ɟivacise,ɟiv,FALSE
+ukázati,NA,Czech,show,Action,ukazaci,ukaz,FALSE
+svítiti,NA,Czech,shine,Action,svicici,svic,FALSE
+blýskati,NA,Czech,shine,Action,bliskaci,blisk,FALSE
+dotknouti se,NA,Czech,touch,Action,dotknoʊcise,dotknoʊ,FALSE
+hmatati,NA,Czech,feel,Action,hmataci,hmat,FALSE
+makati,NA,Czech,feel,Action,makaci,mak,FALSE
+cítiti,NA,Czech,feel,Action,tsicici,tsic,FALSE
+usmívati se,NA,Czech,laugh,Action,usmivacise,usmiv,FALSE
+smát se,NA,Czech,smile,Action,smatse,sma,FALSE
+láska,NA,Czech,love,Action,laska,laska,FALSE
+milovati,NA,Czech,love,Action,milovaci,milov,FALSE
+líbati,NA,Czech,kiss,Action,libaci,lib,FALSE
+celovati,NA,Czech,kiss,Action,tselovaci,tselov,FALSE
+objetí,NA,Czech,embrace,Action,objeci,obj,FALSE
+litovati,NA,Czech,"regret, be sorry",Action,litovaci,litov,FALSE
+želeti,NA,Czech,"regret, be sorry",Action,ʒeleci,ʒel,FALSE
+plakati,NA,Czech,"cry, weep",Action,plakaci,plak,FALSE
+sténati,NA,Czech,groan,Action,stenaci,sten,FALSE
+nenávist,NA,Czech,hate,Action,nenavist,nenavist,FALSE
+odvážiti se,NA,Czech,dare,Action,odvaʒicise,odvaʒ,FALSE
+žádati,NA,Czech,"desire, want",Action,ʒadaci,ʒad,FALSE
+vybrati,NA,Czech,choose,Action,vibraci,vibr,FALSE
+naděje,NA,Czech,hope,Action,naɟeje,naɟeje,FALSE
+lež,NA,Czech,"lie, tell lies",Action,leʃ,leʃ,FALSE
+odpustiti,NA,Czech,forgive,Action,otpuscici,otpusc,FALSE
+mysliti,NA,Czech,think (= reflect),Action,mislici,misl,FALSE
+míniti,NA,Czech,think (= be of the opinion),Action,miɲici,miɲ,FALSE
+věřiti,NA,Czech,believe,Action,vjerici,vjer,FALSE
+rozuměti,NA,Czech,understand,Action,rozumɲeci,rozumɲ,FALSE
+věděti,NA,Czech,know,Action,vjeɟeci,vjeɟ,FALSE
+tušiti,NA,Czech,guess,Action,tuʃici,tuʃ,FALSE
+hádati,NA,Czech,guess,Action,hadaci,had,FALSE
+napodobovati,NA,Czech,imitate,Action,napodobovaci,napodobov,FALSE
+imitovati,NA,Czech,imitate,Action,imitovaci,imitov,FALSE
+učiti se,NA,Czech,learn,Action,utʃicise,utʃ,FALSE
+studovati,NA,Czech,study,Action,studovaci,studov,FALSE
+pamatovati se,NA,Czech,remember,Action,pamatovacise,pamatov,FALSE
+zapomenouti,NA,Czech,forget,Action,zapomenoʊci,zapome,FALSE
+vysvětliti,NA,Czech,explain,Action,visvjetlici,visvjetl,FALSE
+objasniti,NA,Czech,explain,Action,objasɲici,objasɲ,FALSE
+podezření,NA,Czech,suspect,Action,podezreɲi,podezreɲi,FALSE
+prozraditi,NA,Czech,betray,Action,prozraɟici,prozraɟ,FALSE
+zraditi,NA,Czech,betray,Action,zraɟici,zraɟ,FALSE
+zkusiti,NA,Czech,"try, attempt",Action,skusici,skus,FALSE
+pokoušeti,NA,Czech,"try, attempt",Action,pokoʊʃeci,pokoʊʃ,FALSE
+zpívati,NA,Czech,sing,Action,spivaci,spiv,FALSE
+křičeti,NA,Czech,"shout, cry out",Action,kritʃeci,kritʃ,FALSE
+šeptati,NA,Czech,whisper,Action,ʃeptaci,ʃept,FALSE
+mumlati,NA,Czech,mumble,Action,mumlaci,muml,FALSE
+hvízdati,NA,Czech,whistle,Action,hvizdaci,hvizd,FALSE
+pískati,NA,Czech,"shriek, screech",Action,piskaci,pisk,FALSE
+mluviti,NA,Czech,"speak, talk",Action,mluvici,mluv,FALSE
+zajíkati se,NA,Czech,"stutter, stammer",Action,zajikacise,zajik,FALSE
+praviti,NA,Czech,say,Action,pravici,prav,FALSE
+pověděti,NA,Czech,say,Action,povjeɟeci,povjeɟ,FALSE
+vyprávěti,NA,Czech,tell story,Action,vipravjeci,vipravj,FALSE
+mlčeti,NA,Czech,silent (be),Action,mltʃeci,mltʃ,FALSE
+odpověděti,NA,Czech,answer,Action,otpovjeɟeci,otpovjeɟ,FALSE
+popříti,NA,Czech,deny,Action,poprici,popr,FALSE
+slíbiti,NA,Czech,promise,Action,slibici,slib,FALSE
+odmítnouti,NA,Czech,refuse,Action,odmitnoʊci,odmit,FALSE
+zapověděti,NA,Czech,forbid,Action,zapovjeɟeci,zapovjeɟ,FALSE
+zakázati,NA,Czech,forbid,Action,zakazaci,zakaz,FALSE
+vytýkati,NA,Czech,"rebuke, scold",Action,vitikaci,vitik,FALSE
+nadávati,NA,Czech,"rebuke, scold",Action,nadavaci,nadav,FALSE
+hubovati,NA,Czech,"rebuke, scold",Action,hubovaci,hubov,FALSE
+volati,NA,Czech,call (=summon),Action,volaci,vol,FALSE
+nazvati,NA,Czech,call (=name),Action,nazvaci,nazv,FALSE
+nazývati,NA,Czech,call (=name),Action,nazivaci,naziv,FALSE
+ohlásiti,NA,Czech,announce,Action,ohlasici,ohlas,FALSE
+zvěstovati,NA,Czech,announce,Action,zvjestovaci,zvjestov,FALSE
+oznámiti,NA,Czech,announce,Action,oznamici,oznam,FALSE
+hroziti,NA,Czech,threaten,Action,hrozici,hroz,FALSE
+chlubiti se,NA,Czech,boast,Action,xlubicise,xlub,FALSE
+chvástati se,NA,Czech,boast,Action,xvastacise,xvast,FALSE
+vládnouti,NA,Czech,"rule, govern",Action,vladnoʊci,vlad,FALSE
+naříditi,NA,Czech,"command, order",Action,nariɟici,nariɟ,FALSE
+rozkázati,NA,Czech,"command, order",Action,roskazaci,roskaz,FALSE
+poslouchati,NA,Czech,obey,Action,posloʊxaci,posloʊx,FALSE
+nechat,NA,Czech,"let, permit",Action,nexat,nexat,FALSE
+dovolit,NA,Czech,"let, permit",Action,dovolit,dovolit,FALSE
+pomoci,NA,Czech,"help, aid",Action,pomotsi,pomo,FALSE
+zabrániti,NA,Czech,"hinder, prevent",Action,zabraɲici,zabraɲ,FALSE
+překážeti,NA,Czech,"hinder, prevent",Action,prekaʒeci,prekaʒ,FALSE
+předejíti,NA,Czech,"hinder, prevent",Action,predejici,predej,FALSE
+potkati,NA,Czech,meet,Action,potkaci,potk,FALSE
+bojovati,NA,Czech,fight (vb),Action,bojovaci,bojov,FALSE
+obrana,NA,Czech,defend,Action,obrana,obrana,FALSE
+ústup,NA,Czech,retreat,Action,ustup,ustup,FALSE
+vzdáti (se),NA,Czech,surrender,Action,vzdaci,vzd,FALSE
+loviti,NA,Czech,hunt,Action,lovici,lov,FALSE
+stříleti,NA,Czech,shoot,Action,strileci,stril,FALSE
+střeliti,NA,Czech,shoot,Action,strelici,strel,FALSE
+líčiti,NA,Czech,trap (vb),Action,litʃici,litʃ,FALSE
+souditi,NA,Czech,judge (vb),Action,soʊɟici,soʊɟ,FALSE
+přísahati,NA,Czech,swear,Action,prisahaci,prisah,FALSE
+obžalovati,NA,Czech,accuse,Action,obʒalovaci,obʒalov,FALSE
+obviniti,NA,Czech,accuse,Action,obviɲici,obviɲ,FALSE
+odsouditi,NA,Czech,condemn,Action,otsoʊɟici,otsoʊɟ,FALSE
+usvědčiti,NA,Czech,convict (vb),Action,usvjettʃici,usvjettʃ,FALSE
+osvoboditi,NA,Czech,acquit,Action,osvoboɟici,osvoboɟ,FALSE
+krásti,NA,Czech,steal,Action,krasci,kras,FALSE
+ctíti,NA,Czech,worship,Action,tscici,tsc,FALSE
+klaněti se,NA,Czech,worship,Action,klaɲecise,klaɲe,FALSE
+modliti se,NA,Czech,pray,Action,modlicise,modl,FALSE
+kázati,NA,Czech,preach,Action,kazaci,kaz,FALSE
+blahoslaviti,NA,Czech,bless,Action,blahoslavici,blahoslav,FALSE
+žehnati,NA,Czech,bless,Action,ʒehnaci,ʒehn,FALSE
+proklíti,NA,Czech,curse,Action,proklici,prokl,FALSE
+postiti se,NA,Czech,fast (vb),Action,poscicise,posc,FALSE
