@@ -44,3 +44,6 @@ Proto-austronesian
 Tocharian A
 Tocharian B
 Elamite and Prai had extremely noisy transcriptions.
+
+Manually cleaned entry in Tibetan:
+"2-320-710-1,710,2-320,CT mnav-ma 'bride',,,saxena710,710,Phonemic,," to 2-320-710-1,710,2-320,mnav-ma,,,saxena710,710,Phonemic,,
