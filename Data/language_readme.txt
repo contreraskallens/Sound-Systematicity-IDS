@@ -37,6 +37,7 @@ TUL
 
 
 Excluded:
+Avestan is a dead language https://en.wikipedia.org/wiki/Avestan
 Old Church Slavonic
 Proto-polynesian
 Proto-austronesian

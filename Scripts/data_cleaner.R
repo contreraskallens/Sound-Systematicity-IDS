@@ -21,8 +21,9 @@ wals <- read_csv('../Data/Processed/WALS_Codes.csv') %>%
 wals_info <- read_csv("../Data/Raw/WALS/walslanguage.csv")
 
 # Get handcoded list of excluded languages (extinct, explicit dialects that have a main one in the database, reconstructions, no info)
-excluded.languages <- read_delim("../Data/Processed/excluded_languages.txt", comment = "#", delim = "\n", col_names = "Language") %>% 
+excluded.languages <- read_delim("../Data/Processed/excluded_languages.txt", delim = "\\n", col_names = "Language") %>% 
   mutate(Language = str_squish(Language))
+
 
 # Match WALS and IDS by using the WALS CODE (hand-coded) in wals_codes.csv
 all.languages <- all.languages %>% 

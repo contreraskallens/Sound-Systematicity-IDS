@@ -55,3 +55,7 @@ ipython_config.py
 MarkdownReports/
 packrat/lib*/
 \.idea/
+Scripts/all_langs_adjusted.rds
+Scripts/all_lang_adjusted_prefix.rds
+Scripts/all_lang_adjusted_prefix.rds
+Scripts/all_langs_adjusted.rds

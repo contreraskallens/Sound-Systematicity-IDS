@@ -197,7 +197,9 @@ ID,Name,latitude,longitude,family
 836,Surin Khmer,12.5,105,Austro-Asiatic
 37,Botlikh,42.665,46.22,Nakh-Daghestanian
 74,Judeo-Tat,42.068306,48.264749,Indo-European
-213,Avestan,31.541,53.633,Indo-European
+184,Gothic,46.9304,29.9786,Indo-European
+208,Hittite,40,35,Indo-European
+217,Negerhollands,18.3416,-64.8922,Indo-European
 221,Polci,10.0258,9.53362,Afro-Asiatic
 250,Yuwana,5.63879,-65.4267,Jodi-Saliban
 265,Trinitario,-15.3331,-65.4096,Arawakan
@@ -223,6 +225,7 @@ ID,Name,latitude,longitude,family
 810,Pusing,21.3474,101.916,Austro-Asiatic
 811,Paliu,24.7013,104.955,Austro-Asiatic
 815,Cuoi,NA,NA,Austro-Asiatic
+817,Hanoi Vn,NA,NA,Austro-Asiatic
 820,Phong,19.9622,104.088,Austro-Asiatic
 822,Tum,NA,NA,Austro-Asiatic
 823,Chut (Ruc variety),NA,NA,Austro-Asiatic

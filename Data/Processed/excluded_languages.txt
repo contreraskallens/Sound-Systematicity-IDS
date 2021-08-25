@@ -15,6 +15,7 @@ Avar (Khunzakh dialect)
 Avar (Kusur dialect)
 Avar (Salatav dialect)
 Avar (Zakataly dialect)
+Avestan
 Azerbaijani (Terekeme dialect)
 Bezhta (Khasharkhota dialect)
 Bezhta (Tlyadal dialect, Karauzek subdialect)
