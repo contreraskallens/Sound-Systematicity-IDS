@@ -57,6 +57,7 @@ Kumyk (Kajtak dialect)
 Kumyk (Kajtak Tumenler dialect)
 Kumyk (Karabudakhkent dialect)
 Kumyk (Ter Bragun dialect)
+Kunza
 Lak (Arakul dialect)
 Lak (Balkhar dialect)
 Lak (Shali dialect)

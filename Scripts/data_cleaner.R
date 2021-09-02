@@ -4,7 +4,9 @@ library(ggdendro)
 library(cluster)
 library(geosphere)
 
+setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 source("functions.r")
+
 
 # Loading and coding data language data  -----------------------------------------------
 
