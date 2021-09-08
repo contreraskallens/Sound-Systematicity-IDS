@@ -88,6 +88,7 @@ Rutul (Shinaz dialect)
 SAN
 Sanskrit
 Shan (Northern Shan dialect)
+Thai (Korat variety) # dialect of Central Thai
 Tho Mun (THM)
 Tocharian A
 Tocharian B
