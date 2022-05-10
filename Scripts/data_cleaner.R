@@ -3,6 +3,7 @@ library(rnaturalearth)
 library(ggdendro)
 library(cluster)
 library(geosphere)
+library(stringi)
 
 setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 source("functions.r")
@@ -25,7 +26,6 @@ wals_info <- read_csv("../Data/Raw/WALS/walslanguage.csv")
 # Get handcoded list of excluded languages (extinct, explicit dialects that have a main one in the database, reconstructions, no info)
 excluded.languages <- read_delim("../Data/Processed/excluded_languages.txt", delim = "\\n", col_names = "Language") %>% 
   mutate(Language = str_squish(Language))
-
 
 # Match WALS and IDS by using the WALS CODE (hand-coded) in wals_codes.csv
 all.languages <- all.languages %>% 
@@ -120,7 +120,7 @@ all.words <- all.words %>%
 # Recode Phonemic, IPA and Phonetic transcriptions as "phon" for use in the study
 # These levels previously: "CyrillTrans", "IPA", "LatinTrans", "Phonemic", "phonetic", "Standard", "StandardOrth", "StandardOrthTone"
 og.transcriptions <- all.words$transcription
-levels(all.words$transcription) <- c("CyrillTrans", "phon", "LatinTrans", "phon", "phon", "Standard", "StandardOrth", "StandardOrthTone")
+levels(all.words$transcription) <- c("CyrillTrans", "phon", "LatinTrans", "phon", "phonetic", "Standard", "StandardOrth", "StandardOrthTone")
 # These levels previously: "Original (M. R. Key)", "Phonemic", "Phonemic (vars)", "Standard"
 og.alt.transcriptions <- all.words$alt_transcription
 levels(all.words$alt_transcription) <- c("Original (M. R. Key)", "phon", "Phonemic (vars)", "Standard") # Phonemic (vars) is only NA in Rapa Nui
@@ -130,11 +130,21 @@ all.words <- mutate(all.words, transcription = as.character(transcription),
                     og_transcription = og.transcriptions,
                     og_alt_transcription = og.alt.transcriptions)
 
-# Load list of languages with no phon transcription and manually get them if they do
+# Load list of languages with no phon transcription and manually get them if they do. 
+# Note that Spanish is mislabeled as phonemic when it's orthographic due to its inclusion of stress accents
+
 languages.no.phon <- read_csv("../Data/Processed/languages_no_phon.csv")
 languages.no.info <- filter(languages.no.phon, transcription == "no_phon")
 all.words <- filter(all.words, !(language %in% languages.no.info$language))
 all.languages <- filter(all.languages, !(Name %in% languages.no.info$language))
+
+# Get number of families with either phon data in IDS or espeak transcriptions
+
+number.of.families <- all.languages$family %>% 
+  unique() %>% 
+  length()
+paste("Number of families:", number.of.families)
+
 
 # Languages that already had phon transcription, but unmarked
 unmarked.phon <- filter(languages.no.phon, transcription == "is_phon")
@@ -143,17 +153,46 @@ all.words <- mutate(all.words, transcription = ifelse(language %in% unmarked.pho
 # Get words for espeak-ng and then remove them from this
 espeak.languages <- filter(languages.no.phon, transcription == "espeak-ng")
 
-number.of.families <- all.languages$family %>% 
-  unique() %>% 
-  length()
-paste("Number of families:", number.of.families)
+# Get words for all languages available in espeak-ng
+
+
+# Store espeak lists
+all.espeak.langs <- espeak.languages$language
+names(all.espeak.langs) <- all.espeak.langs
+for(this.language in all.espeak.langs){
+  lang.words <- filter(all.words, language == this.language)
+  lang.word.list <- lang.words$Form %>% 
+    stri_trans_nfc() %>% 
+    str_remove_all("(?<=.)\\(.+\\)") %>% 
+    str_remove_all("\\(.+\\)(?=.)") %>% 
+    str_remove_all("[\\[\\]XY\\-']") %>% 
+    str_squish() %>% 
+    str_remove_all("^/") %>%  # remove initial separators
+    str_remove_all("^~") %>% 
+    str_remove_all("/.*") %>% # extract the first form of multi form entries separated by / 
+    str_remove_all("(?<=\\?).*") %>% # extract the first form of multi form entries separated by ?
+    str_remove_all("~.*") %>% # extract the first form of multi form entries separated by ~
+    str_remove_all('ˑ') # Remove separators
+  write_lines(lang.word.list, paste0("PhonMining/espeak_lists/", this.language, ".txt"), sep="\n\n")
+}
+
+# Read in espeak transcriptions
+
+espeak.phon <- map_dfr(all.espeak.langs, function(this.language){
+  print(this.language)
+  lang.words <- filter(all.words, language == this.language)
+  espeak.trans <- read_lines(paste0("PhonMining/phon_transcriptions/", this.language, "_phon.txt")) %>% 
+    str_remove_all("[ˈˌ]") %>%  # Remove stress marker
+    stri_trans_nfc()
+  lang.words$phon <- espeak.trans
+  return(lang.words)
+})
 
 # Save relevant data on new file
 all.languages <- all.languages %>% 
   select(ID, Name, latitude, longitude, family)
 all.languages %>% 
   write_csv("../Data/Processed/all_language_info.csv")
-
 
 # Loading and coding word data  -----------------------------------------------
 
@@ -181,6 +220,7 @@ all.phon <- all.words %>%
   mutate(phon = ifelse(transcription == "phon", Form, alt_form)) %>% 
   filter(!(is.na(phon)))
 
+
 # Recode in IPA
 # for(this.language in unique(all.phon$language)){
 #   if(this.language %in% espeak.languages$language){next}
@@ -198,7 +238,6 @@ all.phon <- all.words %>%
 # }
 
 
-
 # Clean phon forms --------------------------------------------------------
 
 all.phon <- all.phon %>% 
@@ -209,11 +248,52 @@ all.phon <- clean.phon(all.phon)
 
 
 
+# Read in IPA codings --------------------------------------
+
+ipa.codings <- list()
+for(file in list.files("IDS-To-IPA/Ready/", full.names = TRUE)){
+  print(file)
+  this.language <- str_extract(file, "(?<=Ready\\/\\/).+(?=\\.csv)")
+  this.transcription <- read_csv(file)
+  ipa.codings[[this.language]] <- this.transcription
+  print(this.language)
+}
+
+lang.list <- all.phon %>% 
+  group_by(language) %>% 
+  group_split(.keep = TRUE)
+lang.list.names <- map_chr(lang.list, function(x){
+  return(unique(x$language))
+})
+names(lang.list) <- lang.list.names
+
+all.phon <- map_dfr(lang.list.names, function(this.language){
+  print(this.language)
+  corresponding.lang <- all.phon %>% 
+    filter(language == this.language)
+  ipa.list <- ipa.codings[[this.language]] %>% 
+    drop_na()
+  if(nrow(ipa.list) == 0){
+    return(add_column(corresponding.lang, IPA = NA))
+  }
+  ipa.corr <- utf8::utf8_normalize(ipa.list$IPA)
+  names(ipa.corr) <- utf8::utf8_normalize(ipa.list$value)
+  this.lang.words <- str_split(corresponding.lang$phon, pattern = '')
+  this.lang.words <- map_chr(this.lang.words, function(word){
+    word <- word[word %in% names(ipa.corr)]
+    word <- map_chr(word, function(letter){return(ipa.corr[[letter]])})
+    word <- paste(word, collapse = '')
+    return(word)
+  })
+  corresponding.lang$IPA <- this.lang.words
+  return(corresponding.lang)
+})
+
 
 # all.phon$phon %>% str_split(string = ., pattern = "") %>% unlist %>% unique %>% write_lines("all_phonemes.txt")
 
 # Tonal languages have tones marked with numbers
-all.tone.languages <- filter(all.phon, str_detect(phon, "[:digit:]")) 
+all.tone.languages <- filter(all.phon, str_detect(IPA, "[:digit:]")) 
 all.tone.languages <- unique(all.tone.languages$language)
 all.tone.languages <- all.tone.languages[!(all.tone.languages == "Telugu")] # Telugu has 2 words with numbers which are not tones
 all.tone.languages <- all.tone.languages[!(all.tone.languages == "Pear")] # Same with Pear

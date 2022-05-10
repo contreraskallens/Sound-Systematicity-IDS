@@ -1,0 +1,31 @@
+value,transcription,alt_transcription,IPA,Comment
+p,Phonemic,NA,p,
+a,Phonemic,NA,a,
+o,Phonemic,NA,o,
+u,Phonemic,NA,u,
+e,Phonemic,NA,e,
+z,Phonemic,NA,z,
+ch,Phonemic,NA,ʃ,added c does not appear on its own https://en.wikipedia.org/wiki/Breton_language#Phonology
+c’h,Phonemic,NA,x,added c does not appear on its own https://en.wikipedia.org/wiki/Breton_language#Phonology
+h,Phonemic,NA,h,
+m,Phonemic,NA,m,
+i,Phonemic,NA,i,
+ɲ,Phonemic,NA,ɲ,
+f,Phonemic,NA,f,
+n,Phonemic,NA,n,
+s,Phonemic,NA,s,
+d,Phonemic,NA,d,
+w,Phonemic,NA,w,
+k,Phonemic,NA,k,
+t,Phonemic,NA,t,
+l,Phonemic,NA,l,
+r,Phonemic,NA,ʁ,https://en.wikipedia.org/wiki/Breton_language#Phonology
+b,Phonemic,NA,b,
+g,Phonemic,NA,g,
+v,Phonemic,NA,v,
+j,Phonemic,NA,ʒ, eg fromaj https://en.wikipedia.org/wiki/Breton_language#Phonology
+ê,Phonemic,NA,e,
+y,Phonemic,NA,j,
+’,Phonemic,NA,’,
+T,Phonemic,NA,t,
+ü,Phonemic,NA,u,

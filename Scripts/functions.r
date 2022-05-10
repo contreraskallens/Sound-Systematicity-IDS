@@ -256,6 +256,9 @@ clean.phon <- function(df){
   df <- mutate(df, phon = ifelse(str_detect(phon, "^(.{3,})[:space:]*\\1$"),
                                  str_extract(phon, "^(.{3,})(?=[:space:]*\\1)"),
                                  phon))
+  df <- mutate(df, phon = str_squish(str_remove_all(phon, " "))) # Delete remaining spaces
+  
+  
   
   return(df)
 }
