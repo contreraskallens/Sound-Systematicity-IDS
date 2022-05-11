@@ -1,3 +1,9 @@
+bieži
+
+vienmēr
+
+gatavs
+
 pārtraukt
 
 beigt
@@ -18,11 +24,51 @@ steidzināt
 
 steigties
 
+lēns
+
+ātrs
+
+tūlīt
+
+nekavējoties
+
+tagad
+
+pašreiz
+
+vēls
+
+agrs
+
+vecs
+
+jauns
+
 vecums
+
+jauns
 
 laiks
 
+trīsreiz
+
+trīs reizes
+
+trešais
+
+divreiz
+
+divas reizes
+
 pāris
+
+otrais
+
+pēdējais
+
+pirmais
+
+tikai
 
 puse
 
@@ -30,9 +76,75 @@ dal̩a
 
 gabals
 
+tukšs
+
+pilns
+
+daudzums
+
+nedaudz
+
+daži
+
+dažas
+
+maz
+
+nedaudz
+
+pietiek
+
+vairāk
+
+daudz
+
+visi
+
+ikviens
+
+ikkatrs
+
 skaitīt
 
+tūkstotis
+
+simts
+
+divdesmit
+
+piecpadsmit
+
+divpadsmit
+
+vienpadsmit
+
+desmit
+
+devin̩i
+
+aston̩i
+
+septin̩i
+
+seši
+
+pieci
+
+četri
+
+divi
+
+trīs
+
+viens
+
+nulle
+
+nekas
+
 mainīt
+
+līdzīgs
 
 līnija
 
@@ -48,6 +160,10 @@ virsma
 
 lode
 
+apal̩š
+
+aplis
+
 rin̩k̩is
 
 loks
@@ -61,6 +177,38 @@ stūris
 kakts
 
 āk̩is
+
+saliekts
+
+taisns
+
+līdzens
+
+gluds
+
+sekls
+
+dzil̩š
+
+tievs
+
+resns
+
+šaurs
+
+plašs
+
+plats
+
+īss
+
+garš
+
+garš
+
+mazs
+
+liels
 
 attālums starp diviem balstiem
 
@@ -76,6 +224,16 @@ rietumi
 
 austrumi
 
+tuvu
+
+blakus
+
+tālu
+
+kreisais
+
+labais
+
 vidus
 
 centrs
@@ -83,6 +241,10 @@ centrs
 sāns
 
 mala
+
+smails
+
+ass
 
 beigas
 
@@ -92,11 +254,15 @@ apakša
 
 dibens
 
+zems
+
 virsotne
 
 galotne
 
 augša
+
+augsts
 
 slēpt
 
@@ -152,9 +318,49 @@ likt
 
 vieta
 
+uz augšu
+
+augšup
+
+virs
+
+zem
+
+ārā
+
+ārpus
+
+iekšā
+
+priekša
+
+priekšā
+
+pirms
+
+iepriekš
+
+lejā
+
+uz leju
+
+lejup
+
+blakus
+
+pie
+
+aiz
+
+pēc
+
 svērt
 
 dalīt
+
+lēts
+
+dārgs
 
 cena
 
@@ -163,6 +369,10 @@ veikals
 tirgus
 
 tirgonis
+
+main̩a
+
+tirgošanās
 
 pārdot
 
@@ -192,7 +402,13 @@ aizn̩emties
 
 aizdot
 
+skops
+
 ubags
+
+nabadzīgs
+
+bagāts
 
 monēta
 
@@ -218,6 +434,8 @@ sabojāt
 
 iznīcināt
 
+glābt
+
 rūpēties par
 
 atdot
@@ -237,6 +455,8 @@ dabūt
 iegūt
 
 turēt
+
+grābt
 
 n̩emt
 
@@ -287,6 +507,10 @@ ritenis
 vagons
 
 tilts
+
+taka
+
+stiga
 
 cel̩š
 
@@ -354,6 +578,8 @@ nākt
 
 iet ārā
 
+kāpt lejā
+
 rāpties
 
 iet
@@ -406,11 +632,15 @@ peldēt
 
 grimt
 
+tecēt
+
 kratīt
 
 k̩ert
 
 mest
+
+pilēt
 
 krist
 
@@ -443,6 +673,8 @@ apgriezt
 apgāzt
 
 pārvietot
+
+krāsot
 
 kalts
 
@@ -576,6 +808,10 @@ saskaldīt
 
 sašk̩elt
 
+salūzis
+
+sasists
+
 lauzt
 
 sasist
@@ -610,6 +846,8 @@ cirst
 
 sist ar dūri
 
+sist
+
 mezgls
 
 virve
@@ -628,7 +866,15 @@ sasiet
 
 locīt
 
+liekt
+
 strādāt
+
+darīt
+
+taisīt
+
+gatavot
 
 sēne
 
@@ -752,6 +998,10 @@ piedarbs
 
 kult
 
+sirpis
+
+izkapts
+
 pl̩aut
 
 sēkla
@@ -775,6 +1025,8 @@ vaga
 rakt
 
 art
+
+grāvis
 
 žogs
 
@@ -835,6 +1087,8 @@ sile
 plaukts
 
 svece
+
+lampa
 
 galds
 
@@ -964,6 +1218,10 @@ siksna
 
 josta
 
+platmale
+
+cepure
+
 kurpnieks
 
 kurpe
@@ -981,6 +1239,8 @@ zāl̩u apsējs
 svārki
 
 brunči
+
+apkakle
 
 krekls
 
@@ -1132,6 +1392,10 @@ mīkla
 
 maize
 
+maisīt
+
+jaukt
+
 rīvēt
 
 sijāt
@@ -1188,6 +1452,8 @@ cept
 
 krāsns
 
+cept
+
 vārīt
 
 gatavot ēdienu
@@ -1218,13 +1484,59 @@ izsalkums
 
 dzert
 
+sapuvis
+
+satrunējis
+
+bojāts
+
+vecs
+
+zal̩š
+
+negatavs
+
+nogatavojies gatavs
+
+jēls
+
+vārīts
+
 barība
 
 pārtika
 
 ēst
 
+kails
+
+pliks
+
+akls
+
+saindējies
+
+saindējusies
+
+mēms
+
+kurls
+
+nedzirdīgs
+
+plikpaurains
+
+plikgalvains
+
+klibs
+
+slinks
+
 atpūsties
+
+noguris
+
+nogurusi
 
 inde
 
@@ -1268,6 +1580,22 @@ kākslis
 
 drudzis
 
+slims
+
+slimība
+
+vesels
+
+veselība
+
+vājš
+
+stiprs
+
+spēcīgs
+
+varens
+
 kaps
 
 apglabāt
@@ -1297,6 +1625,8 @@ dzīve
 dzīvība
 
 ien̩emt
+
+stāvoklī
 
 dzimis
 
@@ -1544,6 +1874,8 @@ bārda
 
 mati
 
+miesa
+
 āda
 
 k̩ermenis
@@ -1654,11 +1986,17 @@ spura
 
 zivs
 
+pele
+
+žurka
+
 oposums
 
 kak̩is
 
 trusis
+
+suns
 
 balodis
 
@@ -1756,7 +2094,35 @@ ganības
 
 mājlopi
 
+sievišk̩ais
+
+vīrišk̩ais
+
 dzīvnieks
+
+vin̩i
+
+vin̩as
+
+tie
+
+tās
+
+jūs
+
+mēs
+
+mēs
+
+mēs
+
+vin̩š
+
+tā
+
+tu
+
+es
 
 ǧimene
 
@@ -1777,6 +2143,22 @@ padēls
 pamāte
 
 patēvs
+
+vedekla
+
+vedekla
+
+znots
+
+znots
+
+sievasmāte
+
+vīramāte
+
+sievastēvs
+
+vīratēvs
 
 pēcnācēji
 
@@ -1912,6 +2294,10 @@ zēns
 
 puisis
 
+mātīte
+
+tēvin̩š
+
 sieviete
 
 vīrietis
@@ -1988,6 +2374,8 @@ auka
 
 pērkons
 
+pērkons un zibens
+
 zibens
 
 zvaigzne
@@ -2002,6 +2390,10 @@ debesis
 
 zemestrīce
 
+akmens
+
+klints
+
 koks
 
 malka
@@ -2013,6 +2405,10 @@ mežs
 ūdenskritums
 
 purvs
+
+avots
+
+aka
 
 atvars
 
@@ -2044,7 +2440,11 @@ okeāns
 
 putas
 
+bangas
+
 jūra
+
+mierīga jūra
 
 ūdens
 
@@ -2070,6 +2470,10 @@ krauja
 
 klints
 
+kalns
+
+pakalns
+
 dubl̩i
 
 smilts
@@ -2086,6 +2490,16 @@ zeme
 
 pasaule
 
+dažreiz
+
+drīz
+
+ilgi
+
+nekad
+
+atkal
+
 diena
 
 nakts
@@ -2099,6 +2513,18 @@ dienas vidus
 pēcpusdiena
 
 vakars
+
+šodien
+
+rīt
+
+rītdien
+
+parīt
+
+vakar
+
+aizvakar
 
 stunda
 
@@ -2142,11 +2568,29 @@ ošn̩āt
 
 ostīt
 
+smaržīgs
+
+smaržojošs
+
+smirdošs
+
+smirdīgs
+
 nogaršot
 
 izbaudīt
 
 degustēt
+
+salds
+
+sāl̩š
+
+rūgts
+
+skābs
+
+iesāl̩š
 
 dzirdēt
 
@@ -2158,6 +2602,14 @@ troksnis
 
 skan̩a
 
+stiprs
+
+skal̩š
+
+klusums
+
+miers
+
 redzēt
 
 skatīties
@@ -2168,7 +2620,27 @@ spīdēt
 
 mirdzēt
 
+spožs
+
+spilgts
+
 krāsa
+
+gaišs
+
+tumšs
+
+balts
+
+melns
+
+sarkans
+
+zils
+
+zal̩š
+
+dzeltens
 
 pieskarties
 
@@ -2180,9 +2652,49 @@ saspiest
 
 just
 
+ciets
+
+mīksts
+
+rupjš
+
+gluds
+
+ass
+
+neass
+
+truls
+
+smags
+
+viegls
+
+mitrs
+
+slapjš
+
+sauss
+
+karsts
+
+silts
+
+auksts
+
+tīrs
+
+netīrs
+
+saburzījies
+
+saburzīts
+
 dvēsele
 
 gars
+
+pārsteigts
 
 veiksme
 
@@ -2193,6 +2705,10 @@ laime
 neveiksme
 
 nelaime
+
+priecīgs
+
+laimīgs
 
 smieties
 
@@ -2246,7 +2762,11 @@ greizsirdība
 
 kauns
 
+lepns
+
 uzdrošināties
+
+drosmīgs
 
 bailes
 
@@ -2260,6 +2780,12 @@ izvēlēties
 
 cerības
 
+uzticīgs
+
+īsts
+
+patiess
+
 meli
 
 melot
@@ -2267,6 +2793,14 @@ melot
 nodevība
 
 piedot
+
+labs
+
+slikts
+
+pareizs
+
+nepareizs
 
 vaina
 
@@ -2277,6 +2811,18 @@ pārmetums
 vaina
 
 uzslava
+
+skaists
+
+glīts
+
+neglīts
+
+rijīgs
+
+ēdelīgs
+
+gudrs
 
 prāts
 
@@ -2302,6 +2848,18 @@ jēdziens
 
 doma
 
+gudrs
+
+izglītots
+
+mul̩k̩īgs
+
+stulbs
+
+dumjš
+
+neprātīgs
+
 mācīties
 
 mācīties
@@ -2321,6 +2879,16 @@ skola
 atcerēties
 
 aizmirst
+
+skaidrs
+
+neskaidrs
+
+noslēpums
+
+pārliecināts
+
+drošs
 
 skaidrot
 
@@ -2344,9 +2912,49 @@ vajadzība
 
 nepieciešamība
 
+viegls
+
+grūts
+
+smags
+
 mēǧināt
 
 veids
+
+un
+
+tāpēc
+
+tāpēc ka
+
+ja
+
+vai
+
+jā
+
+nē
+
+kā?
+
+cik daudz?
+
+cik daudz?
+
+kas?
+
+kad?
+
+kur?
+
+kurš?
+
+kura?
+
+kas?
+
+kāpēc?
 
 balss
 
@@ -2398,6 +3006,10 @@ taujāt
 
 atbildēt
 
+atzīt
+
+atzīties
+
 noliegt
 
 prasīt
@@ -2447,6 +3059,8 @@ dzejnieks
 flauta
 
 bungas
+
+taure
 
 grabulis
 
@@ -2544,6 +3158,10 @@ tradīcija
 
 strīds
 
+sazvērestība
+
+intriga
+
 tikties
 
 ielasmeita
@@ -2624,6 +3242,8 @@ tīkls
 
 murds
 
+ēsma
+
 medīt
 
 šaut
@@ -2644,6 +3264,8 @@ spriedums
 
 tiesnesis
 
+sūdzētājs
+
 apsūdzētais
 
 liecinieks
@@ -2661,6 +3283,10 @@ notiesāt
 atzīt par vainīgu
 
 attaisnot
+
+vainīgs
+
+nevainīgs
 
 sods
 
@@ -2708,6 +3334,8 @@ lūgties
 
 priesteris
 
+svēts
+
 spredik̩ot
 
 sludināt
@@ -2733,6 +3361,12 @@ elks
 burvestība
 
 buršana
+
+burve
+
+ragana
+
+lauma
 
 spoks
 

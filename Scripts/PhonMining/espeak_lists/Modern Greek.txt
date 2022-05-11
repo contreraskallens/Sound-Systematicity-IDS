@@ -1,3 +1,9 @@
+sixna
+
+pada
+
+etimos
+
 stamatao
 
 pavo
@@ -18,7 +24,31 @@ arɣo
 
 viazome
 
+arɣos
+
+ɣriɣoros
+
+amesos
+
+tora
+
+arɣa
+
+noris
+
+ɣeros
+
+ilikiomenos
+
+neos
+
+nearos
+
 ilikia
+
+neos
+
+kenurios
 
 ora
 
@@ -26,7 +56,23 @@ xronos
 
 keros
 
+tris fores
+
+tritos
+
+ðio fores
+
 zevɣari
+
+ðefteros
+
+telefteos
+
+protos
+
+monos
+
+mono
 
 misos
 
@@ -34,11 +80,71 @@ komati
 
 meros
 
+aðios
+
+ɣematos
+
+pliθos
+
+liɣaki
+
+liɣo
+
+arketa
+
+akomi
+
+perisotero
+
+poli
+
+kaθe
+
+oli
+
 metrao
 
 loɣariazo
 
+xilia
+
+ekato
+
+ikosi
+
+ðekapede
+
+ðoðeka
+
+edeka
+
+ðeka
+
+enea
+
+oxto
+
+efta
+
+eksi
+
+pede
+
+tesera
+
+ðio
+
+tria
+
+ena
+
+miðen
+
+tipota
+
 alazo
+
+paromios
 
 ɣrami
 
@@ -50,6 +156,8 @@ sfera
 
 bala
 
+strogilos
+
 kiklos
 
 tetraɣonos
@@ -59,6 +167,48 @@ stavros
 ɣonia
 
 ɣatzos
+
+stravos
+
+isios
+
+efθis
+
+epipeðos
+
+anavaθos
+
+rixos
+
+vaθis
+
+leptos
+
+aðinatos
+
+paxis
+
+stenos
+
+farðis
+
+platis
+
+kodos
+
+psilos
+
+makris
+
+mikros
+
+kodos
+
+meɣalos
+
+psilos
+
+xodros
 
 orɣia
 
@@ -76,6 +226,14 @@ voras
 
 anatoli
 
+koda
+
+makria
+
+aristeri
+
+ðeksia
+
 mesi
 
 kedro
@@ -86,6 +244,8 @@ akri
 
 kopsi
 
+miteros
+
 akri
 
 akro
@@ -94,7 +254,11 @@ terma
 
 vaθos
 
+xamilos
+
 korifi
+
+psilos
 
 krivo
 
@@ -146,11 +310,49 @@ meros
 
 topos
 
+pano
+
+pano apo
+
+apopano
+
+kato apo
+
+apokato
+
+ekso
+
+mesa
+
+se
+
+brosta
+
+prin
+
+kato
+
+eki kato
+
+eki pera
+
+ðipla
+
+plai
+
+piso
+
+meta
+
 ziɣizo
 
 mirazo
 
 mirazome
+
+ftinos
+
+akrivos
 
 timi
 
@@ -161,6 +363,10 @@ katastima
 aɣora
 
 eboros
+
+sinalaɣi
+
+adalaɣi
 
 pulao
 
@@ -186,7 +392,15 @@ xrostao
 
 ðanizo
 
+filarɣiros
+
+tsigunis
+
 zitianos
+
+ftoxos
+
+plusios
 
 nomisma
 
@@ -212,6 +426,12 @@ kano zimia
 
 katastrefo
 
+sozo
+
+ðiasozo
+
+ɣlitono
+
 prostatevo
 
 profilaso
@@ -231,6 +451,10 @@ kratao
 apokto
 
 kratao
+
+piano
+
+arpazo
 
 perno
 
@@ -296,6 +520,10 @@ karo
 
 ɣefira
 
+monopati
+
+ðromos
+
 ðromos
 
 oðos
@@ -356,6 +584,8 @@ erxome
 
 vɣeno
 
+kateveno
+
 skarfalono
 
 piɣeno
@@ -406,6 +636,10 @@ viθizome
 
 vuliazo
 
+kilao
+
+reo
+
 tinazo
 
 tradazo
@@ -419,6 +653,8 @@ silamvano
 petao
 
 rixno
+
+stazo
 
 pefto
 
@@ -453,6 +689,8 @@ anapoðoɣirizo
 kunao
 
 kinume
+
+zoɣrafizo
 
 smili zmili
 
@@ -578,6 +816,8 @@ skizo
 
 skizo
 
+spasmenos spazmenos
+
 spao
 
 tsekuri
@@ -602,6 +842,8 @@ kovo
 
 ɣronθokopo
 
+xtipao
+
 kobos
 
 skini
@@ -614,9 +856,15 @@ lino
 
 ðiplono
 
+ðiplono
+
 ðulevo
 
 erɣazome
+
+kano
+
+ftiaxno
 
 manitari
 
@@ -732,6 +980,8 @@ aloni
 
 alonizo
 
+ðrepani
+
 kurevo
 
 mazevo
@@ -757,6 +1007,10 @@ skavo
 orɣono
 
 aletri
+
+xadaki
+
+tafros
 
 fraxtis
 
@@ -825,6 +1079,10 @@ etazera
 rafi
 
 keri
+
+laba
+
+ɣlobos
 
 trapezi
 
@@ -956,6 +1214,8 @@ zoni
 
 luriða
 
+kapelo
+
 tsagaris
 
 paputsi 
@@ -973,6 +1233,8 @@ padeloni
 fusta
 
 fusta
+
+ɣiakas
 
 pukamiso
 
@@ -1122,6 +1384,8 @@ zimari
 
 psomi
 
+anakatevo
+
 trivo
 
 koskinizo
@@ -1188,6 +1452,10 @@ psino sto furno
 
 furnos
 
+psino
+
+tiɣanizo
+
 vrazo
 
 psino
@@ -1212,11 +1480,39 @@ pina
 
 pino
 
+sapios
+
+aɣuros
+
+orimos
+
+omos
+
+psimenos
+
 trofi
 
 troo
 
+ɣimnos
+
+tiflos
+
+meθismenos meθizmenos
+
+mugos
+
+kufos
+
+falakros
+
+kutsos
+
+tebelis
+
 ksekurazome
+
+kurasmenos
 
 ðilitirio
 
@@ -1260,6 +1556,30 @@ vronxokili
 
 piretos
 
+arostos
+
+asθenis
+
+arostia
+
+asθenia
+
+nosos
+
+iɣia
+
+iɣiis
+
+aðinamos
+
+anisxiros
+
+ðinatos
+
+ɣeros
+
+isxiros
+
 tafos
 
 θavo
@@ -1283,6 +1603,8 @@ zodanos
 zoi
 
 silamvano
+
+egios
 
 ɣenimenos
 
@@ -1546,6 +1868,8 @@ musi
 
 trixa
 
+sarka
+
 ðerma
 
 epiðermiða
@@ -1654,11 +1978,19 @@ pteriɣio
 
 psari
 
+podiki
+
+arureos
+
 oposum
 
 ɣata
 
 kuneli
+
+skilos
+
+skili
 
 peristeri
 
@@ -1760,7 +2092,35 @@ zoa
 
 zodana
 
+θilikos
+
+arsenikos
+
 zoo
+
+afti
+
+aftes
+
+afta
+
+esis
+
+emis
+
+emis
+
+emis
+
+aftos
+
+afti
+
+afto
+
+esi
+
+eɣo
 
 ikoɣenia
 
@@ -1783,6 +2143,22 @@ proɣonos
 mitria
 
 patrios
+
+nifi
+
+nifi
+
+ɣabros
+
+ɣabros
+
+peθera
+
+peθera
+
+peθeros
+
+peθeros
 
 apoɣoni
 
@@ -1898,6 +2274,10 @@ efivi
 
 aɣori
 
+θilikos
+
+arsenikos
+
 ɣineka
 
 adras
@@ -1986,6 +2366,8 @@ vrodi
 
 bubunito
 
+keravnos
+
 astrapi
 
 asteri
@@ -2002,6 +2384,10 @@ uranos
 
 sismos sizmos
 
+petra
+
+vraxos
+
 ksilo
 
 ðedro
@@ -2013,6 +2399,10 @@ kataraxtis
 valtos
 
 elos
+
+piɣi
+
+piɣaði
 
 ðini
 
@@ -2050,7 +2440,13 @@ okeanos ok̯eanos
 
 afros tis θalasas
 
+trikimia
+
+θalasotaraxi
+
 θalasa
+
+ninemia
 
 nero
 
@@ -2084,6 +2480,12 @@ vraxos
 
 gremos
 
+vuno
+
+oros
+
+lofos
+
 laspi
 
 amos
@@ -2100,6 +2502,16 @@ xoma
 
 kosmos kozmos
 
+merikes fores
+
+sidoma
+
+ɣia poli kero
+
+pote
+
+pali
+
 mera
 
 nixta
@@ -2113,6 +2525,16 @@ mesimeri
 apoɣefma
 
 vraði
+
+simera
+
+avrio
+
+meθavrio
+
+xtes
+
+proxtes
 
 ora
 
@@ -2158,7 +2580,27 @@ mirizome
 
 mirizo
 
+miroðatos
+
+aromatismenos
+
+vromeros
+
 ðokimazo
+
+ɣlikos
+
+malakos
+
+almiros
+
+pikros
+
+stifos
+
+ksinos
+
+ɣlifos
 
 akuo
 
@@ -2170,6 +2612,14 @@ ixos
 
 fasaria
 
+θorivoðis
+
+ixiros
+
+isixos
+
+isixia
+
 vlepo
 
 kitazo
@@ -2178,7 +2628,31 @@ kitazo
 
 labo
 
+laberos
+
+fotinos
+
+zoiros
+
 xroma
+
+anixtos
+
+skuros
+
+aspros
+
+lefkos
+
+mavros
+
+kokinos
+
+ble
+
+prasinos
+
+kitrinos
 
 agizo
 
@@ -2188,9 +2662,51 @@ esθanome
 
 nioθo
 
+skliros
+
+apalos
+
+malakos
+
+traxis
+
+lios
+
+kofteros
+
+akonismenos
+
+apotomos
+
+varis
+
+elafris
+
+iɣros
+
+kseros
+
+zestos
+
+xliaros
+
+zestos
+
+krios
+
+kaθaros
+
+vromikos
+
+leromenos
+
+ritiðiasmenos
+
 psixi
 
 pnefma
+
+ekpliktos
 
 tixi
 
@@ -2201,6 +2717,10 @@ kakotixia
 atixia
 
 ðistixia
+
+xarumenos
+
+eftixismenos
 
 ɣelao
 
@@ -2256,7 +2776,13 @@ fθonos
 
 dropi
 
+perifanos
+
 tolmao
+
+θaraleos
+
+tolmiros
 
 fovos
 
@@ -2272,6 +2798,10 @@ epileɣo
 
 elpiða
 
+pistos
+
+aliθinos
+
 leo psemata
 
 psevðome
@@ -2279,6 +2809,16 @@ psevðome
 apati
 
 sinxoro
+
+kalos
+
+kakos
+
+ðikeos
+
+sostos
+
+lanθasmenos lanθazmenos
 
 laθos
 
@@ -2291,6 +2831,22 @@ momfi
 egomio
 
 epenos
+
+oreos
+
+omorfos
+
+asximos
+
+axortaɣos
+
+aplistos
+
+lemarɣos
+
+eksipnos
+
+efstrofos
 
 skepsi
 
@@ -2318,6 +2874,20 @@ iðea
 
 enia
 
+sofos
+
+polimaθis
+
+vlakas
+
+koutos
+
+trelos
+
+anoitos
+
+iliθios
+
 maθeno
 
 spuðazo
@@ -2336,6 +2906,22 @@ sxolio
 
 ksexnao
 
+faneros
+
+aplos
+
+ksekaθaros
+
+skotinos
+
+ðisnoitos
+
+mistikos
+
+siɣuros
+
+veveos
+
 eksiɣo
 
 stoxos
@@ -2352,11 +2938,53 @@ proðiðo
 
 anagi
 
+efkolos
+
+ðiskolos
+
 prospaθo
 
 ðokimazo
 
 tropos
+
+ke
+
+ɣiati
+
+epiði
+
+ðioti
+
+an
+
+i
+
+ne
+
+katafatikos
+
+oxi
+
+arnitikos
+
+pos
+
+posos
+
+poso
+
+ti
+
+pote
+
+pu
+
+pios
+
+pios
+
+ɣiati
 
 foni
 
@@ -2405,6 +3033,10 @@ onoma
 rotao
 
 apadao
+
+paraðexome
+
+omoloɣo
 
 arnume
 
@@ -2457,6 +3089,8 @@ flauto
 tibano
 
 taburlo
+
+trobeta
 
 kuðunistra
 
@@ -2552,6 +3186,8 @@ pali
 
 kavɣas
 
+sinomosia
+
 sinado
 
 porni
@@ -2644,6 +3280,8 @@ psarokalaθo
 
 psaropaɣiða
 
+ðoloma
+
 kiniɣao
 
 pirovolo
@@ -2668,6 +3306,10 @@ nomos
 
 ðikastis
 
+katiɣoros
+
+enaɣon
+
 katiɣorumenos
 
 enaɣomenos
@@ -2687,6 +3329,10 @@ apagelo katiɣoria
 aθoono
 
 apalaso
+
+enoxos
+
+aθoos
 
 timoria
 
@@ -2738,6 +3384,10 @@ iereas
 
 ieromenos
 
+ieros
+
+aɣios
+
 kirito
 
 kano kiriɣma
@@ -2769,6 +3419,14 @@ maɣia
 maɣia
 
 mavri maɣia
+
+maɣos
+
+maɣisa
+
+neraiða
+
+ksotiko
 
 fadasma
 

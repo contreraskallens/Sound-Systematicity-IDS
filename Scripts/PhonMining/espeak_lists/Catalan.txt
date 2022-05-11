@@ -1,3 +1,9 @@
+sovint
+
+sempre
+
+llest
+
 parar
 
 finalitzar
@@ -18,19 +24,119 @@ espavilarse
 
 afanyarse
 
+poc a poc
+
+lent
+
+ràpid
+
+ja
+
+immediatament
+
+ara
+
+tard
+
+aviat
+
+vell
+
+jove
+
 edat
+
+nou
 
 temps
 
+tres vegades
+
+tercer
+
+dues vegades
+
 parell
+
+segon
+
+últim
+
+primer
+
+sol
+
+només
 
 meitat
 
 troç
 
+buit
+
+ple
+
+multitud
+
+algun
+
+poc
+
+prou
+
+més
+
+molt
+
+tot
+
+cada
+
+cadascun
+
 comptar
 
+mil
+
+cent
+
+vint
+
+quinze
+
+dotze
+
+onze
+
+deu
+
+nou
+
+vuit
+
+set
+
+sis
+
+cinc
+
+quatre
+
+dos
+
+tres
+
+un
+
+zero
+
+res
+
 canviar
+
+semblant
+
+similar
 
 línia
 
@@ -39,6 +145,8 @@ forat
 esfera
 
 pilota
+
+rodó
 
 cercle
 
@@ -49,6 +157,40 @@ creu
 racó
 
 ganxo
+
+torçat
+
+recte
+
+dret
+
+pla
+
+poc profund
+
+fons
+
+prim
+
+gruix
+
+estret
+
+ample
+
+ampli
+
+curt
+
+alt
+
+llarg
+
+petit
+
+gros
+
+gran
 
 braça
 
@@ -64,6 +206,16 @@ oest
 
 est
 
+a prop
+
+lluny
+
+esquerre
+
+esquerra
+
+dreta
+
 mig
 
 centre
@@ -74,13 +226,19 @@ marge
 
 vora
 
+punxagut
+
 final
 
 fons
 
+baix
+
 munt
 
 dalt
+
+alt
 
 amagar
 
@@ -120,9 +278,41 @@ posar
 
 lloc
 
+a dalt
+
+sobre
+
+sota
+
+a fora
+
+fora
+
+dins
+
+davant de
+
+en front de
+
+abans
+
+davant
+
+sota
+
+al costat de
+
+darrere
+
+després
+
 pesar
 
 repartir
+
+barat
+
+car
 
 preu
 
@@ -131,6 +321,10 @@ botiga
 mercat
 
 comerciant
+
+comercialitzar
+
+negociar
 
 vendre
 
@@ -158,7 +352,15 @@ manllevar
 
 deixar
 
+avar
+
+tacanyo
+
 pidolaire
+
+pobre
+
+ric
 
 moneda
 
@@ -182,6 +384,8 @@ ferir
 
 destruir
 
+salvar
+
 preservar
 
 tenir cura
@@ -199,6 +403,10 @@ retenir
 obtenir
 
 tenir
+
+agafar
+
+atrapar
 
 prendre
 
@@ -250,6 +458,8 @@ carretó
 
 pont
 
+camí
+
 carretera
 
 empènyer
@@ -296,6 +506,8 @@ venir
 
 sortir
 
+baixar
+
 trepar
 
 anar
@@ -340,6 +552,10 @@ flotar
 
 enfonsar
 
+fluir
+
+córrer
+
 agitar
 
 sacsejar
@@ -347,6 +563,8 @@ sacsejar
 agafar
 
 tirar
+
+gotejar
 
 caure
 
@@ -375,6 +593,8 @@ donar la volta
 girar
 
 moure
+
+pintar
 
 cisell
 
@@ -486,6 +706,8 @@ estripar
 
 partir
 
+trencat
+
 trencar
 
 destral
@@ -510,6 +732,8 @@ tallar
 
 donar cops amb el puny
 
+golpejar
+
 nus
 
 corda
@@ -522,7 +746,11 @@ lligar
 
 doblegar
 
+doblegar
+
 treballar
+
+fer
 
 bolet
 
@@ -628,6 +856,10 @@ batre
 
 trillar
 
+falç
+
+dalla
+
 segar
 
 collir
@@ -653,6 +885,10 @@ solc
 cavar
 
 llaurar
+
+fossat
+
+rasa
 
 tanca
 
@@ -701,6 +937,8 @@ lleixa
 prestatge
 
 espelma
+
+làmpara
 
 taula
 
@@ -820,6 +1058,10 @@ cinturó
 
 faixa
 
+barret
+
+gorra
+
 sabater
 
 sabata
@@ -835,6 +1077,8 @@ pantalons
 faldilla dherbes
 
 faldilla
+
+coll
 
 camisa
 
@@ -974,6 +1218,10 @@ massa
 
 pa
 
+remenar
+
+barrejar
+
 gratar
 
 escórrer
@@ -1024,6 +1272,10 @@ cuinar al forn
 
 forn
 
+rostir
+
+fregir
+
 bullir
 
 cuinar
@@ -1046,11 +1298,45 @@ gana
 
 beure
 
+podrit
+
+verd
+
+immadur
+
+madur
+
+cru
+
+cuit
+
 menjar
 
 menjar
+
+despullat
+
+nu
+
+cec
+
+ebri
+
+mut
+
+sord
+
+calb
+
+coix
+
+esguerrat
+
+mandrós
 
 descansar
+
+cansat
 
 verí
 
@@ -1088,6 +1374,20 @@ gota
 
 febre
 
+malalt
+
+malaltia
+
+sà
+
+salut
+
+dèbil
+
+fort
+
+poderós
+
 tomba
 
 enterrar
@@ -1107,6 +1407,12 @@ viure
 vida
 
 concebre
+
+prenyada
+
+embarassada
+
+en estat
 
 néixer
 
@@ -1342,6 +1648,8 @@ barba
 
 cabell
 
+carn
+
 pell
 
 cos
@@ -1454,11 +1762,17 @@ aleta
 
 peix
 
+ratolí
+
+rata
+
 opòssum
 
 gat
 
 conill
+
+gos
 
 colom
 
@@ -1550,7 +1864,31 @@ pastura
 
 bestiar
 
+femella
+
+mascle
+
 animal
+
+ells
+
+elles
+
+vosaltres
+
+nosaltres
+
+nosaltres
+
+nosaltres
+
+ell
+
+tu
+
+vostè
+
+jo
 
 família
 
@@ -1571,6 +1909,26 @@ fillastre
 madrastra
 
 padrastre
+
+jove duna dona
+
+nora duna dona
+
+jove dun home
+
+nora dun home
+
+gendre duna dona
+
+gendre dun home
+
+sogra duna dona
+
+sogra dun home
+
+sogre duna dona
+
+sogre dun home
 
 descendents
 
@@ -1686,6 +2044,10 @@ noi
 
 nano
 
+femella
+
+mascle
+
 dona
 
 home
@@ -1754,6 +2116,10 @@ tro
 
 llampec
 
+llamp
+
+llampec
+
 estrella
 
 lluna
@@ -1763,6 +2129,10 @@ sol
 cel
 
 terratrèmol
+
+pedra
+
+roca
 
 fusta
 
@@ -1777,6 +2147,10 @@ salt daigua
 cascada
 
 pantà
+
+manantial
+
+pou
 
 remolí
 
@@ -1812,7 +2186,11 @@ oceà
 
 escuma
 
+agitat
+
 mar
+
+calma
 
 aigua
 
@@ -1840,6 +2218,14 @@ precipici
 
 penyasegat
 
+muntanya
+
+puig
+
+turó
+
+pujol
+
 llot
 
 fang
@@ -1856,6 +2242,16 @@ terra
 
 món
 
+a vegades
+
+aviat
+
+durant molt temps
+
+mai
+
+una altra vegada
+
 dia
 
 nit
@@ -1869,6 +2265,16 @@ migdia
 tarda
 
 vespre
+
+avui
+
+demà
+
+demà passat
+
+ahir
+
+abans dahir
 
 hora
 
@@ -1910,7 +2316,25 @@ olorar
 
 olorar
 
+fragància
+
+bona olor
+
+mala olor
+
 tastar
+
+dolç
+
+salat
+
+amarg
+
+àcid
+
+agre
+
+salabrós
 
 sentir
 
@@ -1922,6 +2346,12 @@ fressa
 
 soroll
 
+fort
+
+tranquil
+
+silenci
+
 veure
 
 mirar
@@ -1930,7 +2360,27 @@ ensenyar
 
 brillar
 
+brillant
+
+resplandor
+
 color
+
+clar
+
+fosc
+
+blanc
+
+negre
+
+vermell
+
+blau
+
+verd
+
+groc
 
 tocar
 
@@ -1938,13 +2388,57 @@ pessigar
 
 sentir
 
+dur
+
+suau
+
+aspre
+
+llis
+
+afilat
+
+esmolat
+
+esmussat
+
+pesat
+
+lleuger
+
+moll
+
+sec
+
+calent
+
+càlid
+
+calurós
+
+tebi
+
+fred
+
+net
+
+brut
+
+arrugat
+
 ànima
 
 esperit
 
+sorprès
+
 bona sort
 
 mala sort
+
+feliç
+
+alegre
 
 riure
 
@@ -1994,9 +2488,13 @@ gelós
 
 vergonya
 
+orgullós
+
 atrevirse
 
 gosar
+
+valent
 
 por
 
@@ -2010,6 +2508,10 @@ escollir
 
 esperança
 
+fidel
+
+veritat
+
 mentir
 
 dir mentides
@@ -2017,6 +2519,20 @@ dir mentides
 enganyar
 
 perdonar
+
+bo
+
+dolent
+
+correcte
+
+bé
+
+fals
+
+incorrecte
+
+malament
 
 culpa
 
@@ -2027,6 +2543,18 @@ error
 culpa
 
 elogiar
+
+bonic
+
+maco
+
+lleig
+
+tacanyo
+
+avar
+
+intelligent
 
 ment
 
@@ -2056,6 +2584,14 @@ idea
 
 noció
 
+sabi
+
+tonto
+
+estúpid
+
+boig
+
 aprendre
 
 estudiar
@@ -2080,6 +2616,16 @@ oblidar
 
 endescuidarse
 
+clar
+
+obscur
+
+secret
+
+segur
+
+cert
+
 explicar
 
 intenció
@@ -2100,11 +2646,49 @@ necessitar
 
 necessitat
 
+fàcil
+
+difícil
+
 intentar
 
 provar
 
 manera
+
+i
+
+perquè
+
+si
+
+o
+
+sí
+
+afirmatiu
+
+no
+
+negatiu
+
+com?
+
+quants?
+
+quant?
+
+què?
+
+quan?
+
+on?
+
+quin?
+
+qui?
+
+per què?
 
 veu
 
@@ -2152,6 +2736,10 @@ contestar
 
 respondre
 
+admetre
+
+confessar
+
 negar
 
 demanar
@@ -2193,6 +2781,8 @@ poeta
 flauta
 
 tambor
+
+trompeta
 
 cascavell
 
@@ -2278,6 +2868,10 @@ costum
 
 baralla
 
+conspiració
+
+complot
+
 trobarse
 
 prostituta
@@ -2360,6 +2954,8 @@ xarxa
 
 nas
 
+esquer
+
 caçar
 
 disparar
@@ -2382,6 +2978,10 @@ judici
 
 jutge
 
+demandant
+
+acusador
+
 acusat
 
 testimoni
@@ -2397,6 +2997,10 @@ condemnar
 condemnar
 
 absoldre
+
+culpable
+
+innocent
 
 càstig
 
@@ -2438,6 +3042,8 @@ pregar
 
 capellà
 
+sagrat
+
 predicar
 
 beneir
@@ -2457,6 +3063,14 @@ dimoni
 màgia
 
 bruixeria
+
+bruixa
+
+bruixot
+
+fada
+
+nan
 
 fantasma
 

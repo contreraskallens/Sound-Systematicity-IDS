@@ -1,3 +1,15 @@
+yn aml
+
+yn fynych
+
+bob amser
+
+bob tro
+
+drwyr amser
+
+parod
+
 peidio
 
 stopio
@@ -32,17 +44,81 @@ prysuro
 
 hastu
 
+araf
+
+buan
+
+cyflym
+
+chwyrn
+
+clau
+
+yn y fan
+
+ar unwaith
+
+yn syth
+
+yn awr
+
+hwyr
+
+diweddar
+
+cynnar
+
+bore
+
+hen
+
+ieuanc
+
+ifanc
+
 oed
 
 oes
+
+newydd
 
 amser
 
 pryd
 
+teirgwaith
+
+tair gwaith
+
+tair adeg
+
+tri thro
+
+tryddydd
+
+trydedd
+
+dwywaith
+
+dau dro
+
+dwy adeg
+
 pâr
 
 cwpl
+
+ail
+
+olaf
+
+diwethaf
+
+cyntaf
+
+yn unig
+
+unig
 
 hanner
 
@@ -50,11 +126,89 @@ rhan
 
 darn
 
+gwag
+
+llawn
+
+lliaws
+
+torf
+
+llu
+
+rhai
+
+ychydig
+
+peth
+
+ychydig
+
+digon
+
+mwy
+
+ychwaneg
+
+rhagor
+
+llawer
+
+pob
+
+holl
+
 cyfrif
+
+mil
+
+cant
+
+ugain
+
+pymtheg
+
+deuddeg
+
+un ar ddeg
+
+deg
+
+naw
+
+wyth
+
+saith
+
+chwech
+
+pump
+
+pedwar
+
+pedair
+
+dau
+
+dwy
+
+tri
+
+tair
+
+un
+
+dim
+
+sero
 
 newid
 
 troi
+
+tebyg
+
+hafal
 
 llinell
 
@@ -67,6 +221,8 @@ pêl
 pelen
 
 cronnell
+
+crwn
 
 cylch
 
@@ -85,6 +241,50 @@ congl
 cornel
 
 bach
+
+cam
+
+crwm
+
+union
+
+syth
+
+fflat
+
+gwastad
+
+bas
+
+dwfn
+
+tenau
+
+tew
+
+trwchus
+
+cul
+
+cyfyng
+
+llydan
+
+eang
+
+byr
+
+tal
+
+hir
+
+maith
+
+bach
+
+bychan
+
+mawr
 
 lled
 
@@ -106,6 +306,24 @@ gorllewin
 
 dwyrain
 
+yn agos
+
+nid nepell
+
+gerllaw
+
+ymhell
+
+yn bell
+
+chwith
+
+aswy
+
+de
+
+dehau
+
 canol
 
 perfedd
@@ -124,13 +342,21 @@ awch
 
 ochr
 
+pwyntiedig
+
+blaenllym
+
 pen
 
 gwaelod
 
 bôn
 
+isel
+
 brig
+
+uchel
 
 cuddio
 
@@ -188,9 +414,55 @@ lle
 
 man
 
+i fyny
+
+lan
+
+uwchben
+
+o dan
+
+tan
+
+y tu allan
+
+y tu mewn
+
+mewn
+
+yn
+
+blaen
+
+o flaen
+
+i lawr
+
+islaw
+
+yn ymyl
+
+wrth ochr
+
+ger
+
+wrth
+
+ar bwys
+
+y tu ôl
+
+ar ôl
+
 pwyso
 
 rhannu
+
+rhad
+
+drud
+
+costus
 
 pris
 
@@ -203,6 +475,8 @@ marchnad
 masnachydd
 
 marsiandwr
+
+masnachu
 
 gwerthu
 
@@ -246,7 +520,15 @@ echwyna
 
 benthycio
 
+cybyddlyd
+
+crintach
+
 cardotyn
+
+tlawd
+
+cyfoethog
 
 arian bath
 
@@ -274,6 +556,8 @@ dinistrio
 
 distrywio
 
+achub
+
 cadw
 
 gofalu
@@ -295,6 +579,8 @@ cael
 caffael
 
 dal
+
+gafael
 
 cymryd
 
@@ -365,6 +651,8 @@ ben
 cert
 
 pont
+
+llwybr
 
 ffordd
 
@@ -456,6 +744,10 @@ del
 
 mynd allan
 
+mynd i lawr
+
+disgyn
+
 dringo
 
 mynd
@@ -538,6 +830,10 @@ suddo
 
 soddi
 
+llifo
+
+rhedeg
+
 siglo
 
 ysgwyd
@@ -549,6 +845,12 @@ taflu
 taflyd
 
 lluchio
+
+diferu
+
+dafnu
+
+dafnio
 
 cwympo
 
@@ -589,6 +891,10 @@ troi
 symud
 
 syflyd
+
+paentio
+
+peintio
 
 cŷn
 
@@ -736,6 +1042,10 @@ rhwygo
 
 hollti
 
+toredig
+
+wedi ei dorri
+
 torri
 
 bwyall
@@ -774,6 +1084,10 @@ trychu
 
 dyrnu
 
+taro
+
+curo
+
 clwm
 
 cwlwm
@@ -792,9 +1106,15 @@ clymu
 
 plygu
 
+plygu
+
 gwaith
 
 llafur
+
+gwneuthur
+
+gwneud
 
 madarchen
 
@@ -942,6 +1262,10 @@ llawr dyrnu
 
 dyrnu
 
+cryman
+
+pladur
+
 medi
 
 pladuro
@@ -979,6 +1303,8 @@ palu
 aredig
 
 aradr
+
+ffos
 
 ffens
 
@@ -1043,6 +1369,10 @@ cafn
 silff
 
 cannwyll
+
+lamp
+
+llusern
 
 bwrdd
 
@@ -1208,6 +1538,10 @@ maneg
 
 gwregys
 
+het
+
+cap
+
 crydd
 
 esgid
@@ -1229,6 +1563,8 @@ llodrau
 sgert wair
 
 sgert
+
+coler
 
 crys
 
@@ -1394,6 +1730,10 @@ toes
 
 bara
 
+troi
+
+cymysgu
+
 crafu
 
 plicio
@@ -1458,6 +1798,12 @@ ffwrn
 
 popty
 
+rhostio
+
+crasu
+
+ffrio
+
 berwi
 
 coginio
@@ -1484,13 +1830,51 @@ chwant bwyd
 
 yfed
 
+pwdr
+
+pydredig
+
+anaeddfed
+
+aeddfed
+
+amrwd
+
+crai
+
+wedi ei goginio
+
 bwyd
 
 bwyta
 
+noeth
+
+llwm
+
+dall
+
+meddw
+
+mud
+
+byddar
+
+moel
+
+cloff
+
+diog
+
 gorffwys
 
 dadflino
+
+lluddedig
+
+blinedig
+
+blin
 
 gwenwyn
 
@@ -1558,6 +1942,28 @@ twymyn
 
 gwres
 
+claf
+
+clefyd
+
+afiechyd
+
+iach
+
+holliach
+
+iechyd
+
+gwan
+
+eiddil
+
+cryf
+
+cadarn
+
+nerthol
+
 bedd
 
 beddrod
@@ -1591,6 +1997,8 @@ bywyd
 beichiogi
 
 cenhedlu plentyn
+
+beichiog
 
 geni
 
@@ -1936,6 +2344,10 @@ gwallt
 
 blew
 
+cig
+
+cnawd
+
 croen
 
 cen
@@ -2104,11 +2516,19 @@ pysgodyn
 
 pysg
 
+llygoden
+
+llygoden fawr
+
+llygoden ffyrnig
+
 oposwm
 
 cath
 
 cwningen
+
+ci
 
 colomen
 
@@ -2242,9 +2662,29 @@ anifeiliaid
 
 da
 
+benyw
+
+gwryw
+
 anifail
 
 mil
+
+hwy
+
+chi
+
+ni
+
+ni
+
+ni
+
+ef
+
+ti
+
+fi
 
 teulu
 
@@ -2279,6 +2719,22 @@ mam wen
 llystad
 
 tad gwyn
+
+merch yng nghyfraith
+
+merch yng nghyfraith
+
+mab yng nghyfraith
+
+mab yng nghyfraith
+
+mam yng nghyfraith
+
+mam yng nghyfraith
+
+tad yng nghyfraith
+
+tad yng nghyfraith
 
 disgynyddion
 
@@ -2404,6 +2860,10 @@ bachgen
 
 hogyn
 
+benyw
+
+gwryw
+
 gwraig
 
 benyw
@@ -2502,6 +2962,12 @@ rhyferthwy
 
 taran
 
+mellten
+
+taran
+
+tyrfau
+
 mellt
 
 lluched
@@ -2524,6 +2990,12 @@ nef
 
 daeargryn
 
+carreg
+
+maen
+
+craig
+
 coed
 
 pren
@@ -2541,6 +3013,10 @@ gwŷdd
 pistyll
 
 cors
+
+ffynnon
+
+pydew
 
 trobwll
 
@@ -2584,7 +3060,13 @@ cefnfor
 
 ewyn
 
+garw
+
 môr
+
+llonydd
+
+tawel
 
 dwfr
 
@@ -2618,6 +3100,12 @@ clogwyn
 
 dibyn
 
+mynydd
+
+bryn
+
+bre
+
 llaid
 
 mwd
@@ -2635,6 +3123,30 @@ daear
 tir
 
 byd
+
+weithiau
+
+ambell waith
+
+cyn hir
+
+yn fuan
+
+ers tro
+
+ers talwm
+
+ers meitin
+
+byth
+
+erioed
+
+eto
+
+eilwaith
+
+drachefn
 
 dydd
 
@@ -2659,6 +3171,16 @@ min nos
 hwyr
 
 noswaith
+
+heddiw
+
+yfory
+
+trennydd
+
+doe
+
+echdoe
 
 awr
 
@@ -2714,9 +3236,31 @@ synhwyro
 
 clywed
 
+peraroglus
+
+persawrus
+
+drewllyd
+
+drycsawrus
+
 blasu
 
 chwaethu
+
+melys
+
+hallt
+
+chwerw
+
+sur
+
+egr
+
+helïaidd
+
+halltaidd
 
 clywed
 
@@ -2725,6 +3269,14 @@ gwrando
 sain
 
 sŵn
+
+uchel
+
+swnllyd
+
+llonydd
+
+tawelwch
 
 gweld
 
@@ -2740,7 +3292,33 @@ disgleirio
 
 llewyrchu
 
+golau
+
+disglair
+
 lliw
+
+golau
+
+tywyll
+
+gwyn
+
+can
+
+du
+
+coch
+
+rhudd
+
+glas
+
+gwyrdd
+
+glas
+
+melyn
 
 cyffwrdd
 
@@ -2752,9 +3330,65 @@ teimlo
 
 synhwyro
 
+caled
+
+meddal
+
+garw
+
+llyfn
+
+llym
+
+siarp
+
+pwl
+
+trwm
+
+ysgafn
+
+gwlyb
+
+llaith
+
+tamp
+
+sych
+
+poeth
+
+twym
+
+cynnes
+
+brwd
+
+cynnes
+
+twym
+
+oer
+
+glân
+
+budr
+
+brwnt
+
+crych
+
+crychlyd
+
+crychog
+
 enaid
 
 ysbryd
+
+syn
+
+wedi ei synnu
 
 lwc dda
 
@@ -2763,6 +3397,14 @@ ffawd dda
 anffawd
 
 anlwc
+
+llawen
+
+llon
+
+llawenydd
+
+dywenydd
 
 chwerthin
 
@@ -2828,7 +3470,13 @@ gwaradwydd
 
 gwarth
 
+balch
+
 beiddio
+
+dewr
+
+gwrol
 
 ofn
 
@@ -2846,11 +3494,31 @@ dewis
 
 gobaith
 
+ffyddlon
+
+gwir
+
+cywir
+
 dweud celwydd
 
 twyll
 
 maddau
+
+da
+
+mad
+
+drwg
+
+iawn
+
+cyfiawn
+
+cywir
+
+anghywir
 
 bai
 
@@ -2863,6 +3531,30 @@ bai
 moliant
 
 mawl
+
+hardd
+
+del
+
+glân
+
+teg
+
+tlws
+
+hyll
+
+hagr
+
+barus
+
+gwancus
+
+call
+
+clyfar
+
+deallus
 
 meddwl
 
@@ -2888,6 +3580,20 @@ ymddangos
 
 syniad
 
+doeth
+
+call
+
+ffôl
+
+ynfyd
+
+hurt
+
+gwallgof
+
+gorffwyll
+
 dysgu
 
 astudio
@@ -2905,6 +3611,22 @@ cofio
 anghofio
 
 ebargofi
+
+clir
+
+golau
+
+eglur
+
+aneglur
+
+dirgel
+
+cyfrinachol
+
+siŵr
+
+sicr
 
 esbonio
 
@@ -2928,11 +3650,63 @@ angen
 
 rhaid
 
+hawdd
+
+anodd
+
 ceisio
 
 modd
 
 ffordd
+
+a
+
+oherwydd
+
+oblegid
+
+achos
+
+os
+
+a
+
+neu
+
+ynteu
+
+ie
+
+do
+
+na
+
+negyddol
+
+sut?
+
+faint?
+
+sawl?
+
+faint?
+
+beth?
+
+pa bryd?
+
+pryd?
+
+ble?
+
+pa un?
+
+pun?
+
+pwy?
+
+pam?
 
 llais
 
@@ -2994,6 +3768,10 @@ holi
 
 ateb
 
+cyfaddef
+
+cyffesu
+
 gwadu
 
 gofyn
@@ -3051,6 +3829,10 @@ chwibanogl
 drwm
 
 tabwrdd
+
+corn
+
+utgorn
 
 ratl
 
@@ -3170,6 +3952,8 @@ ffrae
 
 cweryl
 
+cynllwyn
+
 cyfarfod
 
 putain
@@ -3270,6 +4054,8 @@ rhwyd bysgota
 
 magl bysgod
 
+abwyd
+
 hela
 
 saethu
@@ -3302,6 +4088,8 @@ barnwr
 
 brawdwr
 
+achwynydd
+
 diffynnydd
 
 tyst
@@ -3323,6 +4111,12 @@ euogbrofi
 dieuogi
 
 rhyddfarnu
+
+euog
+
+dieuog
+
+diniwed
 
 cosb
 
@@ -3368,6 +4162,8 @@ gweddïo
 
 offeiriad
 
+sanctaidd
+
 pregethu
 
 bendithio
@@ -3393,6 +4189,16 @@ hud
 dewiniaeth
 
 swyngyfaredd
+
+dewin
+
+swynwr
+
+gwrach
+
+tylwyth teg
+
+coblyn
 
 ysbryd
 

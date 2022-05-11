@@ -1,3 +1,9 @@
+amiúde
+
+sempre
+
+pronto
+
 parar
 
 cessar
@@ -20,11 +26,51 @@ atrasar
 
 apressar
 
+vagaroso
+
+devagar
+
+rápido
+
+ligeiro
+
+de imediato
+
+agora
+
+tarde
+
+cedo
+
+velho
+
+jovem
+
+novo
+
 idade
+
+novo
 
 tempo
 
+três vezes
+
+terceiro
+
+duas vezes
+
 par
+
+segundo
+
+último
+
+primeiro
+
+só
+
+somente
 
 metade
 
@@ -34,9 +80,79 @@ pedaço
 
 peça
 
+vazio
+
+cheio
+
+multidão
+
+alguns
+
+pouco
+
+poucos
+
+bastante
+
+suficiente
+
+mais
+
+muito
+
+muitos
+
+cada
+
+tudo
+
 contar
 
+mil
+
+cento
+
+cem
+
+vinte
+
+quinze
+
+doze
+
+onze
+
+dez
+
+nove
+
+oito
+
+sete
+
+seis
+
+cinco
+
+quatro
+
+dois
+
+duas
+
+três
+
+um
+
+uma
+
+zero
+
+nada
+
 mudar
+
+parecido
 
 linha
 
@@ -45,6 +161,8 @@ buraco
 esfera
 
 bola
+
+redondo
 
 círculo
 
@@ -59,6 +177,44 @@ esquina
 canto
 
 gancho
+
+torcido
+
+torto
+
+direito
+
+reto
+
+plano
+
+chato
+
+raso
+
+baixo
+
+fundo
+
+fino
+
+delgado
+
+grosso
+
+estreito
+
+largo
+
+curto
+
+alto
+
+comprido
+
+pequeno
+
+grande
 
 palmo
 
@@ -78,6 +234,16 @@ leste
 
 este
 
+perto
+
+próximo
+
+longe
+
+esquerda
+
+direita
+
 meio
 
 centro
@@ -88,6 +254,10 @@ beira
 
 borda
 
+afiado
+
+agudo
+
 extremidade
 
 fim
@@ -96,9 +266,15 @@ ponta
 
 fundo
 
+baixo
+
 cume
 
 topo
+
+alto
+
+elevado
 
 esconder
 
@@ -144,11 +320,41 @@ espaço
 
 lugar
 
+em cima
+
+sôbre
+
+debaixo
+
+fora
+
+dentro
+
+frente
+
+antes
+
+perante
+
+debaixo
+
+abaixo
+
+ao lado de
+
+atrás
+
+depois
+
 pesar
 
 distribuir
 
 compartilhar
+
+barato
+
+caro
 
 preço
 
@@ -157,6 +363,8 @@ loja
 mercado
 
 negociante
+
+trocar
 
 vender
 
@@ -184,7 +392,13 @@ pedir emprestado
 
 emprestar
 
+avarento
+
 mendigo
+
+pobre
+
+rico
 
 moeda
 
@@ -212,6 +426,8 @@ estragar
 
 destruir
 
+salvar
+
 cuidar de
 
 preservar
@@ -233,6 +449,8 @@ obter
 conseguir
 
 segurar
+
+agarrar
 
 agarrar
 
@@ -285,6 +503,10 @@ carruagem
 carroça
 
 ponte
+
+caminho
+
+vereda
 
 estrada
 
@@ -344,6 +566,10 @@ vir
 
 sair
 
+descer
+
+baixar
+
 trepar
 
 ir
@@ -394,6 +620,8 @@ flutuar
 
 afundar
 
+fluir
+
 agitar
 
 apanhar
@@ -405,6 +633,10 @@ atirar
 arremessar
 
 lançar
+
+gotejar
+
+escorrer
 
 cair
 
@@ -431,6 +663,8 @@ dar a volta
 virar
 
 mover
+
+pintar
 
 cinzel
 
@@ -556,6 +790,10 @@ fender
 
 partir
 
+partido
+
+quebrado
+
 romper
 
 quebrar
@@ -580,6 +818,10 @@ cortar
 
 bater com o punho
 
+bater
+
+golpear
+
 nó
 
 corda
@@ -596,7 +838,13 @@ atar
 
 dobrar
 
+dobrar
+
+curvar
+
 trabalhar
+
+fazer
 
 cogumelo
 
@@ -708,6 +956,10 @@ eira
 
 debulhar
 
+foice
+
+gadanha
+
 ceifar
 
 segar
@@ -735,6 +987,12 @@ cavar
 escavar
 
 arar
+
+fosso
+
+canal
+
+vala
 
 cerca
 
@@ -793,6 +1051,10 @@ gamela
 prateleira
 
 vela
+
+candeeiro
+
+tocha
 
 mesa
 
@@ -922,6 +1184,12 @@ luva
 
 cinto
 
+chapéu
+
+gorro
+
+boina
+
 sapateiro
 
 sapato
@@ -937,6 +1205,8 @@ calças
 saia de palha
 
 saia
+
+colarinho
 
 camisa
 
@@ -1090,6 +1360,10 @@ massa
 
 pão
 
+misturar
+
+mexer
+
 raspar
 
 peneira
@@ -1150,6 +1424,12 @@ cozer no forno
 
 forno
 
+assar
+
+fritar
+
+frigir
+
 ferver
 
 cozinhar
@@ -1178,11 +1458,47 @@ beber
 
 tomar
 
+podre
+
+verde
+
+imaturo
+
+maduro
+
+cru
+
+cozinhado
+
+cozido
+
 alimento
 
 comer
 
+despido
+
+nu
+
+cego
+
+embriagado
+
+mudo
+
+surdo
+
+calvo
+
+coxo
+
+preguiçoso
+
 descansar
+
+cansado
+
+estafado
 
 veneno
 
@@ -1228,6 +1544,24 @@ papeira
 
 febre
 
+doente
+
+doença
+
+bem
+
+saúde
+
+são
+
+débil
+
+fraco
+
+forte
+
+poderoso
+
 túmulo
 
 sepultura
@@ -1251,6 +1585,10 @@ vivo
 vida
 
 conceber
+
+grávida
+
+prenhe
 
 nascer
 
@@ -1514,6 +1852,8 @@ barba
 
 cabelo
 
+carne
+
 pele
 
 couro
@@ -1620,6 +1960,12 @@ barbatana
 
 peixe
 
+rato
+
+camundongo
+
+ratinho
+
 sarigüê
 
 gambá
@@ -1627,6 +1973,10 @@ gambá
 gato
 
 coelho
+
+cão
+
+cachorro
 
 pomba
 
@@ -1726,9 +2076,35 @@ pastagem
 
 gado
 
+feminino
+
+masculino
+
 animal
 
 bicho
+
+eles
+
+elas
+
+vocês
+
+vós
+
+nós
+
+nós
+
+nós
+
+ele
+
+tu
+
+você
+
+eu
 
 família
 
@@ -1747,6 +2123,22 @@ enteado
 madrasta
 
 padrasto
+
+nora
+
+nora
+
+genro
+
+genro
+
+sogra
+
+sogra
+
+sogro
+
+sogro
 
 descendentes
 
@@ -1858,6 +2250,10 @@ menino
 
 garoto
 
+fêmea
+
+macho
+
 mulher
 
 homem
@@ -1928,6 +2324,8 @@ tempestade
 
 trovão
 
+raio
+
 relâmpago
 
 estrela
@@ -1939,6 +2337,12 @@ sol
 céu
 
 terremoto
+
+pedra
+
+calhau
+
+rocha
 
 madeira
 
@@ -1955,6 +2359,10 @@ cascata
 pântano
 
 pantanal
+
+nascente
+
+poço
 
 remoinho
 
@@ -1996,7 +2404,13 @@ oceano
 
 espuma
 
+tempestuoso
+
 mar
+
+calma
+
+calmaria
 
 água
 
@@ -2026,6 +2440,10 @@ penhasco
 
 precipício
 
+montanha
+
+morro
+
 lama
 
 lodo
@@ -2041,6 +2459,20 @@ chão
 terreno
 
 mundo
+
+às vezes
+
+em breve
+
+por muito tempo
+
+nunca
+
+jamais
+
+outra vez
+
+de novo
 
 dia
 
@@ -2059,6 +2491,16 @@ tarde
 noite
 
 tardinha
+
+hoje
+
+amanhã
+
+depois de amanhã
+
+ontem
+
+anteontem
 
 hora
 
@@ -2102,9 +2544,29 @@ farejar
 
 cheirar
 
+cheiroso
+
+fragante
+
+fedorento
+
+mal cheiroso
+
 sabor
 
 gosto
+
+doce
+
+salgado
+
+amargo
+
+ácido
+
+azedo
+
+salobre
 
 ouvir
 
@@ -2113,6 +2575,12 @@ escutar
 ruído
 
 barulho
+
+ruidoso
+
+barulhento
+
+quieto
 
 ver
 
@@ -2124,7 +2592,29 @@ mostrar
 
 brilhar
 
+claro
+
+brilhante
+
 cor
+
+claro
+
+escuro
+
+branco
+
+preto
+
+negro
+
+vermelho
+
+azul
+
+verde
+
+amarelo
 
 tocar
 
@@ -2132,9 +2622,57 @@ beliscar
 
 sentir
 
+duro
+
+macio
+
+mole
+
+áspero
+
+liso
+
+macio
+
+agudo
+
+afiado
+
+embotado
+
+rombudo
+
+pesado
+
+leve
+
+molhado
+
+úmido
+
+seco
+
+quente
+
+quente
+
+cálido
+
+frio
+
+limpo
+
+sujo
+
+enrugado
+
 alma
 
 espírito
+
+surpreso
+
+espantado
 
 boa sorte
 
@@ -2143,6 +2681,12 @@ infortúnio
 má sorte
 
 azar
+
+feliz
+
+contente
+
+alegre
 
 rir
 
@@ -2192,7 +2736,13 @@ ciúme
 
 vergonha
 
+orgulhoso
+
 ousar
+
+corajoso
+
+bravo
 
 medo
 
@@ -2206,11 +2756,23 @@ escolher
 
 esperança
 
+leal
+
+verdadeiro
+
 mentir
 
 engano
 
 perdoar
+
+bom
+
+mau
+
+correto
+
+errado
 
 falta
 
@@ -2221,6 +2783,20 @@ erro
 culpa
 
 elogiar
+
+bonito
+
+belo
+
+feio
+
+cobiçoso
+
+ávido
+
+esperto
+
+hábil
 
 mente
 
@@ -2246,6 +2822,14 @@ parecer
 
 idéia
 
+sábio
+
+tolo
+
+louco
+
+maluco
+
 aprender
 
 estudar
@@ -2261,6 +2845,18 @@ escola
 lembrarse
 
 esquecerse
+
+claro
+
+evidente
+
+obscuro
+
+segredo
+
+seguro
+
+certo
 
 explicar
 
@@ -2278,11 +2874,49 @@ precisar
 
 necessidade
 
+fácil
+
+difícil
+
 tentar
 
 provar
 
 maneira
+
+e
+
+porque
+
+se
+
+ou
+
+sim
+
+afirmativo
+
+não
+
+negativo
+
+como?
+
+quantos?
+
+quanto?
+
+que?
+
+quando?
+
+onde?
+
+qual?
+
+quem?
+
+por quê?
 
 voz
 
@@ -2323,6 +2957,10 @@ nome
 perguntar
 
 responder
+
+admitir
+
+confessar
 
 negar
 
@@ -2365,6 +3003,10 @@ poeta
 flauta
 
 tambor
+
+corneta
+
+trombeta
 
 guizo
 
@@ -2466,6 +3108,8 @@ disputa
 
 luta
 
+conspiração
+
 encontrar
 
 prostituta
@@ -2562,6 +3206,8 @@ nassa
 
 armadilha de peixa
 
+isca
+
 caçar
 
 disparar
@@ -2592,6 +3238,8 @@ julgamento
 
 juiz
 
+queixoso
+
 réu
 
 acusado
@@ -2611,6 +3259,10 @@ sentenciar
 condenar
 
 absolver
+
+culpado
+
+inocente
 
 punição
 
@@ -2658,6 +3310,10 @@ rezar
 
 sacerdote
 
+santo
+
+sagrado
+
 pregar
 
 abençoar
@@ -2677,6 +3333,12 @@ demônio
 magia
 
 feitiçaria
+
+feiticeiro
+
+bruxo
+
+fada
 
 fantasma
 

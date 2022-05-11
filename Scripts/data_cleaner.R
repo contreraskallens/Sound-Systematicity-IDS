@@ -130,13 +130,31 @@ all.words <- mutate(all.words, transcription = as.character(transcription),
                     og_transcription = og.transcriptions,
                     og_alt_transcription = og.alt.transcriptions)
 
-# Load list of languages with no phon transcription and manually get them if they do. 
+# Load list of languages with no phon transcription and manually get them if they do. ------
 # Note that Spanish is mislabeled as phonemic when it's orthographic due to its inclusion of stress accents
+# Jinsha Dai and Southern Kam are phonetic, not phonemic
 
-languages.no.phon <- read_csv("../Data/Processed/languages_no_phon.csv")
-languages.no.info <- filter(languages.no.phon, transcription == "no_phon")
-all.words <- filter(all.words, !(language %in% languages.no.info$language))
-all.languages <- filter(all.languages, !(Name %in% languages.no.info$language))
+languages.no.phon <- read_csv("../Data/Processed/languages_no_phon.csv") %>% 
+  filter(transcription %in% c('espeak-ng', 'is_phon'),
+         !(language %in% c('Southern Kam', 'Jinsha Dai')))
+unmarked.phon <- filter(languages.no.phon, transcription == "is_phon")
+all.words <- mutate(all.words, transcription = ifelse(language %in% unmarked.phon$language, "phon", transcription))
+
+espeak.languages <- filter(languages.no.phon, transcription == "espeak-ng")
+
+espeak.words <- filter(all.words, language %in% espeak.languages$language)
+
+all.words <- all.words %>% 
+  filter(transcription == 'phon' | alt_transcription == 'phon')
+
+all.languages <- all.languages %>% 
+  filter(Name %in% unique(all.words$language) | Name %in% espeak.languages$language)
+
+# Save relevant data on new file
+all.languages <- all.languages %>% 
+  select(ID, Name, latitude, longitude, family)
+all.languages %>% 
+  write_csv("../Data/Processed/all_language_info.csv")
 
 # Get number of families with either phon data in IDS or espeak transcriptions
 
@@ -146,21 +164,17 @@ number.of.families <- all.languages$family %>%
 paste("Number of families:", number.of.families)
 
 
-# Languages that already had phon transcription, but unmarked
-unmarked.phon <- filter(languages.no.phon, transcription == "is_phon")
-all.words <- mutate(all.words, transcription = ifelse(language %in% unmarked.phon$language, "phon", transcription))
+# Get words for espeak-ng and then remove them from this -----
+# Remove espeak languages from frame
 
-# Get words for espeak-ng and then remove them from this
-espeak.languages <- filter(languages.no.phon, transcription == "espeak-ng")
-
-# Get words for all languages available in espeak-ng
-
+all.words <- all.words %>% 
+  filter(!(language %in% espeak.languages$language))
 
 # Store espeak lists
 all.espeak.langs <- espeak.languages$language
 names(all.espeak.langs) <- all.espeak.langs
 for(this.language in all.espeak.langs){
-  lang.words <- filter(all.words, language == this.language)
+  lang.words <- filter(espeak.words, language == this.language)
   lang.word.list <- lang.words$Form %>% 
     stri_trans_nfc() %>% 
     str_remove_all("(?<=.)\\(.+\\)") %>% 
@@ -180,19 +194,18 @@ for(this.language in all.espeak.langs){
 
 espeak.phon <- map_dfr(all.espeak.langs, function(this.language){
   print(this.language)
-  lang.words <- filter(all.words, language == this.language)
+  lang.words <- filter(espeak.words, language == this.language)
   espeak.trans <- read_lines(paste0("PhonMining/phon_transcriptions/", this.language, "_phon.txt")) %>% 
     str_remove_all("[ˈˌ]") %>%  # Remove stress marker
     stri_trans_nfc()
   lang.words$phon <- espeak.trans
+  lang.words$IPA <- espeak.trans
   return(lang.words)
-})
-
-# Save relevant data on new file
-all.languages <- all.languages %>% 
-  select(ID, Name, latitude, longitude, family)
-all.languages %>% 
-  write_csv("../Data/Processed/all_language_info.csv")
+}) %>% 
+  filter(str_detect(phon, '\\(en\\)', negate = TRUE),
+         (str_count(phon, " ") < 2)) %>% 
+  mutate(phon = str_remove_all(phon, ' '),
+         IPA = str_remove_all(IPA, ' '))
 
 # Loading and coding word data  -----------------------------------------------
 
@@ -215,12 +228,6 @@ all.words <- left_join(all.words, concepticon) %>%
   droplevels()
 levels(all.words$ontological.category) <- c("Action", "Thing")
 
-# Store the phon form as "phon" in the dataframe. 
-all.phon <- all.words %>% 
-  mutate(phon = ifelse(transcription == "phon", Form, alt_form)) %>% 
-  filter(!(is.na(phon)))
-
-
 # Recode in IPA
 # for(this.language in unique(all.phon$language)){
 #   if(this.language %in% espeak.languages$language){next}
@@ -240,13 +247,16 @@ all.phon <- all.words %>%
 
 # Clean phon forms --------------------------------------------------------
 
+# Store the phon form as "phon" in the dataframe. 
+all.phon <- all.words %>% 
+  mutate(phon = ifelse(transcription == "phon", Form, alt_form)) %>% 
+  filter(!(is.na(phon)))
+
 all.phon <- all.phon %>% 
   filter(!is.na(phon),
          str_detect(phon, "\\?", negate = TRUE)) # Get rid of forms that have a question mark on them
 
 all.phon <- clean.phon(all.phon)
-
-
 
 # Read in IPA codings --------------------------------------
 
@@ -254,7 +264,7 @@ ipa.codings <- list()
 for(file in list.files("IDS-To-IPA/Ready/", full.names = TRUE)){
   print(file)
   this.language <- str_extract(file, "(?<=Ready\\/\\/).+(?=\\.csv)")
-  this.transcription <- read_csv(file)
+  this.transcription <- read_csv(file, col_select = c(value, IPA))
   ipa.codings[[this.language]] <- this.transcription
   print(this.language)
 }
@@ -262,22 +272,29 @@ for(file in list.files("IDS-To-IPA/Ready/", full.names = TRUE)){
 lang.list <- all.phon %>% 
   group_by(language) %>% 
   group_split(.keep = TRUE)
+
 lang.list.names <- map_chr(lang.list, function(x){
   return(unique(x$language))
 })
+
 names(lang.list) <- lang.list.names
 
 all.phon <- map_dfr(lang.list.names, function(this.language){
   print(this.language)
   corresponding.lang <- all.phon %>% 
     filter(language == this.language)
+  if(!(this.language %in% names(ipa.codings))){
+    return(add_column(corresponding.lang, IPA = NA))
+  }
   ipa.list <- ipa.codings[[this.language]] %>% 
     drop_na()
   if(nrow(ipa.list) == 0){
     return(add_column(corresponding.lang, IPA = NA))
   }
-  ipa.corr <- utf8::utf8_normalize(ipa.list$IPA)
-  names(ipa.corr) <- utf8::utf8_normalize(ipa.list$value)
+  ipa.corr <- ipa.list$IPA %>% 
+    str_remove_all('\u0361') %>% 
+    stringi::stri_trans_nfc()
+  names(ipa.corr) <- stringi::stri_trans_nfc(ipa.list$value)
   this.lang.words <- str_split(corresponding.lang$phon, pattern = '')
   this.lang.words <- map_chr(this.lang.words, function(word){
     word <- word[word %in% names(ipa.corr)]
@@ -289,79 +306,17 @@ all.phon <- map_dfr(lang.list.names, function(this.language){
   return(corresponding.lang)
 })
 
-
-# all.phon$phon %>% str_split(string = ., pattern = "") %>% unlist %>% unique %>% write_lines("all_phonemes.txt")
-
-# Tonal languages have tones marked with numbers
-all.tone.languages <- filter(all.phon, str_detect(IPA, "[:digit:]")) 
-all.tone.languages <- unique(all.tone.languages$language)
-all.tone.languages <- all.tone.languages[!(all.tone.languages == "Telugu")] # Telugu has 2 words with numbers which are not tones
-all.tone.languages <- all.tone.languages[!(all.tone.languages == "Pear")] # Same with Pear
-all.tones <- filter(all.phon, language %in% all.tone.languages)
-all.tones <- mutate(all.tones, phon = ifelse(language == "Malieng", str_to_lower(phon), phon))
-
-all.phon <- filter(all.phon, !(language %in% all.tone.languages))
-
-# Form inventories of characters to hand construct the vowel inventory of each of them (no in principle way of identifying it a priori)
-# for(this.language in all.tone.languages){
-#   all.chars <- all.tones %>%
-#     filter(language == this.language)
-#   all.chars <- str_split(all.chars$phon, "") %>%
-#     unlist() %>%
-#     unique()
-#   file.name <- paste0("VowelInventories/", this.language, ".txt")
-#   write_lines(all.chars, file.name)
-# }
-
-all.tones <- map_dfr(all.tone.languages, function(this.language){
-  print(this.language)
-  lang.df <- filter(all.tones, language == this.language)
-  lang.words <- lang.df[["phon"]]
-  file.name <- paste0("VowelInventories/", this.language, ".txt")
-  vowel.inventory <- read_lines(file.name)
-  # After looking at database, tones are ALWAYS written after a period, 
-  # and ONLY use either numbers or upper case letters
-  tone.inventory <- str_extract_all(lang.words, "\\.[A-Z0-9\\$]{1,3}") %>% 
-    unlist() %>% 
-    unique()
-  print(tone.inventory)
-  all.combs <- expand_grid(vowel = vowel.inventory, tone = tone.inventory) %>% 
-    mutate(pattern = paste0(vowel, "[[a-z][\\p{Sm}]]*\\", tone))
-  exists <- map_lgl(all.combs$pattern, function(this.pattern){
-    exists <- str_detect(lang.words, this.pattern)
-    exists <- sum(exists)
-    return(ifelse(exists > 0, TRUE, FALSE))
-  })
-  all.combs <- all.combs[exists,] %>% 
-    arrange(desc(nchar(tone))) # Arrange combinations into descending order of length for matching tones with more than 1 number later
-  tone.placeholders <- stringi::stri_rand_strings(nrow(all.combs), 1, "[\\p{script = han}]") # replace with kanji placeholders
-  all.combs$placeholder <- tone.placeholders
-  print(all.combs)
-  lang.df$new.phon <- lang.df$phon
-  for(i in 1:nrow(all.combs)){
-    vowel.tone <- all.combs[i,]
-    lang.df <- lang.df %>% 
-      rowwise() %>% 
-      mutate(new.phon = replace.vowel(string = new.phon, 
-                                      vowel = vowel.tone[["vowel"]],
-                                      tone = vowel.tone[["tone"]],
-                                      placeholder = vowel.tone[["placeholder"]]))
-  }
-  lang.df <- ungroup(lang.df) %>% 
-    mutate(new.phon = str_remove_all(new.phon, "\\.[A-Z0-9]{1,3}")) 
-  return(lang.df)
-})
-
-all.tones <- select(all.tones, -phon, phon = new.phon)
-all.phon <- bind_rows(all.tones, all.phon)
-
 # Remove all remaining symbols and punctuation marks
 all.phon <-  mutate(all.phon, phon = str_remove_all(phon, "[\\p{S}\\p{P}]"))
-# Now merge collocations
-all.phon <- mutate(all.phon, phon = str_remove_all(phon, " "))
+
+# Merge with espeak
+all.phon <- bind_rows(all.phon, espeak.phon)
 
 # Only keep strings longer than 2
 all.phon <- filter(all.phon, nchar(phon) > 2)
+
+
+# Final cleanup ----
 
 all.phon <- all.phon %>%
   filter(!(is.na(ontological.category))) %>%  # remove words without concepticon information
@@ -378,14 +333,14 @@ all.phon %>% write_csv('../Data/Processed/all_phon.csv')
 
 # Create a morphology-adjusted dataset --------
 
-get.ngram.endings <- function(language.df, level){
+get.ngram.endings <- function(language.df, level, variable){
   all.levels <- c(-1:level)
   names(all.levels) <- all.levels
   all.ngram.endings <- map_dfc(all.levels, function(n){
-    str_sub(language.df$phon, n)
+    str_sub(language.df[[variable]], n)
   })
   ngram.df <- language.df %>% 
-    dplyr::select(phon, ontological.category, Form) %>% 
+    dplyr::select(variable, ontological.category, Form) %>% 
     bind_cols(all.ngram.endings)
   return(ngram.df)
 }
@@ -501,12 +456,12 @@ evaluate.word <- function(word, ngram.results){
   return(max.entropy)
 }
 
-get.morph.markers <- function(language.df){
-  all.ngrams <- get.ngram.endings(language.df, -(max(nchar(language.df$phon))))
+get.morph.markers <- function(language.df, variable){
+  all.ngrams <- get.ngram.endings(language.df, -(max(nchar(language.df[[variable]]))), variable)
   
   # Get data for frequency
   all.ngram.segments <- all.ngrams %>% 
-    dplyr::select(-phon, -ontological.category, -Form) %>% 
+    dplyr::select(-variable, -ontological.category, -Form) %>% 
     unlist()
   character.frequency <- paste0(all.ngram.segments, collapse = "") %>% 
     str_split("") %>% 
@@ -533,14 +488,14 @@ get.morph.markers <- function(language.df){
   
   words.and.markers <- language.df %>% 
     rowwise() %>% 
-    mutate(marker = evaluate.word(phon, ngram.results = all.ngram.stats))
+    mutate(marker = evaluate.word((!!as.symbol(variable)), ngram.results = all.ngram.stats))
   
   results <- list("marker.census" = all.stats.df, "marked.words" = words.and.markers)
   return(results)
 }
 
 
-clean.language <- function(language, all.data){
+clean.language <- function(language, all.data, variable){
   this.language <- language
   lang.df <- all.data %>% 
     filter(language == this.language)
@@ -551,27 +506,37 @@ clean.language <- function(language, all.data){
     this.df <- lang.df %>% 
       filter(ontological.category == category) %>% 
       droplevels()
-    these.markers <- get.morph.markers(this.df)
+    these.markers <- get.morph.markers(this.df, variable)
     return(these.markers)    
   })
   marker.census <- bind_rows(all.marker.df$Thing$marker.census, all.marker.df$Action$marker.census, all.marker.df$Other$marker.census)
   all.markers <- bind_rows(all.marker.df$Thing$marked.words, all.marker.df$Action$marked.words, all.marker.df$Other$marked.words)
   
   all.markers <- all.markers %>% 
-    mutate(marker.position = nchar(phon) - nchar(marker),
-           clean.phon = ifelse(marker == "#", phon, str_sub(phon, 1, marker.position))) %>% 
+    mutate(marker.position = nchar((!!as.symbol(variable))) - nchar(marker),
+           clean.phon = ifelse(marker == "#", (!!as.symbol(variable)), str_sub((!!as.symbol(variable)), 1, marker.position))) %>% 
     dplyr::select(-marker.position)
   results <- list("census" = marker.census, "clean.df" = all.markers)
 }
 
-all.lang.adjusted <- map(as.character(sort(unique(all.phon$language))), function(language){
+all.lang.adjusted.phon <- map(as.character(sort(unique(all.phon$language))), function(language){
   print(language)
-  lang.results <- clean.language(language, all.phon)
+  lang.results <- clean.language(language, all.phon, 'phon')
   lang.results$census$language <- language
   return(lang.results)
 })
 
-names(all.lang.adjusted) <- as.character(sort(unique(all.phon$language)))
+# all.lang.adjusted.ipa <- map(as.character(sort(unique(all.phon$language))), function(this.language){
+#   print(this.language)
+#   if(is.na(filter(all.phon, language == this.language))){
+#     
+#   }
+#   lang.results <- clean.language(this.language, all.phon, 'IPA')
+#   lang.results$census$language <- this.language
+#   return(lang.results)
+# })
+
+names(all.lang.adjusted.phon) <- as.character(sort(unique(all.phon$language)))
 
 
 # write_rds(all.lang.adjusted, "all_langs_adjusted.rds")

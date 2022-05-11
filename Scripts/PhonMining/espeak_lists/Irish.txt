@@ -1,3 +1,13 @@
+go minic
+
+i gcónaí
+
+i dtólamh
+
+ullamh
+
+réidh
+
 stad
 
 stop
@@ -32,13 +42,73 @@ brostaigh
 
 déan deifir
 
+mall
+
+réidh
+
+fadálach
+
+tapaidh
+
+mear
+
+gasta
+
+láithreach
+
+anois
+
+déanach
+
+deireanach
+
+mall
+
+go luath
+
+moch
+
+aosta
+
+críonna
+
+sean
+
+óg
+
 aois
+
+nua
+
+úr
 
 am
 
 aimsir
 
+trí huaire
+
+faoi thrí
+
+tríú
+
+dhá uair
+
+faoi dhó
+
 dís
+
+dara
+
+deireannach
+
+chéad
+
+aonar
+
+aon
+
+amháin
 
 leath
 
@@ -48,15 +118,97 @@ cuid
 
 páirt
 
+folamh
+
+lán
+
+slua
+
+iomad
+
+ollslua
+
+mórchuid
+
+éigin
+
+inteacht
+
+beagán
+
+beag
+
+tearc
+
+dóthain
+
+sáith
+
+leor
+
+tuilleadh
+
+mórán
+
+a lán
+
+iomaí
+
+lia
+
+gach
+
+gach uile
+
+go léir
+
 comhair
 
 cuntais
 
 áirigh
 
+míle
+
+céad
+
+fiche
+
+a cúig déag
+
+a dó dhéag
+
+a haon déag
+
+a deich
+
+a naoí
+
+a hocht
+
+a seacht
+
+a sé
+
+a cúig
+
+a ceathair
+
+a dó
+
+a trí
+
+a haon
+
+náid
+
+nialas
+
 aistrigh
 
 athraigh
+
+cosúil le
 
 líne
 
@@ -67,6 +219,10 @@ liathróid
 meall
 
 cruinne
+
+cruinn
+
+comhchruinn
 
 ciorcal
 
@@ -85,6 +241,54 @@ cearna
 crúca
 
 cromóg
+
+cam
+
+crom
+
+cuar
+
+díreach
+
+cothrom
+
+réidh
+
+comhréidh
+
+leibheálta
+
+tanaí
+
+éadomhain
+
+domhain
+
+tanaí
+
+caol
+
+tiubh
+
+ramhar
+
+cúng
+
+caol
+
+leathan
+
+gearr
+
+gairid
+
+ard
+
+fada
+
+beag
+
+mór
 
 feáigh
 
@@ -126,6 +330,30 @@ soir
 
 anoir
 
+in aice
+
+cóngarach
+
+i ngar
+
+i ndeas
+
+i ngaobhar
+
+fogas do
+
+i bhfogas
+
+i bhfad
+
+fada
+
+clé
+
+tuath
+
+deas
+
 meán
 
 lár
@@ -154,11 +382,19 @@ ciumhais
 
 eochair
 
+biorach
+
+gobach
+
 deireadh
 
 bun
 
+íseal
+
 barr
+
+ard
 
 folaigh
 
@@ -210,9 +446,65 @@ cuir
 
 ionad
 
+suas
+
+thuas
+
+faoi
+
+fá
+
+fé
+
+amach
+
+amuigh
+
+isteach
+
+istoigh
+
+ar aghaidh
+
+os comhair
+
+ar bhéal
+
+roimh
+
+roimh
+
+síos
+
+thíos
+
+in aice
+
+le hais
+
+taobh le
+
+in aice le
+
+taobh thiar
+
+laistiar
+
+i ndiaidh
+
+tar éis
+
 meáigh
 
 roinn
+
+saor
+
+neamhchostasach
+
+daor
+
+costasach
 
 luach
 
@@ -223,6 +515,8 @@ siopa
 margadh
 
 ceannaí
+
+babhtáil
 
 díol
 
@@ -256,9 +550,25 @@ fáigh ar iasacht
 
 tug ar iasacht
 
+sanntach
+
+ceachartha
+
+sprionlaithe
+
+gortach
+
 bacach
 
 fear déirce
+
+bocht
+
+dealbh
+
+daibhir
+
+saibhir
 
 bonn
 
@@ -286,6 +596,12 @@ scrios
 
 mill
 
+sábháil
+
+fuascail
+
+saor
+
 caomhnaigh
 
 cúmhdaigh
@@ -309,6 +625,12 @@ fáigh
 coinnigh
 
 coimeád
+
+beir ar
+
+glac
+
+ceap
 
 tóg
 
@@ -369,6 +691,8 @@ cairt
 carr
 
 droichead
+
+cosán
 
 bóthar
 
@@ -433,6 +757,8 @@ tig
 tag
 
 téigh amach
+
+téigh síos
 
 árdaigh
 
@@ -500,6 +826,12 @@ báigh
 
 cuir go tóin
 
+rith
+
+sní
+
+sileadh
+
 croith
 
 ceap
@@ -513,6 +845,10 @@ gabháil
 caith
 
 teilg
+
+braon
+
+sileán
 
 titim
 
@@ -545,6 +881,10 @@ iompú
 corraigh
 
 bogadh
+
+péinteáil
+
+dathaigh
 
 siséal
 
@@ -740,6 +1080,8 @@ scoilt
 
 scáin
 
+briste
+
 bris
 
 tua
@@ -792,6 +1134,8 @@ tuargain
 
 smíst
 
+buail
+
 snaidhm
 
 téad
@@ -810,9 +1154,25 @@ naisc
 
 fill
 
+claon
+
+crom
+
+fiar
+
+fill
+
+lúb
+
+cam
+
+feac
+
 obair
 
 saothar
+
+déan
 
 beacán
 
@@ -958,6 +1318,10 @@ buailim
 
 súisteáil
 
+corrán
+
+speal
+
 bain
 
 buain
@@ -1005,6 +1369,14 @@ céachta
 seisreach
 
 treabh
+
+díog
+
+clais
+
+sconsa
+
+claí
 
 claí
 
@@ -1073,6 +1445,12 @@ dabhach
 seilf
 
 coinneal
+
+lóchrann
+
+lampa
+
+solas
 
 bórd
 
@@ -1240,6 +1618,12 @@ mitín
 
 crios
 
+hata
+
+caipín
+
+bairéad
+
 gréasaí
 
 caibléir
@@ -1261,6 +1645,12 @@ treabhsar
 triús
 
 sciorta
+
+bóna
+
+coiléar
+
+muince
 
 léine
 
@@ -1482,6 +1872,12 @@ taos
 
 arán
 
+measc
+
+corraigh
+
+suaith
+
 scríob
 
 scrabh
@@ -1586,6 +1982,10 @@ oigheann
 
 bácús
 
+róst
+
+fioch
+
 beirigh
 
 fiuch
@@ -1636,6 +2036,22 @@ gorta
 
 slog
 
+lofa
+
+morgtha
+
+bréan
+
+glas
+
+anabaí
+
+aibí
+
+amh
+
+dearg
+
 bia
 
 lón
@@ -1648,11 +2064,41 @@ ith
 
 caith
 
+nocht
+
+lom
+
+caoch
+
+dall
+
+ar meisce
+
+ólta
+
+balbh
+
+bodhar
+
+maol
+
+lom
+
+plaiteach
+
+bacach
+
+leiscúil
+
 sos
 
 scíth
 
 suaimhneas
+
+tuirseach
+
+cortha
 
 nimh
 
@@ -1730,6 +2176,50 @@ ainglis
 
 fiabhras
 
+tinn
+
+breoite
+
+tinneas
+
+aicíd
+
+slán
+
+folláin
+
+sláinte
+
+lag
+
+fann
+
+tréith
+
+meirbh
+
+leochaileach
+
+meathlaithe
+
+lagbhríoch
+
+tréan
+
+láidir
+
+neartmhar
+
+cumhachtach
+
+mórchumhachtach
+
+cumasach
+
+éachtach
+
+bríomhar
+
 uaigh
 
 reilig
@@ -1767,6 +2257,14 @@ mairim
 gabh
 
 coimprím
+
+torrach
+
+toircheasach
+
+bruinneach
+
+bruinnighe
 
 beirtear
 
@@ -2202,6 +2700,8 @@ gruaig
 
 folt
 
+feoil
+
 cneas
 
 craiceann
@@ -2334,11 +2834,21 @@ eite
 
 iasc
 
+luch
+
 apasam
 
 cat
 
 coinín
+
+madra
+
+madadh
+
+gadhar
+
+cú
 
 colm
 
@@ -2462,9 +2972,39 @@ eallach
 
 airnéis
 
+baineann
+
+fireann
+
 ainmhí
 
 beithíoch
+
+siad
+
+iad
+
+sibh
+
+sinn
+
+muid
+
+sé
+
+sí
+
+tú
+
+thú
+
+tusa
+
+thusa
+
+mé
+
+mise
 
 clann
 
@@ -2487,6 +3027,14 @@ leasmhac
 leasmháthair
 
 leasathair
+
+banchliamhain
+
+cliamhain
+
+máthair céile
+
+athair céile
 
 sliocht
 
@@ -2598,6 +3146,10 @@ gasúr
 
 garsún
 
+baineann
+
+fireann
+
 bean
 
 fear
@@ -2696,6 +3248,8 @@ anfa
 
 tóirneach
 
+caor
+
 tintreach
 
 splanc
@@ -2716,6 +3270,12 @@ neamh
 
 crith talún
 
+cloch
+
+carraig
+
+craig
+
 adhmad
 
 fiodh
@@ -2733,6 +3293,12 @@ riasc
 bogach
 
 corrach
+
+tobar
+
+fuarán
+
+foinse
 
 coire guairneáin
 
@@ -2784,9 +3350,15 @@ cúr
 
 coipeadh
 
+garbh
+
 farraige
 
 muir
+
+ciúin
+
+socair
 
 uisce
 
@@ -2815,6 +3387,16 @@ gleann
 machaire
 
 má
+
+sliabh
+
+cnoc
+
+tulach
+
+ard
+
+beann
 
 puiteach
 
@@ -2854,6 +3436,36 @@ domhan
 
 saol
 
+amanna
+
+uaireanta
+
+scaití
+
+go luath
+
+go gairid
+
+gan mhoill
+
+le fada
+
+leis na cianta
+
+riamh
+
+go deo
+
+go brách
+
+choíche
+
+ar chor ar bith
+
+in aon chor
+
+arís
+
 lá
 
 oíche
@@ -2879,6 +3491,18 @@ tráthnóna
 tráthnóna
 
 oíche
+
+inniu
+
+amárach
+
+arú amárach
+
+anóirthear
+
+inné
+
+arú inné
 
 uair
 
@@ -2954,7 +3578,31 @@ smúr
 
 boltanaigh
 
+cumhra
+
+bréan
+
 blais
+
+milis
+
+goirt
+
+salainn
+
+searbh
+
+goirt
+
+garg
+
+géar
+
+searbh
+
+géar
+
+goirt
 
 cluin
 
@@ -2967,6 +3615,20 @@ fuaim
 glór
 
 foghar
+
+ard
+
+glórach
+
+gártha
+
+ciúin
+
+socair
+
+ciúnas
+
+tost
 
 feic
 
@@ -2986,9 +3648,41 @@ soilsigh
 
 lonraigh
 
+geal
+
+lonrach
+
+soilseach
+
+glinniúil
+
 dath
 
 lí
+
+éadtrom
+
+dorcha
+
+bán
+
+geal
+
+fionn
+
+dubh
+
+dearg
+
+rua
+
+gorm
+
+glas
+
+uaine
+
+buí
 
 teagmhaigh le
 
@@ -3004,9 +3698,51 @@ bain scealpóg as
 
 mothaigh
 
+crua
+
+bog
+
+garbh
+
+réidh
+
+mín
+
+géar
+
+maol
+
+trom
+
+éadtrom
+
+fliuch
+
+tirim
+
+te
+
+te
+
+brothallach
+
+bogthe
+
+alabhog
+
+fuar
+
+glan
+
+salach
+
+rocach
+
 anam
 
 spiorad
+
+iontas
 
 ádh
 
@@ -3019,6 +3755,20 @@ mífhortún
 anachain
 
 donas
+
+lúcháireach
+
+áthasach
+
+gliondrach
+
+suairc
+
+sona sásta
+
+ollghairdeach
+
+ríméadach
 
 gáir
 
@@ -3084,7 +3834,23 @@ formad
 
 náire
 
+mórchúiseach
+
+bródúil
+
+mórálach
+
+uaibhreach
+
 dúshlán
+
+calma
+
+misniúil
+
+cróga
+
+móruchtúil
 
 eagla
 
@@ -3116,6 +3882,14 @@ dóchas
 
 súil
 
+dílis
+
+tairiseach
+
+seasmhach
+
+fíor
+
 bréag
 
 éitheach
@@ -3132,6 +3906,28 @@ feall
 
 maith
 
+maith
+
+deá
+
+so
+
+olc
+
+droch
+
+do
+
+ceart
+
+cóir
+
+mícheart
+
+contráilte
+
+olc
+
 locht
 
 cion
@@ -3147,6 +3943,34 @@ botún
 milleán
 
 moladh
+
+álainn
+
+sciamhach
+
+spéiriúil
+
+dóighiúil
+
+gránna
+
+míofar
+
+santach
+
+airceasach
+
+amplach
+
+cliste
+
+stuama
+
+meabhrach
+
+éirimiúil
+
+ábalta
 
 aigne
 
@@ -3192,6 +4016,26 @@ idé
 
 coincheap
 
+eagnaí
+
+críonna
+
+gaoismhear
+
+dúr
+
+dobhránta
+
+dallintinneach
+
+bómánta
+
+amaideach
+
+ar buile
+
+ar mire
+
 foghlaim
 
 staidéar
@@ -3230,6 +4074,34 @@ cuimhin
 
 dearmad
 
+soiléar
+
+follasach
+
+geal
+
+gléigeal
+
+doiléir
+
+dorcha
+
+smúitiúil
+
+rúnda
+
+rúin
+
+sicréideach
+
+cinnte
+
+deimhin
+
+dearfa
+
+dearbh
+
 mínigh
 
 ciallaigh
@@ -3264,6 +4136,18 @@ gá
 
 call
 
+furasta
+
+saoráideach
+
+fuirist
+
+deacair
+
+doiligh
+
+duaisiúil
+
 iarraigh
 
 tástáil
@@ -3279,6 +4163,70 @@ féach
 dóigh
 
 caoi
+
+agus
+
+de bhrí go
+
+cionn is go
+
+mar gheall ar go
+
+as siocair go
+
+toisc go
+
+ar an ábhar go
+
+mar
+
+nó
+
+má
+
+dá
+
+nó
+
+ná
+
+ná
+
+conas
+
+cén chaoi
+
+cén dóigh
+
+cad é mar
+
+cé mhéad
+
+cé mhéad
+
+cad
+
+cad é
+
+cathain
+
+cén uair
+
+cá huair
+
+cá
+
+cén áit
+
+cé acu
+
+cé
+
+cad chuige
+
+cén fáth
+
+cad ina thaobh
 
 guth
 
@@ -3338,6 +4286,8 @@ fiafraigh
 
 freagair
 
+admhaigh
+
 séan
 
 bréagnaigh
@@ -3395,6 +4345,10 @@ file
 fliúit
 
 druma
+
+corn
+
+trumpa
 
 crothal
 
@@ -3546,6 +4500,12 @@ troid
 
 clampar
 
+comhchealg
+
+uisce faoi thalamh
+
+cogar
+
 cas ar
 
 do
@@ -3674,6 +4634,8 @@ líon
 
 eangach
 
+baoite
+
 seilg
 
 fiach
@@ -3710,6 +4672,12 @@ breith
 
 breitheamh
 
+éilitheoir
+
+gearánaí
+
+agróir
+
 cosantóir
 
 cosnamhaí
@@ -3735,6 +4703,10 @@ teilg
 saor
 
 éigiontaigh
+
+ciontach
+
+neamhchiontach
 
 pionós
 
@@ -3802,6 +4774,14 @@ guí
 
 sagart
 
+naofa
+
+rónaofa
+
+coisricthe
+
+beannaithe
+
 seanmóir a thabhairt
 
 a dhéanamh
@@ -3835,6 +4815,18 @@ draíocht
 asarlaíocht
 
 geintlíocht
+
+asarlaí
+
+draoi
+
+cailleach feasa
+
+bandraoi
+
+sióg
+
+na daoine maithe
 
 taibhse
 

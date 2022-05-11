@@ -1,3 +1,9 @@
+często
+
+zawsze
+
+gotowy
+
 przestać
 
 zatrzymać
@@ -28,13 +34,67 @@ spieszyć
 
 kwapić się
 
+powolny
+
+prędki
+
+szybki
+
+bystry
+
+rychło
+
+zaraz
+
+natychmiast
+
+teraz
+
+późno
+
+późny
+
+rano
+
+wcześnie
+
+stary
+
+młody
+
 wiek
 
 stulecie
 
+nowy
+
 czas
 
+trzy razy
+
+trzykroć
+
+trzykrotnie
+
+trzeci
+
+dwa razy
+
 para
+
+drugi
+
+ostatni
+
+pierwszy
+
+sam
+
+jedyny
+
+tylko
+
+jeno
 
 połowiczny
 
@@ -46,7 +106,89 @@ część
 
 dział
 
+próżny
+
+pusty
+
+pełny
+
+całkowity
+
+mnóstwo
+
+tłum
+
+ciżba
+
+mrowie
+
+niektóre
+
+kilka
+
+trochę
+
+niewiele
+
+mało
+
+niewiele
+
+trochę
+
+dość
+
+dosyć
+
+więcej
+
+wiele
+
+dużo
+
+każdy
+
+wszyscy
+
+wszystek
+
 liczyć
+
+tysiąc
+
+sto
+
+dwadzieścia
+
+piętnaście
+
+dwanaście
+
+jedenaście
+
+dziesięć
+
+dziewięć
+
+osiem
+
+siedem
+
+sześć
+
+pięć
+
+cztery
+
+dwa
+
+trzy
+
+jeden
+
+raz
+
+zero
 
 odmienić
 
@@ -54,11 +196,17 @@ zmienić
 
 zmieniać
 
+podobny
+
+taki sam
+
 linia
 
 dziura
 
 kula
+
+okrągły
 
 koło
 
@@ -80,6 +228,46 @@ węgieł
 
 hak
 
+krzywy
+
+skrzywiony
+
+prosty
+
+płaski
+
+płytki
+
+miałki
+
+głęboki
+
+cienki
+
+gruby
+
+wąski
+
+ciasny
+
+szeroki
+
+krótki
+
+niski
+
+wysoki
+
+długi
+
+mały
+
+niewielki
+
+wielki
+
+olbrzymi
+
 okres
 
 objętość
@@ -98,6 +286,14 @@ zachȯd
 
 wschód
 
+blisko
+
+daleko
+
+lewy
+
+prawy
+
 średni
 
 środek
@@ -112,13 +308,21 @@ brzeg
 
 krawędź
 
+spiczasty
+
+zaostrzony
+
 koniec
 
 dno
 
+niski
+
 wierzch
 
 góra
+
+wysoki
 
 kryć
 
@@ -196,6 +400,46 @@ kłaść
 
 miejsce
 
+w górze
+
+w górę
+
+ponad
+
+pod
+
+na zewnątrz
+
+poza
+
+wewnątrz
+
+w środku
+
+przód
+
+przed
+
+z przodu
+
+na dół
+
+na dole
+
+poniżej
+
+przy
+
+obok
+
+za
+
+z tyłu
+
+po
+
+za
+
 ważyć
 
 dzielić
@@ -206,6 +450,10 @@ udział
 
 akcja
 
+tani
+
+drogi
+
 cena
 
 sklep
@@ -215,6 +463,10 @@ targ
 rynek
 
 kupiec
+
+handlować
+
+kupczyć
 
 sprzedać
 
@@ -262,7 +514,19 @@ pożyczyć
 
 pożyczać
 
+chciwy
+
+łakomy
+
+skąpy
+
 żebrak
+
+ubogi
+
+biedny
+
+bogaty
 
 moneta
 
@@ -289,6 +553,10 @@ krzywdzić
 niszczyć
 
 burzyć
+
+ratować
+
+ocalić
 
 chować
 
@@ -323,6 +591,10 @@ otrzymać
 otrzymywać
 
 trzymać
+
+uchwycić
+
+pochwycić
 
 wziąć
 
@@ -389,6 +661,8 @@ wóz
 powóz
 
 most
+
+ścieżka
 
 droga
 
@@ -470,6 +744,8 @@ wyjść
 
 wychodzić
 
+schodzić
+
 wspinać się
 
 iść
@@ -544,6 +820,10 @@ topić
 
 zatonąć
 
+płynąć
+
+pływać
+
 trząść
 
 wstrząsać
@@ -557,6 +837,10 @@ rzucać
 ciskać
 
 cisnąć
+
+kapanie
+
+kapać
 
 paść
 
@@ -599,6 +883,8 @@ obrócić
 ruszyć
 
 ruszać
+
+malować
 
 dłuto
 
@@ -768,6 +1054,8 @@ rwać
 
 rozszczepiać
 
+złamany
+
 łamać
 
 siekiera
@@ -800,6 +1088,12 @@ siec
 
 walić pięścią
 
+uderzyć
+
+bić
+
+razić
+
 węzeł
 
 powróz
@@ -822,11 +1116,23 @@ fałdować
 
 zaginać
 
+giąć
+
+nagiąć
+
+naginać
+
 robota
 
 praca
 
 dzieło
+
+czynić
+
+robić
+
+działać
 
 grzyb
 
@@ -938,6 +1244,10 @@ klepisko
 
 młócić
 
+sierp
+
+kosa
+
 żąć
 
 siec
@@ -981,6 +1291,8 @@ ryć
 orać
 
 pług
+
+rów
 
 płot
 
@@ -1037,6 +1349,8 @@ koryto
 półka
 
 świeca
+
+lampa
 
 stół
 
@@ -1186,6 +1500,10 @@ pas
 
 gorset
 
+kapelusz
+
+czapka
+
 szewc
 
 obuwie
@@ -1205,6 +1523,8 @@ portki
 spódnica
 
 spódnica
+
+kołnierz
 
 koszula
 
@@ -1378,6 +1698,8 @@ ciasto
 
 chleb
 
+mieszać
+
 skrobać
 
 sito
@@ -1438,6 +1760,12 @@ piec
 
 piec
 
+piec
+
+smażyć
+
+prażyć
+
 warzyć
 
 warzyć
@@ -1462,6 +1790,20 @@ głód
 
 pić
 
+zepsuty
+
+zgniły
+
+zielony
+
+niedojrzały
+
+dojrzały
+
+surowy
+
+gotowany
+
 jadło
 
 pokarm
@@ -1470,9 +1812,39 @@ potrawa
 
 jeść
 
+nagi
+
+goły
+
+goli
+
+ślepy
+
+pijany
+
+spity
+
+niemy
+
+głuchy
+
+łysy
+
+chromy
+
+kulawy
+
+leniwy
+
 odpoczynek
 
 odpoczywać
+
+zmęczony
+
+strudzony
+
+sfatygowany
 
 trucizna
 
@@ -1526,6 +1898,22 @@ wole
 
 gorączka
 
+chory
+
+choroba
+
+zdrowy
+
+zdrowie
+
+słaby
+
+silny
+
+mocny
+
+potężny
+
 grób
 
 mogiła
@@ -1561,6 +1949,12 @@ umierać
 żyjący
 
 począć
+
+brzemienna
+
+ciężarna
+
+w ciąży
 
 rodzić
 
@@ -1876,6 +2270,8 @@ broda
 
 włos
 
+mięso
+
 skóra
 
 ciało
@@ -1974,11 +2370,19 @@ płetwa ogonowa
 
 ryba
 
+mysz
+
+szczur
+
 opos
 
 kot
 
 królik
+
+pies
+
+szczenię
 
 gołąb
 
@@ -2094,7 +2498,33 @@ paść się
 
 bydło
 
+samica
+
+samcza
+
+samiec
+
+samczy
+
 zwierzę
+
+oni
+
+one
+
+wy
+
+nas
+
+nam
+
+my
+
+on
+
+ty
+
+ja
 
 rodzina
 
@@ -2113,6 +2543,26 @@ pasierb
 macocha
 
 ojczym
+
+synowa
+
+synowa
+
+zięć
+
+zięć
+
+teściowa
+
+świekra
+
+teściowa
+
+teść
+
+świekier
+
+teść
 
 potomkowie
 
@@ -2268,6 +2718,10 @@ chłopak
 
 chłopię
 
+żeński
+
+męski
+
 kobieta
 
 mąż
@@ -2364,6 +2818,10 @@ grom
 
 piorun
 
+grom
+
+piorun
+
 błyskawica
 
 gwiazda
@@ -2379,6 +2837,12 @@ nieboskłon
 firmament
 
 trzęsienie ziemi
+
+kamień
+
+skała
+
+opoka
 
 drzewo
 
@@ -2399,6 +2863,12 @@ wodospad
 bagno
 
 moczary
+
+studnia
+
+źródło
+
+zdrój
 
 wir
 
@@ -2436,7 +2906,15 @@ ocean
 
 piana
 
+burzliwy
+
+wzburzony
+
 morze
+
+spokój
+
+cisza
 
 woda
 
@@ -2464,6 +2942,12 @@ płaszczyzna
 
 urwisko
 
+góra
+
+pagórek
+
+wzgórek
+
 błoto
 
 piasek
@@ -2483,6 +2967,24 @@ ziemia
 ląd
 
 świat
+
+czasem
+
+niekiedy
+
+wkrótce
+
+niedługo
+
+przez długi czas
+
+nigdy
+
+znowu
+
+ponownie
+
+jeszcze raz
 
 dzień
 
@@ -2505,6 +3007,18 @@ popołudnie
 po południu
 
 wieczór
+
+dziś
+
+dzisiaj
+
+jutro
+
+pojutrze
+
+wczoraj
+
+przedwczoraj
 
 godzina
 
@@ -2552,11 +3066,31 @@ pachnieć
 
 wąchać
 
+wonny
+
+pachnący
+
+śmierdzący
+
+smrodliwy
+
 kosztować
 
 smakować
 
 próbować
+
+słodki
+
+słony
+
+gorzki
+
+kwaśny
+
+kwas
+
+słonawy
 
 słyszeć
 
@@ -2569,6 +3103,14 @@ dźwięk
 hałas
 
 szum
+
+głośny
+
+donośny
+
+cichy
+
+cisza
 
 widzieć
 
@@ -2588,11 +3130,31 @@ pokazać
 
 błyszczeć
 
+świetny
+
+jasny
+
 farba
 
 kolor
 
 barwa
+
+jasny
+
+ciemny
+
+biały
+
+czarny
+
+czerwony
+
+niebieski
+
+zielony
+
+żółty
 
 dotknąć
 
@@ -2608,13 +3170,61 @@ czuć
 
 wyczuwać
 
+twardy
+
+miękki
+
+szorstki
+
+chropawy
+
+gładki
+
+ostry
+
+tępy
+
+ciężki
+
+lekki
+
+mokry
+
+wilgotny
+
+suchy
+
+gorący
+
+ciepły
+
+zimny
+
+czysty
+
+brudny
+
+marszczony
+
 dusza
 
 duch
 
+zadziwienie
+
+zdziwiony
+
+zadziwiony
+
+zaskoczony
+
 szczęście
 
 nieszczęście
+
+radosny
+
+wesoły
 
 śmiać się
 
@@ -2680,9 +3290,19 @@ wstyd
 
 wstydliwość
 
+pyszny
+
+dumny
+
 ważyć się
 
 śmieć
+
+odważny
+
+waleczny
+
+mężny
 
 bojaźń
 
@@ -2704,6 +3324,12 @@ wybierać
 
 nadzieja
 
+wierny
+
+prawda
+
+prawdziwy
+
 kłamstwo
 
 oszustwo
@@ -2711,6 +3337,22 @@ oszustwo
 szalbierstwo
 
 przebaczyć
+
+dobry
+
+zły
+
+okropny
+
+prawy
+
+właściwy
+
+zły
+
+niewłaściwy
+
+błędny
 
 wina
 
@@ -2725,6 +3367,24 @@ nagana
 wina
 
 pochwała
+
+piękny
+
+śliczny
+
+ładny
+
+szpetny
+
+brzydki
+
+chciwy
+
+sprytny
+
+bystry
+
+zdolny
 
 umysł
 
@@ -2760,6 +3420,14 @@ koncept
 
 idea
 
+mądry
+
+nierozsądny
+
+głupi
+
+szalony
+
 uczyć się
 
 dowiadywać się
@@ -2785,6 +3453,16 @@ pamiętać
 zapomnieć
 
 zapominać
+
+jasny
+
+niejasny
+
+tajny
+
+tajemny
+
+pewny
 
 objaśnić
 
@@ -2818,6 +3496,10 @@ konieczność
 
 potrzeba
 
+łatwy
+
+trudny
+
 próbować
 
 sposób
@@ -2825,6 +3507,44 @@ sposób
 metoda
 
 maniera
+
+i
+
+ponieważ
+
+jeśli
+
+jeżeli
+
+lub
+
+albo
+
+bądź
+
+tak
+
+nie
+
+jak?
+
+ile
+
+ilu?
+
+ile?
+
+co?
+
+kiedy?
+
+gdzie?
+
+który?
+
+kto?
+
+dlaczego?
 
 głos
 
@@ -2887,6 +3607,10 @@ pytać
 zapytywać
 
 odpowiedzieć
+
+przyznać
+
+przyznawać
 
 przeczyć
 
@@ -2957,6 +3681,10 @@ flet
 bęben
 
 bębenek
+
+róg
+
+trąba
 
 turkot
 
@@ -3066,6 +3794,12 @@ spór
 
 kłótnia
 
+spisek
+
+knowanie
+
+intryga
+
 potkać
 
 spotkać się
@@ -3168,6 +3902,8 @@ haczyk
 
 sieć na ryby
 
+przynęta
+
 łów
 
 łowić
@@ -3198,6 +3934,10 @@ wyrok
 
 sędzia
 
+skarżący
+
+powód
+
 oskarżony
 
 świadek
@@ -3225,6 +3965,10 @@ potępić
 przekonać
 
 uznać niewinnyn
+
+winny
+
+niewinny
 
 kara
 
@@ -3278,6 +4022,8 @@ modlić się
 
 ksiądz
 
+święty
+
 kazać
 
 prawić kazanie
@@ -3315,6 +4061,14 @@ czary
 czarodziejstwo
 
 gusła
+
+czarownica
+
+strzyga
+
+boginka
+
+rusałka
 
 widmo
 

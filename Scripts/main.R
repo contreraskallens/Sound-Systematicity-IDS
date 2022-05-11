@@ -171,6 +171,7 @@ all.p <- map2_dfr(unique(all.phon.adjusted$language), list(all.distances.adjuste
 table(all.p$sig)
 mean(all.p$d)
 sd(all.p$d)
+hist(all.p$eta.squared, breaks = 25)
 
 morph.complexity %>% 
   rename(language = Language) %>% 
@@ -294,6 +295,7 @@ rnn.stats.adjusted %>%
   filter(measure == "AUC") %>% 
   mutate(language = factor(language, levels = .$language)) %>% 
   ggplot(aes(x = language, y = median.auc)) +
+  # geom_point(aes(y = median.auc)) +
   geom_pointrange(aes(ymin = median.auc - iqr.auc, ymax = median.auc + iqr.auc), size = 0.2) +
   geom_hline(yintercept = 0.5) +
   labs(y = "Mean AUC") 
@@ -307,8 +309,7 @@ rnn.stats.adjusted %>%
   geom_pointrange(aes(ymin = conf, ymax = median.auc), size = 0.2) +
   geom_hline(yintercept = 0.5) +
   labs(y = "Median AUC") +
-  theme_minimal() + 
-  theme(x.axis)
+  theme_minimal()
 
 rnn.stats.adjusted %>% 
   arrange(desc(median.mcc)) %>% 

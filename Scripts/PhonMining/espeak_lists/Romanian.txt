@@ -1,3 +1,9 @@
+adesea
+
+totdeauna
+
+gata
+
 înceta
 
 isprăvi
@@ -18,25 +24,93 @@ zăbovi
 
 se grăbi
 
+încet
+
+repede
+
+iute
+
+îndată
+
+acum
+
+tîrziu
+
+de vreme
+
+de dimineaţă
+
+vechiu
+
+bătrîn
+
+tînăr
+
+june
+
 virstă
 
 etate
+
+nou
 
 timp
 
 vreme
 
+de trei orĭ
+
+al treilea
+
+ultim
+
+prim
+
+singur
+
+unic
+
+numai
+
 jumătate
 
 parte
 
+gol
+
+deşert
+
+plin
+
+mulţine
+
+gloată
+
+puţin
+
+destul
+
+mai mult
+
+mult
+
+fiecare
+
+tot
+
+tofĭ
+
 schimba
+
+asemenea
 
 gaură
 
 glob
 
 sferă
+
+rotund
 
 cerc
 
@@ -47,6 +121,36 @@ cruce
 colţ
 
 cîrlig
+
+strîmb
+
+drept
+
+şes
+
+lat
+
+puţin adînc
+
+adînc
+
+subţire
+
+gros
+
+strimt
+
+îngust
+
+lat
+
+scurt
+
+lung
+
+mic
+
+mare
 
 măsura
 
@@ -64,6 +168,14 @@ est
 
 răsărit
 
+aproape
+
+departe
+
+stîng
+
+drept
+
 mijlociu
 
 parte
@@ -72,13 +184,19 @@ tais
 
 margine
 
+vîrf
+
 capăt
 
 fund
 
+jos
+
 vîrf
 
 culme
+
+înalt
 
 ascunde
 
@@ -120,6 +238,10 @@ băga
 
 loc
 
+ieftin
+
+scump
+
 preţ
 
 prăvălie
@@ -131,6 +253,12 @@ tîrg
 negustor
 
 comerciante
+
+negocia
+
+negustori
+
+trafica
 
 vinde
 
@@ -166,7 +294,17 @@ lua cu împrumut
 
 da cu împrumut
 
+sgîrcit
+
+avar
+
+scump
+
 cerşetor
+
+sărac
+
+bogat
 
 monedă
 
@@ -192,6 +330,10 @@ vătăma
 
 distruge
 
+mîntui
+
+scăpa
+
 păstra
 
 înapoĭa
@@ -205,6 +347,10 @@ căpăta
 obţine
 
 ţine
+
+apuca
+
+prinde
 
 lua
 
@@ -247,6 +393,8 @@ căruţă
 car
 
 pod
+
+cărare
 
 drum
 
@@ -326,9 +474,15 @@ pluti
 
 scufunda
 
+curge
+
 scutura
 
 arunca
+
+picătură
+
+strop
 
 cădea
 
@@ -351,6 +505,10 @@ depăna
 întoarce
 
 mişca
+
+văpsi
+
+zugrăvi
 
 daltă
 
@@ -472,6 +630,10 @@ cuţit
 
 tăia
 
+lovi
+
+bate
+
 nod
 
 frînghie
@@ -486,11 +648,17 @@ lega
 
 îndoi
 
+încovoia
+
+pleca
+
 lucru
 
 muncă
 
 operă
+
+face
 
 bea tutun
 
@@ -550,6 +718,10 @@ arie
 
 treera
 
+secere
+
+coasă
+
 secera
 
 cosi
@@ -587,6 +759,8 @@ agricultor
 ţăran
 
 lumînare
+
+lampă
 
 masă
 
@@ -690,6 +864,10 @@ curea
 
 colan
 
+pălărie
+
+şapcă
+
 cizmar
 
 gheată
@@ -703,6 +881,10 @@ ciorap
 pantaloni
 
 fustă
+
+guler
+
+guleraş
 
 cămaşă
 
@@ -880,6 +1062,10 @@ coace
 
 cuptor
 
+frige
+
+prăji
+
 fierbe
 
 găti
@@ -900,6 +1086,28 @@ mîncare
 
 mînca
 
+gol
+
+orb
+
+beat
+
+mut
+
+surd
+
+chel
+
+pleşuv
+
+şchiop
+
+leneş
+
+trîndav
+
+obosit
+
 otravă
 
 venin
@@ -917,6 +1125,20 @@ vindeca
 tămădui
 
 rană
+
+bolnav
+
+boală
+
+sănătos
+
+sănătate
+
+slab
+
+tare
+
+puternic
 
 mormînt
 
@@ -949,6 +1171,10 @@ viu
 în viaţă
 
 viaţă
+
+însărcinată
+
+grea
 
 naşte
 
@@ -1112,6 +1338,8 @@ barbă
 
 păr
 
+carne
+
 piele
 
 corp
@@ -1142,7 +1370,11 @@ lup
 
 peşte
 
+şoarece
+
 pisică
+
+cîine
 
 pasăre
 
@@ -1216,6 +1448,10 @@ vite
 
 (dobitoc)
 
+femeiesc
+
+bărbatesc
+
 animal
 
 bestie
@@ -1237,6 +1473,14 @@ fiu vitreg
 mamă vitregă
 
 tată vitreg
+
+nora
+
+ginere
+
+socra
+
+socru
 
 descendenţi
 
@@ -1316,6 +1560,10 @@ băiat
 
 (făt)
 
+femeiesc
+
+bărbătesc
+
 femeie
 
 bărbat
@@ -1368,6 +1616,8 @@ lumină
 
 tunet
 
+trăsnet
+
 fulger
 
 stea
@@ -1378,6 +1628,12 @@ soare
 
 cer
 
+piatră
+
+stîncă
+
+rocă
+
 lemn
 
 arbore
@@ -1385,6 +1641,12 @@ arbore
 copac
 
 pădure
+
+izvor
+
+puţ
+
+fîntînă
 
 fluviu
 
@@ -1422,6 +1684,12 @@ vale
 
 cîmp
 
+munte
+
+deal
+
+colina
+
 noroiu
 
 nisip
@@ -1435,6 +1703,14 @@ pamînt
 ţară
 
 lume
+
+cîteodată
+
+uneori
+
+nicĭodată
+
+iar
 
 zi
 
@@ -1451,6 +1727,14 @@ amiazi
 miezul zilei
 
 seară
+
+astăzi
+
+azi
+
+mîĭne
+
+ieri
 
 ceas
 
@@ -1490,13 +1774,27 @@ mirosi
 
 mirosi
 
+mirositor
+
+puturos
+
 gusta
+
+dulce
+
+sărat
+
+amar
+
+acru
 
 auzi
 
 asculta
 
 sunet
+
+tare
 
 vedea
 
@@ -1508,21 +1806,85 @@ străluci
 
 luci
 
+strălucitor
+
+luminos
+
 coloare
 
 faţă
+
+deschis
+
+închis
+
+alb
+
+negru
+
+roşiu
+
+albastru
+
+verde
+
+galben
 
 atinge
 
 pipăti
 
+tare
+
+moale
+
+aspru
+
+neted
+
+ascuţit
+
+tăios
+
+tocit
+
+greu
+
+uşor
+
+ud
+
+umed
+
+uscat
+
+sec
+
+cald
+
+rece
+
+friguros
+
+curat
+
+murdar
+
 suflet
 
 spirit
 
+mirare
+
 noroc
 
 nenorocire
+
+vesel
+
+voios
+
+bucuros
 
 rîde
 
@@ -1576,9 +1938,17 @@ gelozie
 
 ruşine
 
+mîndru
+
 îndrăzni
 
 cuteza
+
+viteaz
+
+brav
+
+curagios
 
 frică
 
@@ -1596,6 +1966,14 @@ speranţa
 
 nădejde
 
+credincios
+
+statornic
+
+adevăr
+
+adevărat
+
 minciună
 
 inşelăciune
@@ -1604,6 +1982,14 @@ amăgire
 
 ierta
 
+bun
+
+răŭ
+
+drept
+
+just
+
 vină
 
 greşală
@@ -1611,6 +1997,10 @@ greşală
 blam
 
 laudă
+
+frumos
+
+urît
 
 minte
 
@@ -1632,6 +2022,20 @@ cunoaşte
 
 parea
 
+înţelept
+
+prost
+
+neghiob
+
+dobitoc
+
+stupid
+
+nebun
+
+smintit
+
 învăţa
 
 învăţa
@@ -1645,6 +2049,20 @@ elev
 şi aduce aminte
 
 uita
+
+clar
+
+obscur
+
+tainic
+
+ascuns
+
+secret
+
+sigur
+
+cert
 
 explica
 
@@ -1691,6 +2109,8 @@ nume
 întreba
 
 răspunde
+
+mărturisi
 
 nega
 
@@ -1828,6 +2248,10 @@ ceartă
 
 gîlceava
 
+complot
+
+conspiraţiune
+
 întîlni
 
 curvă
@@ -1916,6 +2340,8 @@ judecată
 
 judecător
 
+acuzator
+
 akuzat
 
 martor
@@ -1931,6 +2357,12 @@ condamna
 găsi vinovat
 
 achita
+
+vinovat
+
+inocent
+
+nevinovat
 
 pedeapsă
 
@@ -1974,6 +2406,10 @@ preot
 
 popă
 
+sfînt
+
+sacru
+
 predica
 
 propovedui
@@ -2001,6 +2437,14 @@ farmec
 magie
 
 fapt
+
+vrăjitoare
+
+fermecătoare
+
+zînă
+
+ursitoare
 
 stafie
 

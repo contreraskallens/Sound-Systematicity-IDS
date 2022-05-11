@@ -1,3 +1,15 @@
+oft
+
+häufig
+
+immer
+
+stets
+
+bereit
+
+fertig
+
 aufhören
 
 vollenden
@@ -28,13 +40,61 @@ eilen
 
 sich beeilen
 
+langsam
+
+schnell
+
+rasch
+
+geschwind
+
+bald
+
+sofort
+
+sogleich
+
+jetzt
+
+nun
+
+spät
+
+früh
+
+alt
+
+jung
+
 Alter
+
+neu
 
 Zeit
 
 (Weile)
 
+dreimal
+
+dritte
+
+zweimal
+
 ein paar
+
+zweite
+
+letzte
+
+erste
+
+allein
+
+einzig
+
+nur
+
+bloss
 
 halb
 
@@ -44,7 +104,67 @@ Teil
 
 Stück
 
+leer
+
+voll
+
+Menge
+
+Gedränge
+
+einige
+
+wenig
+
+genug
+
+mehr
+
+viel
+
+jeder
+
+alle
+
 zählen
+
+tausend
+
+hundert
+
+zwanzig
+
+fünfzehn
+
+zwölf
+
+elf
+
+zehn
+
+neun
+
+acht
+
+sieben
+
+sechs
+
+fünf
+
+vier
+
+zwei
+
+drei
+
+ein
+
+eins
+
+null
+
+nichts
 
 ändern
 
@@ -54,11 +174,15 @@ wechseln
 
 tauschen
 
+ähnlich
+
 Linie
 
 Loch
 
 Kugel
+
+rund
 
 Kreis
 
@@ -71,6 +195,42 @@ Ecke
 Winkel
 
 Haken
+
+krumm
+
+gerade
+
+flach
+
+platt
+
+seicht
+
+nicht tief
+
+flach
+
+tief
+
+dünn
+
+dick
+
+schmal
+
+eng
+
+breit
+
+kurz
+
+groß
+
+lang
+
+klein
+
+groß
 
 überspannen
 
@@ -88,6 +248,18 @@ Westen
 
 Osten
 
+nah
+
+nahe
+
+fern
+
+weit
+
+link
+
+recht
+
 mittler
 
 Mitte
@@ -100,15 +272,21 @@ Kante
 
 Rand
 
+Spitze
+
 Ende
 
 Boden
+
+niedrig
 
 Spitze
 
 Gipfel
 
 das Obere
+
+hoch
 
 verbergen
 
@@ -174,11 +352,37 @@ Platz
 
 Ort
 
+über
+
+unter
+
+außen
+
+innen
+
+in
+
+vor
+
+vor
+
+unter
+
+neben
+
+hinter
+
+nach
+
 wiegen
 
 austeilen
 
 verteilen
+
+billig
+
+teuer
 
 Preis
 
@@ -191,6 +395,8 @@ Markt
 Kaufmann
 
 Händler
+
+handeln
 
 verkaufen
 
@@ -236,7 +442,15 @@ borgen
 
 (lehnen)
 
+geizig
+
 Bettler
+
+arm
+
+bedürftig
+
+reich
 
 Münze
 
@@ -260,6 +474,8 @@ zerstören
 
 vernichten
 
+retten
+
 bewahren
 
 zurückgeben
@@ -277,6 +493,10 @@ bekommen
 kriegen
 
 halten
+
+erfassen
+
+greifen
 
 nehmen
 
@@ -327,6 +547,10 @@ Wagen
 Karren
 
 Brücke
+
+Pfad
+
+Steig
 
 Weg
 
@@ -402,6 +626,12 @@ kommen
 
 ausgehen
 
+hinabgehen
+
+hinuntergehen
+
+herabgehen
+
 erklimmen
 
 besteigen
@@ -470,11 +700,17 @@ sinken
 
 senken
 
+fließen
+
+rinnen
+
 schütteln
 
 fangen
 
 werfen
+
+tropfen
 
 fallen
 
@@ -515,6 +751,10 @@ umdrehen
 wenden
 
 bewegen
+
+malen
+
+anstreichen
 
 Meißel
 
@@ -656,6 +896,8 @@ reißen
 
 spalten
 
+gebrochen
+
 brechen
 
 Beil
@@ -692,6 +934,8 @@ schlagen
 
 boxen
 
+schlagen
+
 Knoten
 
 Seil
@@ -712,11 +956,19 @@ binden
 
 falten
 
+biegen
+
+beugen
+
 arbeiten
 
 Arbeit
 
 Werk
+
+tun
+
+machen
 
 Pilz
 
@@ -834,6 +1086,10 @@ Tenne
 
 dreschen
 
+Sichel
+
+Sense
+
 mähen
 
 Samen
@@ -867,6 +1123,8 @@ Graben
 pflügen
 
 Pflug
+
+Graben
 
 Zaun
 
@@ -935,6 +1193,8 @@ Regal
 Kerze
 
 Licht
+
+Lampe
 
 Tisch
 
@@ -1076,6 +1336,10 @@ Handschuh
 
 Gürtel
 
+Hut
+
+Mütze
+
 Schuhmacher
 
 Schuster
@@ -1097,6 +1361,8 @@ Bastrock
 Grasrock
 
 Rock
+
+Kragen
 
 Hemd
 
@@ -1248,6 +1514,10 @@ Teig
 
 Brot
 
+rühren
+
+mischen
+
 reiben
 
 schaben
@@ -1312,6 +1582,10 @@ Backofen
 
 Ofen
 
+rösten
+
+braten
+
 kochen
 
 kochen
@@ -1334,6 +1608,22 @@ Hunger
 
 trinken
 
+faul
+
+verfault
+
+vermodert
+
+unreif
+
+grün
+
+reif
+
+roh
+
+gekocht
+
 Speise
 
 Essen
@@ -1346,7 +1636,31 @@ essen
 
 speisen
 
+nackt
+
+blind
+
+berauscht
+
+trunken
+
+stumm
+
+taub
+
+kahl
+
+lahm
+
+hinkend
+
+faul
+
+träge
+
 ausruhen
+
+müde
 
 Gift
 
@@ -1386,6 +1700,24 @@ Kropf
 
 fieber
 
+krank
+
+Krankheit
+
+gesund
+
+Gesundheit
+
+schwach
+
+stark
+
+mächtig
+
+kräftig
+
+gewaltig
+
 Grab
 
 begraben
@@ -1419,6 +1751,10 @@ lebend
 Leben
 
 empfangen
+
+schwanger
+
+trächtig
 
 geboren sein
 
@@ -1738,6 +2074,8 @@ Bart
 
 Haar
 
+Fleisch
+
 Haut
 
 Fell
@@ -1862,6 +2200,10 @@ Rückenflosse
 
 Fisch
 
+Maus
+
+Ratte
+
 Beutelratte
 
 Opossum
@@ -1871,6 +2213,8 @@ Kater
 Katze
 
 Kaninchen
+
+Hund
 
 Taube
 
@@ -1984,7 +2328,35 @@ Weide
 
 Vieh
 
+weiblich
+
+männlich
+
 Tier
+
+sie
+
+ihr
+
+Sie
+
+wir
+
+wir
+
+wir
+
+er
+
+sie
+
+es
+
+du
+
+Sie
+
+ich
 
 Familie
 
@@ -2003,6 +2375,30 @@ Stiefsohn
 Stiefmutter
 
 Stiefvater
+
+Schwiegertochter
+
+Schwiegertochter
+
+(Schnur)
+
+Schwiegersohn
+
+Schwiegersohn
+
+(Eidam)
+
+Schwiegermutter
+
+Schwiegermutter
+
+(Schwieger)
+
+Schwiegervater
+
+Schwiegervater
+
+(Schwäher)
 
 Abkömmlinge
 
@@ -2154,6 +2550,10 @@ Junge
 
 Knabe
 
+weiblich
+
+männlich
+
 Frau
 
 Weib
@@ -2224,6 +2624,8 @@ Sturm
 
 Donner
 
+Blitzschlag
+
 Blitz
 
 Stern
@@ -2236,6 +2638,10 @@ Himmel
 
 Erdbeben
 
+Stein
+
+Fels
+
 Holz
 
 Baum
@@ -2247,6 +2653,10 @@ Wasserfall
 Sumpf
 
 Morast
+
+Quelle
+
+Brunnen
 
 Strudel
 
@@ -2292,9 +2702,17 @@ Weltmeer
 
 Schaum
 
+das bewegte Meer
+
+die rauhe See
+
 Meer
 
 See
+
+Meeresstille
+
+Flaute
 
 Wasser
 
@@ -2320,6 +2738,10 @@ Feld
 
 Klippe
 
+Berg
+
+Hügel
+
 Schlamm
 
 Dreck
@@ -2338,6 +2760,28 @@ Land
 
 Welt
 
+manchmal
+
+zuweilen
+
+bisweilen
+
+bald
+
+lange
+
+nie
+
+niemals
+
+wieder
+
+wiederum
+
+nochmals
+
+abermals
+
 Tag
 
 Nacht
@@ -2353,6 +2797,16 @@ Mittag
 Nachmittag
 
 Abend
+
+heute
+
+morgen
+
+übermorgen
+
+gestern
+
+vorgestern
 
 Stunde
 
@@ -2396,9 +2850,29 @@ schnüffeln
 
 riechen
 
+wohlriechend
+
+duftet
+
+duftend
+
+stinkt
+
+stinkend
+
 schmecken
 
 kosten
+
+süß
+
+salzig
+
+bitter
+
+sauer
+
+brackig
 
 hören
 
@@ -2411,6 +2885,12 @@ lauschen
 Laut
 
 Geräusch
+
+laut
+
+ruhig
+
+still
 
 sehen
 
@@ -2426,7 +2906,27 @@ scheinen
 
 leuchten
 
+hell
+
+glänzend
+
 Farbe
+
+hell
+
+dunkel
+
+weiß
+
+schwarz
+
+rot
+
+blau
+
+grün
+
+gelb
 
 berühren
 
@@ -2438,13 +2938,67 @@ fühlen
 
 tasten
 
+hart
+
+weich
+
+rauh
+
+uneben
+
+glatt
+
+eben
+
+scharf
+
+stumpf
+
+schwer
+
+leicht
+
+nass
+
+feucht
+
+trocken
+
+dürr
+
+heiß
+
+warm
+
+kalt
+
+rein
+
+sauber
+
+schmutzig
+
+faltig
+
+runzelig
+
 Seele
 
 Geist
 
+erstaunt
+
+überrascht
+
 Glück
 
 Unglück
+
+Freude
+
+froh
+
+glücklich
 
 lachen
 
@@ -2516,7 +3070,15 @@ Eifersucht
 
 Scham
 
+stolz
+
 wagen
+
+tapfer
+
+mutig
+
+kühn
 
 Furcht
 
@@ -2532,6 +3094,10 @@ wählen
 
 Hoffnung
 
+treu
+
+wahr
+
 Lüge
 
 lügen
@@ -2543,6 +3109,24 @@ List
 verzeihen
 
 vergeben
+
+gut
+
+schlecht
+
+schlimm
+
+(böse)
+
+(übel)
+
+(arg)
+
+recht
+
+richtig
+
+falsch
 
 Vergehen
 
@@ -2559,6 +3143,20 @@ Lob
 Lobpreis
 
 Preis
+
+schön
+
+hübsch
+
+hässlich
+
+gierig
+
+habgierig
+
+klug
+
+intelligent
 
 Verstand
 
@@ -2596,6 +3194,22 @@ Idee
 
 Vorstellung
 
+weise
+
+töricht
+
+närrisch
+
+dumm
+
+albern
+
+verrückt
+
+toll
+
+wahnsinnig
+
 lernen
 
 studieren
@@ -2616,6 +3230,22 @@ gedenken
 
 vergessen
 
+klar
+
+deutlich
+
+dunkel
+
+unklar
+
+geheim
+
+heimlich
+
+sicher
+
+gewiss
+
 erklären
 
 Zweck
@@ -2634,6 +3264,10 @@ Notwendigkeit
 
 Bedürfnis
 
+leicht
+
+schwer
+
 versuchen
 
 Weg
@@ -2641,6 +3275,38 @@ Weg
 Weise
 
 Art
+
+und
+
+weil
+
+denn
+
+wenn
+
+oder
+
+ja
+
+nein
+
+wie?
+
+wieviel?
+
+wieviel?
+
+was?
+
+wann?
+
+wo?
+
+welche?
+
+wer?
+
+warum?
 
 Stimme
 
@@ -2695,6 +3361,12 @@ fragen
 antworten
 
 erwidern
+
+zugeben
+
+gestehen
+
+bekennen
 
 leugnen
 
@@ -2759,6 +3431,10 @@ flöte
 Trommel
 
 Pauke
+
+Horn
+
+Trompete
 
 Rassel
 
@@ -2868,6 +3544,8 @@ Zwist
 
 Zank
 
+Verschwörung
+
 treffen
 
 Prostituierte
@@ -2966,6 +3644,8 @@ Fischernetz
 
 Reuse
 
+Köder
+
 jagen
 
 schießen
@@ -2992,6 +3672,10 @@ Urteil
 
 Richter
 
+Kläger
+
+Ankläger
+
 Beklagter
 
 Angeklagter
@@ -3013,6 +3697,10 @@ verurteilen
 überführen
 
 freisprechen
+
+schuldig
+
+unschuldig
 
 Strafe
 
@@ -3062,6 +3750,8 @@ beten
 
 Priester
 
+heilig
+
 predigen
 
 segnen
@@ -3089,6 +3779,14 @@ Zauberei
 Zauber
 
 Hexerei
+
+Zauberer
+
+Hexenmeister
+
+Fee
+
+Elf
 
 Gespenst
 

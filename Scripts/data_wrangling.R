@@ -1,4 +1,4 @@
-source('functions.R')
+source('functions.r')
 options(dplyr.summarise.inform = FALSE)
 
 # Load data -----------------------------------------------------

@@ -1,3 +1,13 @@
+často
+
+vždy
+
+vždycky
+
+stále
+
+hotový
+
 přestati
 
 dokončiti
@@ -30,13 +40,59 @@ spěchati
 
 kvapiti
 
+zdlouhavý
+
+rychlý
+
+bezprostředně
+
+hned
+
+nyní
+
+ted’
+
+pozdě
+
+časně
+
+ranně
+
+starý
+
+mladý
+
 věk
+
+nový
 
 čas
 
 doba
 
+třikrát
+
+třetí
+
+dvakrát
+
 pár
+
+druhý
+
+poslední
+
+první
+
+sám
+
+jen
+
+toliko
+
+pouze
+
+jediný
 
 poloviční
 
@@ -46,9 +102,79 @@ díl
 
 část
 
+prázdný
+
+plný
+
+množství
+
+dav
+
+zástup
+
+nějaký
+
+málo
+
+dost
+
+více
+
+mnoho
+
+moc
+
+každý
+
+všechen
+
+všichni
+
 počítati
 
+tisíc
+
+sto
+
+dvacet
+
+patnáct
+
+dvanáct
+
+jedenáct
+
+deset
+
+devět
+
+osm
+
+sedm
+
+šest
+
+pět
+
+čtyři
+
+dva
+
+dvě
+
+tři
+
+jeden
+
+jedna
+
+jedno
+
+nula
+
 měniti
+
+podobný
 
 čára
 
@@ -57,6 +183,10 @@ přimka
 díra
 
 koule
+
+okrouhlý
+
+kulatý
 
 kruh
 
@@ -73,6 +203,40 @@ kout
 úhel
 
 hák
+
+křivý
+
+rovný
+
+přímý
+
+plochý
+
+ploský
+
+mělký
+
+hluboký
+
+tenký
+
+tlustý
+
+úzký
+
+těsný
+
+široký
+
+krátký
+
+vysoký
+
+dlouhý
+
+malý
+
+veliký
 
 píd’
 
@@ -92,6 +256,14 @@ západ
 
 východ
 
+blízko
+
+daleko
+
+levý
+
+pravý
+
 střední
 
 strana
@@ -104,13 +276,21 @@ hrana
 
 okraj
 
+hrot
+
+špička
+
 konec
 
 kraj
 
 dno
 
+nízký
+
 vrch
+
+vysoký
 
 skrýti
 
@@ -160,6 +340,28 @@ klásti
 
 místo
 
+nahoře
+
+pod
+
+mimo
+
+uvnitř
+
+v
+
+před
+
+před
+
+dolů
+
+vedle
+
+za
+
+po
+
 vážiti
 
 rozděliti
@@ -167,6 +369,10 @@ rozděliti
 děliti se
 
 sdíleti
+
+laciný
+
+drahý
 
 cena
 
@@ -179,6 +385,14 @@ tržiště
 kupec
 
 obchodník
+
+obchodovati
+
+obchod vesti
+
+vésti obchod
+
+kupčiti
 
 prodati
 
@@ -212,7 +426,19 @@ zadlužiti se
 
 půjčiti
 
+lakomý
+
+lakotný
+
+skoupý
+
 žebrák
+
+chudý
+
+ubohý
+
+bohatý
 
 mince
 
@@ -240,6 +466,8 @@ zničiti
 
 zbořiti
 
+zachrániti
+
 chovati
 
 chrániti
@@ -257,6 +485,12 @@ dostati
 dobýti
 
 držeti
+
+uchopiti
+
+uchvátiti
+
+chytiti
 
 vzíti
 
@@ -319,6 +553,8 @@ povoz
 kára
 
 most
+
+stezka
 
 cesta
 
@@ -390,6 +626,10 @@ odejíti
 
 vyjíti
 
+sestupovati
+
+klesati
+
 šplhati
 
 jíti
@@ -460,6 +700,8 @@ potopiti
 
 tonouti
 
+téci
+
 třásti
 
 chytiti
@@ -469,6 +711,8 @@ házeti
 hoditi
 
 vrhnouti
+
+kapka
 
 padnouti
 
@@ -509,6 +753,10 @@ obrátiti
 hnouti
 
 hýbati
+
+barviti
+
+natírati
 
 dláto
 
@@ -652,6 +900,8 @@ rváti
 
 štípati
 
+zlomený
+
 lámati
 
 lomiti
@@ -684,6 +934,14 @@ sekati
 
 tlouci pěstí
 
+uhoditi
+
+udeřiti
+
+bíti
+
+tlouci
+
 uzel
 
 provaz
@@ -700,9 +958,19 @@ skládati
 
 zahýbati
 
+ohnouti
+
+ohýbati
+
 práce
 
 dílo
+
+činiti
+
+robiti
+
+dělati
 
 houba
 
@@ -816,6 +1084,10 @@ mlat
 
 mlátiti
 
+srp
+
+kosa
+
 žíti
 
 síci
@@ -847,6 +1119,8 @@ rýti
 orati
 
 pluh
+
+příkop
 
 ohrada
 
@@ -909,6 +1183,8 @@ police
 svíce
 
 svíčka
+
+lampa
 
 stůl
 
@@ -1030,6 +1306,12 @@ rukavice
 
 pás
 
+klobouk
+
+čepice
+
+čapka
+
 švec
 
 obuvník
@@ -1051,6 +1333,8 @@ kalhoty
 sukně z trávy
 
 sukně
+
+límec
 
 košile
 
@@ -1204,6 +1488,8 @@ těsto
 
 chléb
 
+míchati
+
 škrábati
 
 prosíti
@@ -1262,6 +1548,10 @@ péci
 
 pec
 
+péci
+
+smažiti
+
 vařiti 
 
 vařiti
@@ -1284,6 +1574,16 @@ hlad
 
 píti
 
+shnilý
+
+nezralý
+
+zralý
+
+syrový
+
+vařený
+
 jídlo
 
 pokrm
@@ -1292,7 +1592,35 @@ potrava
 
 jísti
 
+nahý
+
+holý
+
+slepý
+
+opilý
+
+němý
+
+hluchý
+
+lysý
+
+plešatý
+
+chromý
+
+kulhavý
+
+líný
+
+lenivý
+
 odpočívat
+
+unavený
+
+mdlý
 
 jed
 
@@ -1340,6 +1668,20 @@ horečka
 
 teplota
 
+nemocný
+
+nemoc
+
+zdravý
+
+zdraví
+
+slabý
+
+silný
+
+mocný
+
 hrob
 
 pochovati
@@ -1369,6 +1711,10 @@ smrt
 život
 
 počíti
+
+těhotná
+
+březí
 
 roditi
 
@@ -1666,6 +2012,8 @@ brada
 
 vlas
 
+maso
+
 kůže
 
 pokožka
@@ -1782,6 +2130,8 @@ ploutev
 
 ryba
 
+myš
+
 kočka
 
 kocour
@@ -1789,6 +2139,8 @@ kocour
 kotě
 
 králík
+
+pes
 
 holub
 
@@ -1896,9 +2248,33 @@ pásti se
 
 dobytek
 
+samice
+
+samec
+
 zvíře
 
 živočich
+
+oni
+
+vy
+
+my
+
+my
+
+my
+
+on
+
+ona
+
+ono
+
+ty
+
+já
 
 rodina
 
@@ -1927,6 +2303,22 @@ macecha
 nevlastní otec
 
 otčím
+
+snacha
+
+snacha
+
+zet’
+
+zet’
+
+tchyně
+
+tchyně
+
+tchán
+
+tchán
 
 potomci
 
@@ -2060,6 +2452,10 @@ chlapec
 
 hoch
 
+ženský
+
+mužský
+
 žena
 
 muž
@@ -2138,6 +2534,8 @@ hrom
 
 blesk
 
+blesk
+
 hvězda
 
 měsíc
@@ -2150,6 +2548,10 @@ obloha
 
 zemětřesení
 
+kámen
+
+skála
+
 dřevo
 
 strom
@@ -2161,6 +2563,12 @@ vodopád
 bažina
 
 močál
+
+pramen
+
+zřídlo
+
+zdroj
 
 vír
 
@@ -2196,7 +2604,11 @@ oceán
 
 pěna
 
+bouře
+
 moře
+
+bezvětří
 
 voda
 
@@ -2224,6 +2636,14 @@ pole
 
 sráz
 
+hora
+
+vrch
+
+pahorek
+
+kopec
+
 bláto
 
 písek
@@ -2235,6 +2655,18 @@ půda
 země
 
 svět
+
+někdy
+
+brzy
+
+dlouho
+
+nikdy
+
+opět
+
+zase
 
 den
 
@@ -2253,6 +2685,18 @@ poledne
 odpoledne
 
 večer
+
+dnes
+
+zítra
+
+zejtra
+
+pozítří
+
+včera
+
+předevčírem
 
 hodina
 
@@ -2304,15 +2748,39 @@ páchnouti
 
 voněti
 
+vonný
+
+smrdutý
+
+smradlavý
+
+páchnoucí
+
 okusiti
 
 ochutnati
+
+sladký
+
+slaný
+
+hořký
+
+kyselý
+
+brakický
 
 slyšeti
 
 naslouchati
 
 zvuk
+
+hlasitý
+
+klid
+
+ticho
 
 viděti
 
@@ -2328,7 +2796,29 @@ svítiti
 
 blýskati
 
+jasný
+
+světlý
+
 barva
+
+světlý
+
+jasný
+
+temný
+
+bílý
+
+černý
+
+červený
+
+modrý
+
+zelený
+
+žlutý
 
 dotknouti se
 
@@ -2340,15 +2830,65 @@ makati
 
 cítiti
 
+tvrdý
+
+měkký
+
+drsný
+
+hladký
+
+ostrý
+
+tupý
+
+těžký
+
+lehký
+
+mokrý
+
+vlhký
+
+suchý
+
+horký
+
+teplý
+
+studený
+
+čistý
+
+špinavý
+
+vrásčitý
+
+svraštělý
+
 duše
 
 duch
+
+údiv
+
+úžas
+
+udivený
+
+užaslý
 
 štěstí
 
 neštěstí
 
 nehoda
+
+radostný
+
+rád
+
+veselý
 
 smáti se
 
@@ -2414,7 +2954,15 @@ stud
 
 hanba
 
+pyšný
+
+hrdý
+
 odvážiti se
+
+udatný
+
+statečný
 
 strach
 
@@ -2428,6 +2976,10 @@ vybrati
 
 naděje
 
+věrný
+
+pravda
+
 lež
 
 lháti
@@ -2440,6 +2992,20 @@ podvod
 
 odpustiti
 
+dobrý
+
+špatný
+
+zlý
+
+pravý
+
+špatný
+
+hanebný
+
+lživý
+
 vina
 
 chyba
@@ -2451,6 +3017,22 @@ blud
 hana
 
 chvála
+
+krásný
+
+hezký
+
+pěkný
+
+ošklivý
+
+nehezký
+
+lačný
+
+chamtivý
+
+chytrý
 
 mysl
 
@@ -2480,6 +3062,16 @@ zdáti se
 
 myšlenka
 
+moudrý
+
+bláznivý
+
+pošetilý
+
+hloupý
+
+šílený
+
 učiti se
 
 studovati
@@ -2495,6 +3087,14 @@ učitel
 pamatovati se
 
 zapomenouti
+
+jasný
+
+nejasný
+
+tajný
+
+jistý
 
 vysvětliti
 
@@ -2520,11 +3120,47 @@ potřeba
 
 nutnost
 
+snadný
+
+obtížný
+
 zkusiti
 
 pokoušeti
 
 způsob
+
+a
+
+protože
+
+když
+
+jestliže
+
+nebo
+
+ano
+
+ne
+
+jak?
+
+kolik?
+
+kolik?
+
+co?
+
+kdy?
+
+kde?
+
+který?
+
+kdo?
+
+proč?
 
 hlas
 
@@ -2567,6 +3203,10 @@ jméno
 ptáti se
 
 odpověděti
+
+připustiti
+
+uznati
 
 popříti
 
@@ -2623,6 +3263,12 @@ píšt’ala
 flétna
 
 buben
+
+roh
+
+trubka
+
+trumpeta
 
 řehtačka
 
@@ -2713,6 +3359,8 @@ hádka
 spor
 
 svár
+
+spiknutí
 
 potkati
 
@@ -2810,6 +3458,10 @@ rybářská sít’
 
 past naryby
 
+návnada
+
+vnadidlo
+
 loviti
 
 stříleti
@@ -2834,6 +3486,8 @@ rozsudek
 
 soudce
 
+žalobce
+
 obžalovaný
 
 svědek
@@ -2851,6 +3505,10 @@ odsouditi
 usvědčiti
 
 osvoboditi
+
+vinný
+
+nevinný
 
 trest
 
@@ -2902,6 +3560,8 @@ kněz
 
 pop
 
+svatý
+
 kázati
 
 blahoslaviti
@@ -2927,6 +3587,12 @@ bůžek
 kouzlo
 
 čarodějnictví
+
+čaroděj
+
+čarodějnice
+
+víla
 
 strašidlo
 

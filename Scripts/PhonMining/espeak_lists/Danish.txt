@@ -1,3 +1,11 @@
+ofte
+
+tit
+
+altid
+
+færdig
+
 ophøre
 
 ende
@@ -24,23 +32,131 @@ haste
 
 ile
 
+langsom
+
+hurtig
+
+straks
+
+nu
+
+sent
+
+tidlig
+
+gammel
+
+ung
+
 alder
+
+ny
 
 tid
 
+tre gange
+
+tredje
+
+to gange
+
 par
+
+anden
+
+sidst
+
+først
+
+alene
+
+eneste
+
+kun
+
+blot
 
 halv
 
 del
 
+tom
+
+fuld
+
+mængde
+
+noget
+
+lidt
+
+få
+
+nok
+
+mer
+
+flere
+
+megen
+
+mange
+
+hver
+
+enhver
+
+al
+
+alle
+
 tælle
+
+tusinde
+
+hundrede
+
+tyve
+
+femten
+
+tolv
+
+elleve
+
+ti
+
+ni
+
+otte
+
+syv
+
+seks
+
+fem
+
+fire
+
+to
+
+tre
+
+een
+
+nul
+
+ingenting
 
 forandre
 
 skifte
 
 veksle
+
+lignende
+
+lige
 
 linie
 
@@ -49,6 +165,8 @@ hul
 klode
 
 kugle
+
+rund
 
 kreds
 
@@ -64,6 +182,46 @@ krog
 
 hage
 
+krum
+
+kroget
+
+lige
+
+ret
+
+flad
+
+grund
+
+dyb
+
+tynd
+
+tyk
+
+snæver
+
+smal
+
+bred
+
+vid
+
+kort
+
+stor
+
+høj
+
+lang
+
+lille
+
+små
+
+stor
+
 favn
 
 måle
@@ -78,6 +236,16 @@ vest
 
 øst
 
+nær
+
+langt
+
+fjernt
+
+venstre
+
+højre
+
 midterst
 
 mellemst
@@ -90,13 +258,19 @@ kant
 
 rand
 
+spids
+
 ende
 
 bund
 
+lav
+
 top
 
 spids
+
+høj
 
 skjule
 
@@ -148,9 +322,35 @@ plads
 
 sted
 
+oppe
+
+ovenpå
+
+under
+
+ude
+
+inde
+
+for
+
+før
+
+nede
+
+ved siden af
+
+bag
+
+efter
+
 veje
 
 dele med
+
+billig
+
+dyr
 
 pris
 
@@ -163,6 +363,8 @@ torv
 marked
 
 købmand
+
+handle
 
 sælge
 
@@ -192,7 +394,13 @@ låne
 
 låne
 
+gerrig
+
 tigger
+
+fattig
+
+rig
 
 mønt
 
@@ -218,6 +426,10 @@ beskadige
 
 ødelægge
 
+redde
+
+frelse
+
 bevare
 
 passe på
@@ -233,6 +445,8 @@ beholde
 få
 
 holde
+
+gribe
 
 tage
 
@@ -281,6 +495,8 @@ hjul
 vogn
 
 bro
+
+sti
 
 vej
 
@@ -336,6 +552,8 @@ komme
 
 gå ud
 
+gå ned
+
 klatre
 
 gå
@@ -388,11 +606,17 @@ synke
 
 sænke
 
+flyde
+
+rinde
+
 ryste
 
 gribe
 
 kaste
+
+dryppe
 
 falde
 
@@ -423,6 +647,8 @@ vende
 bevæge
 
 røre
+
+male
 
 mejsel
 
@@ -550,6 +776,8 @@ kløve
 
 splitte
 
+knækket
+
 bryde
 
 brække
@@ -574,6 +802,8 @@ hugge
 
 slå med næve
 
+slå
+
 knude
 
 reb
@@ -592,7 +822,11 @@ binde
 
 folde
 
+bøje
+
 arbejde
+
+gøre
 
 svamp
 
@@ -692,6 +926,10 @@ lo
 
 tærske
 
+segl
+
+le
+
 slå
 
 meje
@@ -719,6 +957,8 @@ grave
 pløje
 
 plov
+
+grøft
 
 hegn
 
@@ -765,6 +1005,8 @@ trug
 hylde
 
 lys
+
+lampe
 
 bord
 
@@ -868,6 +1110,12 @@ handske
 
 bælte
 
+hat
+
+hue
+
+kasket
+
 skomager
 
 sko
@@ -883,6 +1131,10 @@ bukser
 benklæder
 
 skørt
+
+krave
+
+flip
 
 skjorte
 
@@ -1018,6 +1270,8 @@ dej
 
 brød
 
+blande
+
 skrabe
 
 si
@@ -1068,6 +1322,8 @@ bage
 
 ovn
 
+stege
+
 koge
 
 koge
@@ -1092,6 +1348,16 @@ hunger
 
 drikke
 
+rådden
+
+grøn
+
+moden
+
+rå
+
+kogt
+
 mad
 
 føde
@@ -1100,7 +1366,31 @@ spise
 
 spise
 
+nøgen
+
+bar
+
+blind
+
+drukken
+
+fuld
+
+stum
+
+døv
+
+skaldet
+
+halt
+
+lam
+
+doven
+
 hvile
+
+træt
 
 gift
 
@@ -1136,6 +1426,26 @@ krop
 
 feber
 
+syg
+
+sygdom
+
+rask
+
+sund
+
+helbred
+
+sundhed
+
+svag
+
+stærk
+
+mægtig
+
+kraftig
+
 grav
 
 begrave
@@ -1159,6 +1469,10 @@ i live
 liv
 
 undfange
+
+gravid
+
+svanger
 
 født
 
@@ -1400,6 +1714,8 @@ skæg
 
 hår
 
+kød
+
 hud
 
 skind
@@ -1502,11 +1818,17 @@ finne
 
 fisk
 
+mus
+
+rotte
+
 opossum
 
 kat
 
 hare
+
+hund
 
 due
 
@@ -1596,7 +1918,27 @@ græsse
 
 kreaturer
 
+hun
+
+han
+
 dyr
+
+de
+
+I
+
+vi
+
+vi
+
+vi
+
+han
+
+du
+
+jeg
 
 familie
 
@@ -1619,6 +1961,22 @@ stedmor
 stedfader
 
 stedfar
+
+svigerdatter
+
+svigerdatter
+
+svigersøn
+
+svigersøn
+
+svigermor
+
+svigermor
+
+svigerfar
+
+svigerfar
 
 efterkommere
 
@@ -1724,6 +2082,10 @@ ung mand
 
 dreng
 
+kvindelig
+
+mandlig
+
 kvinde
 
 mand
@@ -1784,6 +2146,10 @@ storm
 
 torden
 
+lynslag
+
+tordenkile
+
 lyn
 
 stjerne
@@ -1796,6 +2162,10 @@ himmel
 
 jordskælv
 
+sten
+
+klippe
+
 træ
 
 træ
@@ -1805,6 +2175,10 @@ skov
 vandfald
 
 svamp
+
+kilde
+
+brønd
 
 hvirvel
 
@@ -1838,9 +2212,13 @@ ocean
 
 skum
 
+ru
+
 hav
 
 sø
+
+stilhed
 
 vand
 
@@ -1866,6 +2244,12 @@ skær
 
 klippe
 
+bjerg
+
+fjeld
+
+bakke
+
 mudder
 
 smuds
@@ -1882,6 +2266,18 @@ land
 
 verden
 
+undertiden
+
+snart
+
+langtids
+
+aldrig
+
+igen
+
+atter
+
 dag
 
 nat
@@ -1895,6 +2291,16 @@ middag
 eftermiddag
 
 aften
+
+i dag
+
+i morgen
+
+i overmorgen
+
+i går
+
+i forgårs
 
 time
 
@@ -1938,13 +2344,33 @@ snuse
 
 lugte
 
+vellugtende
+
+duftende
+
+stinkende
+
 smage
+
+sød
+
+salt
+
+bitter
+
+sur
+
+brak
 
 høre
 
 lytte
 
 lyd
+
+høj
+
+stille
 
 se
 
@@ -1956,7 +2382,29 @@ skinne
 
 lyse
 
+lys
+
+klar
+
 farve
+
+lys
+
+mørk
+
+dunkel
+
+hvid
+
+sort
+
+rød
+
+blå
+
+grøn
+
+gul
 
 berøre
 
@@ -1966,13 +2414,67 @@ knibe
 
 føle
 
+hård
+
+blød
+
+ujævn
+
+ru
+
+glat
+
+jævn
+
+skarp
+
+sløv
+
+stump
+
+tung
+
+svær
+
+let
+
+våd
+
+fugtig
+
+tør
+
+hed
+
+varm
+
+varm
+
+kold
+
+ren
+
+smudsig
+
+snavset
+
+uren
+
+foldet
+
 sjæl
 
 ånd
 
+forundret
+
+forbavset
+
 lykke
 
 ulykke
+
+glad
 
 le
 
@@ -2020,9 +2522,15 @@ skinsyge
 
 skam
 
+stolt
+
 vove
 
 turde
+
+tapper
+
+modig
 
 flygt
 
@@ -2036,6 +2544,10 @@ vælge
 
 håb
 
+tro
+
+sand
+
 løgn
 
 bedrageri
@@ -2044,6 +2556,20 @@ snyd
 
 tilgive
 
+god
+
+dårlig
+
+ond
+
+slem
+
+ret
+
+rigtig
+
+forkert
+
 skyld
 
 fejl
@@ -2051,6 +2577,20 @@ fejl
 bebrejdelse
 
 ros
+
+skøn
+
+køn
+
+smuk
+
+grim
+
+hæslig
+
+grådig
+
+klog
 
 ånd
 
@@ -2080,6 +2620,20 @@ synes
 
 ide
 
+vis
+
+klog
+
+tåbelig
+
+dum
+
+forrykt
+
+gal
+
+vanvittig
+
 lære
 
 studere
@@ -2102,6 +2656,18 @@ erindre
 
 glemme
 
+klar
+
+tydelig
+
+dunkel
+
+hemmelig
+
+sikker
+
+vis
+
 forklare
 
 hensigt
@@ -2118,9 +2684,43 @@ forråde
 
 nødvendighed
 
+let
+
+vanskelig
+
 forsøge
 
 måde
+
+og
+
+fordi
+
+hvis
+
+eller
+
+ja
+
+nej
+
+hvordan?
+
+hvor mange?
+
+hvor meget?
+
+hvad?
+
+hvornår?
+
+hvor?
+
+hvilken?
+
+hvem?
+
+hvorfor?
 
 stemme
 
@@ -2165,6 +2765,10 @@ navn
 spørge
 
 svare
+
+tilstå
+
+bekende
 
 nægte
 
@@ -2211,6 +2815,10 @@ digter
 fløjte
 
 tromme
+
+horn
+
+trompet
 
 rasle
 
@@ -2295,6 +2903,8 @@ vane
 strid
 
 tvist
+
+sammensværgelse
 
 møde
 
@@ -2382,6 +2992,8 @@ snøre
 
 fiskenet
 
+lokkemad
+
 jage
 
 skyde
@@ -2399,6 +3011,10 @@ dømme
 dom
 
 dommer
+
+sagsøger
+
+klager
 
 tiltalte
 
@@ -2419,6 +3035,10 @@ overbevise
 frikende
 
 frifinde
+
+skyldig
+
+uskyldig
 
 straf
 
@@ -2456,6 +3076,8 @@ bede
 
 præst
 
+hellig
+
 prædike
 
 velsigne
@@ -2475,6 +3097,14 @@ afgud
 trolddom
 
 magi
+
+heks
+
+troldkvinde
+
+fe
+
+alf
 
 spøgelse
 

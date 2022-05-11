@@ -221,17 +221,17 @@ clean.phon <- function(df){
     ungroup()
   
   # First, delete diacritic markers that are superscript letters.
-  df <- mutate(df, phon = str_remove_all(phon, "\\p{Lm}"))
-  df <- mutate(df, phon = stringi::stri_trans_nfkc(phon))
+  # df <- mutate(df, phon = str_remove_all(phon, "\\p{Lm}"))
+  df <- mutate(df, phon = stringi::stri_trans_nfc(phon))
   df <- mutate(df, phon = str_squish(str_remove_all(phon, "~.*"))) # extract the first form of multi form entries separated by ~
   df <- mutate(df, phon = str_squish(str_remove_all(phon, ",.*"))) # extract the first form of multi form entries separated by ,
   df <- mutate(df, phon = str_squish(str_remove_all(phon, "\\|.*"))) # extract the first form of multi form entries separated by |
   df <- mutate(df, phon = str_squish(str_remove_all(phon, "/.*"))) # extract the first form of multi form entries separated by /
   df <- mutate(df, phon = str_squish(str_remove_all(phon, "\\\\"))) # Remove all backslashes (typos, only one word)
   df <- mutate(df, phon = str_squish(str_remove_all(phon, "-"))) # Remove all dashes. They're usually used as ligatures.
-  # Remove all stress marks and most symbols u02BC is a Modifier Letter Apostrophe.
-  # (brackets, « and parentheses dealt with below, periods used in tone languages)
-  df <- mutate(df, phon = str_squish(str_remove_all(phon, "[\u0022\u02BC\u02CB#–\\ʼ'’:\\*“‰‘]"))) 
+  # Remove all stress marks and most symbols u02BC is a Modifier Letter Apostrophe. Retain : for long vowels
+  # (brackets, « and parentheses  
+  df <- mutate(df, phon = str_squish(str_remove_all(phon, "[\u0022\u02BC\u02CB#–\\ʼ'’\\*“‰‘]"))) 
   # Delete empty parentheses
   df <- mutate(df, phon = str_squish(str_remove_all(phon, "\\(\\)")))
   # Delete addenda at the beginning and at the end of the strings
@@ -245,6 +245,8 @@ clean.phon <- function(df){
   # There's a handful of words where parentheses aren't closed.
   df <- mutate(df, phon = str_squish(str_remove_all(phon, ".+\\)(?=.+)")))
   df <- mutate(df, phon = str_squish(str_remove_all(phon, " \\(.*")))
+  df <- mutate(df, phon = str_squish(str_remove_all(phon, "\\.*"))) # Remove dots
+  
   # In most languages, the stem is in the square brackets, so cannot afford to delete the things inside.
   df <- mutate(df, phon = str_squish(str_remove_all(phon, "[\\[\\]]")))
   # Delete diacritic markers that couldn't be normalized into the characaters

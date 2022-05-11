@@ -1,3 +1,9 @@
+souvent
+
+toujours
+
+prêt
+
 cesser
 
 sarrêter
@@ -20,15 +26,53 @@ retarder
 
 se dépêcher
 
+lent
+
+vite
+
+rapide
+
+tout de suite
+
+maintenant
+
+tard
+
+tôt
+
+de bonne heure
+
+vieux
+
+jeune
+
 âge
+
+nouveau
 
 heure
 
 temps
 
+trois fois
+
+troisième
+
+deux fois
+
 couple
 
 paire
+
+deuxième
+
+dernier
+
+premier
+
+seul
+
+seulement
 
 moitié
 
@@ -36,9 +80,69 @@ morceau
 
 partie
 
+vide
+
+plein
+
+foule
+
+un peu
+
+peu
+
+assez
+
+encore
+
+plus
+
+beaucoup
+
+chaque
+
+tous
+
 compter
 
+mille
+
+cent
+
+vingt
+
+quinze
+
+douze
+
+onze
+
+dix
+
+neuf
+
+huit
+
+sept
+
+six
+
+cinq
+
+quatre
+
+deux
+
+trois
+
+un
+
+zéro
+
+rien
+
 changer
+
+semblable
 
 ligne
 
@@ -50,6 +154,8 @@ sphère
 
 ballon
 
+rond
+
 cercle
 
 carré
@@ -59,6 +165,38 @@ croix
 coin
 
 crochet
+
+courbe
+
+pas droit
+
+droit
+
+plat
+
+peu profond
+
+profond
+
+mince
+
+épais
+
+étroit
+
+large
+
+court
+
+grand
+
+long
+
+petit
+
+grand
+
+gros
 
 brasse
 
@@ -82,6 +220,14 @@ est
 
 orient
 
+près
+
+loin
+
+gauche
+
+droite
+
 milieu
 
 centre
@@ -92,15 +238,21 @@ bord
 
 orée
 
+pointu
+
 bout
 
 extrémité
 
 fond
 
+bas
+
 haut
 
 sommet
+
+haut
 
 cacher
 
@@ -148,9 +300,47 @@ place
 
 lieu
 
+audessus
+
+sur
+
+làhaut
+
+là dessus
+
+dessous
+
+sous
+
+dehors
+
+dans
+
+dedans
+
+devant
+
+avant
+
+devant
+
+en bas
+
+sous
+
+à côté de
+
+derrière
+
+après
+
 peser
 
 partager
+
+bon marché
+
+cher
 
 prix
 
@@ -163,6 +353,8 @@ marché
 marchand
 
 commerçant
+
+échange
 
 vendre
 
@@ -190,7 +382,15 @@ emprunter
 
 prêter
 
+avare
+
+radin
+
 mendiant
+
+pauvre
+
+riche
 
 pièce de monnaie
 
@@ -210,6 +410,8 @@ endommager
 
 détruire
 
+sauver
+
 préserver
 
 rendre
@@ -225,6 +427,10 @@ retenir
 obtenir
 
 tenir
+
+saisir
+
+attraper
 
 prendre
 
@@ -277,6 +483,10 @@ wagon
 charrette
 
 pont
+
+sentier
+
+chemin
 
 route
 
@@ -332,6 +542,8 @@ venir
 
 sortir
 
+descendre
+
 grimper
 
 aller
@@ -376,6 +588,8 @@ couler
 
 sombrer
 
+couler
+
 secouer
 
 agiter
@@ -383,6 +597,8 @@ agiter
 attraper
 
 jeter
+
+ségoutter
 
 tomber
 
@@ -413,6 +629,8 @@ retourner
 mouvoir
 
 bouger
+
+peindre
 
 ciseau
 
@@ -534,6 +752,10 @@ déchirer
 
 fendre
 
+brisé
+
+cassé
+
 casser
 
 briser
@@ -558,6 +780,10 @@ couper
 
 marteler de ses poing
 
+frapper
+
+battre
+
 noeud
 
 corde
@@ -574,7 +800,13 @@ lier
 
 plier
 
+plier
+
+courber
+
 travailler
+
+faire
 
 champignon
 
@@ -688,6 +920,10 @@ aire
 
 battre le blé
 
+faux
+
+faucille
+
 tondre
 
 récolter
@@ -721,6 +957,8 @@ piocher
 labourer
 
 charrue
+
+fossé
 
 barrière
 
@@ -773,6 +1011,8 @@ bougie
 cierge
 
 chandelle
+
+lampe
 
 table
 
@@ -902,6 +1142,10 @@ ceinture
 
 gaine
 
+chapeau
+
+casquette
+
 cordonnier
 
 chaussure
@@ -919,6 +1163,8 @@ pantalon
 jupe en rafia
 
 jupe
+
+col
 
 chemise
 
@@ -1062,6 +1308,10 @@ pâte
 
 pain
 
+mêler
+
+mélanger
+
 gratter
 
 râper
@@ -1122,6 +1372,10 @@ cuire au four
 
 four
 
+rôtir
+
+frire
+
 bouillir
 
 cuire
@@ -1146,11 +1400,39 @@ faim
 
 boire
 
+pourri
+
+vert
+
+mûr
+
+cru
+
+cuit
+
 nourriture
 
 manger
 
+nu
+
+aveugle
+
+ivre
+
+muet
+
+sourd
+
+chauve
+
+boiteux
+
+paresseux
+
 se reposer
+
+fatigué
 
 poison
 
@@ -1190,6 +1472,20 @@ goître
 
 fièvre
 
+malade
+
+maladie
+
+santé
+
+en bonne santé
+
+faible
+
+fort
+
+puissant
+
 tombe
 
 tombeau
@@ -1213,6 +1509,8 @@ vivant
 vie
 
 concevoir
+
+enceinte
 
 né
 
@@ -1464,6 +1762,8 @@ barbe
 
 cheveu
 
+chair
+
 peau
 
 corps
@@ -1576,11 +1876,17 @@ nageoire
 
 poisson
 
+souris
+
+rat
+
 opossum
 
 chat
 
 lapin
+
+chien
 
 colombe
 
@@ -1678,9 +1984,35 @@ pâture
 
 bétail
 
+femelle
+
+mâle
+
 animal
 
 bête
+
+eux
+
+elles
+
+vous
+
+nous
+
+nous
+
+nous
+
+il
+
+tu
+
+vous
+
+je
+
+moi
 
 famille
 
@@ -1697,6 +2029,26 @@ bellefille
 beaufils
 
 bellemère
+
+beaupère
+
+bru
+
+bellefille
+
+bru
+
+bellefille
+
+gendre
+
+gendre
+
+bellemère
+
+bellemère
+
+beaupère
 
 beaupère
 
@@ -1800,6 +2152,10 @@ jeune homme
 
 garçon
 
+femelle
+
+mâle
+
 femme
 
 homme
@@ -1876,6 +2232,8 @@ tempête
 
 tonnerre
 
+foudre
+
 éclair
 
 étoile
@@ -1889,6 +2247,12 @@ ciel
 tremblement de terre
 
 séisme
+
+pierre
+
+roc
+
+rocher
 
 bois
 
@@ -1905,6 +2269,10 @@ cascade
 marais
 
 marécage
+
+source
+
+puits
 
 tourbillon
 
@@ -1942,7 +2310,13 @@ océan
 
 mousse
 
+trouble
+
+agité
+
 mer
+
+étale
 
 eau
 
@@ -1968,6 +2342,10 @@ falaise
 
 escarpement
 
+montagne
+
+colline
+
 boue
 
 sable
@@ -1981,6 +2359,16 @@ sol
 terre
 
 monde
+
+quelquefois
+
+bientôt
+
+longtemps
+
+jamais
+
+encore
 
 jour
 
@@ -1999,6 +2387,16 @@ aprèsmidi
 soir
 
 soirée
+
+aujourdhui
+
+demain
+
+aprèsdemain
+
+hier
+
+avanthier
 
 heure
 
@@ -2048,9 +2446,35 @@ sentir
 
 odeur
 
+odorant
+
+parfumé
+
+puant
+
+qui sent mauvais
+
 sentir
 
 goûter
+
+sucré
+
+doux
+
+salé
+
+amer
+
+âpre
+
+âpre
+
+acide
+
+aigre
+
+saumâtre
 
 entendre
 
@@ -2060,6 +2484,18 @@ son
 
 bruit
 
+fort
+
+sonore
+
+bruyant
+
+retentissant
+
+tranquillité
+
+silence
+
 voir
 
 regarder
@@ -2068,7 +2504,29 @@ montrer
 
 briller
 
+brillant
+
+gai
+
+vif
+
 couleur
+
+clair
+
+foncé
+
+blanc
+
+noir
+
+rouge
+
+bleu
+
+vert
+
+jaune
 
 toucher
 
@@ -2076,9 +2534,55 @@ pincer
 
 sentir
 
+dur
+
+doux
+
+rugueux
+
+rude
+
+lisse
+
+tranchant
+
+aiguisé
+
+émoussé
+
+lourd
+
+léger
+
+humide
+
+sec
+
+chaud
+
+tiède
+
+chaud
+
+assez chaud
+
+froid
+
+propre
+
+sale
+
+crasseux
+
+ridé
+
 âme
 
 esprit
+
+étonné
+
+surpris
 
 chance
 
@@ -2089,6 +2593,10 @@ malheur
 malchance
 
 infortune
+
+joyeux
+
+heureux
 
 rire
 
@@ -2140,7 +2648,11 @@ jalousie
 
 honte
 
+fier
+
 oser
+
+courageux
 
 peur
 
@@ -2156,11 +2668,25 @@ choisir
 
 espoir
 
+fidèle
+
+vrai
+
 mentir
 
 tromperie
 
 pardonner
+
+bon
+
+mauvais
+
+juste
+
+correct
+
+incorrect
 
 faute
 
@@ -2173,6 +2699,22 @@ blâme
 louange
 
 éloge
+
+beau
+
+joli
+
+laid
+
+avide
+
+glouton
+
+gourmand
+
+intelligent
+
+habile
 
 pensée
 
@@ -2196,6 +2738,22 @@ sembler
 
 idée
 
+sage
+
+savant
+
+érudit
+
+bête
+
+stupide
+
+fou
+
+insensé
+
+idiot
+
 apprendre
 
 étudier
@@ -2211,6 +2769,20 @@ professeur
 se souvenir
 
 oublier
+
+évident
+
+simple
+
+clair
+
+obscur
+
+secret
+
+sûr
+
+certain
 
 expliquer
 
@@ -2230,6 +2802,10 @@ besoin
 
 nécessité
 
+facile
+
+difficile
+
 essayer
 
 tenter
@@ -2237,6 +2813,40 @@ tenter
 façon
 
 manière
+
+et
+
+parce que
+
+si
+
+ou
+
+oui
+
+affirmatif
+
+non
+
+négatif
+
+comment?
+
+combien?
+
+combien?
+
+quoi?
+
+quand?
+
+oú?
+
+quel?
+
+qui?
+
+pourquoi?
 
 voix
 
@@ -2290,6 +2900,10 @@ demander
 
 répondre
 
+admettre
+
+avouer
+
 nier
 
 demander
@@ -2335,6 +2949,10 @@ poète
 flûte
 
 tambour
+
+cor
+
+trompette
 
 hochet
 
@@ -2417,6 +3035,10 @@ coutume
 lutte
 
 querelle
+
+conspiration
+
+complot
 
 rencontrer
 
@@ -2512,6 +3134,8 @@ filet de pêche
 
 nasse
 
+appât
+
 chasser
 
 tirer
@@ -2538,6 +3162,8 @@ jugement
 
 juge
 
+plaignant
+
 accusé
 
 témoin
@@ -2553,6 +3179,10 @@ condamner
 inculper
 
 acquitter
+
+coupable
+
+innocent
 
 punition
 
@@ -2600,6 +3230,10 @@ prêtre
 
 curé
 
+sacré
+
+saint
+
 prêcher
 
 bénir
@@ -2623,6 +3257,12 @@ idole
 magie
 
 sorcellerie
+
+sorcier
+
+sorcière
+
+fée
 
 fantôme
 

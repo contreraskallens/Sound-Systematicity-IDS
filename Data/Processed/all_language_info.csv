@@ -1,5 +1,4 @@
 ID,Name,latitude,longitude,family
-319,Ossetic,43,44,Indo-European
 61,Aghul,41.75,47.6666666667,Nakh-Daghestanian
 33,Akhvakh (Northern dialect),42.3333333333,46.3333333333,Nakh-Daghestanian
 34,Akhvakh (Southern dialect),42.3333333333,46.3333333333,Nakh-Daghestanian
@@ -61,7 +60,6 @@ ID,Name,latitude,longitude,family
 186,Danish,56,10,Indo-European
 187,Swedish,60,15,Indo-European
 190,English,52,0,Indo-European
-191,Dutch,52.5,6,Indo-European
 194,German,52,10,Indo-European
 195,Yiddish,52,23,Indo-European
 196,Lithuanian,55,24,Indo-European
@@ -171,7 +169,6 @@ ID,Name,latitude,longitude,family
 414,Zhuang-Longzhou,24,108,Tai-Kadai
 415,Sui,26,107.5,Tai-Kadai
 417,Mulam,25,108,Tai-Kadai
-419,Southern Kam,27,109,Tai-Kadai
 420,Lakkia,24.0833333333,110.166666667,Tai-Kadai
 421,Hlai (Baoting variety),19,109.5,Tai-Kadai
 424,Sanchong Kelao,22.9166666667,105.5,Tai-Kadai
@@ -187,17 +184,9 @@ ID,Name,latitude,longitude,family
 708,Tamil,11,78.5,Dravidian
 709,Telugu,16,79,Dravidian
 710,Tibetan,30,91,Sino-Tibetan
-807,Wa,23.25,99.5,Austro-Asiatic
-808,Rumai,22.6666666667,96.6666666667,Austro-Asiatic
-814,Mlabri,18.5,101,Austro-Asiatic
 816,Vietnamese,10.5,106.5,Austro-Asiatic
-829,Nyakur,15.6666666667,101.666666667,Austro-Asiatic
-832,Kasong,12.75,102.116666667,Austro-Asiatic
-836,Surin Khmer,12.5,105,Austro-Asiatic
 37,Botlikh,42.665,46.22,Nakh-Daghestanian
 74,Judeo-Tat,42.068306,48.264749,Indo-European
-184,Gothic,46.9304,29.9786,Indo-European
-208,Hittite,40,35,Indo-European
 217,Negerhollands,18.3416,-64.8922,Indo-European
 221,Polci,10.0258,9.53362,Afro-Asiatic
 250,Yuwana,5.63879,-65.4267,Jodi-Saliban
@@ -211,27 +200,8 @@ ID,Name,latitude,longitude,family
 403,Thai (Korat variety),6.85668,99.7031,Tai-Kadai
 404,Khamuang (Chiang Mai variety),18.857495,100.20739,Tai-Kadai
 405,Dehong,21.7837,99.722,Tai-Kadai
-406,Jinsha Dai,26.7238,106.682,Hmong-Mien
 416,Maonan,25.0169,108.024,Tai-Kadai
 418,Chadong,25.23532,109.96041,Tai-Kadai
 422,Langja Buyang,23.0105,104.449,Tai-Kadai
 423,Ecun Buyang,23.0105,104.449,Tai-Kadai
 704,Mahasu Pahari (Kotghari dialect),31.0088,77.5317,Indo-European
-801,Bulang,22.0092,99.7405,Austro-Asiatic
-804,Keme (Kemie variety),22.0743,100.842,Austro-Asiatic
-805,Xu,22.0163,100.881,Austro-Asiatic
-809,Prai,19.4306,101.021,Bookkeeping
-810,Pusing,21.3474,101.916,Austro-Asiatic
-811,Paliu,24.7013,104.955,Austro-Asiatic
-815,Cuoi,NA,NA,Austro-Asiatic
-817,Hanoi Vn,NA,NA,Austro-Asiatic
-820,Phong,19.9622,104.088,Austro-Asiatic
-822,Tum,NA,NA,Austro-Asiatic
-823,Chut (Ruc variety),NA,NA,Austro-Asiatic
-826,Malieng,NA,NA,Austro-Asiatic
-827,Ahlao Th,17.7655,104.229,Austro-Asiatic
-828,Thavung So,17.7655,104.229,Austro-Asiatic
-830,Pear,13.593,105.028,Austro-Asiatic
-833,Samre,13.479,103.978,Bookkeeping
-834,Chong,12.5218,102.514,Austro-Asiatic
-838,Iduh,19.3497,104.106,Austro-Asiatic

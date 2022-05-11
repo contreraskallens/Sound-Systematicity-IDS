@@ -1,3 +1,9 @@
+spesso
+
+sempre
+
+pronto
+
 smettere
 
 finire
@@ -14,21 +20,123 @@ ritardare
 
 affrettarsi
 
+lento
+
+rapido
+
+subito
+
+ora
+
+adesso
+
+tardi
+
+presto
+
+vecchio
+
+giovine
+
 età
 
+nuovo
+
 tempo
+
+tre volte
+
+terzo
+
+due volte
 
 paio
 
 coppia
 
+secondo
+
+ultimo
+
+primo
+
+solo
+
+soltanto
+
 metà
 
 pezzo
 
+vuoto
+
+pieno
+
+moltitudine
+
+folla
+
+alcuni
+
+qualche
+
+poco
+
+abbastanza
+
+più
+
+ancora più
+
+molto
+
+ogni
+
+tutto
+
 contare
 
+mille
+
+cento
+
+venti
+
+quindici
+
+dodici
+
+undici
+
+dieci
+
+nove
+
+otto
+
+sette
+
+sei
+
+cinque
+
+quattro
+
+due
+
+tre
+
+uno
+
+zero
+
+niente
+
+nulla
+
 cambiare
+
+simile
 
 linea
 
@@ -37,6 +145,8 @@ buco
 sfera
 
 palla
+
+tondo
 
 cerchio
 
@@ -47,6 +157,38 @@ croce
 angolo
 
 gancio
+
+storto
+
+dritto
+
+piatto
+
+poco profondo
+
+profondo
+
+sottile
+
+grosso
+
+spesso
+
+stretto
+
+largo
+
+corto
+
+alto
+
+lungo
+
+piccolo
+
+grande
+
+grosso
 
 spanna
 
@@ -64,6 +206,14 @@ ovest
 
 est
 
+vicino
+
+lontano
+
+sinistra
+
+destra
+
 mezzo
 
 centro
@@ -72,13 +222,19 @@ lato
 
 margine
 
+appuntito
+
 fine
 
 fondo
 
 fondo
 
+basso
+
 cima
+
+alto
 
 nascondere
 
@@ -120,11 +276,43 @@ porre
 
 luogo
 
+su
+
+sopra
+
+sotto
+
+fuori
+
+dentro
+
+in
+
+davanti
+
+davanti a
+
+prima di
+
+giù
+
+di sotto
+
+accanto
+
+dietro
+
+dopo
+
 pesare
 
 spartire
 
 condividere
+
+a buon mercato
+
+caro
 
 prezzo
 
@@ -133,6 +321,10 @@ negozio
 mercato
 
 mercante
+
+commercio
+
+baratto
 
 vendere
 
@@ -162,7 +354,15 @@ prendere in prestito
 
 prestare
 
+avaro
+
+tirchio
+
 mendicante
+
+povero
+
+ricco
 
 moneta
 
@@ -186,6 +386,8 @@ ferire
 
 distruggere
 
+salvare
+
 conservare
 
 proteggere
@@ -201,6 +403,10 @@ tenersi
 ottenere
 
 tenere
+
+cogliere
+
+afferrare
 
 prendere
 
@@ -251,6 +457,8 @@ carrozza
 carro
 
 ponte
+
+sentiero
 
 strada
 
@@ -304,6 +512,8 @@ venire
 
 uscire
 
+scendere
+
 arrampicarsi
 
 andare
@@ -348,11 +558,15 @@ galleggiare
 
 affondare
 
+scorrere
+
 scuotere
 
 acchiappare
 
 buttare
+
+sgocciolare
 
 cadere
 
@@ -373,6 +587,8 @@ girarsi
 girare
 
 muovere
+
+dipingere
 
 scalpello
 
@@ -486,6 +702,8 @@ strappare
 
 spaccare
 
+rotto
+
 rompere
 
 scure
@@ -510,6 +728,8 @@ tagliare
 
 picchiare
 
+colpire
+
 nodo
 
 corda
@@ -522,7 +742,13 @@ legare
 
 piegare
 
+piegare
+
+curvare
+
 lavorare
+
+fare
 
 fungo
 
@@ -630,6 +856,8 @@ aia
 
 trebbiare
 
+falce
+
 mietere
 
 semi
@@ -659,6 +887,8 @@ zappare
 vangare
 
 arare
+
+fossa
 
 recinto
 
@@ -701,6 +931,10 @@ trogolo
 mensola
 
 candela
+
+lampada
+
+fiaccola
 
 tavola
 
@@ -818,6 +1052,10 @@ cintura
 
 busto
 
+cappello
+
+berretto
+
 calzolaio
 
 scarpa
@@ -833,6 +1071,8 @@ pantaloni
 gonnellino di paglia
 
 gonna
+
+colletto
 
 camicia
 
@@ -972,6 +1212,10 @@ mollica
 
 pane
 
+mescolare
+
+agitare
+
 grattugiare
 
 setacciare
@@ -1028,6 +1272,10 @@ cuocere
 
 forno
 
+arrostire
+
+friggere
+
 bollire
 
 cuocere
@@ -1052,11 +1300,39 @@ fame
 
 bere
 
+marcio
+
+acerbo
+
+maturo
+
+crudo
+
+cotto
+
 cibo
 
 mangiare
 
+nudo
+
+cieco
+
+ubriaco
+
+muto
+
+sordo
+
+calvo
+
+zoppo
+
+pigro
+
 riposarsi
+
+stanco
 
 veleno
 
@@ -1092,6 +1368,20 @@ gozzo
 
 febbre
 
+ammalato
+
+malattia
+
+sano
+
+salute
+
+debole
+
+forte
+
+potente
+
 tomba
 
 seppellire
@@ -1113,6 +1403,8 @@ vivo
 vita
 
 concepire
+
+incinta
 
 nascere
 
@@ -1348,6 +1640,8 @@ barba
 
 capello
 
+carne
+
 pelle
 
 cute
@@ -1452,11 +1746,17 @@ pinna
 
 pesce
 
+topo
+
+ratto
+
 opossum
 
 gatto
 
 coniglio
+
+cane
 
 colomba
 
@@ -1552,7 +1852,45 @@ pascolo
 
 bestiame
 
+femmina
+
+maschio
+
 animale
+
+loro
+
+essi
+
+esse
+
+voi
+
+Loro
+
+noi
+
+noi
+
+noi
+
+egli
+
+lui
+
+ella
+
+lei
+
+esso
+
+essa
+
+tu
+
+Lei
+
+io
 
 famiglia
 
@@ -1573,6 +1911,22 @@ figliastro
 matrigna
 
 patrigno
+
+nuora
+
+nuora
+
+genero
+
+genero
+
+suocera
+
+suocera
+
+suocero
+
+suocero
 
 discendenti
 
@@ -1670,6 +2024,10 @@ ragazzo
 
 femmina
 
+maschio
+
+femmina
+
 donna
 
 uomo
@@ -1738,6 +2096,10 @@ tempesta
 
 tuono
 
+fulmine
+
+saetta
+
 lampo
 
 stella
@@ -1752,6 +2114,10 @@ terremoto
 
 sisma
 
+sasso
+
+pietra
+
 legno
 
 albero
@@ -1765,6 +2131,10 @@ cascata
 palude
 
 pantano
+
+sorgente
+
+pozzo
 
 gorgo
 
@@ -1802,7 +2172,13 @@ oceano
 
 schiuma
 
+agitato
+
+burrascoso
+
 mare
+
+bonaccia
 
 acqua
 
@@ -1828,6 +2204,10 @@ scogliera
 
 rupe
 
+montagna
+
+collina
+
 fango
 
 sabbia
@@ -1844,6 +2224,16 @@ terra
 
 mondo
 
+a volte
+
+presto
+
+per
+
+mai
+
+di nuovo
+
 giorno
 
 notte
@@ -1857,6 +2247,16 @@ mezzogiorno
 pomeriggio
 
 sera
+
+oggi
+
+domani
+
+dopodomani
+
+ieri
+
+ieri laltro
 
 ora
 
@@ -1900,7 +2300,23 @@ sentire
 
 annusare
 
+profumato
+
+puzzolente
+
 assaggiare
+
+dolce
+
+salato
+
+amaro
+
+agro
+
+acerbo
+
+salmastro
 
 sentire
 
@@ -1912,6 +2328,14 @@ suono
 
 rumore
 
+alto
+
+forte
+
+tranquillo
+
+silenzio
+
 vedere
 
 guardare
@@ -1922,7 +2346,25 @@ splendere
 
 brillare
 
+brillante
+
 colore
+
+chiaro
+
+cupo
+
+bianco
+
+nero
+
+rosso
+
+azzurro
+
+verde
+
+giallo
 
 toccare
 
@@ -1930,15 +2372,65 @@ pizzicare
 
 sentire
 
+duro
+
+soave
+
+molle
+
+ruvido
+
+liscio
+
+acuto
+
+spuntato
+
+pesante
+
+leggero
+
+umido
+
+bagnato
+
+secco
+
+caldo
+
+tiepido
+
+caldo
+
+freddo
+
+pulito
+
+sudicio
+
+rugoso
+
+increspato
+
 anima
 
 spirito
+
+sorpreso
+
+stupito
 
 buona fortuna
 
 sfortuna
 
 disgrazia
+
+allegro
+
+felice
+
+contento
 
 ridere
 
@@ -1982,7 +2474,13 @@ gelosia
 
 vergogna
 
+fiero
+
+orgoglioso
+
 osare
+
+coraggioso
 
 paura
 
@@ -1996,6 +2494,10 @@ scegliere
 
 sperare
 
+fedele
+
+vero
+
 mentire
 
 dire bugie
@@ -2003,6 +2505,16 @@ dire bugie
 inganno
 
 perdonare
+
+buono
+
+cattivo
+
+giusto
+
+esatto
+
+sbagliato
 
 difetto
 
@@ -2015,6 +2527,16 @@ colpa
 lode
 
 lodare
+
+bello
+
+brutto
+
+goloso
+
+ghiotto
+
+intelligente
 
 mente
 
@@ -2044,6 +2566,16 @@ idea
 
 nozione
 
+sapiente
+
+scemo
+
+stupido
+
+pazzo
+
+matto
+
 imparare
 
 studiare
@@ -2064,6 +2596,16 @@ ricordarsi
 
 dimenticare
 
+chiaro
+
+oscuro
+
+segreto
+
+sicuro
+
+certo
+
 spiegare
 
 scopo
@@ -2080,11 +2622,55 @@ tradire
 
 bisogno
 
+facile
+
+difficile
+
 cercare di
 
 modo
 
 maniera
+
+e
+
+perché
+
+se
+
+o
+
+oppure
+
+sì
+
+affermativo
+
+no
+
+negativo
+
+come?
+
+quanti?
+
+quanto?
+
+che?
+
+che cosa?
+
+cosa?
+
+quando?
+
+dove?
+
+quale?
+
+chi?
+
+perché?
 
 voce
 
@@ -2130,6 +2716,10 @@ chiedere
 
 rispondere
 
+ammettere
+
+confessare
+
 negare
 
 chiedere
@@ -2167,6 +2757,10 @@ poeta
 flauto
 
 tamburo
+
+corno
+
+tromba
 
 sonaglio
 
@@ -2256,6 +2850,10 @@ lotta
 
 lite
 
+cospirazione
+
+complotto
+
 incontrare
 
 prostituta
@@ -2342,6 +2940,8 @@ rete da pesca
 
 nassa
 
+esca
+
 cacciare
 
 sparare
@@ -2364,6 +2964,8 @@ giudizio
 
 giudice
 
+attore
+
 imputato
 
 testimone
@@ -2381,6 +2983,10 @@ condannare
 condannare
 
 assolvere
+
+colpevole
+
+innocente
 
 punizione
 
@@ -2428,6 +3034,10 @@ pregare
 
 prete
 
+santo
+
+sacro
+
 predicare
 
 benedire
@@ -2451,6 +3061,14 @@ idolo
 magia
 
 stregoneria
+
+strego
+
+strega
+
+fata
+
+folletto
 
 fantasma
 
