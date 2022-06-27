@@ -219,9 +219,8 @@ clean.phon <- function(df){
   df <- filter(df, !is.na(df$phon),
                str_detect(phon, "\\?", negate = TRUE)) %>%  # Delete forms that include question marks 
     ungroup()
-  
   # First, delete diacritic markers that are superscript letters.
-  # df <- mutate(df, phon = str_remove_all(phon, "\\p{Lm}"))
+  df <- mutate(df, phon = str_remove_all(phon, "\\p{Lm}"))
   df <- mutate(df, phon = stringi::stri_trans_nfc(phon))
   df <- mutate(df, phon = str_squish(str_remove_all(phon, "~.*"))) # extract the first form of multi form entries separated by ~
   df <- mutate(df, phon = str_squish(str_remove_all(phon, ",.*"))) # extract the first form of multi form entries separated by ,
@@ -231,7 +230,7 @@ clean.phon <- function(df){
   df <- mutate(df, phon = str_squish(str_remove_all(phon, "-"))) # Remove all dashes. They're usually used as ligatures.
   # Remove all stress marks and most symbols u02BC is a Modifier Letter Apostrophe. Retain : for long vowels
   # (brackets, « and parentheses  
-  df <- mutate(df, phon = str_squish(str_remove_all(phon, "[\u0022\u02BC\u02CB#–\\ʼ'’\\*“‰‘]"))) 
+  df <- mutate(df, phon = str_squish(str_remove_all(phon, "[\u0323\u0022\u02BC\u02CB#–\\ʼ'’\\*“‰‘]"))) 
   # Delete empty parentheses
   df <- mutate(df, phon = str_squish(str_remove_all(phon, "\\(\\)")))
   # Delete addenda at the beginning and at the end of the strings

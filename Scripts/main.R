@@ -1,10 +1,29 @@
 source("functions.r")  # Functions and packages
 source("data_wrangling.R")  # Distances and typicality data
-
+library(ggpointdensity)
+library(tidyverse)
+library(rnaturalearth)
+library(geosphere)
 
 morph.complexity <- read_csv("../Data/Processed/morph_complexity.csv")
-
+all.languages <- read_csv('../Data/Processed/all_language_info.csv')
 # Basic descriptive statistics of the features of wordlists ------
+
+
+# Make it only with languages that have geographical information
+reduced <- select(all.languages, Name,longitude, latitude) %>% 
+  filter(complete.cases(.))
+
+# Make plot World plot
+world <- ne_coastline(scale = "medium", returnclass = "sf")
+
+ggplot(data = world) +
+  geom_sf(size = 0.1, alpha = 0.9) +
+  coord_sf(ylim = c(-50, 90)) +
+  geom_jitter(data = reduced, aes(x = longitude, y = latitude),
+              size = 1, shape = 3) +
+  cowplot::theme_map()
+ggsave("../Figures/Main/world_map.png", width = 20, height = 12, units = "cm", dpi = 300)
 
 
 # Look at families as a proportion of total families in wals
@@ -39,13 +58,13 @@ all.phon.adjusted %>%
 ggsave("../Figures/Other/number_items_adjusted.png")
 
 
-## Category tally
+# Category tally
 all.phon.adjusted %>%
   group_by(ontological.category) %>%
   tally() %>%
   mutate(proportion = n / sum(.$n))
 
-# Plot the proportions of each category in the languages as boxplots
+  # Plot the proportions of each category in the languages as boxplots
 all.phon.adjusted %>%
   group_by(language, ontological.category) %>%
   tally() %>%
@@ -82,6 +101,7 @@ print(three.way.test.adjusted)
 # http://tss.awf.poznan.pl/files/3_Trends_Vol21_2014__no1_20.pdf
 chi.square.adjusted <- three.way.test.adjusted@statistic@teststatistic
 eta.squared.adjusted <- (chi.square.adjusted - 4) / (nrow(all.distances.adjusted) - 3)
+print(eta.squared.adjusted)
 
 # Pairwise wilcox test of the difference in typicality between Action and Things
 wilcox.all.adjusted <- all.distances.adjusted %>%
@@ -95,7 +115,7 @@ wilcox.all.adjusted <- all.distances.adjusted %>%
 Z.action.thing.adjusted <- wilcox.all.adjusted %>% 
   coin::statistic(type = "standardized")
 eta.squared.action.thing.adjusted <- (Z.action.thing.adjusted ^ 2) / (nrow(filter(all.distances.adjusted, class != "Other")))
-
+print(eta.squared.action.thing.adjusted)
 # Also get Cohen's d of the two distributions
 d.action.thing.adjusted <-effsize::cohen.d(data = filter(all.distances.adjusted, class != "Other"), typicality ~ class)
 print(abs(d.action.thing.adjusted$estimate))
@@ -106,7 +126,7 @@ density.adjusted <- all.distances.adjusted %>%
   filter(class != "Other") %>%
   mutate(class = factor(class, levels = c("Action", "Thing", "Other"))) %>%
   ggplot(aes(x = mean.action, y = mean.thing)) +
-  ggpointdensity::stat_pointdensity(aes(col = stat(ndensity)), size = 0.5, adjust = 0.3, method = "auto") + 
+  geom_pointdensity(aes(col = stat(ndensity)), size = 0.5, adjust = 0.3) + 
   viridis::scale_color_viridis(name = "Density", option = "plasma") +
   geom_abline(intercept = c(0,0), linetype = 'dashed', color = "black") +
   labs(x = "Mean Distance to Actions", y = "Mean Distance to Things") +
@@ -128,7 +148,7 @@ ggsave("../Figures/Main/density_adjusted.png", width = 17, height = 9, units = "
 
 scatter.adjusted <- ggplot(data = plot.data.adjusted, aes(y = Median, x = language, color = Category, shape = Category,
                                                           group = Category)) +
-  labs(x = 'Language', y = 'Mean Typicality') +
+  labs(x = 'Language', y = 'Median Typicality') +
   geom_point(aes(fill = Category), size = 1) +
   geom_vline(aes(xintercept = include), size = 0.2, color = palette_line) + 
   geom_hline(linetype = 'solid', yintercept = 0, color = palette_line, size = .2) +
@@ -137,7 +157,7 @@ scatter.adjusted <- ggplot(data = plot.data.adjusted, aes(y = Median, x = langua
   scale_x_discrete(name = "", labels = label.text.adjusted) +
   cowplot::theme_cowplot() + 
   expand_limits(x = -1) +
-  expand_limits(x = 228) + 
+  # expand_limits(x = 228) + 
   theme(
     # axis.title.x = element_text(size = 8),
   #   axis.title.y = element_text(size = 6),
@@ -288,17 +308,68 @@ ggsave("../Figures/Main/neighbor_adjusted_diff.png", width = 17, height = 7, uni
 # Coefficient include a baseline of 0.1 or not. 
 
 ## Descriptive stats
-rnn.stats.adjusted
+rnn.stats
 
-rnn.stats.adjusted %>% 
-  arrange(desc(median.auc)) %>% 
-  filter(measure == "AUC") %>% 
-  mutate(language = factor(language, levels = .$language)) %>% 
-  ggplot(aes(x = language, y = median.auc)) +
-  # geom_point(aes(y = median.auc)) +
-  geom_pointrange(aes(ymin = median.auc - iqr.auc, ymax = median.auc + iqr.auc), size = 0.2) +
+rnn.stats <- rnn.stats %>% 
+  arrange(desc(mean.mcc)) %>% 
+  mutate(language = str_remove_all(language, '/'))
+rnn.stats$language <- factor(rnn.stats$language, levels = rnn.stats$language)
+  
+ggplot(rnn.stats, aes(x = language, y = mean.auc, ymin = mean.auc - se.auc, ymax = mean.auc + se.auc)) +
+  geom_pointrange(size = 0.2) +
   geom_hline(yintercept = 0.5) +
   labs(y = "Mean AUC") 
+
+
+ggplot(rnn.stats, aes(x = language, y = mean.mcc, ymin = mean.mcc - se.mcc, ymax = mean.mcc + se.mcc)) +
+  geom_linerange(size = 0.5, color = palette_line) +
+  geom_point(shape = 22, size = .75, color = palette_line) +
+  geom_hline(yintercept = 0.1) +
+  scale_x_discrete(name = "Language", labels = function(x){
+      ifelse(x %in% test.languages, str_wrap(as.character(x), 10), "")
+    }) +
+  labs(y = "Mean MCC") + 
+  theme_cowplot() + 
+  theme(axis.title.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        legend.position = "none") 
+
+
+
+spurt.stats <- spurt.stats %>% 
+  arrange(desc(mean.mcc)) %>% 
+  mutate(language = str_remove_all(language, '/'))
+spurt.stats$language <- factor(spurt.stats$language, levels = spurt.stats$language)
+
+ggplot(spurt.stats, aes(x = language, y = mean.mcc, ymin = mean.mcc - se.mcc, ymax = mean.mcc + se.mcc)) +
+  geom_linerange(size = 0.5, color = palette_line) +
+  geom_point(shape = 22, size = .75, color = palette_line) +
+  geom_hline(yintercept = 0.1) +
+  scale_x_discrete(name = "Language", labels = function(x){
+    ifelse(x %in% test.languages, str_wrap(as.character(x), 10), "")
+  }) +
+  labs(y = "Mean MCC") + 
+  theme_cowplot() + 
+  theme(axis.title.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        legend.position = "none") 
+
+
+ggplot(spurt.stats, aes(x = language, y = mean.auc, ymin = mean.auc - se.auc, ymax = mean.auc + se.auc)) +
+  # geom_point(aes(y = median.auc)) +
+  geom_pointrange(size = 0.2) +
+  geom_hline(yintercept = 0.5) +
+  labs(y = "Mean AUC") 
+
+
+ggplot(spurt.stats, aes(x = language, y = mean.mcc, ymin = mean.mcc - se.mcc, ymax = mean.mcc + se.mcc)) +
+  geom_pointrange(size = 0.2) +
+  geom_hline(yintercept = 0.2) +
+  labs(y = "Mean MCC") 
+
+
+
+
 
 rnn.stats.adjusted %>% 
   arrange(desc(median.auc)) %>% 

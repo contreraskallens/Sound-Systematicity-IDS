@@ -9,13 +9,14 @@ import random
 import sklearn.metrics as metrics
 import sklearn.model_selection as cv
 import torch.nn.utils.rnn as rnn_utils
+import concurrent.futures
 
 # Use CUDA if available
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
+# device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device = 'cpu'
 # If true, then use use spurt model
 # If false, use 10-fold cross validation
-spurt_model = False
+spurt_model = True
 
 
 # - Supporting Functions
@@ -154,8 +155,8 @@ class RNNConcept(nn.Module):
         rnn_hidden = rnn_hidden.view(rnn_hidden.size()[1], rnn_hidden.size()[2])
         class_space = self.classifier(rnn_hidden)
         class_scores = self.sigmoid(class_space)
-        class_scores = torch.squeeze(class_scores)
         # class_scores = self.softmax(class_space)
+        class_scores = torch.squeeze(class_scores)
         return class_scores
 
 
@@ -175,6 +176,7 @@ def get_network_performance(language_data):
 
     # First, encode words as sequences of one-hot vectors.
     # Make a giant string
+    this_language = language_data['language'].iloc[0]
     char_dict = "".join(language_data["phon"].tolist())
 
     # Make a list of the unique characters
@@ -187,20 +189,17 @@ def get_network_performance(language_data):
     # stack them into a pytorch tensor.
     encoded_words = [encode_word(word, char_dict) for word in language_data['phon'].tolist()]
     encoded_words = [torch.stack([int_to_one_hot(char, len(char_dict)) for char in word]) for word in encoded_words]
-
     # Encode the semantic category for prediction as 0 and 1 tensors.
     classes = language_data['ontological.category'].tolist()
     class_dict = {'Action': 1, 'Thing': 0}
     classes = torch.tensor([class_dict[pos] for pos in classes], dtype=torch.float)
     classes = torch.unsqueeze(classes, 1)  # Add dimension for pytorch. Number of samples x 1
-
     # Stores a dictionary where the "id" of a word (string of index in matrix) maps to its class
     all_id = [str(i) for i in range(len(classes))]
-    all_classes = dict(zip(all_id, classes))
 
     # Training and cross-validation parameters.
     # Number of training epochs
-    max_epochs = 1000
+    max_epochs = 10000
 
     if spurt_model:
         # Performance is measured on the spurt model
@@ -210,8 +209,12 @@ def get_network_performance(language_data):
         # Cross-validation scheme.
         training_set = cv.StratifiedKFold(n_splits=10, shuffle=True)
 
-    training_set_data = training_set.split(language_data, classes)  
+    training_set_data = training_set.split(language_data, classes)
     training_set_data = list(training_set_data)
+
+    encoded_words = [word.to(device) for word in encoded_words]
+    classes = classes.to(device)
+    all_classes = dict(zip(all_id, classes))
 
     # Creates lists to store the performance of the network in each iteration
     iter_accuracy = []
@@ -220,39 +223,70 @@ def get_network_performance(language_data):
     iter_f1 = []
     iter_matthews = []
     iter_auc = []
+    it_n = 0
     # Loop through the iteration and get performance in each one.
     for train_indices, test_indices in training_set_data:
-        train_indices, test_indices = training_set_data[0]
-        
-        
-        print("doing new iteration")
+        if spurt_model and it_n % 10 == 0:
+            print(f'iteration {str(it_n)}, language {this_language}')
+        elif not spurt_model:
+            print(f'iteration {str(it_n)}, language {this_language}')
+        it_n += 1
         # - Allocate data
         # Build a stratified validation set
-        train_classes = classes[train_indices]
-        train_actions = train_indices[list(train_classes == 1)]
-        train_things = train_indices[list(train_classes == 0)]
-        val_actions = np.random.choice(train_actions, int(len(train_actions) / 5), replace = False)
-        val_things = np.random.choice(train_things, int(len(train_things) / 5), replace = False)
-        all_val = np.concatenate((val_actions, val_things), axis = None)
-        all_val = [ind for ind in all_val]
-        test_id = [str(ind) for ind in test_indices]
-        train_indices = [ind for ind in train_indices if ind not in all_val]
-        all_test = [ind for ind in test_indices]
-            
+        if spurt_model:
+            test_classes = classes[test_indices]
+            test_actions = [test_indices[i] for i in range(len(test_indices)) if test_classes[i] == 1]
+            test_things = [test_indices[i] for i in range(len(test_indices)) if test_classes[i] == 0]
+
+            val_actions = np.random.choice(test_actions, int(len(test_actions) / 5), replace=False)
+            val_things = np.random.choice(test_things, int(len(test_things) / 5), replace=False)
+            all_val = np.concatenate((val_actions, val_things), axis=None)
+            all_val = [ind for ind in all_val]
+
+            test_indices = [ind for ind in test_indices if ind not in all_val]
+            test_id = [str(ind) for ind in test_indices]
+            train_id = [str(ind) for ind in train_indices]
+            all_test = [ind for ind in test_indices]
+        else:
+            train_classes = classes[train_indices]
+            train_actions = [train_indices[i] for i in range(len(train_indices)) if train_classes[i] == 1]
+            train_things = [train_indices[i] for i in range(len(train_indices)) if train_classes[i] == 0]
+
+            val_actions = np.random.choice(train_actions, int(len(train_actions) / 5), replace=False)
+            val_things = np.random.choice(train_things, int(len(train_things) / 5), replace=False)
+            all_val = np.concatenate((val_actions, val_things), axis=None)
+            all_val = [ind for ind in all_val]
+
+            test_id = [str(ind) for ind in test_indices]
+            train_indices = [ind for ind in train_indices if ind not in all_val]
+            train_id = [str(ind) for ind in train_indices]
+            all_test = [ind for ind in test_indices]
+        # Get the words that weren't used in training for this iteration and pack them manually
+        test_data = [encoded_words[index] for index in all_test]
+        sorted_lengths = torch.LongTensor([len(word) for word in test_data])
+        sorted_lengths, indices = torch.sort(sorted_lengths, descending=True)
+        test_data = [test_data[index] for index in indices]
+        test_data = rnn_utils.pad_sequence(test_data)
+        test_data = rnn_utils.pack_padded_sequence(test_data, sorted_lengths, batch_first=False)
+        test_data = test_data.to(device)
+        test_ground = [all_classes[id_n] for id_n in test_id]
+        test_ground = [test_ground[index] for index in indices]
+        test_ground = torch.flatten(torch.stack(test_ground, 0))
+        # test_ground = test_ground.long()
         # Separate validation data
-        val_data = [encoded_words[ind] for ind in all_val]    
+        val_data = [encoded_words[ind] for ind in all_val]
         sorted_lengths = torch.LongTensor([len(word) for word in val_data])
         sorted_lengths, indices = torch.sort(sorted_lengths, descending=True)
         val_data = [val_data[index] for index in indices]
         val_data = rnn_utils.pad_sequence(val_data)
         val_data = rnn_utils.pack_padded_sequence(val_data, sorted_lengths, batch_first=False)
-        val_data = val_data.to(device)    
-        val_labels = [all_classes[str(ind)] for ind in indices.numpy()]
-        val_labels = torch.Tensor(val_labels)
+        val_data = val_data.to(device)
+        val_labels = [classes[i] for i in all_val]
+        val_labels = [val_labels[ind] for ind in indices.numpy()]
+        val_labels = torch.cat(val_labels)
         val_id = [str(ind) for ind in all_val]
-        train_id = [str(ind) for ind in train_indices] # Get this for the train classes to build a stratified validation set
         partition = {'train': train_id, 'test': test_id, 'val': val_id}
-        
+
         training_remainder = len(train_indices) % 16
         if training_remainder == 1:
             have_to_drop = True
@@ -264,19 +298,18 @@ def get_network_performance(language_data):
                                           shuffle=True, collate_fn=pack_word, drop_last=have_to_drop)
         # - Create network and optimizer
         # Define loss function
+        # loss = nn.NLLLoss()
         loss = nn.BCELoss()
-        
         # Initialize RNN
-        model = RNNConcept(hidden_dim=10, num_features=len(char_dict))
+        model = RNNConcept(hidden_dim=10, vocab_size=len(char_dict))
         model = model.to(device)  # If using CUDA, this sends RNN to GPU.
-        optimizer = torch.optim.Adam(model.parameters(), lr=0.0001, weight_decay=0.01)
-        patience = 0 # patience for early stop
+        # optimizer = torch.optim.AdamW(model.parameters(), lr=0.0001, weight_decay=0.1)
+        optimizer = torch.optim.SGD(model.parameters(), lr=0.001, weight_decay=0.001, momentum=0.9, nesterov=True)
+
+        patience = 0  # patience for early stop
         # - Training loop
         for epoch in range(max_epochs):
-        # -- Loop through training mini batches
             for batch, batch_labels in training_loader:
-                batch = batch.to(device)
-                batch_labels = batch_labels.to(device)
                 model.zero_grad()  # Reset gradient after each batch
                 # Prediction for this training batch
                 prediction_scores = model(batch)
@@ -284,13 +317,10 @@ def get_network_performance(language_data):
                 epoch_loss.backward()  # Back-propagate gradient
                 optimizer.step()
             if epoch % 5 == 0:
-                print(epoch)
-            # Loss for early stop
                 with torch.no_grad():
                     val_scores = model(val_data)
                     val_loss = loss(val_scores, val_labels)
-                    print(val_loss)
-                if epoch == 0: # If it's the first time doing it, set it to that
+                if epoch == 0:  # If it's the first time doing it, set it to that
                     minimum_loss = val_loss
                     continue
                 else:
@@ -301,27 +331,13 @@ def get_network_performance(language_data):
                     else:
                         minimum_loss = val_loss
                         patience = 0
-
         # - Performance for this iteration
         with torch.no_grad():  # Don't track this gradient
-            # Get the words that weren't used in training for this iteration and pack them manually
-            test_data = [encoded_words[index] for index in all_test]
-            sorted_lengths = torch.LongTensor([len(word) for word in test_data])
-            sorted_lengths, indices = torch.sort(sorted_lengths, descending=True)
-            test_data = [test_data[index] for index in indices]
-            test_data = rnn_utils.pad_sequence(test_data)
-            test_data = rnn_utils.pack_padded_sequence(test_data, sorted_lengths, batch_first=False)
-            test_data = test_data.to(device)
 
             # Get predictions of the packed test sequences
-            test_scores = model(test_data).cpu()  # Do this part on the CPU
-            test_ground = [all_classes[id_n] for id_n in test_id]
-            test_ground = [test_ground[index] for index in indices]
-            test_ground = torch.flatten(torch.stack(test_ground, 0))
-            test_ground = test_ground.long()
+            test_scores = model(test_data).cpu().detach()  # Do this part on the CPU
+            test_ground = test_ground.cpu()
             test_auc = metrics.roc_auc_score(test_ground, test_scores)
-            # Choose a threshold
-
             fpr, tpr, thresholds = metrics.roc_curve(test_ground, test_scores)
             j_statistic = tpr - fpr
             best_threshold = np.argmax(j_statistic)
@@ -329,7 +345,10 @@ def get_network_performance(language_data):
             test_prediction = (test_scores > best_threshold)
             test_prediction = test_prediction.long()
 
-            # # Calculate accuracy metrics
+            # test_prediction = torch.argmax(test_scores, axis=1)
+            # test_prediction = test_prediction.long().detach()
+
+            # Calculate accuracy metrics
             test_matthews = metrics.matthews_corrcoef(test_ground, test_prediction)
             test_accuracy = metrics.balanced_accuracy_score(test_ground, test_prediction)
             test_f1 = metrics.f1_score(test_ground, test_prediction)
@@ -346,8 +365,7 @@ def get_network_performance(language_data):
             iter_accuracy.append(test_accuracy)
             iter_auc.append(test_auc)
     # Aggregate iteration performance and return dataframe
-    all_results = pd.DataFrame({'Matthews': iter_matthews, 'AUC': iter_auc,
-                                'Accuracy': iter_accuracy, 'F1': iter_f1,
+    all_results = pd.DataFrame({'Matthews': iter_matthews, 'AUC': iter_auc, 'Accuracy': iter_accuracy, 'F1': iter_f1,
                                 'ActionAccuracy': iter_action_accuracy, 'ThingAccuracy': iter_thing_accuracy})
     print(all_results)  # Print for monitoring
     return all_results
@@ -365,7 +383,6 @@ def get_language_performance(all_data, lang_name):
     print(lang_name)
     language_data = all_data[all_data['language'] == lang_name]
     language_data = language_data[language_data['ontological.category'] != 'Other']
-    print(language_data.shape)
     all_measures = get_network_performance(language_data)
     return all_measures
 
@@ -380,24 +397,36 @@ def save_repeated_measures(results, lang_name):
     :return: Doesn't return anything. Saves a CSV version of the results Dataframe.
     """
     if spurt_model:
-        filename_performance = "../Results/Spurt/" + f"{language_name}" + "_spurt_performance.csv"
+        filename_performance = "Results/Spurt/" + f"{lang_name}" + "_spurt_performance.csv"
     else:
-        filename_performance = "../Results/ten-fold/" + f"{lang_name}" + "_rnn_performance.csv"
+        filename_performance = "Results/ten-fold/" + f"{lang_name}" + "_rnn_performance.csv"
     results.to_csv(filename_performance)
 
 
 # - Script
 
 # Set random seeds for reproducibility
-random.seed(1)
-np.random.seed(1)
-torch.manual_seed(1)
+random.seed(123)
+np.random.seed(123)
+torch.manual_seed(123)
 
 # Load all language data and extract an ordered set of the names
-lang_data = pd.read_csv("../Data/Processed/all_phon_adjusted.csv", keep_default_na=False)
-all_languages = sorted(set(lang_data["language"]))
+# Skip Puinave, has only 1 Action word
+lang_data = pd.read_csv('Data/Processed/all_phon_adjusted.csv', keep_default_na=False)
+all_languages = list(sorted(set(lang_data["language"])))
+all_languages.remove('Puinave')
+
 
 # Loop through all language names, get performance of RNN on them and save them as CSV.
-for language_name in all_languages:
-    language_performance = get_language_performance(lang_data, language_name)
-    save_repeated_measures(language_performance, language_name)
+# for language_name in all_languages:
+
+
+def get_and_write_perf(all_data, lang_name):
+    language_performance = get_language_performance(all_data, lang_name)
+    save_repeated_measures(language_performance, lang_name)
+
+
+with concurrent.futures.ProcessPoolExecutor() as executor:
+    all_performances = [executor.submit(get_and_write_perf, all_data=lang_data, lang_name=language_name) for language_name in all_languages[98:]]
+
+

@@ -197,6 +197,10 @@ espeak.phon <- map_dfr(all.espeak.langs, function(this.language){
   lang.words <- filter(espeak.words, language == this.language)
   espeak.trans <- read_lines(paste0("PhonMining/phon_transcriptions/", this.language, "_phon.txt")) %>% 
     str_remove_all("[ˈˌ]") %>%  # Remove stress marker
+    str_remove_all("[\\p{Mn}]") %>% 
+    str_remove_all('\u0361') %>% # Remove ligatures
+    str_remove_all('\u032F') %>% 
+    str_remove_all('\u032A') %>% 
     stri_trans_nfc()
   lang.words$phon <- espeak.trans
   lang.words$IPA <- espeak.trans
@@ -227,6 +231,15 @@ all.words <- left_join(all.words, concepticon) %>%
   filter(ontological.category %in% c("Action/Process", "Person/Thing")) %>% 
   droplevels()
 levels(all.words$ontological.category) <- c("Action", "Thing")
+
+
+espeak.phon <- left_join(espeak.phon, ids.to.concepticon)
+espeak.phon <- left_join(espeak.phon, concepticon) %>% 
+  select(-Concepticon_ID, -ID, -Parameter_ID) %>% 
+  mutate(ontological.category = as.factor(ontological.category)) %>% 
+  filter(ontological.category %in% c("Action/Process", "Person/Thing")) %>% 
+  droplevels()
+levels(espeak.phon$ontological.category) <- c("Action", "Thing")
 
 # Recode in IPA
 # for(this.language in unique(all.phon$language)){
@@ -293,6 +306,8 @@ all.phon <- map_dfr(lang.list.names, function(this.language){
   }
   ipa.corr <- ipa.list$IPA %>% 
     str_remove_all('\u0361') %>% 
+    str_remove_all('\u032F') %>% 
+    str_remove_all('\u032A') %>% 
     stringi::stri_trans_nfc()
   names(ipa.corr) <- stringi::stri_trans_nfc(ipa.list$value)
   this.lang.words <- str_split(corresponding.lang$phon, pattern = '')
@@ -323,8 +338,7 @@ all.phon <- all.phon %>%
   group_by(language) %>%
   mutate(numberOfWords = n()) %>%
   group_by() %>%
-  filter(numberOfWords > 200,
-         numberOfWords < 2000) %>% # Exclude languages with fewer than 200 phon forms and more than 2000 words
+  filter(numberOfWords > 200) %>% # Exclude languages with fewer than 200 phon forms
   dplyr::select(-numberOfWords) %>%
   droplevels()
 
@@ -539,27 +553,27 @@ all.lang.adjusted.phon <- map(as.character(sort(unique(all.phon$language))), fun
 names(all.lang.adjusted.phon) <- as.character(sort(unique(all.phon$language)))
 
 
-# write_rds(all.lang.adjusted, "all_langs_adjusted.rds")
-all.lang.adjusted <- read_rds("all_langs_adjusted.rds")
+write_rds(all.lang.adjusted.phon, "all_langs_adjusted.rds")
+# all.lang.adjusted <- read_rds("all_langs_adjusted.rds")
 
-# complete.markers <- map_dfr(all.lang.adjusted, function(lang){
-#   return(lang$clean.df)
-# }) %>% 
-#   dplyr::select(-clean.phon, suffix = marker)
-# 
-# prefix.languages <- all.phon %>%
-#   mutate(phon = stringi::stri_reverse(phon))
-# 
-# all.lang.adjusted.prefix <- map(as.character(sort(unique(all.phon$language))), function(language){
-#   print(language)
-#   lang.results <- clean.language(language, prefix.languages)
-#   lang.results$census$language <- language
-#   return(lang.results)
-# })
+complete.markers <- map_dfr(all.lang.adjusted.phon, function(lang){
+  return(lang$clean.df)
+}) %>%
+  dplyr::select(-clean.phon, suffix = marker)
 
-# all.lang.adjusted.prefix %>%
-  # write_rds("all_lang_adjusted_prefix.rds")
-all.lang.adjusted.prefix <- read_rds("all_lang_adjusted_prefix.rds")
+prefix.languages <- all.phon %>%
+  mutate(phon = stringi::stri_reverse(phon))
+
+all.lang.adjusted.prefix <- map(as.character(sort(unique(all.phon$language))), function(language){
+  print(language)
+  lang.results <- clean.language(language, prefix.languages, variable = 'phon')
+  lang.results$census$language <- language
+  return(lang.results)
+})
+
+all.lang.adjusted.prefix %>%
+  write_rds("all_lang_adjusted_prefix.rds")
+# all.lang.adjusted.prefix <- read_rds("all_lang_adjusted_prefix.rds")
  
 complete.markers.prefix <- map_dfr(all.lang.adjusted.prefix, function(lang){
   return(lang$clean.df)
@@ -597,8 +611,8 @@ all.phon.adjusted <- all.phon.adjusted %>%
 # Save how many homophones were removed.
 
 homophone.census <- all.phon.adjusted %>% 
-  # group_by(language, ontological.category, phon) %>%
-  group_by(language, phon) %>% 
+  group_by(language, ontological.category, phon) %>%
+  # group_by(language, phon) %>% 
   tally() %>% 
   filter(n > 1) %>% 
   group_by() %>% 
@@ -616,14 +630,14 @@ all.phon.adjusted <- all.phon.adjusted %>%
 
 
 # Join marker census with homophone census, and compare original/adjusted number of words
-# original.number.words <- all.phon %>% group_by(language) %>% dplyr::summarize(original.number.words = n())
-# adjusted.number.words <- all.phon.adjusted %>% group_by(language) %>% dplyr::summarize(adjusted.number.words = n())
+original.number.words <- all.phon %>% group_by(language) %>% dplyr::summarize(original.number.words = n())
+adjusted.number.words <- all.phon.adjusted %>% group_by(language) %>% dplyr::summarize(adjusted.number.words = n())
 
-# marker.census.complete <- left_join(marker.census.complete, original.number.words) %>% 
-#   left_join(adjusted.number.words) %>% 
-#   left_join(select(all.languages, language = Name, Family = family)) %>% 
-#   left_join(homophone.census) %>% 
-#   select(language, Family, everything())
+# marker.census.complete <- left_join(marker.census.complete, original.number.words) %>%
+  # left_join(adjusted.number.words) %>%
+  # left_join(select(all.languages, language = Name, Family = family)) %>%
+  # left_join(homophone.census) %>%
+  # select(language, Family, everything())
 
 # Replace NA with 0 for the numeric columns. NAs result from languages without within-class homophones to remove.
 # marker.census.complete <- mutate_if(.tbl = marker.census.complete, .predicate = is.numeric, .funs = function(x){replace_na(x, 0)})
@@ -633,22 +647,6 @@ write_csv(all.phon.adjusted, "../Data/Processed/all_phon_adjusted.csv")
 
 
 # Make geographical clusters and world map of languages ---------------
-
-# Make it only with languages that have geographical information
-reduced <- select(all.languages, Name,longitude, latitude) %>% 
-  filter(complete.cases(.))
-
-# Make plot World plot
-world <- ne_coastline(scale = "medium", returnclass = "sf")
-
-ggplot(data = world) +
-  geom_sf(size = 0.1, alpha = 0.9) +
-  coord_sf(ylim = c(-50, 90)) +
-  geom_jitter(data = reduced, aes(x = longitude, y = latitude), color = c("#62c08f"),
-              size = 1, shape = 16) +
-  cowplot::theme_map()
-ggsave("../Figures/Main/world_map.png", width = 8.7, height = 7, units = "cm", dpi = 300)
-
 
 # Make a matrix with only longitude and latitude
 geo.matrix <- as.matrix(select(reduced, longitude, latitude))
@@ -669,16 +667,16 @@ silhouettes <- map_dbl(2:100, function(i){
 silhouettes <- silhouettes %>% enframe %>% mutate(name = 2:100)
 ggplot(silhouettes, aes(x = name, y = value)) + geom_point() + geom_label(aes(label = name))
 
-# Plot shows that a good number of clusters is k = 19
+# Plot shows that a good number of clusters is k = 20
 # Make a color vector of 20 colors
 col_vector<-c('#e6194b', '#3cb44b', '#ffe119', '#4363d8','#f58231', 
               '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe', 
               '#008080', '#e6beff', '#9a6324', '#fffac8', '#800000', 
-              '#aaffc3', '#808000', '#ffd8b1', '#000075')
+              '#aaffc3', '#808000', '#ffd8b1', '#000075', '#000000')
 
 # Make a dataframe with all langauge information including WALS info, Family and Geo Cluster
 language.groups <- reduced %>% 
-  add_column(geo.cluster = cutree(cluster.regions, k = 19)) %>% 
+  add_column(geo.cluster = cutree(cluster.regions, k = 20)) %>% 
   select(Name, geo.cluster) %>% 
   mutate(geo.cluster = factor(geo.cluster)) %>% 
   right_join(all.languages)
@@ -694,16 +692,16 @@ hull <- language.groups %>%
 
 
 # Manually modify to avoid weird cluster 12
-cluster.12 <- hull %>% 
-  filter(geo.cluster == "12")
+cluster.11 <- hull %>% 
+  filter(geo.cluster == "11")
 hull <- hull %>% 
-  filter(geo.cluster != "12")
-cluster.12.right <- cluster.12 %>% 
+  filter(geo.cluster != "11")
+cluster.11.right <- cluster.12 %>% 
   filter(Name != "Tongan") %>% 
   group_by() %>% 
   add_row(latitude = -19, longitude = 179) %>% 
   add_row(latitude = -30, longitude = 179)
-cluster.12.left <- cluster.12 %>% 
+cluster.11.left <- cluster.12 %>% 
   filter(Name == "Tongan") %>% 
   group_by() %>% 
   add_row(latitude = -19, longitude = -179) %>% 
@@ -716,10 +714,10 @@ ggplot(data = world) +
   geom_jitter(data = language.groups, aes(x = longitude, y = latitude, color = geo.cluster), 
               size = 1, shape = 16) + 
   geom_polygon(data = hull, aes(x = longitude, y = latitude, fill = geo.cluster), alpha = 0.5) +
-  geom_polygon(data = cluster.12.right, fill = col_vector[12], aes(x = longitude, y = latitude), alpha = 0.5) +
+  geom_polygon(data = cluster.11.right, fill = col_vector[12], aes(x = longitude, y = latitude), alpha = 0.5) +
   scale_color_manual(values = col_vector) +
   scale_fill_manual(values = col_vector[-12]) +
-  geom_polygon(data = cluster.12.left, fill = col_vector[12], aes(x = longitude, y = latitude), alpha = 0.5) +
+  geom_polygon(data = cluster.11.left, fill = col_vector[12], aes(x = longitude, y = latitude), alpha = 0.5) +
   cowplot::theme_map() +
   theme(legend.position = "none")
 
