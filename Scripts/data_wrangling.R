@@ -38,10 +38,10 @@ wals_info <- read_csv("../Data/Raw/WALS/walslanguage.csv")
 #                                     return(mean.distances)
 #                                   }
 # )
-
-
-# Save distance objects
-# write_rds(all.distances.adjusted, "../Data/r_objects/all_distances_adjusted.RDS")
+# 
+# 
+# # Save distance objects
+# write_rds(all.distances.adjusted, "../Data/r_objects/all_distances_adjusted.RDS", compress = 'xz')
 
 # Load distances objects instead of rerunning everytime. Uncomment previous lines to rerun.
 
