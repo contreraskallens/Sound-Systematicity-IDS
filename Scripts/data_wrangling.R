@@ -69,8 +69,9 @@ max.difference.adjusted <-
   sorted.langs.adjusted$language[which.max(sorted.langs.adjusted$difference)]
 mid.difference.adjusted <-
   sorted.langs.adjusted$language[sorted.langs.adjusted$difference == quantile(sorted.langs.adjusted$difference, .5, type = 1)]
-
-test.languages <- c(max.difference.adjusted, mid.difference.adjusted, "English")
+min.difference.adjusted <-
+  sorted.langs.adjusted$language[which.min(sorted.langs.adjusted$difference)]
+test.languages <- c(max.difference.adjusted, mid.difference.adjusted, min.difference.adjusted, "English")
 
 # Filter out "Other" and add field that determines if language is reference or not.
 plot.data.adjusted <- data.for.scatter.adjusted %>%
@@ -92,6 +93,7 @@ label.text.adjusted <- map_chr(sorted.langs.adjusted$language, function(x){
 # label.text[which(label.text == "Thai (Korat variety)")] <- "Thai\n(Korat)"
 label.text.adjusted[which(label.text.adjusted == "Hlai (Baoting variety)")] <- "Hlai\n(Baoting variety)"
 label.text.adjusted[which(label.text.adjusted == "Khwarshi (Inkhokvari dialect)")] <- "Khwarshi \n(Inkhokvari dialect)"
+label.text.adjusted[which(label.text.adjusted == "Breton")] <- "\nBreton"
 
 # Closest phonological neighbors ---------------
 
@@ -157,19 +159,20 @@ repeated.neighbor.adjusted <- read_rds("../Data/r_objects/neighbor_adjusted.Rds"
 #                                             mutate(permutation = x)
 #                                           return(all.neighbors)
 #                                         })
-#                                                  
+#                                         
 #                                         random.neigh.stats <- group_by(all.neighbors,
-#                                                                        language, 
+#                                                                        language,
 #                                                                        ontological.category) %>%
-#                                           summarise(Mean = mean(proportion.of.hits),
-#                                                     Standard.Dev = sd(proportion.of.hits),
-#                                                     Upper = (Mean + sd(proportion.of.hits)),
-#                                                     Lower = (Mean - sd(proportion.of.hits)))
+#                                           select(-permutation) %>% 
+#                                           group_map(~ smean.cl.boot(., conf.int = .99, B = 10000, na.rm = TRUE))  %>% 
+#                                           bind_rows %>% 
+#                                           add_column(ontological.category = c('Action', 'Thing'),
+#                                                      language = unique(language$language))
 #                                         return(random.neigh.stats)
 #                                       })
-# 
+
 # neighbor.mc.adjusted %>%
-#   write_rds("../Data/r_objects/neighbor_mc_adjusted.Rds")
+  # write_rds("../Data/r_objects/neighbor_mc_adjusted.Rds")
 # 
 neighbor.mc.adjusted <- read_rds("../Data/r_objects/neighbor_mc_adjusted.Rds")
 
