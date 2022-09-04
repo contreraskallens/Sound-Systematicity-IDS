@@ -1,5 +1,6 @@
 source("functions.r")  # Functions and packages
 source("data_wrangling.R")  # Distances and typicality data
+all.phon.adjusted <- filter(all.phon.adjusted, language != 'Puinave')
 library(ggpointdensity)
 library(tidyverse)
 library(rnaturalearth)
@@ -23,7 +24,8 @@ ggplot(data = world) +
   geom_jitter(data = reduced, aes(x = longitude, y = latitude),
               size = 1, shape = 3) +
   cowplot::theme_map()
-ggsave("../Figures/Main/world_map.png", width = 20, height = 12, units = "cm", dpi = 300)
+ggsave("../Figures/Main/world_map.png", width = 20, height = 12, 
+       units = "cm", dpi = 300, bg='white')
 
 
 # Look at families as a proportion of total families in wals
@@ -55,7 +57,7 @@ all.phon.adjusted %>%
   geom_histogram(fill = palette_other[2], binwidth = 50, color = palette_line) +
   cowplot::theme_cowplot() +
   labs(x = "Number of Words", y = "Count", title = "Number of Words per Language", subtitle = "Adjusted")
-ggsave("../Figures/Other/number_items_adjusted.png")
+ggsave("../Figures/Other/number_items_adjusted.png", bg = 'white')
 
 
 # Category tally
@@ -77,7 +79,7 @@ all.phon.adjusted %>%
   cowplot::theme_cowplot() +
   labs(y = "Proportion", x = "Ontological Category", title = "Within language proportion of words of each category", 
        subtitle = "Adjusted")
-ggsave("../Figures/Other/within_language_category_adjusted.png")
+ggsave("../Figures/Other/within_language_category_adjusted.png", bg = 'white')
 
 # Typicality tests and visualization ------
 
@@ -126,7 +128,7 @@ density.adjusted <- all.distances.adjusted %>%
   filter(class != "Other") %>%
   mutate(class = factor(class, levels = c("Action", "Thing", "Other"))) %>%
   ggplot(aes(x = mean.action, y = mean.thing)) +
-  geom_pointdensity(aes(col = stat(ndensity)), size = 0.5, adjust = 0.3) + 
+  stat_pointdensity(aes(col = stat(ndensity)), size = 0.5, adjust = 0.3) + 
   viridis::scale_color_viridis(name = "Density", option = "plasma") +
   geom_abline(intercept = c(0,0), linetype = 'dashed', color = "black") +
   labs(x = "Mean Distance to Actions", y = "Mean Distance to Things") +
@@ -185,7 +187,8 @@ map2_dfr(test.languages, list(all.distances.adjusted), get.typicality.stats) %>%
   arrange(desc(difference))
 
 # Get all with significant stats
-all.p <- map2_dfr(unique(all.phon.adjusted$language), list(all.distances.adjusted), get.typicality.stats) %>% 
+all.p <- map2_dfr(unique(all.phon.adjusted$language), list(all.distances.adjusted),
+                                                           get.typicality.stats) %>% 
   mutate(p.value.adj = p.adjust(p.value, method = "bonferroni")) %>% # Bonferroni adjusted
   mutate(sig = p.value.adj < 0.01)
 table(all.p$sig)
@@ -215,8 +218,6 @@ neighbor.stats.adjusted %>%
   dplyr::summarize(all.mean = mean(Mean * 100), sd = sd(Mean * 100))
 
 # Use the number of words with same-class neighbors in the shuffle test as "random" baseline.
-neighbor.mc.adjusted <- neighbor.mc.adjusted %>%
-  rename(random = Mean)
 
 # Join the actual and the permuted neighbors per language, per category. Then,
 # count what proportion of the 1000 permutations the actual neighbors have a
@@ -235,8 +236,8 @@ neighbor.test.adjusted <- neighbor.test.adjusted %>%
 ## This is the mean reported
 
 neighbor.mc.adjusted %>% 
-  group_by(language, ontological.category) %>%
-  dplyr::summarize(random = mean(random) + sd(random)) %>% 
+  # group_by(language, ontological.category) %>%
+  # dplyr::summarize(random = mean(random) + sd(random)) %>% 
   right_join(select(neighbor.stats.adjusted, Mean)) %>% 
   left_join(neighbor.test.adjusted) %>% 
   filter(language %in% test.languages) %>% 
@@ -256,9 +257,7 @@ neighbor.proportions.adjusted
 # minus 1 SD above the mean of the random permutations.
 
 neighbor.mc.plot.adjusted <- neighbor.mc.adjusted %>%
-  filter(ontological.category != "Other") %>%
-  group_by(language, ontological.category) %>%
-  dplyr::summarize(random = mean(random) + sd(random))
+  select(random, ontological.category, language)
 
 neighbor.plot.adjusted <- neighbor.stats.adjusted %>%
   group_by() %>%
@@ -267,13 +266,6 @@ neighbor.plot.adjusted <- neighbor.stats.adjusted %>%
   mutate(language = factor(language, 
                            levels = sorted.langs.adjusted$language, 
                             labels = sorted.langs.adjusted$language))
-
-morph.complexity %>% 
-  rename(language = Language) %>% 
-  filter(number.not.na > 3) %>% 
-  left_join(neighbor.plot.adjusted) %>% 
-  mutate(perf = Lower - random) %>% 
-  ggplot(aes(x = complexity, y = perf)) + geom_point() + geom_smooth(method = "lm") + facet_wrap(vars(ontological.category))
 
 neighbor.adjusted <- neighbor.plot.adjusted %>%
   mutate(height = Lower - random) %>% 
@@ -318,7 +310,14 @@ rnn.stats$language <- factor(rnn.stats$language, levels = rnn.stats$language)
 ggplot(rnn.stats, aes(x = language, y = mean.auc, ymin = mean.auc - se.auc, ymax = mean.auc + se.auc)) +
   geom_pointrange(size = 0.2) +
   geom_hline(yintercept = 0.5) +
-  labs(y = "Mean AUC") 
+  scale_x_discrete(name = "Language", labels = function(x){
+    ifelse(x %in% test.languages, str_wrap(as.character(x), 10), "")
+  }) +
+  labs(y = "Mean AUC") +
+  theme_cowplot() + 
+  theme(axis.title.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        legend.position = "none") 
 
 
 ggplot(rnn.stats, aes(x = language, y = mean.mcc, ymin = mean.mcc - se.mcc, ymax = mean.mcc + se.mcc)) +
@@ -333,7 +332,6 @@ ggplot(rnn.stats, aes(x = language, y = mean.mcc, ymin = mean.mcc - se.mcc, ymax
   theme(axis.title.x = element_blank(),
         axis.ticks.x = element_blank(),
         legend.position = "none") 
-
 
 
 spurt.stats <- spurt.stats %>% 
@@ -356,44 +354,19 @@ ggplot(spurt.stats, aes(x = language, y = mean.mcc, ymin = mean.mcc - se.mcc, ym
 
 
 ggplot(spurt.stats, aes(x = language, y = mean.auc, ymin = mean.auc - se.auc, ymax = mean.auc + se.auc)) +
-  # geom_point(aes(y = median.auc)) +
   geom_pointrange(size = 0.2) +
   geom_hline(yintercept = 0.5) +
-  labs(y = "Mean AUC") 
-
-
-ggplot(spurt.stats, aes(x = language, y = mean.mcc, ymin = mean.mcc - se.mcc, ymax = mean.mcc + se.mcc)) +
-  geom_pointrange(size = 0.2) +
-  geom_hline(yintercept = 0.2) +
-  labs(y = "Mean MCC") 
-
-
-
-
-
-rnn.stats.adjusted %>% 
-  arrange(desc(median.auc)) %>% 
-  filter(measure == "AUC") %>% 
-  mutate(language = factor(language, levels = .$language),
-         significant = ifelse(p.value < 0.01, TRUE, FALSE)) %>% 
-  ggplot(aes(x = language, y = median.auc, color = significant)) +
-  geom_pointrange(aes(ymin = conf, ymax = median.auc), size = 0.2) +
-  geom_hline(yintercept = 0.5) +
-  labs(y = "Median AUC") +
-  theme_minimal()
-
-rnn.stats.adjusted %>% 
-  arrange(desc(median.mcc)) %>% 
-  filter(measure == "Matthews") %>% 
-  mutate(language = factor(language, levels = .$language),
-         significant = ifelse(p.value < 0.01, TRUE, FALSE)) %>% 
-  ggplot(aes(x = language, y = median.mcc, color = significant)) +
-  geom_pointrange(aes(ymin = conf, ymax = median.mcc), size = 0.2) +
-  geom_hline(yintercept = 0.2) +
-  labs(y = "Median MCC") +
-  theme_minimal()
+  scale_x_discrete(name = "Language", labels = function(x){
+    ifelse(x %in% test.languages, str_wrap(as.character(x), 10), "")
+  }) +
+  labs(y = "Mean AUC") +
+  theme_cowplot() + 
+  theme(axis.title.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        legend.position = "none") 
 
 ## Count the number of languages with UAC and MCC significantly higher than baseline
+
 rnn.tally.adjusted <- rnn.stats.adjusted %>% 
   mutate(significant = ifelse(p.value < 0.01, TRUE, FALSE)) %>% 
   group_by(measure, significant) %>% 
