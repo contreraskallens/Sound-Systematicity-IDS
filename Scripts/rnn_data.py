@@ -14,9 +14,7 @@ import concurrent.futures
 # Use CUDA if available
 # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 device = 'cpu'
-# If true, then use use spurt model
-# If false, use 10-fold cross validation
-spurt_model = False
+
 
 
 # - Supporting Functions
@@ -95,7 +93,6 @@ class Dataset(data.Dataset):
 
     def __len__(self):
         return len(self.ids)
-
     def __getitem__(self, index):
         id_n = self.ids[index]
         x = self.all_data[int(id_n)]
@@ -160,7 +157,7 @@ class RNNConcept(nn.Module):
         return class_scores
 
 
-def get_network_performance(language_data):
+def get_network_performance(language_data, spurt_model):
     """Main function of the script. Takes a language Dataframe, encodes its words as packed one-hot sequences.
     Then, depending on the value of spurt_model, it either:
         spurt_model = False:
@@ -371,7 +368,7 @@ def get_network_performance(language_data):
     return all_results
 
 
-def get_language_performance(all_data, lang_name):
+def get_language_performance(all_data, lang_name, spurt_model):
     """Auxiliary function to prepare language data and get cross-validated measures
 
     The function filters words from other languages and eliminates words from the "Other" category.
@@ -383,11 +380,11 @@ def get_language_performance(all_data, lang_name):
     print(lang_name)
     language_data = all_data[all_data['language'] == lang_name]
     language_data = language_data[language_data['ontological.category'] != 'Other']
-    all_measures = get_network_performance(language_data)
+    all_measures = get_network_performance(language_data, spurt_model)
     return all_measures
 
 
-def save_repeated_measures(results, lang_name):
+def save_repeated_measures(results, lang_name, spurt_model):
     """Function to save the performance of a particular language.
 
     Main job of the function is to generate the file name for the particular language.
@@ -418,13 +415,15 @@ all_languages.remove('Puinave')
 
 
 # Loop through all language names, get performance of RNN on them and save them as CSV.
-# for language_name in all_languages:
 
 
-def get_and_write_perf(all_data, lang_name):
-    language_performance = get_language_performance(all_data, lang_name)
-    save_repeated_measures(language_performance, lang_name)
 
+def get_and_write_perf(all_data, lang_name, spurt_model):
+    language_performance = get_language_performance(all_data, lang_name, spurt_model)
+    save_repeated_measures(language_performance, lang_name, spurt_model)
 
+# for language_name in all_languages[43:]:
+# 	get_and_write_perf(all_data=lang_data, lang_name=language_name, spurt_model=False)
+# 	get_and_write_perf(all_data=lang_data, lang_name=language_name, spurt_model=True)
 with concurrent.futures.ProcessPoolExecutor() as executor:
-    all_performances = [executor.submit(get_and_write_perf, all_data=lang_data, lang_name=language_name) for language_name in all_languages]
+    all_performances = [executor.submit(get_and_write_perf, all_data=lang_data, lang_name=language_name, spurt_model=False) for language_name in all_languages[43:]]
