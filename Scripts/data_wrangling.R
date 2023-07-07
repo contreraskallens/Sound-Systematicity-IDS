@@ -6,20 +6,18 @@ options(dplyr.summarise.inform = FALSE)
 # all_phon contains info on individual words.
 # all_phon_adjusted has the morphology-adjusted wordlists.
 # Phon_languages contains info on each language.
-# no_marker_group has a list of the languages that weren't adjusted.
 
-all.phon <- read_csv('../Data/Processed/all_phon.csv')
-all.phon.adjusted <- read_csv("../Data/Processed/all_phon_adjusted.csv")
-phon.languages <- read_csv('../Data/Processed/all_language_info.csv')
-no.marker.group <- read_rds("../Data/r_objects/no_marker_group.rds")
+# all.phon <- read_csv('../Data/Processed/all_phon.csv', col_types = cols())
+all.phon.adjusted <- read_csv("../Data/Processed/all_phon_adjusted.csv", col_types = cols())
+phon.languages <- read_csv('../Data/Processed/all_language_info.csv', col_types = cols())
 # language.groups <- read_csv("../Data/Processed/language_groups.csv") %>% 
   # select(language = Name, geo.cluster, family) %>% 
   # mutate(geo.cluster = factor(geo.cluster))
 
-wals <- read_csv('../Data/Processed/WALS_Codes.csv') %>% 
+wals <- read_csv('../Data/Processed/WALS_Codes.csv', col_types = cols()) %>% 
   select(Name, wals_code, ID) %>% 
   mutate(ID = as.factor(ID))
-wals_info <- read_csv("../Data/Raw/WALS/walslanguage.csv")
+wals_info <- read_csv("../Data/Raw/WALS/walslanguage.csv", col_types = cols())
 
 
 # Wrangling Data ------------------------------------------------------------------
@@ -51,7 +49,6 @@ all.distances.adjusted <- read_rds("../Data/r_objects/all_distances_adjusted.RDS
 # Sorted scatter of typicality per class ----
 
 data.for.scatter.adjusted <- all.distances.adjusted %>%
-  filter(class != "Other") %>%
   group_by(language, class) %>%
   dplyr::summarize(Median = median(typicality))
 
@@ -104,24 +101,24 @@ label.text.adjusted[which(label.text.adjusted == "Breton")] <- "\nBreton"
 
 # This process takes long, so results have been preallocated. If you wish to rerun them, uncomment the following lines.
 
-# all.phon.list.adjusted <- all.phon.adjusted %>%
-#   split(.$language)
-# all.phon.list.adjusted <- all.phon.list.adjusted[sort(names(all.phon.list.adjusted))]
-# all.distance.matrices.adjusted <- purrr::map(all.phon.list.adjusted, function(x){get.distance.matrix(x)})
+all.phon.list.adjusted <- all.phon.adjusted %>%
+  split(.$language)
+all.phon.list.adjusted <- all.phon.list.adjusted[sort(names(all.phon.list.adjusted))]
+all.distance.matrices.adjusted <- purrr::map(all.phon.list.adjusted, function(x){get.distance.matrix(x)})
 # repeated.neighbor.adjusted <- map2_dfr(.x = all.phon.list.adjusted, .y = all.distance.matrices.adjusted, .f = function(x, y){
-  # print(unique(x$language))
-  # purrr::map_dfr(1:100, function(z){
-    # all.neighbors <- get.nearest.neighbors(a.language = x,
-                                           # distance.matrix = y,
-                                           # randomize = FALSE) %>%
-      # mutate(same.neighbor = (ontological.category == neighbor.category)) %>%
-      # group_by(language, ontological.category) %>%
-      # summarise(proportion.of.hits = sum(same.neighbor) / n()) %>%
-      # mutate(permutation = z)
-    # return(all.neighbors)
-  # }) %>%
-    # return()
-# })
+#   print(unique(x$language))
+#   purrr::map_dfr(1:100, function(z){
+#     all.neighbors <- get.nearest.neighbors(a.language = x,
+#                                            distance.matrix = y,
+#                                            randomize = FALSE) %>%
+#       mutate(same.neighbor = (ontological.category == neighbor.category)) %>%
+#       group_by(language, ontological.category) %>%
+#       summarise(proportion.of.hits = sum(same.neighbor) / n()) %>%
+#       mutate(permutation = z)
+#     return(all.neighbors)
+#     }) %>%
+#     return()
+#   })
 # 
 # repeated.neighbor.adjusted %>% write_rds("../Data/r_objects/neighbor_adjusted.Rds")
 
@@ -136,43 +133,43 @@ repeated.neighbor.adjusted <- read_rds("../Data/r_objects/neighbor_adjusted.Rds"
 # scheme using the package FURRR.
 
 # Load multicore mc
-# library(future)
-# library(furrr)
-# # 
-# # Change this to a reasonable number considering your machine. Number of cores - 2 seems reasonable.
-# cores <- 6
-# options(future.globals.maxSize = +Inf, mc.cores = cores)
-# furrr_options(seed = 123)
-# plan(multisession, workers = cores)
-# neighbor.mc.adjusted <- future_map2_dfr(.progress = TRUE,
-#                                                .x = all.phon.list.adjusted,
-#                                                .y = all.distance.matrices.adjusted,
-#                                                .f = function(language, distance.matrix){
-#                                         all.neighbors <- map_dfr(1:1000, function(x){
-#                                           options(dplyr.summarise.inform = FALSE)
-#                                           all.neighbors <- get.nearest.neighbors(a.language = language,
-#                                                                                  distance.matrix = distance.matrix,
-#                                                                                  randomize = TRUE) %>%
-#                                             mutate(same.neighbor = (ontological.category == neighbor.category)) %>%
-#                                             group_by(language, ontological.category) %>%
-#                                             summarise(proportion.of.hits = sum(same.neighbor) / n()) %>%
-#                                             mutate(permutation = x)
-#                                           return(all.neighbors)
-#                                         })
-#                                         
-#                                         random.neigh.stats <- group_by(all.neighbors,
-#                                                                        language,
-#                                                                        ontological.category) %>%
-#                                           select(-permutation) %>% 
-#                                           group_map(~ smean.cl.boot(., conf.int = .99, B = 10000, na.rm = TRUE))  %>% 
-#                                           bind_rows %>% 
-#                                           add_column(ontological.category = c('Action', 'Thing'),
-#                                                      language = unique(language$language))
-#                                         return(random.neigh.stats)
-#                                       })
+library(future)
+library(furrr)
+#
+# Change this to a reasonable number considering your machine. Number of cores - 2 seems reasonable.
+cores <- 6
+options(future.globals.maxSize = +Inf, mc.cores = cores, future.seed = TRUE)
+furrr_options(seed = 123)
+plan(multisession, workers = cores)
+neighbor.mc.adjusted <- future_map2_dfr(.progress = TRUE,
+                                               .x = all.phon.list.adjusted,
+                                               .y = all.distance.matrices.adjusted,
+                                               .f = function(language, distance.matrix){
+                                        all.neighbors <- map_dfr(1:1000, function(x){
+                                          options(dplyr.summarise.inform = FALSE)
+                                          all.neighbors <- get.nearest.neighbors(a.language = language,
+                                                                                 distance.matrix = distance.matrix,
+                                                                                 randomize = TRUE) %>%
+                                            mutate(same.neighbor = (ontological.category == neighbor.category)) %>%
+                                            group_by(language, ontological.category) %>%
+                                            summarise(proportion.of.hits = sum(same.neighbor) / n()) %>%
+                                            mutate(permutation = x)
+                                          return(all.neighbors)
+                                        })
 
-# neighbor.mc.adjusted %>%
-  # write_rds("../Data/r_objects/neighbor_mc_adjusted.Rds")
+                                        random.neigh.stats <- group_by(all.neighbors,
+                                                                       language,
+                                                                       ontological.category) %>%
+                                          select(-permutation) %>%
+                                          group_map(~ smean.cl.boot(., conf.int = .99, B = 10000, na.rm = TRUE))  %>%
+                                          bind_rows %>%
+                                          add_column(ontological.category = c('Action', 'Thing'),
+                                                     language = unique(language$language))
+                                        return(random.neigh.stats)
+                                      })
+
+neighbor.mc.adjusted %>%
+  write_rds("../Data/r_objects/neighbor_mc_adjusted.Rds")
 # 
 neighbor.mc.adjusted <- read_rds("../Data/r_objects/neighbor_mc_adjusted.Rds")
 
@@ -192,7 +189,13 @@ rnn.performance <- list()
 for(file in list.files('../Results/ten-fold//', recursive = T, full.names = T)){
   language <- str_extract(file, "(?<=Results/ten-fold//).+(?=_rnn_)")
   print(language)
-  rnn.performance[[language]] <- read_csv(file)
+  rnn.performance[[language]] <- read_csv(file, col_types = cols(), 
+                                          col_names = c("Index",
+                                                        "Matthews","AUC",
+                                                        "Accuracy", "F1",
+                                                        "ActionAccuracy", 
+                                                        "ThingAccuracy" ),
+                                          col_select = -1, skip = 1)
   rnn.performance[[language]]$language <- language
 }
 
@@ -215,8 +218,13 @@ rnn.stats <- map_dfr(rnn.performance, function(x){
 spurt.performance <- list()
 for(file in list.files('../Results/Spurt//', recursive = T, full.names = T)){
   language <- str_extract(file, "(?<=Results/Spurt//).+(?=_spurt_)")
-  print(language)
-  spurt.performance[[language]] <- read_csv(file)
+  spurt.performance[[language]] <- read_csv(file, col_types = cols(), 
+                                            col_names = c("Index",
+                                                          "Matthews","AUC",
+                                                          "Accuracy", "F1",
+                                                          "ActionAccuracy", 
+                                                          "ThingAccuracy" ),
+                                            col_select = -1, skip = 1)
   spurt.performance[[language]]$language <- language
 }
 spurt.stats <- map_dfr(spurt.performance, function(x){

@@ -43,7 +43,6 @@ ID,Name,latitude,longitude,family
 159,Udmurt,57.5,52.5,Uralic
 160,Bezhta,42.0833333333,46.1666666667,Nakh-Daghestanian
 162,Tsez (Mokok dialect),42.25,45.75,Nakh-Daghestanian
-168,Modern Greek,39,22,Indo-European
 172,Panare,6.5,-66,Cariban
 170,Italian,43,12,Indo-European
 171,French,48,2,Indo-European
@@ -112,7 +111,6 @@ ID,Name,latitude,longitude,family
 257,Tuyuca,0.5,-70.0833333333,Tucanoan
 258,Aguaruna,-5,-78,Jivaroan
 260,Yagua,-3.5,-72,Peba-Yaguan
-261,Baure,-13.0833333333,-64.1666666667,Arawakan
 262,Goajiro,12,-72,Arawakan
 263,Ignaciano,-15.1666666667,-65.4166666667,Arawakan
 264,Mashco Piro,-11,-73.5,Arawakan
@@ -132,14 +130,12 @@ ID,Name,latitude,longitude,family
 283,Cayuvava,-13.5,-65.5,Cayuvava
 284,Itonama,-12.8333333333,-64.3333333333,Itonama
 285,Movima,-13.8333333333,-65.6666666667,Movima
-286,Pacaas Novos,-11.3333333333,-65,Chapacura-Wanham
 287,Mundurukú,-7,-58,Tupian
 288,Aché,-25.25,-55.1666666667,Tupian
 289,Chiriguano,-23.6666666667,-64.3333333333,Tupian
 290,Guaraní,-26,-56,Tupian
 291,Sirionó,-15.5833333333,-64,Tupian
 292,Wayampi,1,-52,Tupian
-293,Canela,-7,-45,Macro-Ge
 294,Kaingáng,-26,-52,Macro-Ge
 295,Karajá,-10,-50.3333333333,Macro-Ge
 296,Trumai,-11.9166666667,-53.5833333333,Trumai
@@ -193,7 +189,6 @@ ID,Name,latitude,longitude,family
 265,Trinitario,-15.3331,-65.4096,Arawakan
 268,Yavitero,2.800281,-68.084219,Arawakan
 278,Catuquina,-7.97456,-71.56151,Panoan
-280,Pacahuara,-11.9968,-65.5568,Panoan
 298,Sanapaná (Angaité dialect),NA,NA,Bookkeeping
 299,Sanapaná (Enlhet dialect),-22.11454,-58.90698,Bookkeeping
 402,Southern Tai (Songkhla variety),6.85668,99.7031,Tai-Kadai

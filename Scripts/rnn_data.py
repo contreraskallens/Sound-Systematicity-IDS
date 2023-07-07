@@ -16,7 +16,7 @@ import concurrent.futures
 device = 'cpu'
 # If true, then use use spurt model
 # If false, use 10-fold cross validation
-spurt_model = True
+spurt_model = False
 
 
 # - Supporting Functions
@@ -397,9 +397,9 @@ def save_repeated_measures(results, lang_name):
     :return: Doesn't return anything. Saves a CSV version of the results Dataframe.
     """
     if spurt_model:
-        filename_performance = "Results/Spurt/" + f"{lang_name}" + "_spurt_performance.csv"
+        filename_performance = "../Results/Spurt/" + f"{lang_name}" + "_spurt_performance.csv"
     else:
-        filename_performance = "Results/ten-fold/" + f"{lang_name}" + "_rnn_performance.csv"
+        filename_performance = "../Results/ten-fold/" + f"{lang_name}" + "_rnn_performance.csv"
     results.to_csv(filename_performance)
 
 
@@ -412,7 +412,7 @@ torch.manual_seed(123)
 
 # Load all language data and extract an ordered set of the names
 # Skip Puinave, has only 1 Action word
-lang_data = pd.read_csv('Data/Processed/all_phon_adjusted.csv', keep_default_na=False)
+lang_data = pd.read_csv('../Data/Processed/all_phon_adjusted.csv', keep_default_na=False)
 all_languages = list(sorted(set(lang_data["language"])))
 all_languages.remove('Puinave')
 
@@ -427,6 +427,4 @@ def get_and_write_perf(all_data, lang_name):
 
 
 with concurrent.futures.ProcessPoolExecutor() as executor:
-    all_performances = [executor.submit(get_and_write_perf, all_data=lang_data, lang_name=language_name) for language_name in all_languages[98:]]
-
-
+    all_performances = [executor.submit(get_and_write_perf, all_data=lang_data, lang_name=language_name) for language_name in all_languages]

@@ -27,81 +27,10 @@ wals_info <- read_csv("../Data/Raw/WALS/walslanguage.csv")
 excluded.languages <- read_delim("../Data/Processed/excluded_languages.txt", delim = "\\n", col_names = "Language") %>% 
   mutate(Language = str_squish(Language))
 
-# Match WALS and IDS by using the WALS CODE (hand-coded) in wals_codes.csv
 all.languages <- all.languages %>% 
-  filter(!(Name %in% excluded.languages$Language)) %>%
-  left_join(wals) %>% 
-  select(-Macroarea)
-not.on.wals <- all.languages %>% 
-  filter(is.na(wals_code))
+  filter(!(Name %in% excluded.languages$Language))
 
-# For languages that are on WALS, use that information. If not on WALS, use Glottocode.
-all.languages <- all.languages %>% 
-  filter(!(is.na(wals_code))) %>% 
-  select(-Latitude, -Longitude) %>% 
-  left_join(select(wals_info, wals_code, latitude, longitude, genus, family))
-not.on.wals <- left_join(not.on.wals, glottocode) %>% 
-  select(-Latitude, -Longitude, -iso639P3code, family = family_id, genus = parent_id, - country_ids)
-# Assign the missing Sanapana to bookkeeping too
-not.on.wals$family[which(is.na(not.on.wals$family))] <- "book1242" 
-not.on.wals$genus[which(is.na(not.on.wals$genus))] <- "book1242"
-
-# Hand recode the family and genus codes to their names
-not.on.wals <- not.on.wals %>% 
-  mutate(family = recode(family, 
-                         afro1255 = "Afro-Asiatic",
-                         araw1281 = "Arawakan",
-                         aust1305 = "Austro-Asiatic",
-                         book1242 = "Bookkeeping",
-                         hmon1336 = "Hmong-Mien",
-                         indo1319 = "Indo-European",
-                         jodi1234 = "Jodi-Saliban",
-                         nakh1245 = "Nakh-Daghestanian",
-                         pano1259 = "Panoan",
-                         taik1256 = "Tai-Kadai"),
-
-         genus = recode(genus,
-                        "boly1240" = "Pakanic",
-                        "boli1261" = "Bolivian Nawa",
-                        "book1242" = "Bookkeeping",
-                        "botl1243" = "Avar-Andic-Tsezic",
-                        "bula1260" = "Palaung-Khmuic",
-                        "cauc1242" = "Iranian",
-                        "chut1252" = "Chutic",
-                        "chut1247" = "Chutic",
-                        "east2280" = "Eastern Baltic",
-                        "guiy1235" = "Guiyang",
-                        "iran1269" = "Iranian",
-                        "jodi1234" = "Jodi-Saliban",
-                        "kami1255" = "Kamic",
-                        "khao1243" = "Palaung-Khmuic",
-                        "khas1275" = "Khasi-Pnar",
-                        "laot1235" = "Kam-Tai",
-                        "male1282" = "Chutic",
-                        "mang1377" = "Mangic",
-                        "maon1240" = "Maonan-Chadong",
-                        "maru1251" = "Panoan",
-                        "moxo1234" = "Bolivia-Parana",
-                        "mula1252" = "Mulam-Kam",
-                        "nort2739" = "Kam-Tai",
-                        "nort2744" = "Kadai",
-                        "nucl1728" = "Indic",
-                        "nyam1284" = "West Chadic",
-                        "oldm1247" = "Old-Modern Welsh",
-                        "pare1275" = "Alto Orinoco",
-                        "pear1246" = "Pearic", 
-                        "pram1235" = "Palaung-Khmuic",
-                        "sout2744" = "Kam-Tai",
-                        "sout3232" = "Palaung-Khmuic",
-                        "viet1250" = "Cuoi",
-                        "west2394" = "Pearic")
-  )
-         
-
-all.languages <- all.languages %>% 
-  bind_rows(not.on.wals)
-
-# Now get the look at transcriptions and keep the ones that have phonological or phonemic information
+# Now look at transcriptions and keep the ones that have phonological or phonemic information ----
 
 # Get all word forms from IDS
 all.words <- read_csv(file = "../Data/Raw/IDS/forms.csv", col_names = T, locale = locale(encoding = "UTF-8")) %>%
@@ -115,14 +44,18 @@ all.words <- all.words %>%
   filter(Language_ID %in% all.languages$ID) %>% 
   left_join(select(all.languages, Language_ID = ID, Name)) %>% 
   rename(language = Name) %>% 
-  select(-Language_ID, -Segments, -Comment, -Source, -Contribution_ID)
+  select(-Language_ID, -Segments, -Comment, -Source, -Contribution_ID) %>% 
+  filter(!(language %in% excluded.languages$Language))
 
-# Recode Phonemic, IPA and Phonetic transcriptions as "phon" for use in the study
+# Recode Phonemic and IPA  transcriptions as "phon" for use in the study
 # These levels previously: "CyrillTrans", "IPA", "LatinTrans", "Phonemic", "phonetic", "Standard", "StandardOrth", "StandardOrthTone"
 og.transcriptions <- all.words$transcription
+levels(og.transcriptions)
 levels(all.words$transcription) <- c("CyrillTrans", "phon", "LatinTrans", "phon", "phonetic", "Standard", "StandardOrth", "StandardOrthTone")
+
 # These levels previously: "Original (M. R. Key)", "Phonemic", "Phonemic (vars)", "Standard"
 og.alt.transcriptions <- all.words$alt_transcription
+levels(og.alt.transcriptions)
 levels(all.words$alt_transcription) <- c("Original (M. R. Key)", "phon", "Phonemic (vars)", "Standard") # Phonemic (vars) is only NA in Rapa Nui
 
 all.words <- mutate(all.words, transcription = as.character(transcription), 
@@ -150,21 +83,7 @@ all.words <- all.words %>%
 all.languages <- all.languages %>% 
   filter(Name %in% unique(all.words$language) | Name %in% espeak.languages$language)
 
-# Save relevant data on new file
-all.languages <- all.languages %>% 
-  select(ID, Name, latitude, longitude, family)
-all.languages %>% 
-  write_csv("../Data/Processed/all_language_info.csv")
 
-# Get number of families with either phon data in IDS or espeak transcriptions
-
-number.of.families <- all.languages$family %>% 
-  unique() %>% 
-  length()
-paste("Number of families:", number.of.families)
-
-
-# Get words for espeak-ng and then remove them from this -----
 # Remove espeak languages from frame
 
 all.words <- all.words %>% 
@@ -211,8 +130,6 @@ espeak.phon <- map_dfr(all.espeak.langs, function(this.language){
   mutate(phon = str_remove_all(phon, ' '),
          IPA = str_remove_all(IPA, ' '))
 
-# Loading and coding word data  -----------------------------------------------
-
 # Link word forms to Concepticon to obtain semantic information
 ids.to.concepticon <- read_csv("../Data/Raw/IDS/parameters.csv") %>%
   mutate(ID = factor(ID),
@@ -241,25 +158,6 @@ espeak.phon <- left_join(espeak.phon, concepticon) %>%
   droplevels()
 levels(espeak.phon$ontological.category) <- c("Action", "Thing")
 
-# Recode in IPA
-# for(this.language in unique(all.phon$language)){
-#   if(this.language %in% espeak.languages$language){next}
-#   language.df <- filter(all.phon, language == this.language)
-#   unique.phonemes <- str_split(language.df$phon, pattern = "") %>% 
-#     unlist() %>% 
-#     unique()
-#   unique.phonemes <- enframe(unique.phonemes) %>% 
-#     select(-name) %>% 
-#     add_column(transcription = unique(language.df$og_transcription),
-#            alt_transcription = unique(language.df$og_alt_transcription),
-#            IPA = "",
-#            Comment = "")
-#   write_csv(x = unique.phonemes, file = paste0("IDS-To-IPA/", this.language, ".csv"))
-# }
-
-
-# Clean phon forms --------------------------------------------------------
-
 # Store the phon form as "phon" in the dataframe. 
 all.phon <- all.words %>% 
   mutate(phon = ifelse(transcription == "phon", Form, alt_form)) %>% 
@@ -269,67 +167,15 @@ all.phon <- all.phon %>%
   filter(!is.na(phon),
          str_detect(phon, "\\?", negate = TRUE)) # Get rid of forms that have a question mark on them
 
+all.phon <- bind_rows(all.phon, espeak.phon)
+
 all.phon <- clean.phon(all.phon)
-
-# Read in IPA codings --------------------------------------
-
-ipa.codings <- list()
-for(file in list.files("IDS-To-IPA/Ready/", full.names = TRUE)){
-  print(file)
-  this.language <- str_extract(file, "(?<=Ready\\/\\/).+(?=\\.csv)")
-  this.transcription <- read_csv(file, col_select = c(value, IPA))
-  ipa.codings[[this.language]] <- this.transcription
-  print(this.language)
-}
-
-lang.list <- all.phon %>% 
-  group_by(language) %>% 
-  group_split(.keep = TRUE)
-
-lang.list.names <- map_chr(lang.list, function(x){
-  return(unique(x$language))
-})
-
-names(lang.list) <- lang.list.names
-
-all.phon <- map_dfr(lang.list.names, function(this.language){
-  print(this.language)
-  corresponding.lang <- all.phon %>% 
-    filter(language == this.language)
-  if(!(this.language %in% names(ipa.codings))){
-    return(add_column(corresponding.lang, IPA = NA))
-  }
-  ipa.list <- ipa.codings[[this.language]] %>% 
-    drop_na()
-  if(nrow(ipa.list) == 0){
-    return(add_column(corresponding.lang, IPA = NA))
-  }
-  ipa.corr <- ipa.list$IPA %>% 
-    str_remove_all('\u0361') %>% 
-    str_remove_all('\u032F') %>% 
-    str_remove_all('\u032A') %>% 
-    stringi::stri_trans_nfc()
-  names(ipa.corr) <- stringi::stri_trans_nfc(ipa.list$value)
-  this.lang.words <- str_split(corresponding.lang$phon, pattern = '')
-  this.lang.words <- map_chr(this.lang.words, function(word){
-    word <- word[word %in% names(ipa.corr)]
-    word <- map_chr(word, function(letter){return(ipa.corr[[letter]])})
-    word <- paste(word, collapse = '')
-    return(word)
-  })
-  corresponding.lang$IPA <- this.lang.words
-  return(corresponding.lang)
-})
 
 # Remove all remaining symbols and punctuation marks
 all.phon <-  mutate(all.phon, phon = str_remove_all(phon, "[\\p{S}\\p{P}]"))
 
-# Merge with espeak
-all.phon <- bind_rows(all.phon, espeak.phon)
-
 # Only keep strings longer than 2
 all.phon <- filter(all.phon, nchar(phon) > 2)
-
 
 # Final cleanup ----
 
@@ -344,6 +190,100 @@ all.phon <- all.phon %>%
 
 all.phon <- mutate(all.phon, phon = str_to_lower(phon))
 all.phon %>% write_csv('../Data/Processed/all_phon.csv')
+
+# Match WALS and IDS by using the WALS CODE (hand-coded) in wals_codes.csv
+all.languages <- all.languages %>% 
+  left_join(wals) %>% 
+  select(-Macroarea)
+not.on.wals <- all.languages %>% 
+  filter(is.na(wals_code))
+
+# For languages that are on WALS, use that information. If not on WALS, use Glottocode.
+all.languages <- all.languages %>% 
+  filter(!(is.na(wals_code))) %>% 
+  select(-Latitude, -Longitude) %>% 
+  left_join(select(wals_info, wals_code, latitude, longitude, genus, family))
+not.on.wals <- left_join(not.on.wals, glottocode) %>% 
+  select(-Latitude, -Longitude, -iso639P3code, family = family_id, genus = parent_id, - country_ids)
+# Assign the missing Sanapana to bookkeeping too
+not.on.wals$family[which(is.na(not.on.wals$family))] <- "book1242" 
+not.on.wals$genus[which(is.na(not.on.wals$genus))] <- "book1242"
+
+# Hand recode the family and genus codes to their names
+not.on.wals <- not.on.wals %>% 
+  mutate(family = recode(family, 
+                         afro1255 = "Afro-Asiatic",
+                         araw1281 = "Arawakan",
+                         aust1305 = "Austro-Asiatic",
+                         book1242 = "Bookkeeping",
+                         hmon1336 = "Hmong-Mien",
+                         indo1319 = "Indo-European",
+                         jodi1234 = "Jodi-Saliban",
+                         nakh1245 = "Nakh-Daghestanian",
+                         pano1259 = "Panoan",
+                         taik1256 = "Tai-Kadai"),
+         
+         genus = recode(genus,
+                        "boly1240" = "Pakanic",
+                        "boli1261" = "Bolivian Nawa",
+                        "book1242" = "Bookkeeping",
+                        "botl1243" = "Avar-Andic-Tsezic",
+                        "bula1260" = "Palaung-Khmuic",
+                        "cauc1242" = "Iranian",
+                        "chut1252" = "Chutic",
+                        "chut1247" = "Chutic",
+                        "east2280" = "Eastern Baltic",
+                        "guiy1235" = "Guiyang",
+                        "iran1269" = "Iranian",
+                        "jodi1234" = "Jodi-Saliban",
+                        "kami1255" = "Kamic",
+                        "khao1243" = "Palaung-Khmuic",
+                        "khas1275" = "Khasi-Pnar",
+                        "laot1235" = "Kam-Tai",
+                        "male1282" = "Chutic",
+                        "mang1377" = "Mangic",
+                        "maon1240" = "Maonan-Chadong",
+                        "maru1251" = "Panoan",
+                        "moxo1234" = "Bolivia-Parana",
+                        "mula1252" = "Mulam-Kam",
+                        "nort2739" = "Kam-Tai",
+                        "nort2744" = "Kadai",
+                        "nucl1728" = "Indic",
+                        "nyam1284" = "West Chadic",
+                        "oldm1247" = "Old-Modern Welsh",
+                        "pare1275" = "Alto Orinoco",
+                        "pear1246" = "Pearic", 
+                        "pram1235" = "Palaung-Khmuic",
+                        "sout2744" = "Kam-Tai",
+                        "sout3232" = "Palaung-Khmuic",
+                        "viet1250" = "Cuoi",
+                        "west2394" = "Pearic")
+  )
+
+# Number of languages from WALS
+
+number.of.families <- all.languages$family %>% 
+  unique() %>% 
+  length()
+paste("Number of families present in WALS:", number.of.families)
+wals.families <- wals_info$family %>% unique() %>% 
+  length()
+number.of.families / wals.families
+all.languages$family %>% 
+  table() %>% 
+  sort()
+not.on.wals %>% 
+  filter(!(family %in% all.languages$family))
+
+all.languages <- all.languages %>% 
+  bind_rows(not.on.wals) %>% 
+  filter(Name %in% all.phon$language)
+# Save relevant data on new file
+all.languages <- all.languages %>% 
+  select(ID, Name, latitude, longitude, family)
+all.languages %>% 
+  write_csv("../Data/Processed/all_language_info.csv")
+
 
 # Create a morphology-adjusted dataset --------
 
@@ -508,7 +448,6 @@ get.morph.markers <- function(language.df, variable){
   return(results)
 }
 
-
 clean.language <- function(language, all.data, variable){
   this.language <- language
   lang.df <- all.data %>% 
@@ -533,28 +472,18 @@ clean.language <- function(language, all.data, variable){
   results <- list("census" = marker.census, "clean.df" = all.markers)
 }
 
-all.lang.adjusted.phon <- map(as.character(sort(unique(all.phon$language))), function(language){
-  print(language)
-  lang.results <- clean.language(language, all.phon, 'phon')
-  lang.results$census$language <- language
-  return(lang.results)
-})
-
-# all.lang.adjusted.ipa <- map(as.character(sort(unique(all.phon$language))), function(this.language){
-#   print(this.language)
-#   if(is.na(filter(all.phon, language == this.language))){
-#     
-#   }
-#   lang.results <- clean.language(this.language, all.phon, 'IPA')
-#   lang.results$census$language <- this.language
+# all.lang.adjusted.phon <- map(as.character(sort(unique(all.phon$language))), function(language){
+#   print(language)
+#   lang.results <- clean.language(language, all.phon, 'phon')
+#   lang.results$census$language <- language
 #   return(lang.results)
 # })
-
-names(all.lang.adjusted.phon) <- as.character(sort(unique(all.phon$language)))
-
-
-write_rds(all.lang.adjusted.phon, "all_langs_adjusted.rds")
-# all.lang.adjusted <- read_rds("all_langs_adjusted.rds")
+# 
+# names(all.lang.adjusted.phon) <- as.character(sort(unique(all.phon$language)))
+# 
+# 
+# write_rds(all.lang.adjusted.phon, "all_langs_adjusted.rds")
+all.lang.adjusted.phon <- read_rds("all_langs_adjusted.rds")
 
 complete.markers <- map_dfr(all.lang.adjusted.phon, function(lang){
   return(lang$clean.df)
@@ -564,22 +493,26 @@ complete.markers <- map_dfr(all.lang.adjusted.phon, function(lang){
 prefix.languages <- all.phon %>%
   mutate(phon = stringi::stri_reverse(phon))
 
-all.lang.adjusted.prefix <- map(as.character(sort(unique(all.phon$language))), function(language){
-  print(language)
-  lang.results <- clean.language(language, prefix.languages, variable = 'phon')
-  lang.results$census$language <- language
-  return(lang.results)
-})
-
-all.lang.adjusted.prefix %>%
-  write_rds("all_lang_adjusted_prefix.rds")
-# all.lang.adjusted.prefix <- read_rds("all_lang_adjusted_prefix.rds")
+# all.lang.adjusted.prefix <- map(as.character(sort(unique(all.phon$language))), function(language){
+#   print(language)
+#   lang.results <- clean.language(language, prefix.languages, variable = 'phon')
+#   lang.results$census$language <- language
+#   return(lang.results)
+# })
+# 
+# all.lang.adjusted.prefix %>%
+#   write_rds("all_lang_adjusted_prefix.rds")
+all.lang.adjusted.prefix <- read_rds("all_lang_adjusted_prefix.rds")
  
 complete.markers.prefix <- map_dfr(all.lang.adjusted.prefix, function(lang){
   return(lang$clean.df)
 }) %>% 
   dplyr::select(-clean.phon, prefix = marker) %>% 
   mutate(phon = stringi::stri_reverse(phon), prefix = stringi::stri_reverse(prefix))
+
+# remove duplicate rows
+complete.markers <- distinct(complete.markers)
+complete.markers.prefix <- distinct(complete.markers.prefix)
 
 all.phon.adjusted <- left_join(complete.markers, complete.markers.prefix)
 
@@ -596,14 +529,24 @@ prefix.census <- all.phon.adjusted %>%
 
 marker.census <- full_join(suffix.census, prefix.census) %>% 
   arrange(language, ontological.category)
-write_csv(marker.census, "marker_census.csv")
+write_csv(marker.census, "../Data/Processed/marker_census.csv")
+
+# nwords to be removed
+all.phon.adjusted %>% 
+  rowwise() %>% 
+  mutate(suffix.position = nchar(phon) - nchar(suffix), prefix.position = nchar(prefix) + 1,
+         clean.phon = ifelse(suffix == "#", phon, str_sub(phon, 1, suffix.position)),
+         clean.phon = ifelse(prefix == "#", clean.phon, str_sub(clean.phon, prefix.position))) %>% 
+  dplyr::select(Form, alt_form, language, english.name, ontological.category, old.phon = phon, phon = clean.phon)  %>% 
+  filter(nchar(phon) <= 2) %>% 
+  nrow()
 
 all.phon.adjusted <- all.phon.adjusted %>% 
   rowwise() %>% 
   mutate(suffix.position = nchar(phon) - nchar(suffix), prefix.position = nchar(prefix) + 1,
     clean.phon = ifelse(suffix == "#", phon, str_sub(phon, 1, suffix.position)),
     clean.phon = ifelse(prefix == "#", clean.phon, str_sub(clean.phon, prefix.position))) %>% 
-  dplyr::select(Form, alt_form, language, english.name, ontological.category, old.phon = phon, phon = clean.phon) %>% 
+  dplyr::select(Form, alt_form, language, english.name, ontological.category, old.phon = phon, phon = clean.phon)  %>% 
   filter(nchar(phon) > 2)
 
 # Further adjustment: remove within-class homophones but keep between-class homophones.
@@ -623,15 +566,31 @@ homophone.census <- homophone.census %>%
   group_by(language) %>% 
   dplyr::summarize(Number.Homophones = sum(n))
 
+all.phon.adjusted %>% 
+  group_by(language) %>% 
+  tally() %>% 
+  right_join(homophone.census) %>% 
+  mutate(perc = Number.Homophones / n) %>% 
+  filter(Number.Homophones == max(Number.Homophones) | Number.Homophones == min(Number.Homophones))
+
+sum(homophone.census$Number.Homophones)
+
+
 all.phon.adjusted <- all.phon.adjusted %>% 
   group_by(language, ontological.category) %>% 
   mutate(has.homophone = duplicated(phon)) %>% 
   filter(has.homophone == FALSE) # Removes only within category homophones
 
-
 # Join marker census with homophone census, and compare original/adjusted number of words
 original.number.words <- all.phon %>% group_by(language) %>% dplyr::summarize(original.number.words = n())
 adjusted.number.words <- all.phon.adjusted %>% group_by(language) %>% dplyr::summarize(adjusted.number.words = n())
+original.number.words %>% 
+  arrange(desc(original.number.words))
+mean(original.number.words$original.number.words)
+sd(original.number.words$original.number.words)
+original.number.words %>% 
+  filter(original.number.words == max(original.number.words) | original.number.words == min(original.number.words))
+sum(original.number.words$original.number.words)
 
 # marker.census.complete <- left_join(marker.census.complete, original.number.words) %>%
   # left_join(adjusted.number.words) %>%
@@ -649,6 +608,7 @@ write_csv(all.phon.adjusted, "../Data/Processed/all_phon_adjusted.csv")
 # Make geographical clusters and world map of languages ---------------
 
 # Make a matrix with only longitude and latitude
+reduced <- filter(all.languages, !(is.na(longitude)), !(is.na(latitude)))
 geo.matrix <- as.matrix(select(reduced, longitude, latitude))
 row.names(geo.matrix) <- reduced$Name
 
@@ -667,7 +627,7 @@ silhouettes <- map_dbl(2:100, function(i){
 silhouettes <- silhouettes %>% enframe %>% mutate(name = 2:100)
 ggplot(silhouettes, aes(x = name, y = value)) + geom_point() + geom_label(aes(label = name))
 
-# Plot shows that a good number of clusters is k = 20
+# Plot shows that a good number of clusters is k = 20 (peak of silhouette)
 # Make a color vector of 20 colors
 col_vector<-c('#e6194b', '#3cb44b', '#ffe119', '#4363d8','#f58231', 
               '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe', 
@@ -688,25 +648,22 @@ hull <- language.groups %>%
   group_by(geo.cluster) %>% 
   slice(chull(longitude, latitude))
 
-
-
-
 # Manually modify to avoid weird cluster 12
-cluster.11 <- hull %>% 
-  filter(geo.cluster == "11")
+cluster.12 <- hull %>% 
+  filter(geo.cluster == "12")
 hull <- hull %>% 
-  filter(geo.cluster != "11")
-cluster.11.right <- cluster.12 %>% 
+  filter(geo.cluster != "12")
+cluster.12.right <- cluster.12 %>% 
   filter(Name != "Tongan") %>% 
   group_by() %>% 
   add_row(latitude = -19, longitude = 179) %>% 
   add_row(latitude = -30, longitude = 179)
-cluster.11.left <- cluster.12 %>% 
+cluster.12.left <- cluster.12 %>% 
   filter(Name == "Tongan") %>% 
   group_by() %>% 
   add_row(latitude = -19, longitude = -179) %>% 
   add_row(latitude = -30, longitude = -179)
-
+world <- ne_coastline(scale = "medium", returnclass = "sf")
 # Make cluster plot
 ggplot(data = world) +
   geom_sf(size = 0.1, alpha = 0.9) +
@@ -714,10 +671,10 @@ ggplot(data = world) +
   geom_jitter(data = language.groups, aes(x = longitude, y = latitude, color = geo.cluster), 
               size = 1, shape = 16) + 
   geom_polygon(data = hull, aes(x = longitude, y = latitude, fill = geo.cluster), alpha = 0.5) +
-  geom_polygon(data = cluster.11.right, fill = col_vector[12], aes(x = longitude, y = latitude), alpha = 0.5) +
+  geom_polygon(data = cluster.12.right, fill = col_vector[12], aes(x = longitude, y = latitude), alpha = 0.5) +
   scale_color_manual(values = col_vector) +
   scale_fill_manual(values = col_vector[-12]) +
-  geom_polygon(data = cluster.11.left, fill = col_vector[12], aes(x = longitude, y = latitude), alpha = 0.5) +
+  geom_polygon(data = cluster.12.left, fill = col_vector[12], aes(x = longitude, y = latitude), alpha = 0.5) +
   cowplot::theme_map() +
   theme(legend.position = "none")
 

@@ -5,9 +5,12 @@ library(ggpointdensity)
 library(tidyverse)
 library(rnaturalearth)
 library(geosphere)
+library(sf)
 
 morph.complexity <- read_csv("../Data/Processed/morph_complexity.csv")
-all.languages <- read_csv('../Data/Processed/all_language_info.csv')
+all.phon.adjusted <- filter(all.phon.adjusted, language != 'Puinave')
+all.languages <- read_csv('../Data/Processed/all_language_info.csv') %>% 
+  filter(Name %in% all.phon.adjusted$language)
 # Basic descriptive statistics of the features of wordlists ------
 
 
@@ -16,26 +19,26 @@ reduced <- select(all.languages, Name,longitude, latitude) %>%
   filter(complete.cases(.))
 
 # Make plot World plot
-world <- ne_coastline(scale = "medium", returnclass = "sf")
 
-ggplot(data = world) +
-  geom_sf(size = 0.1, alpha = 0.9) +
-  coord_sf(ylim = c(-50, 90)) +
-  geom_jitter(data = reduced, aes(x = longitude, y = latitude),
-              size = 1, shape = 3) +
-  cowplot::theme_map()
-ggsave("../Figures/Main/world_map.png", width = 20, height = 12, 
-       units = "cm", dpi = 300, bg='white')
-
+world <- ne_download(type = 'coastline', category = 'physical', returnclass = 'sf')
+world.map <- ggplot(data = world) +  
+  geom_sf(color = palette_line[1], fill = "white", size = 0.5) +
+  geom_jitter(data = phon.languages, 
+              aes(x = longitude, y = latitude), 
+              color = 'black', 
+              size = 1, shape = 21, fill = 'red') +
+  ylim(c(-72, 70)) + 
+  theme_void()
+ggsave(plot = world.map, "../Figures/world_map.png", width = 18, height = 7, units = "cm", dpi = 300)
 
 # Look at families as a proportion of total families in wals
 total.families.wals <- na.omit(wals_info$family) %>% 
   unique() %>% 
   length()
-
 families.in.data <- wals %>% 
   filter(!(is.na(wals_code))) %>% 
   left_join(select(wals_info, wals_code, family))
+families.in.data
 
 # Percentage of families in wals that our overlapping datasets have
 (length(unique(families.in.data$family)) / total.families.wals) * 100
@@ -46,7 +49,9 @@ all.phon.adjusted %>%
   group_by(language) %>%
   tally() %>%
   dplyr::summarize(mean.number.words = mean(n),
-                   sd.number.words = sd(n))
+                   sd.number.words = sd(n),
+                   minimum = min(n),
+                   maximum = max(n))
 
 ## Distribution of number of words
 all.phon.adjusted %>%
@@ -66,7 +71,7 @@ all.phon.adjusted %>%
   tally() %>%
   mutate(proportion = n / sum(.$n))
 
-  # Plot the proportions of each category in the languages as boxplots
+# Plot the proportions of each category in the languages as boxplots
 all.phon.adjusted %>%
   group_by(language, ontological.category) %>%
   tally() %>%
@@ -83,31 +88,20 @@ ggsave("../Figures/Other/within_language_category_adjusted.png", bg = 'white')
 
 # Typicality tests and visualization ------
 
-# Get tipicality stats for each class in each language
+# Get typicality stats for each class in each language
 
 all.distances.adjusted %>%
   group_by(class) %>%
   dplyr::summarize(median.typicality = median(typicality),
                    Inter.Quantile.Range = IQR(typicality))
+all.distances.adjusted <- mutate(all.distances.adjusted, class = factor(class,
+                                                                        levels = c('Thing', 'Action')),
+                                 length = nchar(word))
 
-# Kruskal-wallis of all languages of typicality differences between Action,
-# Thing and Other
 
-three.way.test.adjusted <- all.distances.adjusted %>%
-  mutate(class = factor(class)) %>%
-  coin::kruskal_test(data = ., typicality ~ class)
-
-print(three.way.test.adjusted)
-
-# Get the effect size of k-w test according to
-# http://tss.awf.poznan.pl/files/3_Trends_Vol21_2014__no1_20.pdf
-chi.square.adjusted <- three.way.test.adjusted@statistic@teststatistic
-eta.squared.adjusted <- (chi.square.adjusted - 4) / (nrow(all.distances.adjusted) - 3)
-print(eta.squared.adjusted)
 
 # Pairwise wilcox test of the difference in typicality between Action and Things
 wilcox.all.adjusted <- all.distances.adjusted %>%
-  filter(class != "Other") %>%
   mutate(class = factor(class)) %>%
   coin::wilcox_test(data = ., typicality ~ class)
 
@@ -116,6 +110,7 @@ wilcox.all.adjusted <- all.distances.adjusted %>%
 # https://www.researchgate.net/profile/Catherine_Fritz2/51554230_Effect_Size_Estimates_Current_Use_Calculations_and_Interpretation/links/5844494108ae2d217566ce33.pdf, p. 12
 Z.action.thing.adjusted <- wilcox.all.adjusted %>% 
   coin::statistic(type = "standardized")
+print(Z.action.thing.adjusted)
 eta.squared.action.thing.adjusted <- (Z.action.thing.adjusted ^ 2) / (nrow(filter(all.distances.adjusted, class != "Other")))
 print(eta.squared.action.thing.adjusted)
 # Also get Cohen's d of the two distributions
@@ -125,8 +120,7 @@ print(abs(d.action.thing.adjusted$estimate))
 # Plot distances as 2D density
 
 density.adjusted <- all.distances.adjusted %>%
-  filter(class != "Other") %>%
-  mutate(class = factor(class, levels = c("Action", "Thing", "Other"))) %>%
+  mutate(class = factor(class, levels = c("Action", "Thing"))) %>%
   ggplot(aes(x = mean.action, y = mean.thing)) +
   stat_pointdensity(aes(col = stat(ndensity)), size = 0.5, adjust = 0.3) + 
   viridis::scale_color_viridis(name = "Density", option = "plasma") +
@@ -143,8 +137,7 @@ density.adjusted <- all.distances.adjusted %>%
   #       legend.text = element_text(size = 6),
   #       strip.text = element_text(size = 8))
 density.adjusted
-ggsave("../Figures/Main/density_adjusted.png", width = 17, height = 9, units = "cm", dpi = 900)
-
+ggsave("../Figures/Main/density_adjusted.png", width = 18, height = 9, units = "cm", dpi = 900, bg = 'white')
 
 # Look at languages on an individual level ----
 
@@ -152,8 +145,8 @@ scatter.adjusted <- ggplot(data = plot.data.adjusted, aes(y = Median, x = langua
                                                           group = Category)) +
   labs(x = 'Language', y = 'Median Typicality') +
   geom_point(aes(fill = Category), size = 1) +
-  geom_vline(aes(xintercept = include), size = 0.2, color = palette_line) + 
-  geom_hline(linetype = 'solid', yintercept = 0, color = palette_line, size = .2) +
+  geom_vline(aes(xintercept = include), linewidth = 0.2, color = palette_line) + 
+  geom_hline(linetype = 'solid', yintercept = 0, color = palette_line, linewidth = .2) +
   scale_color_manual(name = "Category", values = c(palette_a_t[1], palette_a_t[2])) + 
   scale_shape_manual(name = "Category", values = c(18, 17)) +
   scale_x_discrete(name = "", labels = label.text.adjusted) +
@@ -170,37 +163,24 @@ scatter.adjusted <- ggplot(data = plot.data.adjusted, aes(y = Median, x = langua
   guides(color = guide_legend(override.aes = list(size=4)))
 
 scatter.adjusted
-ggsave("../Figures/Main/scatter_adjusted.png", width = 17, height = 7, units = "cm", dpi = 900)
+ggsave("../Figures/Main/scatter_adjusted.png", width = 18, height = 7, units = "cm", dpi = 900, bg = 'white')
 
 
-# include complexity covariate
-
-morph.complexity %>% 
-  rename(language = Language) %>% 
-  filter(number.not.na > 3) %>% 
-  left_join(plot.data.adjusted) %>% 
-  lm(data = ., Median ~ Category * complexity) %>% 
-  summary()
-  
 # Get test statistics for test languages.
 map2_dfr(test.languages, list(all.distances.adjusted), get.typicality.stats) %>% 
   arrange(desc(difference))
 
 # Get all with significant stats
-all.p <- map2_dfr(unique(all.phon.adjusted$language), list(all.distances.adjusted),
-                                                           get.typicality.stats) %>% 
+
+all.p <- map2_dfr(unique(all.phon.adjusted$language), 
+                  list(all.distances.adjusted), 
+                  function(x, y){print(x); return(get.typicality.stats(x, y))}) %>% 
   mutate(p.value.adj = p.adjust(p.value, method = "bonferroni")) %>% # Bonferroni adjusted
   mutate(sig = p.value.adj < 0.01)
 table(all.p$sig)
 mean(all.p$d)
 sd(all.p$d)
 hist(all.p$eta.squared, breaks = 25)
-
-morph.complexity %>% 
-  rename(language = Language) %>% 
-  filter(number.not.na > 3) %>% 
-  left_join(all.p) %>% 
-  ggplot(aes(x = complexity, y = eta.squared)) + geom_point() + geom_smooth(method = 'lm')
 
 
 # Closest phonological neighbors ----
@@ -226,7 +206,7 @@ neighbor.stats.adjusted %>%
 # to be compared with the permuted numbers.
 neighbor.test.adjusted <- neighbor.stats.adjusted %>% 
   left_join(dplyr::select(neighbor.mc.adjusted, language, ontological.category, random)) %>%
-  mutate(is.higher = random >= Lower)
+  mutate(is.higher = random >= Mean)
 neighbor.test.adjusted <- neighbor.test.adjusted %>%
   group_by(language, ontological.category) %>%
   summarise(p = sum(is.higher) / 1000)

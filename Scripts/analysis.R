@@ -14,7 +14,7 @@ set.seed(1)
 palette_a_t <- c("#d06858", "#7e9ec4", "#add4db")
 palette_other <-  c("#e0dccb", "#c49464", "#add4db")
 palette_line <- c("#28313d")
-palette_world <-  c("#62c08f")
+palette_world <-  c("#62fc8f")
 palette_con <-  viridis::plasma(10)
 
 # Functions ---------------------------------------------------------------
@@ -138,21 +138,25 @@ language.groups <- read_csv("language_groups.csv") %>%
 # Basic descriptive statistics of the features of wordlists ------
 
 ## All numbers of items
-all.phon %>%
+all.phon.adjusted %>%
   group_by(language) %>%
   tally() %>%
   rename(number.of.words = n) %>%
   arrange(desc(number.of.words))
 
 ## Mean and SD number of words
-all.phon %>%
+all.phon.adjusted %>%
   group_by(language) %>%
   tally() %>%
-  summarize(mean.number.words = mean(n),
-            sd.number.words = sd(n))
+  dplyr::summarize(mean.number.words = mean(n),
+            sd.number.words = sd(n), 
+            minimum = min(n),
+            maximum = max(n))
+
+
 
 ## Distribution of number of words
-all.phon %>%
+all.phon.adjusted %>%
   group_by(language) %>%
   tally() %>%
   rename(number.of.words = n) %>%
@@ -162,21 +166,21 @@ all.phon %>%
   labs(x = "Number of Words", y = "Count", title = "Number of Words per Language")
 
 ## Number of families
-phon.languages %>%
+all.phon.adjusted %>%
   group_by(family) %>%
   tally() %>%
   rename(number.of.languages = n) %>%
   arrange(desc(number.of.languages))
 
 ## Category tally
-all.phon %>%
+all.phon.adjusted %>%
   group_by(ontological.category) %>%
   tally() %>%
   mutate(proportion = n / sum(.$n)) %>%
   select(-n)
 
 ## Within-language proportions of categories
-all.phon %>%
+all.phon.adjusted %>%
   group_by(language, ontological.category) %>%
   tally() %>%
   group_by(language) %>%
@@ -184,7 +188,7 @@ all.phon %>%
   select(-n)
 
 ## Plot the proportions of each category in the languages as boxplots
-all.phon %>%
+all.phon.adjusted %>%
   group_by(language, ontological.category) %>%
   tally() %>%
   group_by(language) %>%
@@ -199,62 +203,6 @@ all.phon %>%
   labs(y = "Proportion", x = "Ontological Category",
        title = "Within language proportion of words of each category")
 
-# Same, but with adjusted wordlists
-
-## All numbers of items
-all.phon %>%
-  group_by(language) %>%
-  tally() %>%
-  rename(number.of.words = n) %>%
-  arrange(desc(number.of.words))
-
-## Mean and SD number of words
-all.phon %>%
-  group_by(language) %>%
-  tally() %>%
-  summarize(mean.number.words = mean(n),
-            sd.number.words = sd(n))
-
-## Distribution of number of words
-all.phon.adjusted %>%
-  group_by(language) %>%
-  tally() %>%
-  rename(number.of.words = n) %>%
-  ggplot(aes(x = number.of.words)) +
-  geom_histogram(fill = palette_other[2], binwidth = 50, color = palette_line) +
-  cowplot::theme_cowplot() +
-  labs(x = "Number of Words", y = "Count", title = "Number of Words per Language")
-
-## Category tally
-all.phon.adjusted %>%
-  group_by(ontological.category) %>%
-  tally() %>%
-  mutate(proportion = n / sum(.$n)) %>%
-  select(-n)
-
-## Within-language proportions of categories
-all.phon.adjusted %>%
-  group_by(language, ontological.category) %>%
-  tally() %>%
-  group_by(language) %>%
-  mutate(proportion = n / sum(n)) %>%
-  select(-n)
-
-# Plot the proportions of each category in the languages as boxplots
-all.phon.adjusted %>%
-  group_by(language, ontological.category) %>%
-  tally() %>%
-  group_by(language) %>%
-  mutate(
-    proportion = n / sum(n),
-    ontological.category = factor(ontological.category, levels = c("Thing", "Action", "Other"))
-    ) %>%
-  ggplot(aes(x = ontological.category, y = proportion, fill = ontological.category)) +
-  geom_boxplot(width = 0.3, color = palette_line) +
-  scale_fill_manual(name = "Category", values = palette_a_t) + 
-  cowplot::theme_cowplot() +
-  labs(y = "Proportion", x = "Ontological Category",
-       title = "Within language proportion of words of each category")
 
 # Wrangling Data ------------------------------------------------------------------
 
@@ -514,13 +462,22 @@ ggsave("../Figures/region_d.png")
 
 ## Get coordinates from phon.languages. They were obtained through WALS.
 
-ggplot(phon.languages, aes(x = longitude, y = latitude)) +
-  borders("world", colour =  palette_line[1], size = .2, alpha = 0.9) + # create a layer of borders
-  geom_jitter(fill = palette_other[1], size = 1, shape = 16, color = palette_world) +
-  cowplot::theme_map()
 
-ggsave("../Figures/world_map.eps", width = 8.7, height = 7, units = "cm")
-ggsave("../Figures/world_map.png", width = 8.7, height = 7, units = "cm", dpi = 300)
+library(rnaturalearth)
+library(sf)
+world <- ne_download(type = 'coastline', category = 'physical', returnclass = 'sf')
+
+world.map <- ggplot(data = world) +  
+  geom_sf(color = palette_line[1], fill = "white", size = 0.5) +
+  geom_jitter(data = phon.languages, 
+              aes(x = longitude, y = latitude), 
+              color = 'black', 
+              size = 1, shape = 21, fill = 'red') +
+  ylim(c(-72, 70))
+  theme_void()
+
+ggsave(world.map, "../Figures/world_map.eps", width = 18, height = 7, units = "cm")
+ggsave(plot = world.map, "../Figures/world_map.png", width = 18, height = 7, units = "cm", dpi = 300)
 
 # 2D Density of all words
 
