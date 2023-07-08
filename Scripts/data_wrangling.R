@@ -132,44 +132,44 @@ repeated.neighbor.adjusted <- read_rds("../Data/r_objects/neighbor_adjusted.Rds"
 # reloaded later in the script. Also, this was run in a parallel multi-core
 # scheme using the package FURRR.
 
-# Load multicore mc
-library(future)
-library(furrr)
-#
-# Change this to a reasonable number considering your machine. Number of cores - 2 seems reasonable.
-cores <- 6
-options(future.globals.maxSize = +Inf, mc.cores = cores, future.seed = TRUE)
-furrr_options(seed = 123)
-plan(multisession, workers = cores)
-neighbor.mc.adjusted <- future_map2_dfr(.progress = TRUE,
-                                               .x = all.phon.list.adjusted,
-                                               .y = all.distance.matrices.adjusted,
-                                               .f = function(language, distance.matrix){
-                                        all.neighbors <- map_dfr(1:1000, function(x){
-                                          options(dplyr.summarise.inform = FALSE)
-                                          all.neighbors <- get.nearest.neighbors(a.language = language,
-                                                                                 distance.matrix = distance.matrix,
-                                                                                 randomize = TRUE) %>%
-                                            mutate(same.neighbor = (ontological.category == neighbor.category)) %>%
-                                            group_by(language, ontological.category) %>%
-                                            summarise(proportion.of.hits = sum(same.neighbor) / n()) %>%
-                                            mutate(permutation = x)
-                                          return(all.neighbors)
-                                        })
-
-                                        random.neigh.stats <- group_by(all.neighbors,
-                                                                       language,
-                                                                       ontological.category) %>%
-                                          select(-permutation) %>%
-                                          group_map(~ smean.cl.boot(., conf.int = .99, B = 10000, na.rm = TRUE))  %>%
-                                          bind_rows %>%
-                                          add_column(ontological.category = c('Action', 'Thing'),
-                                                     language = unique(language$language))
-                                        return(random.neigh.stats)
-                                      })
-
-neighbor.mc.adjusted %>%
-  write_rds("../Data/r_objects/neighbor_mc_adjusted.Rds")
+# # Load multicore mc
+# library(future)
+# library(furrr)
+# #
+# # Change this to a reasonable number considering your machine. Number of cores - 2 seems reasonable.
+# cores <- 6
+# options(future.globals.maxSize = +Inf, mc.cores = cores, future.seed = TRUE)
+# furrr_options(seed = 123)
+# plan(multisession, workers = cores)
+# neighbor.mc.adjusted <- future_map2_dfr(.progress = TRUE,
+#                                                .x = all.phon.list.adjusted,
+#                                                .y = all.distance.matrices.adjusted,
+#                                                .f = function(language, distance.matrix){
+#                                         all.neighbors <- map_dfr(1:1000, function(x){
+#                                           options(dplyr.summarise.inform = FALSE)
+#                                           all.neighbors <- get.nearest.neighbors(a.language = language,
+#                                                                                  distance.matrix = distance.matrix,
+#                                                                                  randomize = TRUE) %>%
+#                                             mutate(same.neighbor = (ontological.category == neighbor.category)) %>%
+#                                             group_by(language, ontological.category) %>%
+#                                             summarise(proportion.of.hits = sum(same.neighbor) / n()) %>%
+#                                             mutate(permutation = x)
+#                                           return(all.neighbors)
+#                                         })
+# 
+#                                         random.neigh.stats <- group_by(all.neighbors,
+#                                                                        language,
+#                                                                        ontological.category) %>%
+#                                           select(-permutation) %>%
+#                                           group_map(~ smean.cl.boot(., conf.int = .99, B = 10000, na.rm = TRUE))  %>%
+#                                           bind_rows %>%
+#                                           add_column(ontological.category = c('Action', 'Thing'),
+#                                                      language = unique(language$language))
+#                                         return(random.neigh.stats)
+#                                       })
+# 
+# neighbor.mc.adjusted %>%
+#   write_rds("../Data/r_objects/neighbor_mc_adjusted.Rds")
 # 
 neighbor.mc.adjusted <- read_rds("../Data/r_objects/neighbor_mc_adjusted.Rds")
 
