@@ -11,11 +11,6 @@ import sklearn.model_selection as cv
 import torch.nn.utils.rnn as rnn_utils
 import concurrent.futures
 
-# Use CUDA if available
-# device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-device = 'cpu'
-
-
 
 # - Supporting Functions
 
@@ -129,7 +124,6 @@ class RNNConcept(nn.Module):
         self.rnn = nn.RNN(input_size=vocab_size, hidden_size=hidden_dim,
                           nonlinearity="relu", batch_first=True)
         self.classifier = nn.Linear(hidden_dim, 1)
-        # self.softmax = nn.LogSoftmax(dim=1)
         self.sigmoid = nn.Sigmoid()
         for name, param in self.rnn.named_parameters():
             if "weight_ih" in name:
@@ -152,12 +146,11 @@ class RNNConcept(nn.Module):
         rnn_hidden = rnn_hidden.view(rnn_hidden.size()[1], rnn_hidden.size()[2])
         class_space = self.classifier(rnn_hidden)
         class_scores = self.sigmoid(class_space)
-        # class_scores = self.softmax(class_space)
         class_scores = torch.squeeze(class_scores)
         return class_scores
 
 
-def get_network_performance(language_data, spurt_model):
+def get_network_performance(language_data, spurt_model, baseline):
     """Main function of the script. Takes a language Dataframe, encodes its words as packed one-hot sequences.
     Then, depending on the value of spurt_model, it either:
         spurt_model = False:
@@ -165,6 +158,7 @@ def get_network_performance(language_data, spurt_model):
         spurt_model = True:
                             Runs 100 iterations of the network trained on 50 words of the language and tested on
                             the remaining set of words.
+    If baseline = True, runs the procedure for generating the permuted class baselines.
 
     :param language_data:
     :return: a Dataframe with different measures of accuracy of the network on the
@@ -197,14 +191,19 @@ def get_network_performance(language_data, spurt_model):
     # Training and cross-validation parameters.
     # Number of training epochs
     max_epochs = 10000
-
     if spurt_model:
         # Performance is measured on the spurt model
         n_words = len(language_data.index)
-        training_set = cv.StratifiedShuffleSplit(n_splits=100, train_size=50, test_size=n_words - 50)
+        if not baseline:
+            training_set = cv.StratifiedShuffleSplit(n_splits=100, train_size=50, test_size=n_words - 50)
+        else:
+            training_set = cv.StratifiedShuffleSplit(n_splits=1, train_size=50, test_size=n_words - 50)
     else:
-        # Cross-validation scheme.
-        training_set = cv.StratifiedKFold(n_splits=10, shuffle=True)
+        if baseline:
+            training_set = cv.StratifiedShuffleSplit(n_splits=1, train_size=0.9, test_size=0.1)
+        else:
+        # 10-fold cross-validation scheme.        # class_scores = self.softmax(class_space)
+            training_set = cv.StratifiedKFold(n_splits=10, shuffle=True)
 
     training_set_data = training_set.split(language_data, classes)
     training_set_data = list(training_set_data)
@@ -295,12 +294,10 @@ def get_network_performance(language_data, spurt_model):
                                           shuffle=True, collate_fn=pack_word, drop_last=have_to_drop)
         # - Create network and optimizer
         # Define loss function
-        # loss = nn.NLLLoss()
         loss = nn.BCELoss()
         # Initialize RNN
         model = RNNConcept(hidden_dim=10, vocab_size=len(char_dict))
         model = model.to(device)  # If using CUDA, this sends RNN to GPU.
-        # optimizer = torch.optim.AdamW(model.parameters(), lr=0.0001, weight_decay=0.1)
         optimizer = torch.optim.SGD(model.parameters(), lr=0.001, weight_decay=0.001, momentum=0.9, nesterov=True)
 
         patience = 0  # patience for early stop
@@ -342,9 +339,6 @@ def get_network_performance(language_data, spurt_model):
             test_prediction = (test_scores > best_threshold)
             test_prediction = test_prediction.long()
 
-            # test_prediction = torch.argmax(test_scores, axis=1)
-            # test_prediction = test_prediction.long().detach()
-
             # Calculate accuracy metrics
             test_matthews = metrics.matthews_corrcoef(test_ground, test_prediction)
             test_accuracy = metrics.balanced_accuracy_score(test_ground, test_prediction)
@@ -364,11 +358,11 @@ def get_network_performance(language_data, spurt_model):
     # Aggregate iteration performance and return dataframe
     all_results = pd.DataFrame({'Matthews': iter_matthews, 'AUC': iter_auc, 'Accuracy': iter_accuracy, 'F1': iter_f1,
                                 'ActionAccuracy': iter_action_accuracy, 'ThingAccuracy': iter_thing_accuracy})
-    print(all_results)  # Print for monitoring
+    print(all_results)
     return all_results
 
 
-def get_language_performance(all_data, lang_name, spurt_model):
+def get_language_performance(all_data, lang_name, spurt_model, baseline, iteration=None):
     """Auxiliary function to prepare language data and get cross-validated measures
 
     The function filters words from other languages and eliminates words from the "Other" category.
@@ -380,7 +374,15 @@ def get_language_performance(all_data, lang_name, spurt_model):
     print(lang_name)
     language_data = all_data[all_data['language'] == lang_name]
     language_data = language_data[language_data['ontological.category'] != 'Other']
-    all_measures = get_network_performance(language_data, spurt_model)
+    if baseline:
+        print("Doing permutation " + str(iteration))
+        shuffled_classes = language_data['ontological.category'].values
+        shuffled_classes = np.random.permutation(shuffled_classes)
+        language_data['ontological.category'] = shuffled_classes
+    all_measures = get_network_performance(language_data, spurt_model, baseline)
+    all_measures['language_name'] = lang_name
+    if baseline:
+        all_measures['random_iter'] = iteration
     return all_measures
 
 
@@ -400,30 +402,55 @@ def save_repeated_measures(results, lang_name, spurt_model):
     results.to_csv(filename_performance)
 
 
-# - Script
-
-# Set random seeds for reproducibility
-random.seed(123)
-np.random.seed(123)
-torch.manual_seed(123)
-
-# Load all language data and extract an ordered set of the names
-# Skip Puinave, has only 1 Action word
-lang_data = pd.read_csv('../Data/Processed/all_phon_adjusted.csv', keep_default_na=False)
-all_languages = list(sorted(set(lang_data["language"])))
-all_languages.remove('Puinave')
-
-
-# Loop through all language names, get performance of RNN on them and save them as CSV.
-
-
-
-def get_and_write_perf(all_data, lang_name, spurt_model):
-    language_performance = get_language_performance(all_data, lang_name, spurt_model)
+def get_and_write_perf(all_data, lang_name, spurt_model, baseline):
+    language_performance = get_language_performance(all_data, lang_name, spurt_model, baseline)
     save_repeated_measures(language_performance, lang_name, spurt_model)
 
-# for language_name in all_languages[43:]:
-# 	get_and_write_perf(all_data=lang_data, lang_name=language_name, spurt_model=False)
-# 	get_and_write_perf(all_data=lang_data, lang_name=language_name, spurt_model=True)
-with concurrent.futures.ProcessPoolExecutor() as executor:
-    all_performances = [executor.submit(get_and_write_perf, all_data=lang_data, lang_name=language_name, spurt_model=False) for language_name in all_languages[43:]]
+def loop_through_langs(all_data, spurt_model, baseline):
+    all_languages = list(sorted(set(all_data["language"])))
+    all_languages.remove('Puinave')
+
+    print(f'Spurt model: {str(spurt_model)}, baseline: {str(baseline)}')
+
+    if not baseline:
+        with concurrent.futures.ProcessPoolExecutor() as executor:
+            all_performances = [executor.submit(get_and_write_perf, all_data=lang_data, lang_name=language_name, spurt_model = spurt_model, baseline = baseline) for language_name in all_languages]
+    else:
+        print('doing baseline')
+        all_perms = [language for language in all_languages for i in range(1000)]
+        random.shuffle(all_perms) # Shuffle to not get all processors caught in languages with lots of words
+        all_perms = list(zip(list(range(len(all_perms))), all_perms))
+        baseline_results = []
+        with concurrent.futures.ProcessPoolExecutor() as executor:
+            this_performance = [executor.submit(get_language_performance, all_data=all_data, lang_name=language_name, iteration=i, spurt_model=spurt_model, baseline=baseline) for i, language_name in all_perms]
+
+        # for language_name in all_languages:
+        this_performance = [future_obj.result() for future_obj in this_performance]
+        this_performance = pd.concat(this_performance, axis=0)
+        baseline_results = this_performance.copy()
+        if not spurt_model:
+            baseline_results.to_csv('../Results/baseline_kfold.csv')
+        else:
+            baseline_results.to_csv('../Results/baseline_spurt.csv')
+
+# - Script
+
+
+if __name__ == "__main__":
+
+    # Set random seeds for reproducibility
+    random.seed(123)
+    np.random.seed(123)
+    torch.manual_seed(123)
+    device = 'cpu' # You could use CUDA if you wanted but the networks are so small it's not worth it
+
+    # Load all language data and extract an ordered set of the names
+    # Skip Puinave, has only 1 Action word
+    
+    lang_data = pd.read_csv('../Data/Processed/all_phon_adjusted.csv', keep_default_na=False)
+    
+    # Loop through all language names, get performance of RNN on them and save them as CSV.
+    loop_through_langs(lang_data, False, False)
+    loop_through_langs(lang_data, True, False)
+    loop_through_langs(lang_data, False, True)
+    loop_through_langs(lang_data, True, True)

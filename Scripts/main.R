@@ -1,6 +1,5 @@
 source("functions.r")  # Functions and packages
 source("data_wrangling.R")  # Distances and typicality data
-all.phon.adjusted <- filter(all.phon.adjusted, language != 'Puinave')
 library(ggpointdensity)
 library(tidyverse)
 library(rnaturalearth)
@@ -25,10 +24,11 @@ world.map <- ggplot(data = world) +
   geom_sf(color = palette_line[1], fill = "white", size = 0.5) +
   geom_jitter(data = phon.languages, 
               aes(x = longitude, y = latitude), 
-              color = 'black', 
-              size = 1, shape = 21, fill = 'red') +
+              color = palette_line, 
+              size = 1, shape = 21, fill = palette_other[2]) +
   ylim(c(-72, 70)) + 
   theme_void()
+world.map
 ggsave(plot = world.map, "../Figures/world_map.png", width = 18, height = 7, units = "cm", dpi = 300)
 
 # Look at families as a proportion of total families in wals
@@ -77,7 +77,7 @@ all.phon.adjusted %>%
   tally() %>%
   group_by(language) %>%
   mutate(proportion = n / sum(n),
-    ontological.category = factor(ontological.category, levels = c("Thing", "Action", "Other"))) %>%
+    ontological.category = factor(ontological.category, levels = c("Thing", "Action"))) %>%
   ggplot(aes(x = ontological.category, y = proportion, fill = ontological.category)) +
   geom_boxplot(width = 0.3, color = palette_line) +
   scale_fill_manual(name = "Category", values = palette_a_t) + 
@@ -123,7 +123,8 @@ density.adjusted <- all.distances.adjusted %>%
   mutate(class = factor(class, levels = c("Action", "Thing"))) %>%
   ggplot(aes(x = mean.action, y = mean.thing)) +
   stat_pointdensity(aes(col = stat(ndensity)), size = 0.5, adjust = 0.3) + 
-  viridis::scale_color_viridis(name = "Density", option = "plasma") +
+  # viridis::scale_color_viridis(name = "Density", option = "plasma") +
+  MetBrewer::scale_color_met_c(name = 'Tam', direction = -1) +
   geom_abline(intercept = c(0,0), linetype = 'dashed', color = "black") +
   labs(x = "Mean Distance to Actions", y = "Mean Distance to Things") +
   cowplot::theme_cowplot() +
@@ -147,7 +148,7 @@ scatter.adjusted <- ggplot(data = plot.data.adjusted, aes(y = Median, x = langua
   geom_point(aes(fill = Category), size = 1) +
   geom_vline(aes(xintercept = include), linewidth = 0.2, color = palette_line) + 
   geom_hline(linetype = 'solid', yintercept = 0, color = palette_line, linewidth = .2) +
-  scale_color_manual(name = "Category", values = c(palette_a_t[1], palette_a_t[2])) + 
+  scale_color_manual(name = "Category", values = palette_a_t) + 
   scale_shape_manual(name = "Category", values = c(18, 17)) +
   scale_x_discrete(name = "", labels = label.text.adjusted) +
   cowplot::theme_cowplot() + 
@@ -204,18 +205,21 @@ neighbor.stats.adjusted %>%
 # lower or equal proportion of same-category neighbors as the null permutation.
 # Use the LOWER boundary of the .99 confidence interval as the "actual" number
 # to be compared with the permuted numbers.
+
 neighbor.test.adjusted <- neighbor.stats.adjusted %>% 
-  left_join(dplyr::select(neighbor.mc.adjusted, language, ontological.category, random)) %>%
-  mutate(is.higher = random >= Mean)
+  left_join(dplyr::select(neighbor.mc.adjusted, language, ontological.category, random = proportion.of.hits)) %>%
+  mutate(is.higher = random >= Lower)
 neighbor.test.adjusted <- neighbor.test.adjusted %>%
   group_by(language, ontological.category) %>%
   summarise(p = sum(is.higher) / 1000)
 
 # Check statistics for reference languages. For "baseline" performance for each
-# language, take 1 SD above the mean of the shuffles.
+# language, take upper boundary of bootstrapped MCs
 ## This is the mean reported
 
-neighbor.mc.adjusted %>% 
+random.neigh.stats %>% 
+  rename(random = Upper) %>% 
+  select(language, ontological.category, random) %>% 
   # group_by(language, ontological.category) %>%
   # dplyr::summarize(random = mean(random) + sd(random)) %>% 
   right_join(select(neighbor.stats.adjusted, Mean)) %>% 
@@ -233,16 +237,12 @@ neighbor.proportions.adjusted <- neighbor.test.adjusted %>%
 neighbor.proportions.adjusted
 
 # Plot with bars for each category and each language.
-# The height of each bar is the lower boundary of the 99% CI of the actual data
-# minus 1 SD above the mean of the random permutations.
-
-neighbor.mc.plot.adjusted <- neighbor.mc.adjusted %>%
-  select(random, ontological.category, language)
+# The height of each bar is the lower boundary of the 99% bootstrapped CI of the actual data
+# minus upper boundary of 99% bootstrapped CI of random permutations.
 
 neighbor.plot.adjusted <- neighbor.stats.adjusted %>%
   group_by() %>%
-  filter(ontological.category != "Other") %>%
-  left_join(neighbor.mc.plot.adjusted) %>%
+  left_join(select(random.neigh.stats, random = Upper)) %>%
   mutate(language = factor(language, 
                            levels = sorted.langs.adjusted$language, 
                             labels = sorted.langs.adjusted$language))
@@ -251,11 +251,11 @@ neighbor.adjusted <- neighbor.plot.adjusted %>%
   mutate(height = Lower - random) %>% 
   ggplot(aes(x = language, y = height, ymin = Lower, ymax = Upper, fill = ontological.category)) +
   geom_bar(stat = "identity", width = 1,
-           size = .25) +
+           linewidth = .25) +
   scale_x_discrete(name = "", labels = rep("", 226)) +
   facet_wrap(vars(ontological.category), ncol = 2) +
   scale_y_continuous(expand = c(0, 0), name = "Same Neighbor") +
-  scale_fill_manual(values = c(palette_a_t[1], palette_a_t[2])) +
+  scale_fill_manual(values = palette_a_t) +
   cowplot::theme_cowplot() +
   cowplot::panel_border() +
   theme(legend.position = "none") + 

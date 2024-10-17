@@ -7,14 +7,9 @@ library(cowplot)
 library(coin)
 library(Hmisc)
 library(rsq)
+library(MetBrewer)
 set.seed(1)
 
-
-palette_a_t <- c("#d06858", "#7e9ec4", "#add4db")
-palette_other <-  c("#e0dccb", "#c49464", "#add4db")
-palette_line <- c("#28313d")
-palette_world <-  c("#62c08f")
-palette_con <-  viridis::plasma(10)
 
 # Functions ---------------------------------------------------------------
 
