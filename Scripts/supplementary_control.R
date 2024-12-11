@@ -300,7 +300,7 @@ auc.sample.family <- map_dfr(1:1000, function(i){
   this.auc <- rnn.stats %>% 
     filter(language %in% this.sample) 
   this.tally <- this.auc %>% 
-    mutate(includes.baseline = ifelse(bot.ci <= 0.6, TRUE, FALSE)) %>% 
+    mutate(includes.baseline = ifelse(bot.ci < Base_Upper, TRUE, FALSE)) %>% 
     group_by(includes.baseline) %>% 
     tally() %>% 
     mutate(percentage = (n / sum(n)) * 100)
@@ -330,7 +330,7 @@ ggsave("../Figures/Other/mean_auc_family.png")
 # Tally
 print("Proportion of languages above chance, actual")
 kfold.percentage <- rnn.tally %>% 
-  group_by(significant) %>% 
+  group_by(significant_permut) %>% 
   tally() %>% 
   mutate(n = n / sum(n))
 print(kfold.percentage)
@@ -362,7 +362,7 @@ spurt.sample.family <- map_dfr(1:1000, function(i){
   this.auc <- spurt.stats %>% 
     filter(language %in% this.sample) 
   this.tally <- this.auc %>% 
-    mutate(includes.baseline = ifelse(bot.ci <= 0.6, TRUE, FALSE)) %>% 
+    mutate(includes.baseline = ifelse(bot.ci < Base_Upper, TRUE, FALSE)) %>% 
     group_by(includes.baseline) %>% 
     tally() %>% 
     mutate(percentage = (n / sum(n)) * 100)
@@ -392,7 +392,7 @@ ggsave("../Figures/Other/spurt_family_matthews.png")
 
 print("Proportion of languages above chance in spurt model, actual data")
 spurt.percentage <- spurt.tally %>% 
-  group_by(significant) %>% 
+  group_by(significant_permut) %>% 
   tally() %>% 
   mutate(n = n / sum(n))
 spurt.percentage
@@ -564,7 +564,7 @@ auc.sample.geo <- map_dfr(1:1000, function(i){
   this.auc <- rnn.stats %>% 
     filter(language %in% this.sample) 
   this.tally <- this.auc %>% 
-    mutate(includes.baseline = ifelse(bot.ci <= 0.6, TRUE, FALSE)) %>% 
+    mutate(includes.baseline = ifelse(bot.ci < Base_Upper, TRUE, FALSE)) %>% 
     group_by(includes.baseline) %>% 
     tally() %>% 
     mutate(percentage = (n / sum(n)) * 100)
@@ -622,7 +622,7 @@ spurt.sample.geo <- map_dfr(1:1000, function(i){
   this.auc <- spurt.stats %>% 
     filter(language %in% this.sample) 
   this.tally <- this.auc %>% 
-    mutate(includes.baseline = ifelse(bot.ci <= 0.6, TRUE, FALSE)) %>% 
+    mutate(includes.baseline = ifelse(bot.ci < Base_Upper, TRUE, FALSE)) %>% 
     group_by(includes.baseline) %>% 
     tally() %>% 
     mutate(percentage = (n / sum(n)) * 100)

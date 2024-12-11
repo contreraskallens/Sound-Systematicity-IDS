@@ -282,18 +282,12 @@ baseline_kfold <- read_csv('../Results/baseline_kfold.csv',
                            skip = 1)
 
 baseline_kfold_auc <- baseline_kfold %>% 
-  group_by(language) %>%
-  group_map(~ Hmisc::smean.cl.boot(.$AUC, conf.int = 0.999, B = 10000)) %>% 
-  bind_rows()
-baseline_kfold_mcc <- baseline_kfold %>% 
-  group_by(language) %>%
-  group_map(~ Hmisc::smean.cl.boot(.$Matthews, conf.int = 0.999, B = 10000)) %>% 
-  bind_rows()
-colnames(baseline_kfold_auc) <- c('Base_Mean', 'Base_Lower', 'Base_Upper')
-colnames(baseline_kfold_mcc) <- c('Base_MCC_Mean', 'Base_MCC_Lower', 'Base_MCC_Upper')
+  group_by(language) %>% 
+  dplyr::reframe(quants = quantile(AUC, probs = c(0.05, 0.95))) %>% 
+  add_column(bound = rep(c('Base_Lower', 'Base_Upper'), 200)) %>% 
+  pivot_wider(names_from = bound, values_from = quants)
 
-rnn.stats <- bind_cols(rnn.stats, baseline_kfold_auc) %>% 
-  bind_cols(baseline_kfold_mcc)
+rnn.stats <- left_join(rnn.stats, baseline_kfold_auc)
 
 baseline_spurt <- read_csv('../Results/baseline_spurt.csv', 
                            col_types = cols(), 
@@ -306,16 +300,11 @@ baseline_spurt <- read_csv('../Results/baseline_spurt.csv',
                                          'iteration'),
                            col_select = -1,
                            skip = 1)
-baseline_spurt.auc <- baseline_spurt %>% 
-  group_by(language) %>%
-  group_map(~ Hmisc::smean.cl.boot(.$AUC, conf.int = 0.999, B = 10000)) %>% 
-  bind_rows()
-baseline_spurt.mcc <- baseline_spurt %>% 
-  group_by(language) %>%
-  group_map(~ Hmisc::smean.cl.boot(.$Matthews, conf.int = 0.999, B = 10000)) %>% 
-  bind_rows()
-colnames(baseline_spurt.auc) <- c('Base_Mean', 'Base_Lower', 'Base_Upper')
-colnames(baseline_spurt.mcc) <- c('Base_MCC_Mean', 'Base_MCC_Lower', 'Base_MCC_Upper')
 
-spurt.stats <- bind_cols(spurt.stats, baseline_spurt.auc) %>% 
-  bind_cols(baseline_spurt.mcc)
+baseline_spurt_auc <- baseline_spurt %>% 
+  group_by(language) %>% 
+  dplyr::reframe(quants = quantile(AUC, probs = c(0.05, 0.95))) %>% 
+  add_column(bound = rep(c('Base_Lower', 'Base_Upper'), 200)) %>% 
+  pivot_wider(names_from = bound, values_from = quants)
+
+spurt.stats <- left_join(spurt.stats, baseline_spurt_auc) #%>% 

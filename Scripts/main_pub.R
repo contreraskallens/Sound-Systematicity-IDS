@@ -287,16 +287,8 @@ rnn.stats$language <- factor(rnn.stats$language, levels = rnn.stats$language)
 # kfold ----
 
 rnn.tally <- rnn.stats %>% 
-  mutate(significant = ifelse(bot.ci > 0.6, TRUE, FALSE),
-         significant_permut = ifelse(bot.ci > Base_Upper, TRUE, FALSE))
-# rnn.tally.mcc <- rnn.stats %>% 
-#   mutate(significant = ifelse(bot.ci.mcc > 0.2, TRUE, FALSE),
-#          significant_permut = ifelse(bot.ci.mcc > Base_MCC_Upper, TRUE, FALSE))
+  mutate(significant_permut = ifelse(bot.ci > Base_Upper, TRUE, FALSE))
 
-rnn.tally %>% 
-  group_by(significant) %>% 
-  tally() %>% 
-  mutate(percentage = (n / sum(n)) * 100)
 rnn.tally %>% 
   group_by(significant_permut) %>% 
   tally() %>% 
@@ -314,27 +306,24 @@ rnn.tally %>%
 rnn.stats %>% 
   arrange(desc(median.auc)) %>% 
   mutate(language = factor(language, levels = .$language),
-         significant = ifelse(bot.ci > 0.6, TRUE, FALSE),
+         significant = ifelse(bot.ci > Base_Upper, TRUE, FALSE),
          lang.label = ifelse(language %in% test.languages, 
                              as.character(language), ""),
          include = ifelse(lang.label == "", NA, language)) %>% 
   ggplot(aes(x = language, y = median.auc, fill = significant)) +
   geom_ribbon(aes(x = 1:length(language), ymin = Base_Lower, ymax = Base_Upper), fill = 'red', inherit.aes = FALSE,
-              alpha = 0.7) +
-  # geom_linerange(aes(x = language, ymin = Base_Lower, ymax = Base_Upper), color = 'red', inherit.aes = FALSE,
-  #             alpha = 0.7) +
+              alpha = 0.5) +
   geom_vline(aes(xintercept = include), linetype = "dotted", size = .5, color = palette_line) +
   geom_linerange(aes(ymin = bot.ci, ymax = top.ci), size = 0.5, color = palette_line) +
   geom_point(shape = 22, size = .75, color = palette_line) + 
   geom_hline(yintercept = 0.5) +
-  geom_hline(yintercept = 0.6, linetype = 'dashed') +  
   scale_x_discrete(name = "Language", labels = function(x){
     ifelse(x %in% test.languages, 
            str_replace_all(string = as.character(x), pattern = fixed(replacement_names)), "")
   }) +
   expand_limits(x = 201) +
   theme_classic() +
-  scale_fill_manual(name = "Significantly > 0.6", values = c(palette_other[1], palette_world)) +
+  scale_fill_manual(name = "Significantly > baseline", values = c(palette_other[1], palette_world)) +
   scale_y_continuous(name = "Learning performance (AUC)", breaks = seq(0, 1, 0.1)) + 
   theme(axis.ticks.x = element_blank(),
         legend.position = "none") 
@@ -346,16 +335,8 @@ ggsave("../Figures/Main/rnn_kfold.png", width = 18, height = 9, units = "cm", dp
 spurt.stats
 
 spurt.tally <- spurt.stats %>% 
-  mutate(significant = ifelse(bot.ci > 0.6, TRUE, FALSE),
-         significant_permut = ifelse(bot.ci > Base_Upper, TRUE, FALSE)) 
-# spurt.tally.mcc <- spurt.stats %>% 
-#   mutate(significant = ifelse(bot.ci.mcc > 0.2, TRUE, FALSE),
-#          significant_permut = ifelse(bot.ci.mcc > Base_MCC_Upper, TRUE, FALSE)) 
+  mutate(significant_permut = ifelse(bot.ci > Base_Upper, TRUE, FALSE)) 
 
-spurt.tally %>% 
-  group_by(significant) %>% 
-  tally() %>% 
-  mutate(percentage = (n / sum(n)) * 100)
 spurt.tally %>% 
   group_by(significant_permut) %>% 
   tally() %>% 
@@ -370,25 +351,24 @@ sd(spurt.stats$mean.auc)
 spurt.stats %>% 
   arrange(desc(median.auc)) %>% 
   mutate(language = factor(language, levels = .$language),
-         significant = ifelse(bot.ci > 0.6, TRUE, FALSE),
+         significant = ifelse(bot.ci > Base_Upper, TRUE, FALSE),
          lang.label = ifelse(language %in% test.languages, 
                              as.character(language), ""),
          include = ifelse(lang.label == "", NA, language)) %>% 
   ggplot(aes(x = language, y = median.auc, fill = significant)) +
   geom_ribbon(aes(x = 1:length(language), ymin = Base_Lower, ymax = Base_Upper), fill = 'red', inherit.aes = FALSE,
-              alpha = 0.7) +
+              alpha = 0.5) +
   geom_vline(aes(xintercept = include), linetype = "dotted", size = .5, color = palette_line) +
   geom_linerange(aes(ymin = bot.ci, ymax = top.ci), size = 0.5, color = palette_line) +
   geom_point(shape = 22, size = .75, color = palette_line) + 
   geom_hline(yintercept = 0.5) +
-  geom_hline(yintercept = 0.6, linetype = 'dashed') +  
   scale_x_discrete(name = "Language", labels = function(x){
     ifelse(x %in% test.languages, 
            str_replace_all(string = as.character(x), pattern = fixed(replacement_names)), "")
   }) +
   expand_limits(x = 201) +
   theme_classic() +
-  scale_fill_manual(name = "Significantly > 0.6", values = c(palette_other[1], palette_world)) +
+  scale_fill_manual(name = "Significantly > baseline", values = c(palette_other[1], palette_world)) +
   scale_y_continuous(name = "Learning performance (AUC)", breaks = seq(0, 1, 0.1)) + 
   theme(axis.ticks.x = element_blank(),
         legend.position = "none") 
