@@ -1,30 +1,32 @@
 source('functions.r')
+# Load multicore mc only if you plan to rerun the nearest-neighbor analyses.
+# library(future)
+# library(furrr)
+
 options(dplyr.summarise.inform = FALSE)
 
 # Load data -----------------------------------------------------
 
-# all_phon contains info on individual words.
 # all_phon_adjusted has the morphology-adjusted wordlists.
 # Phon_languages contains info on each language.
 
-# all.phon <- read_csv('../Data/Processed/all_phon.csv', col_types = cols())
-all.phon.adjusted <- read_csv("../Data/Processed/all_phon_adjusted.csv", col_types = cols())
+all.phon.adjusted <- read_csv("../data/Processed/all_phon_adjusted.csv", col_types = cols())
 all.phon.adjusted <- filter(all.phon.adjusted, language != 'Puinave')
-phon.languages <- read_csv('../Data/Processed/all_language_info.csv', col_types = cols()) %>% 
+phon.languages <- read_csv('../data/Processed/all_language_info.csv', col_types = cols()) %>% 
   filter(Name %in% unique(all.phon.adjusted$language))
-# language.groups <- read_csv("../Data/Processed/language_groups.csv") %>% 
-  # select(language = Name, geo.cluster, family) %>% 
-  # mutate(geo.cluster = factor(geo.cluster))
 
-wals <- read_csv('../Data/Processed/WALS_Codes.csv', col_types = cols()) %>% 
+
+wals <- read_csv('../data/Processed/WALS_Codes.csv', col_types = cols()) %>% 
   select(Name, wals_code, ID) %>% 
   mutate(ID = as.factor(ID))
-wals_info <- read_csv("../Data/Raw/WALS/walslanguage.csv", col_types = cols())
+wals_info <- read_csv("../data/Raw/WALS/walslanguage.csv", col_types = cols())
 
 
 # Wrangling Data ------------------------------------------------------------------
 
 # Get normalized mean class distances for each language and bind it in one tibble for both datasets
+# Takes a bit, so pre-saved and loaded by default.
+
 # all.distances.adjusted <- map_dfr(.x = unique(all.phon.adjusted$language),
 #                                   .f = function(language.name) {
 #                                     print(language.name)
@@ -37,12 +39,10 @@ wals_info <- read_csv("../Data/Raw/WALS/walslanguage.csv", col_types = cols())
 #                                     return(mean.distances)
 #                                   }
 # )
-
-# Save distance objects
-# write_rds(all.distances.adjusted, "../Data/r_objects/all_distances_adjusted.RDS", compress = 'xz')
+# write_rds(all.distances.adjusted, "../data/Processed/r_objects/all_distances_adjusted.RDS", compress = 'xz')
 
 # Load distances objects instead of rerunning everytime. Uncomment previous lines to rerun.
-all.distances.adjusted <- read_rds("../Data/r_objects/all_distances_adjusted.RDS")
+all.distances.adjusted <- read_rds("../data/Processed/r_objects/all_distances_adjusted.rds")
 
 
 # Sorted scatter of typicality per class ----
@@ -52,13 +52,12 @@ data.for.scatter.adjusted <- all.distances.adjusted %>%
   dplyr::summarize(Median = median(typicality))
 
 # Sort by the absolute value of the difference in typicality between Action and Thing
-sorted.langs.adjusted <- data.for.scatter.adjusted %>% # this one includes the difference in means
+sorted.langs.adjusted <- data.for.scatter.adjusted %>%
   spread(class, Median) %>%
   mutate(difference = abs(Action - Thing)) %>%
   arrange(desc(abs(difference)))
 
 # Save reference languages: Maximum, median and minimum difference in typicality and English
-# Note that min difference is the same in both word lists.
 
 english.difference <- "English"
 max.difference.adjusted <-
@@ -84,9 +83,7 @@ label.text.adjusted <- map_chr(sorted.langs.adjusted$language, function(x){
   } else{return("")}
 })
 
-# # Manual fix for labels in plot
-# label.text[which(label.text == "Waorani")] <- "      Waorani"
-# label.text[which(label.text == "Thai (Korat variety)")] <- "Thai\n(Korat)"
+# Manual fix for labels in plot. Uncomment as needed.
 label.text.adjusted[which(label.text.adjusted == "Hlai (Baoting variety)")] <- "Hlai\n(Baoting variety)"
 label.text.adjusted[which(label.text.adjusted == "Khwarshi (Inkhokvari dialect)")] <- "Khwarshi \n(Inkhokvari dialect)"
 label.text.adjusted[which(label.text.adjusted == "Breton")] <- "\nBreton"
@@ -98,8 +95,8 @@ label.text.adjusted[which(label.text.adjusted == "Breton")] <- "\nBreton"
 # represented in their distance matrix generated with get.distance.matrix) is a
 # word of the same class. Because ties are broken at random, run it 10 times and take the mean.
 
-# This process takes long, so results have been preallocated. If you wish to rerun them, uncomment the following lines.
-# 
+# Takes a bit, so pre-saved and loaded by default.
+
 # all.phon.list.adjusted <- all.phon.adjusted %>%
 #   split(.$language)
 # all.phon.list.adjusted <- all.phon.list.adjusted[sort(names(all.phon.list.adjusted))]
@@ -118,11 +115,9 @@ label.text.adjusted[which(label.text.adjusted == "Breton")] <- "\nBreton"
 #     }) %>%
 #     return()
 #   })
-# 
-# repeated.neighbor.adjusted %>% write_rds("../Data/r_objects/neighbor_adjusted.Rds")
+# repeated.neighbor.adjusted %>% write_rds("../data/Processed/r_objects/neighbor_adjusted.Rds")
 
-# Load data generated from previous lines
-repeated.neighbor.adjusted <- read_rds("../Data/r_objects/neighbor_adjusted.Rds")
+repeated.neighbor.adjusted <- read_rds("../data/Processed/r_objects/neighbor_adjusted.Rds")
 
 # For hypothesis testing, generate a permutation-based null distribution. This
 # involves running, for each language in both original and adjusted datasets,
@@ -131,12 +126,9 @@ repeated.neighbor.adjusted <- read_rds("../Data/r_objects/neighbor_adjusted.Rds"
 # reloaded later in the script. Also, this was run in a parallel multi-core
 # scheme using the package FURRR.
 
-# # # Load multicore mc
-# library(future)
-# library(furrr)
-# # #
-# # # Change this to a reasonable number considering your machine. Number of cores - 2 seems reasonable.
-# cores <- 30
+
+#  Change this to a reasonable number considering your machine. Number of cores - 2 seems reasonable.
+# cores <- 8
 # options(future.globals.maxSize = +Inf, mc.cores = cores, future.seed = TRUE)
 # furrr_options(seed = 123)
 # plan(multisession, workers = cores)
@@ -167,17 +159,17 @@ repeated.neighbor.adjusted <- read_rds("../Data/r_objects/neighbor_adjusted.Rds"
 #   pivot_wider(names_from = name, values_from = value)
 # 
 # neighbor.mc.adjusted %>%
-#   write_rds("../Data/r_objects/neighbor_mc_adjusted.Rds")
+#   write_rds("../data/Processed/r_objects/neighbor_mc_adjusted.Rds")
 # random.neigh.stats %>% 
-#   write_rds('../Data/r_objects/random_neigh_stats.Rds')
+#   write_rds('../data/Processed/r_objects/random_neigh_stats.Rds')
 
-neighbor.mc.adjusted <- read_rds("../Data/r_objects/neighbor_mc_adjusted.Rds")
-random.neigh.stats <- read_rds('../Data/r_objects/random_neigh_stats.Rds')
+neighbor.mc.adjusted <- read_rds("../data/Processed/r_objects/neighbor_mc_adjusted.Rds")
+random.neigh.stats <- read_rds('../data/Processed/r_objects/random_neigh_stats.Rds')
 
 # RNN K-Fold -------
 
 # Load NN results
-## Ad-hoc function to load results from the python script
+
 rnn.means <- function(data, indices){
   these.data <- data[indices,] %>% 
     select(-X1, -language)
@@ -186,8 +178,8 @@ rnn.means <- function(data, indices){
 
 
 rnn.performance <- list()
-for(file in list.files('../Results/ten-fold//', recursive = T, full.names = T)){
-  language <- str_extract(file, "(?<=Results/ten-fold///).+(?=_rnn_)")
+for(file in list.files('../data/Processed/RNN/ten-fold//', recursive = T, full.names = T)){
+  language <- str_extract(file, "(?<=/ten-fold///).+(?=_rnn_)")
   print(language)
   
   rnn.performance[[language]] <- read_csv(file, col_types = cols(), 
@@ -230,8 +222,8 @@ rnn.stats <- map_dfr(rnn.performance, function(x){
 
 # Load data
 spurt.performance <- list()
-for(file in list.files('../Results/Spurt//', recursive = T, full.names = T)){
-  language <- str_extract(file, "(?<=Results/Spurt///).+(?=_spurt_)")
+for(file in list.files('../data/Processed/RNN/Spurt//', recursive = T, full.names = T)){
+  language <- str_extract(file, "(?<=/Spurt///).+(?=_spurt_)")
   spurt.performance[[language]] <- read_csv(file, col_types = cols(), 
                                             col_names = c("Index",
                                                           "Matthews","AUC",
@@ -269,7 +261,7 @@ spurt.stats <- map_dfr(spurt.performance, function(x){
 
 # Load baselines
 
-baseline_kfold <- read_csv('../Results/baseline_kfold.csv', 
+baseline_kfold <- read_csv('../data/Processed/RNN/baseline_kfold.csv', 
                            col_types = cols(), 
                            col_names = c("Index",
                                          "Matthews","AUC",
@@ -289,7 +281,7 @@ baseline_kfold_auc <- baseline_kfold %>%
 
 rnn.stats <- left_join(rnn.stats, baseline_kfold_auc)
 
-baseline_spurt <- read_csv('../Results/baseline_spurt.csv', 
+baseline_spurt <- read_csv('../data/Processed/RNN/baseline_spurt.csv', 
                            col_types = cols(), 
                            col_names = c("Index",
                                          "Matthews","AUC",

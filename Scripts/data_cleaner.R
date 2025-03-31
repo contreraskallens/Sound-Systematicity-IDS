@@ -1,3 +1,4 @@
+# install.packages(c('tidyverse', 'rnaturalearth', 'ggdendro', 'cluster', 'geosphere', 'stringi', 'rnaturalearthdata))
 library(tidyverse)
 library(rnaturalearth)
 library(ggdendro)
@@ -13,27 +14,33 @@ source("functions.r")
 
 # Construct list of languages and language data
 
-# All languages reference to Glottolog was hand fixed for the following languages after it was found they didn't coincide with the codes in glottocode.
-# Both Armenians, 
-all.languages <- read_csv("../Data/Raw/IDS/languages.csv") %>% 
+all.languages <- read_csv("../data/Raw/IDS/languages.csv") %>% 
   mutate(ID = factor(ID))
-glottocode <- read_csv("../Data/Raw/IDS/Glottocode.csv") %>% 
-  select(Glottocode = id, family_id, parent_id, latitude, longitude, iso639P3code, country_ids)
-wals <- read_csv('../Data/Processed/WALS_Codes.csv') %>% 
+glottocode <- read_csv("../data/Raw/IDS/Glottocode.csv") %>% 
+  select(Glottocode = id, 
+         family_id, 
+         parent_id, 
+         latitude, 
+         longitude, 
+         iso639P3code, 
+         country_ids)
+wals <- read_csv('../data/Processed/WALS_Codes.csv') %>% 
   mutate(ID = as.factor(ID))
-wals_info <- read_csv("../Data/Raw/WALS/walslanguage.csv")
+wals_info <- read_csv("../data/Raw/WALS/walslanguage.csv")
 
-# Get handcoded list of excluded languages (extinct, explicit dialects that have a main one in the database, reconstructions, no info)
-excluded.languages <- read_delim("../Data/Processed/excluded_languages.txt", delim = "\\n", col_names = "Language") %>% 
+# Get hand-coded list of excluded languages 
+# (extinct, explicit dialects that have a main one in the database, 
+# reconstructions, no info)
+excluded.languages <- read_delim("../data/Processed/excluded_languages.txt", delim = "\\n", col_names = "Language") %>% 
   mutate(Language = str_squish(Language))
 
 all.languages <- all.languages %>% 
   filter(!(Name %in% excluded.languages$Language))
 
-# Now look at transcriptions and keep the ones that have phonological or phonemic information ----
+# Keep transcripts that have phonological or phonemic information ----
 
 # Get all word forms from IDS
-all.words <- read_csv(file = "../Data/Raw/IDS/forms.csv", col_names = T, locale = locale(encoding = "UTF-8")) %>%
+all.words <- read_csv(file = "../data/Raw/IDS/forms.csv", col_names = T, locale = locale(encoding = "UTF-8")) %>%
   mutate(Parameter_ID = factor(Parameter_ID),
          transcription = factor(transcription),
          alt_transcription = factor(alt_transcription),
@@ -64,7 +71,7 @@ all.words <- mutate(all.words, transcription = as.character(transcription),
                     og_alt_transcription = og.alt.transcriptions)
 
 # Load list of languages with no phon transcription and manually get them if they do. ------
-# Note that Spanish is mislabeled as phonemic when it's orthographic due to its inclusion of stress accents
+# Note that Spanish is mislabeled as phonemic when it's orthographic 
 # Jinsha Dai and Southern Kam are phonetic, not phonemic
 
 languages.no.phon <- read_csv("../Data/Processed/languages_no_phon.csv") %>% 
@@ -84,7 +91,7 @@ all.languages <- all.languages %>%
   filter(Name %in% unique(all.words$language) | Name %in% espeak.languages$language)
 
 
-# Remove espeak languages from frame
+# Remove espeak languages from frame to later add them in again
 
 all.words <- all.words %>% 
   filter(!(language %in% espeak.languages$language))
@@ -106,7 +113,7 @@ for(this.language in all.espeak.langs){
     str_remove_all("(?<=\\?).*") %>% # extract the first form of multi form entries separated by ?
     str_remove_all("~.*") %>% # extract the first form of multi form entries separated by ~
     str_remove_all('ˑ') # Remove separators
-  write_lines(lang.word.list, paste0("PhonMining/espeak_lists/", this.language, ".txt"), sep="\n\n")
+  write_lines(lang.word.list, paste0("../data/PhonMining/espeak_lists/", this.language, ".txt"), sep="\n\n")
 }
 
 # Read in espeak transcriptions
@@ -114,7 +121,7 @@ for(this.language in all.espeak.langs){
 espeak.phon <- map_dfr(all.espeak.langs, function(this.language){
   print(this.language)
   lang.words <- filter(espeak.words, language == this.language)
-  espeak.trans <- read_lines(paste0("PhonMining/phon_transcriptions/", this.language, "_phon.txt")) %>% 
+  espeak.trans <- read_lines(paste0("../data/PhonMining/phon_transcriptions/", this.language, "_phon.txt")) %>% 
     str_remove_all("[ˈˌ]") %>%  # Remove stress marker
     str_remove_all("[\\p{Mn}]") %>% 
     str_remove_all('\u0361') %>% # Remove ligatures
@@ -130,15 +137,15 @@ espeak.phon <- map_dfr(all.espeak.langs, function(this.language){
   mutate(phon = str_remove_all(phon, ' '),
          IPA = str_remove_all(IPA, ' '))
 
-# Link word forms to Concepticon to obtain semantic information
-ids.to.concepticon <- read_csv("../Data/Raw/IDS/parameters.csv") %>%
+# Link word forms to Concepticon to obtain semantic information ----
+ids.to.concepticon <- read_csv("../data/Raw/IDS/parameters.csv") %>%
   mutate(ID = factor(ID),
          Concepticon_ID = factor(Concepticon_ID)) %>% 
   select(-Description) %>% 
   rename(Parameter_ID = ID, english.name = Name)
 all.words <- left_join(all.words, ids.to.concepticon)
 
-concepticon <- read_csv('../Data/Raw/Concepticon/semanticFields.csv')
+concepticon <- read_csv('../data/Raw/Concepticon/semanticFields.csv')
 concepticon <- concepticon %>% 
   select(Concepticon_ID = id, ontological.category = ontological_category) %>% 
   mutate(Concepticon_ID = factor(Concepticon_ID))
@@ -163,33 +170,38 @@ all.phon <- all.words %>%
   mutate(phon = ifelse(transcription == "phon", Form, alt_form)) %>% 
   filter(!(is.na(phon)))
 
+# Get rid of forms that have a question mark on them
 all.phon <- all.phon %>% 
   filter(!is.na(phon),
-         str_detect(phon, "\\?", negate = TRUE)) # Get rid of forms that have a question mark on them
+         str_detect(phon, "\\?", negate = TRUE)) 
 
 all.phon <- bind_rows(all.phon, espeak.phon)
 
 all.phon <- clean.phon(all.phon)
 
 # Remove all remaining symbols and punctuation marks
-all.phon <-  mutate(all.phon, phon = str_remove_all(phon, "[\\p{S}\\p{P}]"))
+all.phon <-  mutate(all.phon, 
+                    phon = str_remove_all(phon, "[\\p{S}\\p{P}]"))
 
 # Only keep strings longer than 2
-all.phon <- filter(all.phon, nchar(phon) > 2)
+all.phon <- filter(all.phon, 
+                   nchar(phon) > 2)
 
 # Final cleanup ----
 
+# Remove words without concepticon information and 
+# exclude languages with fewer than 200 phon forms
 all.phon <- all.phon %>%
-  filter(!(is.na(ontological.category))) %>%  # remove words without concepticon information
+  filter(!(is.na(ontological.category))) %>%  # 
   group_by(language) %>%
   mutate(numberOfWords = n()) %>%
   group_by() %>%
-  filter(numberOfWords > 200) %>% # Exclude languages with fewer than 200 phon forms
+  filter(numberOfWords > 200) %>%
   dplyr::select(-numberOfWords) %>%
   droplevels()
 
 all.phon <- mutate(all.phon, phon = str_to_lower(phon))
-all.phon %>% write_csv('../Data/Processed/all_phon.csv')
+all.phon %>% write_csv('../data/Processed/all_phon.csv')
 
 # Match WALS and IDS by using the WALS CODE (hand-coded) in wals_codes.csv
 all.languages <- all.languages %>% 
@@ -198,13 +210,24 @@ all.languages <- all.languages %>%
 not.on.wals <- all.languages %>% 
   filter(is.na(wals_code))
 
-# For languages that are on WALS, use that information. If not on WALS, use Glottocode.
+# For languages that are on WALS, use that information. 
+# If not on WALS, use Glottocode.
 all.languages <- all.languages %>% 
   filter(!(is.na(wals_code))) %>% 
   select(-Latitude, -Longitude) %>% 
-  left_join(select(wals_info, wals_code, latitude, longitude, genus, family))
+  left_join(select(wals_info, 
+                   wals_code, 
+                   latitude, 
+                   longitude, 
+                   genus, 
+                   family))
 not.on.wals <- left_join(not.on.wals, glottocode) %>% 
-  select(-Latitude, -Longitude, -iso639P3code, family = family_id, genus = parent_id, - country_ids)
+  select(-Latitude, 
+         -Longitude, 
+         -iso639P3code, 
+         family = family_id, 
+         genus = parent_id, 
+         -country_ids)
 # Assign the missing Sanapana to bookkeeping too
 not.on.wals$family[which(is.na(not.on.wals$family))] <- "book1242" 
 not.on.wals$genus[which(is.na(not.on.wals$genus))] <- "book1242"
@@ -282,195 +305,14 @@ all.languages <- all.languages %>%
 all.languages <- all.languages %>% 
   select(ID, Name, latitude, longitude, family)
 all.languages %>% 
-  write_csv("../Data/Processed/all_language_info.csv")
+  write_csv("../data/Processed/all_language_info.csv")
 
 
 # Create a morphology-adjusted dataset --------
 
-get.ngram.endings <- function(language.df, level, variable){
-  all.levels <- c(-1:level)
-  names(all.levels) <- all.levels
-  all.ngram.endings <- map_dfc(all.levels, function(n){
-    str_sub(language.df[[variable]], n)
-  })
-  ngram.df <- language.df %>% 
-    dplyr::select(variable, ontological.category, Form) %>% 
-    bind_cols(all.ngram.endings)
-  return(ngram.df)
-}
-get.successors <- function(ngram.df, ngram){
-  level <- -(nchar(ngram))
-  this.ngram.rows <- ngram.df[[as.character(level)]] == ngram
-  this.df <- ngram.df[this.ngram.rows,]
-  next.level <- as.character(level - 1)
-  successors <- str_sub(this.df[[next.level]], 1, 1)
-  return(successors)
-}
-
-get.random.frequency <- function(ngram, char.table){
-  ngram.components <- str_split(ngram, "") %>% 
-    unlist()
-  if(length(ngram.components) == 1){
-    return(char.table[ngram])
-  } else{
-    return(prod(char.table[ngram.components]))
-  }
-}
-
-get.ngram.stats <- function(ngram.df, ngram, char.table, ngram.freq){
-  level <- -(nchar(ngram))
-  this.entropy <- infotheo::entropy(get.successors(ngram.df, ngram))
-  ngram.frequency <- table(ngram.df[[as.character(level)]])
-  length.frequency <- ngram.frequency[ngram]
-  norm.frequency <- scale(ngram.frequency)[ngram, 1]
-  if(is.nan(norm.frequency)){
-    norm.frequency <- 1 # This is in case there's only one ending, thus scaled frequency is NAN because of 0 SD
-  }
-  random.frequency <- get.random.frequency(ngram, char.table)
-  results <- list("ngram" = ngram, 
-                  "entropy" = this.entropy, 
-                  "norm.frequency" = norm.frequency, 
-                  "length.frequency" = length.frequency,
-                  "higher.than.random" = ngram.freq / random.frequency)
-  return(results)
-}
-
-get.word.stats <- function(word, ngram.results){
-  word.ngrams <- map_chr(-1:(-(nchar(word) - 1)), function(n){
-    return(str_sub(word, n))
-  })
-  names(word.ngrams) <- word.ngrams
-  word.entropies <- map_dbl(word.ngrams, function(ngram){
-    return(ngram.results[[ngram]][["entropy"]])
-  })
-  word.norm.frequencies <- map_dbl(word.ngrams, function(ngram){
-    return(ngram.results[[ngram]][["norm.frequency"]])
-  })
-  word.overrep <- map_dbl(word.ngrams, function(ngram){
-    return(ngram.results[[ngram]][["higher.than.random"]])
-  })
-  word.length.freq <- map_dbl(word.ngrams, function(ngram){
-    return(ngram.results[[ngram]][["length.frequency"]])
-  })
-  return(list("entropies" = word.entropies, 
-              "length.frequencies" = word.length.freq,
-              "norm.frequencies" = word.norm.frequencies, 
-              "overrep" = word.overrep))
-}
-
-evaluate.word <- function(word, ngram.results){
-  word.stats <- get.word.stats(word, ngram.results)
-  is.candidate <- word.stats$length.frequencies > 1 # Use only segments with more than 1 length frequency
-  if(sum(is.candidate) == 0){ # If none of the ngrams appear in any other word, no marker.
-    return("#")
-  }
-  word.entropies <- word.stats$entropies[is.candidate]
-  word.entropies <- word.entropies[!is.nan(word.entropies)]
-  word.frequencies <- word.stats$norm.frequencies
-  word.overrep <- word.stats$overrep
-  end.entropy <- ngram.results[["#"]][["entropy"]]
-  
-  tested.ngrams <- names(word.entropies)[1:(length(word.entropies))]
-  peaks <- c()  
-  if(length(tested.ngrams) > 1){
-    for(x in 1:length(tested.ngrams)){
-      this.entropy <- word.entropies[x]
-      if(x == 1){
-        prev.entropy <- end.entropy
-      } else {
-        prev.entropy <- word.entropies[x - 1]
-      }
-      if(this.entropy >= prev.entropy){
-        peaks <- c(peaks, tested.ngrams[x])
-      }
-    }
-    possible.markers <- unique(peaks) 
-  } else {
-    possible.markers <- tested.ngrams
-  }
-  
-  if(length(possible.markers) == 0){
-    return("#")
-  } #If there's no peaks left after that, return the end marker
-  frequency.test <- map_lgl(possible.markers, function(ngram){
-    if((word.frequencies[ngram] > 0) | (word.overrep[ngram] > 1)){ # Check whether frequency is higher than average OR higher than chance.
-      return(TRUE)
-    } else{
-      return(FALSE)
-    }
-  })
-  if(sum(frequency.test) == 0){ # If none pass, return end marker
-    return("#")
-  }
-  
-  possible.markers <- possible.markers[frequency.test]
-  candidate.entropies <- c(end.entropy, word.entropies[possible.markers]) # Get entropy of each candidate along with entropy of end mark
-  names(candidate.entropies) <- c("#", possible.markers)
-  max.entropy <- names(candidate.entropies)[which.max(candidate.entropies)] # Return the name of the candidate with the most entropy
-  return(max.entropy)
-}
-
-get.morph.markers <- function(language.df, variable){
-  all.ngrams <- get.ngram.endings(language.df, -(max(nchar(language.df[[variable]]))), variable)
-  
-  # Get data for frequency
-  all.ngram.segments <- all.ngrams %>% 
-    dplyr::select(-variable, -ontological.category, -Form) %>% 
-    unlist()
-  character.frequency <- paste0(all.ngram.segments, collapse = "") %>% 
-    str_split("") %>% 
-    table()
-  print(character.frequency)
-  character.frequency <- character.frequency / sum(character.frequency)
-  ngram.frequency <- table(all.ngram.segments)
-  ngram.frequency <- ngram.frequency / sum(ngram.frequency)
-  
-  # Get stats for each unique ngram
-  unique.ngrams <- unique(all.ngram.segments)
-  names(unique.ngrams) <- unique.ngrams
-  
-  all.ngram.stats <- map(unique.ngrams, function(ngram){
-    ngram.stats <- get.ngram.stats(all.ngrams, ngram, character.frequency, ngram.frequency[ngram])
-    return(ngram.stats)
-  })
-  all.ngram.stats[["#"]] <- list("ngram" = "#", "entropy" = infotheo::entropy(all.ngrams$`-1`), 
-                                 "norm.frequency" = 0, "length.frequency" = 0, "higher.than.random" = 0)
-  
-  all.stats.df <- bind_rows(all.ngram.stats) %>% 
-    add_column(ontological.category = language.df$ontological.category[1])
-  
-  
-  words.and.markers <- language.df %>% 
-    rowwise() %>% 
-    mutate(marker = evaluate.word((!!as.symbol(variable)), ngram.results = all.ngram.stats))
-  
-  results <- list("marker.census" = all.stats.df, "marked.words" = words.and.markers)
-  return(results)
-}
-
-clean.language <- function(language, all.data, variable){
-  this.language <- language
-  lang.df <- all.data %>% 
-    filter(language == this.language)
-  categories <- as.character(unique(lang.df$ontological.category))
-  names(categories) <- categories
-  all.marker.df <- map(categories, function(category){
-    print(category)
-    this.df <- lang.df %>% 
-      filter(ontological.category == category) %>% 
-      droplevels()
-    these.markers <- get.morph.markers(this.df, variable)
-    return(these.markers)    
-  })
-  marker.census <- bind_rows(all.marker.df$Thing$marker.census, all.marker.df$Action$marker.census, all.marker.df$Other$marker.census)
-  all.markers <- bind_rows(all.marker.df$Thing$marked.words, all.marker.df$Action$marked.words, all.marker.df$Other$marked.words)
-  
-  all.markers <- all.markers %>% 
-    mutate(marker.position = nchar((!!as.symbol(variable))) - nchar(marker),
-           clean.phon = ifelse(marker == "#", (!!as.symbol(variable)), str_sub((!!as.symbol(variable)), 1, marker.position))) %>% 
-    dplyr::select(-marker.position)
-  results <- list("census" = marker.census, "clean.df" = all.markers)
-}
+# Uncomment following lines to rerun the code obtaining the
+# string candidates. Commented because it takes a long time to run and
+# it's a deterministic process.
 
 # all.lang.adjusted.phon <- map(as.character(sort(unique(all.phon$language))), function(language){
 #   print(language)
@@ -482,8 +324,8 @@ clean.language <- function(language, all.data, variable){
 # names(all.lang.adjusted.phon) <- as.character(sort(unique(all.phon$language)))
 # 
 # 
-# write_rds(all.lang.adjusted.phon, "all_langs_adjusted.rds")
-all.lang.adjusted.phon <- read_rds("all_langs_adjusted.rds")
+# write_rds(all.lang.adjusted.phon, "../data/Processed/r_objects/all_langs_adjusted.rds")
+all.lang.adjusted.phon <- read_rds("../data/Processed/r_objects/all_langs_adjusted.rds")
 
 complete.markers <- map_dfr(all.lang.adjusted.phon, function(lang){
   return(lang$clean.df)
@@ -492,7 +334,7 @@ complete.markers <- map_dfr(all.lang.adjusted.phon, function(lang){
 
 prefix.languages <- all.phon %>%
   mutate(phon = stringi::stri_reverse(phon))
-
+# 
 # all.lang.adjusted.prefix <- map(as.character(sort(unique(all.phon$language))), function(language){
 #   print(language)
 #   lang.results <- clean.language(language, prefix.languages, variable = 'phon')
@@ -501,8 +343,8 @@ prefix.languages <- all.phon %>%
 # })
 # 
 # all.lang.adjusted.prefix %>%
-#   write_rds("all_lang_adjusted_prefix.rds")
-all.lang.adjusted.prefix <- read_rds("all_lang_adjusted_prefix.rds")
+#   write_rds("../data/Processed/r_objects/all_lang_adjusted_prefix.rds")
+all.lang.adjusted.prefix <- read_rds("../data/Processed/r_objects/all_lang_adjusted_prefix.rds")
  
 complete.markers.prefix <- map_dfr(all.lang.adjusted.prefix, function(lang){
   return(lang$clean.df)
@@ -529,9 +371,9 @@ prefix.census <- all.phon.adjusted %>%
 
 marker.census <- full_join(suffix.census, prefix.census) %>% 
   arrange(language, ontological.category)
-write_csv(marker.census, "../Data/Processed/marker_census.csv")
+write_csv(marker.census, "../data/Processed/marker_census.csv")
 
-# nwords to be removed
+# number of words to be removed
 all.phon.adjusted %>% 
   rowwise() %>% 
   mutate(suffix.position = nchar(phon) - nchar(suffix), prefix.position = nchar(prefix) + 1,
@@ -555,7 +397,6 @@ all.phon.adjusted <- all.phon.adjusted %>%
 
 homophone.census <- all.phon.adjusted %>% 
   group_by(language, ontological.category, phon) %>%
-  # group_by(language, phon) %>% 
   tally() %>% 
   filter(n > 1) %>% 
   group_by() %>% 
@@ -592,17 +433,11 @@ original.number.words %>%
   filter(original.number.words == max(original.number.words) | original.number.words == min(original.number.words))
 sum(original.number.words$original.number.words)
 
-# marker.census.complete <- left_join(marker.census.complete, original.number.words) %>%
-  # left_join(adjusted.number.words) %>%
-  # left_join(select(all.languages, language = Name, Family = family)) %>%
-  # left_join(homophone.census) %>%
-  # select(language, Family, everything())
 
 # Replace NA with 0 for the numeric columns. NAs result from languages without within-class homophones to remove.
-# marker.census.complete <- mutate_if(.tbl = marker.census.complete, .predicate = is.numeric, .funs = function(x){replace_na(x, 0)})
 
-write_csv(homophone.census, "../Data/Processed/homophone_census.csv")
-write_csv(all.phon.adjusted, "../Data/Processed/all_phon_adjusted.csv")
+write_csv(homophone.census, "../data/Processed/homophone_census.csv")
+write_csv(all.phon.adjusted, "../data/Processed/all_phon_adjusted.csv")
 
 
 # Make geographical clusters and world map of languages ---------------
@@ -625,9 +460,9 @@ silhouettes <- map_dbl(2:100, function(i){
   silhouette(cutree(cluster.regions, k = i), dist = geo.matrix) %>% as.matrix %>% .[,"sil_width"] %>% mean %>% return
   })
 silhouettes <- silhouettes %>% enframe %>% mutate(name = 2:100)
-ggplot(silhouettes, aes(x = name, y = value)) + geom_point() + geom_label(aes(label = name))
+ggplot(silhouettes, aes(x = name, y = value)) + geom_point() + geom_label(aes(label = name), size = 2)
 
-# Plot shows that a good number of clusters is k = 20 (peak of silhouette)
+# Plot shows that a good number of clusters is k = 20 (peak of silhouette), along with 5, 10, 13, and 28
 # Make a color vector of 20 colors
 col_vector<-c('#e6194b', '#3cb44b', '#ffe119', '#4363d8','#f58231', 
               '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe', 
@@ -640,7 +475,7 @@ language.groups <- reduced %>%
   select(Name, geo.cluster) %>% 
   mutate(geo.cluster = factor(geo.cluster)) %>% 
   right_join(all.languages)
-language.groups %>% write_csv("../Data/Processed/language_groups.csv")
+language.groups %>% write_csv("../data/Processed/language_groups.csv")
 
 # Make a world map with clusters surrounded by a convex hull
 hull <- language.groups %>% 
@@ -678,4 +513,4 @@ ggplot(data = world) +
   cowplot::theme_map() +
   theme(legend.position = "none")
 
-ggsave("../Figures/Supplemental/geo_cluster_map.png", width = 17, height = 9, units = "cm", dpi = 900)
+ggsave("../results/Figures/Supplemental/geo_cluster_map.png", width = 17, height = 9, units = "cm", dpi = 900)

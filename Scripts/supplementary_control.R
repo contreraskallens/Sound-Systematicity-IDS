@@ -4,7 +4,7 @@ source("main_pub.R")
 
 # Reduplication ---- 
 # Code whether languages have a reduplication in WALS
-language.groups <- read_csv("../Data/Processed/language_groups.csv") %>%
+language.groups <- read_csv("../data/Processed/language_groups.csv") %>%
   select(language = Name, geo.cluster, family) %>%
   mutate(geo.cluster = factor(geo.cluster))
 redup_languages <- language.groups %>% 
@@ -29,7 +29,7 @@ all.distances.adjusted %>%
   labs(y = "Mean Typicality", title = "Mean typicality per class for reduplication mode", subtitle = "Adjusted") +
   theme_cowplot() +
   theme(axis.title.x = element_blank())
-ggsave("../Figures/Other/typicality_reduplication.png")
+ggsave("../results/Figures/Other/typicality_reduplication.png")
 
 
 ## Code reduplication  as binary
@@ -54,7 +54,7 @@ redup_density %>%
        subtitle = "Dashed lines represent languages with known productive reduplication",
        x = "Mean typicality") +
   cowplot::theme_cowplot()
-ggsave("../Figures/Other/redup_typicality_actions.png")
+ggsave("../results/Figures/Other/redup_typicality_actions.png")
 
 redup_density %>% 
   filter(class == "Thing") %>% 
@@ -65,7 +65,7 @@ redup_density %>%
   labs(title = "Mean typicality for Things",
        subtitle = "Dashed lines represent languages with known productive reduplication") +
   cowplot::theme_cowplot()
-ggsave("../Figures/Other/redup_typicality_things.png")
+ggsave("../results/Figures/Other/redup_typicality_things.png")
 
 
 # Linear model of the effect of reduplication
@@ -103,7 +103,7 @@ rnn.redup %>%
   theme_cowplot() +
   labs(title = "Distribution of Mean AUC across languages",
        subtitle = "Dashed lines represent languages with known productive reduplication")
-ggsave("../Figures/Other/redup_rnn.png")
+ggsave("../results/Figures/Other/redup_rnn.png")
 
 
 ## Linear model assessment of effect of redup
@@ -138,7 +138,7 @@ spurt.redup %>%
   labs(title = "Distribution of Mean AUC across spurt",
        subtitle = "Dashed lines represent languages with known productive reduplication") +
   theme_cowplot()
-ggsave("../Figures/Other/redup_spurt.png")
+ggsave("../results/Figures/Other/redup_spurt.png")
 
 ## Assess effect via linear model
 spurt.redup %>% 
@@ -200,7 +200,7 @@ family.stats %>%
   geom_vline(xintercept = eta.squared.action.thing.adjusted, size = 3, color = "red") +
   geom_vline(xintercept = median(family.stats$eta), color = "blue", linetype = "dashed", size = 3) +
   labs(title = "Distribution of eta^2 in family permutations", subtitle = "Red = Actual data, blue = permutation median")
-ggsave("../Figures/Other/family_eta.png")
+ggsave("../results/Figures/Other/family_eta.png")
 
 family.stats %>% 
   ggplot(aes(x = d)) + 
@@ -209,7 +209,7 @@ family.stats %>%
   geom_vline(xintercept = abs(d.action.thing.adjusted$estimate), size = 3, color = "red") +
   geom_vline(xintercept = median(family.stats$d), color = "blue", linetype = "dashed", size = 3) +
   labs(title = "Distribution of Cohen's d in family permutations", subtitle = "Red = Actual data, blue = permutation median")
-ggsave("../Figures/Other/family_d.png")
+ggsave("../results/Figures/Other/family_d.png")
 
 # Family permutations for nearest neighbor analysis
 
@@ -264,7 +264,7 @@ neighbor.samples.family %>%
   labs(title = "Proportion of languages with p < 0.01 in neighbor MC test, sampling for family for ACTIONS",
        subtitle = "Red = actual data, blue = permutation median") +
   cowplot::theme_cowplot()
-ggsave("../Figures/Other/neighbor_family_actions.png")
+ggsave("../results/Figures/Other/neighbor_family_actions.png")
 
 print("Proportion of languages with p < 0.01 in neighbor test, Things, actual")
 neighbor.proportions.adjusted$n[2] / 100
@@ -285,7 +285,7 @@ neighbor.samples.family %>%
   labs(title = "Proportion of languages with p < 0.01 in neighbor MC test, sampling for family for THINGS",
        subtitle = "Red = actual data, blue = permutation median") +
   cowplot::theme_cowplot()
-ggsave("../Figures/Other/neighbor_family_things.png")
+ggsave("../results/Figures/Other/neighbor_family_things.png")
 
 
 
@@ -325,7 +325,7 @@ auc.sample.family %>%
   theme_cowplot() +
   labs(title = "Mean MCC sampling for family",
        subtitle = "Red: sample median, blue: actual measure")
-ggsave("../Figures/Other/mean_auc_family.png")
+ggsave("../results/Figures/Other/mean_auc_family.png")
 
 # Tally
 print("Proportion of languages above chance, actual")
@@ -348,7 +348,7 @@ auc.sample.family %>%
   theme_cowplot() +
   labs(title = "Percentage of languages with AUC above the baseline sampling for family",
        subtitle = "Red: actual data, blue: sample median")
-ggsave("../Figures/Other/rnn_tally_family.png")
+ggsave("../results/Figures/Other/rnn_tally_family.png")
 
 
 # Family sampling in Spurt model
@@ -388,7 +388,7 @@ spurt.sample.family %>%
   theme_cowplot() +
   labs(title = "Spurt mean AUC sampling for family",
        subtitle = "Red: actual data, blue: sample median")
-ggsave("../Figures/Other/spurt_family_matthews.png")
+ggsave("../results/Figures/Other/spurt_family_matthews.png")
 
 print("Proportion of languages above chance in spurt model, actual data")
 spurt.percentage <- spurt.tally %>% 
@@ -411,7 +411,7 @@ spurt.sample.family %>%
   cowplot::theme_cowplot() +
   labs(title = "Spurt percentage of languages with MCC above baseline sampling for family",
        subtitle = "Red: actual data, blue: sample median")
-ggsave("../Figures/Other/spurt_tally_family.png")
+ggsave("../results/Figures/Other/spurt_tally_family.png")
 
 
 # Geographical cluster sampling ----
@@ -461,7 +461,7 @@ geo.stats %>%
   geom_vline(xintercept = eta.squared.action.thing.adjusted, size = 3, color = "red") +
   geom_vline(xintercept = median(geo.stats$eta), color = "blue", linetype = "dashed", size = 3) +
   labs(title = "Distribution of eta^2 in geo permutations", subtitle = "Red = Actual data, blue = permutation median")
-ggsave("../Figures/Other/geo_eta.png")
+ggsave("../results/Figures/Other/geo_eta.png")
 
 geo.stats %>% 
   ggplot(aes(x = d)) + 
@@ -470,7 +470,7 @@ geo.stats %>%
   geom_vline(xintercept = abs(d.action.thing.adjusted$estimate), size = 3, color = "red") +
   geom_vline(xintercept = median(geo.stats$d), color = "blue", linetype = "dashed", size = 3) +
   labs(title = "Distribution of Cohen's d in geo permutations", subtitle = "Red = Actual data, blue = permutation median")
-ggsave("../Figures/Other/geo_d.png")
+ggsave("../results/Figures/Other/geo_d.png")
 
 
 # Geo neighbor
@@ -527,7 +527,7 @@ neighbor.samples.geo %>%
   labs(title = "Proportion of languages with p < 0.01 in neighbor MC test, sampling for geo for ACTIONS",
        subtitle = "Red = actual data, blue = permutation median") +
   cowplot::theme_cowplot()
-ggsave("../Figures/Other/neighbor_geo_actions.png")
+ggsave("../results/Figures/Other/neighbor_geo_actions.png")
 
 print("Proportion of languages with p < 0.01 in neighbor test, Things, actual")
 neighbor.proportions.adjusted$n[2]
@@ -548,7 +548,7 @@ neighbor.samples.geo %>%
   labs(title = "Proportion of languages with p < 0.01 in neighbor MC test, sampling for geo for THINGS",
        subtitle = "Red = actual data, blue = permutation median") +
   cowplot::theme_cowplot()
-ggsave("../Figures/Other/neighbor_geo_things.png")
+ggsave("../results/Figures/Other/neighbor_geo_things.png")
 
 
 # 10 fold permutations for geo cluster
@@ -589,7 +589,7 @@ auc.sample.geo %>%
   theme_cowplot() +
   labs(title = "Mean AUC sampling for geo",
        subtitle = "Red: sample median, blue: actual measure")
-ggsave("../Figures/Other/mean_auc_geo.png")
+ggsave("../results/Figures/Other/mean_auc_geo.png")
 
 # Tally
 print("Proportion of languages above chance, actual")
@@ -608,7 +608,7 @@ auc.sample.geo %>%
   theme_cowplot() +
   labs(title = "Percentage of languages with AUC above the baseline sampling for geo",
        subtitle = "Red: actual data, blue: sample median")
-ggsave("../Figures/Other/rnn_tally_geo.png")
+ggsave("../results/Figures/Other/rnn_tally_geo.png")
 
 # Spurt model
 
@@ -647,7 +647,7 @@ spurt.sample.geo %>%
   theme_cowplot() +
   labs(title = "Spurt mean AUC sampling for geo",
        subtitle = "Red: actual data, blue: sample median")
-ggsave("../Figures/Other/spurt_geo_matthews.png")
+ggsave("../results/Figures/Other/spurt_geo_matthews.png")
 
 print("Proportion of languages above chance in spurt model, actual data")
 spurt.percentage$n[2]
@@ -665,4 +665,4 @@ spurt.sample.geo %>%
   cowplot::theme_cowplot() +
   labs(title = "Spurt percentage of languages with AUC above baseline sampling for geo",
        subtitle = "Red: actual data, blue: sample median")
-ggsave("../Figures/Other/spurt_tally_geo.png")
+ggsave("../results/Figures/Other/spurt_tally_geo.png")

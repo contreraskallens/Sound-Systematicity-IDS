@@ -396,9 +396,9 @@ def save_repeated_measures(results, lang_name, spurt_model):
     :return: Doesn't return anything. Saves a CSV version of the results Dataframe.
     """
     if spurt_model:
-        filename_performance = "../Results/Spurt/" + f"{lang_name}" + "_spurt_performance.csv"
+        filename_performance = "../data/Processed/RNN/Spurt/" + f"{lang_name}" + "_spurt_performance.csv"
     else:
-        filename_performance = "../Results/ten-fold/" + f"{lang_name}" + "_rnn_performance.csv"
+        filename_performance = "../data/Processed/RNN/" + f"{lang_name}" + "_rnn_performance.csv"
     results.to_csv(filename_performance)
 
 
@@ -429,9 +429,9 @@ def loop_through_langs(all_data, spurt_model, baseline):
         this_performance = pd.concat(this_performance, axis=0)
         baseline_results = this_performance.copy()
         if not spurt_model:
-            baseline_results.to_csv('../Results/baseline_kfold.csv')
+            baseline_results.to_csv('../data/Processed/RNN/baseline_kfold.csv')
         else:
-            baseline_results.to_csv('../Results/baseline_spurt.csv')
+            baseline_results.to_csv('../data/Processed/RNN/baseline_spurt.csv')
 
 # - Script
 
@@ -447,7 +447,7 @@ if __name__ == "__main__":
     # Load all language data and extract an ordered set of the names
     # Skip Puinave, has only 1 Action word
     
-    lang_data = pd.read_csv('../Data/Processed/all_phon_adjusted.csv', keep_default_na=False)
+    lang_data = pd.read_csv('../data/Processed/all_phon_adjusted.csv', keep_default_na=False)
     
     # Loop through all language names, get performance of RNN on them and save them as CSV.
     loop_through_langs(lang_data, False, False)

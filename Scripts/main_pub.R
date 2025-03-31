@@ -1,5 +1,6 @@
 source("functions.r")  # Functions and packages
 source("data_wrangling.R")  # Distances and typicality data
+
 library(ggpointdensity)
 library(tidyverse)
 library(rnaturalearth)
@@ -8,22 +9,18 @@ library(sf)
 library(cowplot)
 library(MetBrewer)
 
-# morph.complexity <- read_csv("../Data/Processed/morph_complexity.csv")
 all.phon.adjusted <- filter(all.phon.adjusted, language != 'Puinave')
-all.languages <- read_csv('../Data/Processed/all_language_info.csv') %>% 
+all.languages <- read_csv('../data/Processed/all_language_info.csv') %>% 
   filter(Name %in% all.phon.adjusted$language)
 
-# palette_a_t <- c("#d06858", "#7e9ec4", "#add4db")
 palette_a_t <- met.brewer('Hiroshige', n = 2)
 names(palette_a_t) <- c('Thing', 'Action')
-# palette_other <-  c("#e0dccb", "#c49464", "#add4db")
 palette_other <- met.brewer('Hokusai1', n = 4)
 palette_line <- c("#28313d")
 palette_world <-  met.brewer('Hokusai3', n=6)[c(2,4)]
 palette_con <-  viridis::plasma(10)
 
 # Basic descriptive statistics of the features of wordlists ------
-
 
 # Make it only with languages that have geographical information
 reduced <- select(all.languages, Name,longitude, latitude) %>% 
@@ -41,7 +38,7 @@ world.map <- ggplot() +
               size = 1, shape = 22, fill = palette_other[2]) +
   ylim(c(-55, 70)) + 
   theme_void()
-ggsave(plot = world.map, "../Figures/Main/world_map.png", width = 18, height = 7, units = "cm", dpi = 300,
+ggsave(plot = world.map, "../results/Figures/Main/world_map.png", width = 18, height = 7, units = "cm", dpi = 300,
        bg = 'white')
 
 # Look at families as a proportion of total families in wals
@@ -75,7 +72,7 @@ all.phon.adjusted %>%
   geom_histogram(fill = palette_other[2], binwidth = 50, color = palette_line) +
   cowplot::theme_cowplot() +
   labs(x = "Number of Words", y = "Count", title = "Number of Words per Language", subtitle = "Adjusted")
-ggsave("../Figures/Other/number_items_adjusted.png", bg = 'white')
+ggsave("../results/Figures/Other/number_items_adjusted.png", bg = 'white')
 
 
 # Category tally
@@ -97,7 +94,7 @@ all.phon.adjusted %>%
   cowplot::theme_cowplot() +
   labs(y = "Proportion", x = "Ontological Category", title = "Within language proportion of words of each category", 
        subtitle = "Adjusted")
-ggsave("../Figures/Other/within_language_category_adjusted.png", bg = 'white')
+ggsave("../results/Figures/Other/within_language_category_adjusted.png", bg = 'white')
 
 # Typicality tests and visualization ------
 
@@ -144,7 +141,7 @@ density.adjusted <- all.distances.adjusted %>%
   scale_y_continuous(breaks = c(0.5, 0.6, 0.7, 0.8)) +
   facet_wrap(vars(class), ncol = 2)
 density.adjusted
-ggsave("../Figures/Main/density_adjusted.png", 
+ggsave("../results/Figures/Main/density_adjusted.png", 
        width = 18, height = 9, units = "cm", dpi = 500, bg = 'white')
 
 # Look at languages on an individual level ----
@@ -169,7 +166,7 @@ scatter.adjusted <- ggplot(data = plot.data.adjusted, aes(y = Median, x = langua
   guides(color = guide_legend(override.aes = list(size=4)))
 
 scatter.adjusted
-ggsave("../Figures/Main/scatter_adjusted.png", width = 18, height = 7, units = "cm", dpi = 500, bg = 'white')
+ggsave("../results/Figures/Main/scatter_adjusted.png", width = 18, height = 7, units = "cm", dpi = 500, bg = 'white')
 
 
 # Get test statistics for test languages.
@@ -220,13 +217,10 @@ neighbor.test.adjusted <- neighbor.test.adjusted %>%
 
 # Check statistics for reference languages. For "baseline" performance for each
 # language, take upper boundary of bootstrapped MCs
-## This is the mean reported
 
 random.neigh.stats %>% 
   rename(random = Upper) %>% 
   select(language, ontological.category, random) %>% 
-  # group_by(language, ontological.category) %>%
-  # dplyr::summarize(random = mean(random) + sd(random)) %>% 
   right_join(select(neighbor.stats.adjusted, Mean)) %>% 
   left_join(neighbor.test.adjusted) %>% 
   filter(language %in% test.languages) %>% 
@@ -268,7 +262,7 @@ neighbor.adjusted <- neighbor.plot.adjusted %>%
   theme(axis.ticks.x = element_blank())
 neighbor.adjusted
 
-ggsave("../Figures/Main/neighbor_adjusted_diff.png", width = 18, height = 7, units = "cm", dpi = 500)
+ggsave("../results/Figures/Main/neighbor_adjusted_diff.png", width = 18, height = 7, units = "cm", dpi = 500)
 
 
 # RNN K-Fold -------
@@ -299,7 +293,7 @@ rnn.tally
 replacement_names <- c('A', 'B', 'C', 'D')
 names(replacement_names) <- test.languages
 
-## Check reference languages
+# Check reference languages
 rnn.tally %>% 
   filter(language %in% test.languages) 
 
@@ -328,7 +322,7 @@ rnn.stats %>%
   theme(axis.ticks.x = element_blank(),
         legend.position = "none") 
 
-ggsave("../Figures/Main/rnn_kfold.png", width = 18, height = 9, units = "cm", dpi = 500, bg = 'white')
+ggsave("../results/Figures/Main/rnn_kfold.png", width = 18, height = 9, units = "cm", dpi = 500, bg = 'white')
 
 # RNN Spurt --------------------------------------------------------
 
@@ -373,4 +367,4 @@ spurt.stats %>%
   theme(axis.ticks.x = element_blank(),
         legend.position = "none") 
 
-ggsave("../Figures/Main/rnn_spurt.png", width = 18, height = 9, units = "cm", dpi = 500, bg = 'white')
+ggsave("../results/Figures/Main/rnn_spurt.png", width = 18, height = 9, units = "cm", dpi = 500, bg = 'white')
